@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "files": 1208,
+  "bytes": 414363395,
+  "findings": [],
+  "external_service_hosts": {
+    "feishu.doubao.com": 21,
+    "mcnnox2fhjfq.feishu.cn": 17,
+    "aka.doubaocdn.com": 268,
+    "example.feishu.cn": 13,
+    "bytedance.larkoffice.com": 3362,
+    "www.doubao.com": 8436,
+    "dataloom-jcvszlgz.feishucdn.com": 17924,
+    "bytedance.feishuapp.com": 20,
+    "miaoda.feishu.cn": 6,
+    "bytedance.feishuapp.cn": 6,
+    "www.larkoffice.com": 8,
+    "openspeech.bytedance.com": 4,
+    "mail.feishu.cn": 2
+  },
+  "note": "Pattern-based scan only; external link access and image/PDF content need separate review.",
+  "imageTextScan": {
+    "images": 102,
+    "scanned": 102,
+    "failed": 0,
+    "credentialPatternFindings": 0,
+    "method": "offline Apple Vision OCR; pattern scan, not exhaustive privacy verification"
+  }
+}

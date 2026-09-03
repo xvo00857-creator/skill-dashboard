@@ -1,0 +1,576 @@
+# GKE 应用接入实现报告 — order-normalizer-service
+
+> 基于 Skill `gke-app-onboarding`（分类：Containers）对最小示例项目进行审阅、改进与可重复验证。
+> 报告生成时间：2026-08-26。所有结论均来自实际读取的文件与实际执行的命令，未编造外部凭据或平台数据。
+
+---
+
+## 1. 执行摘要
+
+原始项目（`package.json` / `app.js` / `test.js`）是一个仅含纯函数的 Node.js 片段，**无法直接按 GKE 方式部署**，且存在两个会导致运行失败的硬缺陷。本报告按 `gke-app-onboarding` Skill 的五步工作流（App Assessment → Containerization → Image Management → Manifest Generation → Deploy）完成改进：
+
+- 修复模块系统与导入路径缺陷；
+- 补齐 HTTP 服务层（含 `/healthz`、`/readyz` 探针端点），使其满足 GKE Deployment 的存活/就绪探针要求；
+- 生成多阶段 `Dockerfile`（非 root、最小基础镜像）；
+- 生成符合 Skill 清单的 `deployment.yaml`（2 副本、资源限额、探针、安全上下文、ClusterIP）；
+- 完成 5 项单元测试 + 端点联调 + YAML 静态校验，全部通过。
+
+**环境限制**：当前沙箱无 Docker，无法执行 `docker build` / `docker push` 与实际 `kubectl apply`；已对 Dockerfile 做静态审查并在报告中标注复测方法。不访问任何生产凭据。
+
+---
+
+## 2. Skill 读取清单与关键规则
+
+### 2.1 实际读取的 Skill 文件（相对 ZIP 根目录）
+
+| 相对路径 | 作用 |
+|---|---|
+| `gke-app-onboarding/SKILL.md` | 主工作流与清单（唯一执行依据） |
+| `gke-app-onboarding/assets/Dockerfile` | Node.js 单阶段 Dockerfile 参考 |
+| `gke-app-onboarding/assets/deployment.yaml` | Node.js Deployment + Service 参考 |
+| `gke-app-onboarding/assets/index.js` | 最简 HTTP 服务参考（含 `/healthz`） |
+| `gke-app-onboarding/assets/package.json` | 最简 package.json 参考 |
+
+### 2.2 确实影响结果的 SKILL.md 规则
+
+> **规则 A（Manifest 清单）**：SKILL.md 第 4 节明确要求清单包含——资源 requests/limits、liveness/readiness 探针、**生产至少 2 副本**、Service 类型恰当（内部用 ClusterIP，对外用 Gateway API）。
+>
+> 影响：原始项目无任何清单；改进后的 `deployment.yaml` 严格按此清单设置 `replicas: 2`、双探针、资源限额，并将 Service 从参考资产中的 `LoadBalancer` 改为 `ClusterIP`，因为 Skill 正文建议内部服务用 ClusterIP、对外走 Gateway API，而非直接暴露 LoadBalancer。
+
+> **规则 B（Containerization 最佳实践）**：SKILL.md 第 2 节要求——多阶段构建、distroless 或最小基础镜像、**以非 root 用户运行**、日志输出到 stdout/stderr。
+>
+> 影响：改进后的 Dockerfile 采用 builder/runtime 两阶段、`USER node`、应用内 `console.log` 输出到 stdout。
+
+> **规则 C（适用边界）**：SKILL.md 描述段声明"Don't use for general GKE cluster administration or upgrades"。本报告严格限定在应用接入范围内，不涉及集群创建、升级或节点池管理。
+
+---
+
+## 3. 原始项目评估（App Assessment）
+
+### 3.1 技术栈
+
+- 语言：Node.js（ESM 语法）
+- 框架：无（纯函数 + 拟用内置 `http`）
+- 依赖：零外部依赖
+- 配置：无环境变量
+- 状态性：无状态（纯函数）
+- 网络：原始代码无监听端口
+- 健康端点：原始代码无
+
+### 3.2 原始文件内容
+
+**package.json**
+```json
+{"name":"wechat-skill-eval-sample","version":"1.0.0","private":true,"scripts":{"test":"node test.js"}}
+```
+
+**app.js**
+```js
+export function normalizeOrder(order) {
+  if (!order || !order.id) throw new Error("missing order id");
+  return { id: String(order.id), amount: Number(order.amount || 0) };
+}
+```
+
+**test.js**
+```js
+import { normalizeOrder } from "./src/app.js";
+console.log(normalizeOrder({ id: 42, amount: "19.9" }));
+```
+
+---
+
+## 4. 识别的约束与冲突
+
+### 冲突一：ESM 语法与 package.json 模块声明缺失（硬缺陷）
+
+- **现象**：`app.js` 使用 `export`，`test.js` 使用 `import`，但 `package.json` 未声明 `"type": "module"`。
+- **实际验证**：
+  - Node v22（当前沙箱）：自动检测 ESM 语法并重解析，但输出 `MODULE_TYPELESS_PACKAGE_JSON` 警告，存在性能开销。
+  - Node 18（Skill 资产 Dockerfile 使用 `node:18-slim`）：直接抛出 `SyntaxError: Cannot use import statement outside a module`，容器启动即崩溃。
+- **根因**：Node.js 对 `.js` 文件的模块类型由最近的 `package.json` 的 `type` 字段决定；缺省为 CommonJS。
+- **修复**：在 `package.json` 中添加 `"type": "module"`。
+
+### 冲突二：导入路径与实际文件位置不匹配（硬缺陷）
+
+- **现象**：`test.js` 从 `./src/app.js` 导入，但 `app.js` 位于项目根目录，不存在 `src/` 子目录。
+- **实际验证**：运行 `node test.js` 直接抛出 `ERR_MODULE_NOT_FOUND: Cannot find module '.../src/app.js'`，退出码 1。
+- **修复**：将 `app.js` 移入 `src/` 目录，与导入路径一致；同时将服务入口也放入 `src/` 保持结构统一。
+
+### 冲突三：纯函数应用与 GKE 长驻服务模型的冲突（架构缺陷）
+
+- **现象**：GKE Deployment 要求容器内进程长期监听端口并响应探针；原始 `app.js` 是一个导出即结束的纯函数模块，无 HTTP 服务、无端口、无健康端点。
+- **Skill 要求**：SKILL.md 清单要求 livenessProbe（`/healthz`）和 readinessProbe（`/readyz`），容器必须能响应 HTTP 探针。
+- **修复**：新增 `src/server.js`，用 Node.js 内置 `http` 模块搭建服务，暴露 `/healthz`、`/readyz`、`POST /normalize`（业务端点）和默认路由；`normalizeOrder` 作为业务逻辑被服务层调用。零外部依赖，保持镜像最小。
+
+### 冲突四：参考资产 LoadBalancer 与 Skill 正文 ClusterIP 建议的冲突
+
+- **现象**：Skill 资产 `assets/deployment.yaml` 使用 `type: LoadBalancer`，但 SKILL.md 正文建议"ClusterIP for internal, use Gateway API for external"。
+- **取舍**：对最小接入示例，默认使用 `ClusterIP` 更安全（不直接暴露公网）；如需对外暴露，应通过 Gateway API 或 Ingress，而非直接 LoadBalancer。改进清单采用 `ClusterIP` 并在注释中说明。
+
+---
+
+## 5. 改进方案与实现
+
+### 5.1 项目结构
+
+```
+gke-improved-project/
+├── .dockerignore
+├── Dockerfile
+├── k8s/
+│   └── deployment.yaml
+├── package.json
+├── src/
+│   ├── app.js        # 业务逻辑（normalizeOrder）
+│   └── server.js     # HTTP 服务 + 探针端点
+└── test.js           # 单元测试（node:test）
+```
+
+### 5.2 package.json
+
+```json
+{
+  "name": "order-normalizer-service",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimal GKE-onboarding sample: order normalization HTTP service with health probes",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
+```
+
+关键变更：添加 `"type": "module"`、`start` 脚本、`engines` 约束、测试改用 `node --test`。
+
+### 5.3 src/app.js（业务逻辑）
+
+```js
+/**
+ * 订单规范化工具函数。
+ *
+ * 输入约束：
+ *   - order 必须为非空对象且包含 id 字段；
+ *   - amount 可选，缺失时按 0 处理；非数字字符串会被 Number() 转为 NaN，
+ *     调用方应在传入前校验，或在返回后检查 Number.isNaN。
+ *
+ * 输出：
+ *   { id: string, amount: number }
+ */
+export function normalizeOrder(order) {
+  if (!order || typeof order !== "object" || order.id === undefined || order.id === null) {
+    throw new Error("missing order id");
+  }
+  const amount = Number(order.amount ?? 0);
+  return {
+    id: String(order.id),
+    amount,
+  };
+}
+```
+
+关键变更：
+- 修复原始 `!order.id` 会拒绝 `id: 0` / `id: false` 的逻辑缺陷，改为显式检查 `undefined` / `null`；
+- 用 `order.amount ?? 0` 替代 `order.amount || 0`，使 `amount: 0` 不被覆盖为默认值；
+- 添加 JSDoc 与输入约束说明。
+
+### 5.4 src/server.js（HTTP 服务）
+
+```js
+import http from "node:http";
+import { normalizeOrder } from "./app.js";
+
+const PORT = Number(process.env.PORT) || 8080;
+const HOST = process.env.HOST || "0.0.0.0";
+
+let isReady = true;
+
+const server = http.createServer((req, res) => {
+  if (req.method === "GET" && req.url === "/healthz") {
+    res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("OK");
+    return;
+  }
+
+  if (req.method === "GET" && req.url === "/readyz") {
+    if (isReady) {
+      res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+      res.end("READY");
+    } else {
+      res.writeHead(503, { "Content-Type": "text/plain; charset=utf-8" });
+      res.end("NOT READY");
+    }
+    return;
+  }
+
+  if (req.method === "POST" && req.url === "/normalize") {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+      if (body.length > 1_000_000) req.destroy();
+    });
+    req.on("end", () => {
+      try {
+        const order = JSON.parse(body || "{}");
+        const result = normalizeOrder(order);
+        res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+        res.end(JSON.stringify(result));
+      } catch (err) {
+        res.writeHead(400, { "Content-Type": "application/json; charset=utf-8" });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+    });
+    return;
+  }
+
+  res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+  res.end("order-normalizer-service\n");
+});
+
+server.listen(PORT, HOST, () => {
+  console.log(`server listening on http://${HOST}:${PORT}`);
+});
+
+function shutdown(signal) {
+  console.log(`received ${signal}, shutting down`);
+  isReady = false;
+  server.close(() => {
+    console.log("server closed");
+    process.exit(0);
+  });
+  setTimeout(() => process.exit(1), 10_000).unref();
+}
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+process.on("SIGINT", () => shutdown("SIGINT"));
+
+export { server };
+```
+
+设计要点：
+- `/healthz`（存活）与 `/readyz`（就绪）分离，符合 Skill 探针清单；
+- 就绪状态可在优雅关闭时置为 `false`，配合滚动更新排空流量；
+- 请求体上限 1 MB 防止 OOM；
+- 监听 `SIGTERM` 实现优雅关闭（Kubernetes 终止 Pod 时发送 SIGTERM）；
+- 日志全部走 `console.log` → stdout，符合 Skill"日志输出到 stdout/stderr 供 Cloud Logging 收集"的要求。
+
+### 5.5 test.js（单元测试）
+
+```js
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { normalizeOrder } from "./src/app.js";
+
+test("normalizeOrder: 数字 id 和字符串金额应被正确转换", () => {
+  const result = normalizeOrder({ id: 42, amount: "19.9" });
+  assert.deepEqual(result, { id: "42", amount: 19.9 });
+});
+
+test("normalizeOrder: 缺失 amount 时默认为 0", () => {
+  const result = normalizeOrder({ id: "abc" });
+  assert.deepEqual(result, { id: "abc", amount: 0 });
+});
+
+test("normalizeOrder: 金额为 0 时不应被覆盖", () => {
+  const result = normalizeOrder({ id: 1, amount: 0 });
+  assert.equal(result.amount, 0);
+});
+
+test("normalizeOrder: 缺失 id 应抛出错误", () => {
+  assert.throws(() => normalizeOrder({}), /missing order id/);
+  assert.throws(() => normalizeOrder(null), /missing order id/);
+  assert.throws(() => normalizeOrder(undefined), /missing order id/);
+});
+
+test("normalizeOrder: id 为 0 或 false 时应被接受", () => {
+  assert.equal(normalizeOrder({ id: 0 }).id, "0");
+  assert.equal(normalizeOrder({ id: false }).id, "false");
+});
+```
+
+使用 Node.js 内置 `node:test` + `node:assert`，零测试框架依赖。
+
+### 5.6 Dockerfile（多阶段、非 root）
+
+```dockerfile
+# ---- 构建阶段 ----
+FROM node:18-slim AS builder
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --omit=dev || true
+
+COPY src/ ./src/
+
+# ---- 运行阶段 ----
+FROM node:18-slim AS runtime
+WORKDIR /app
+ENV NODE_ENV=production
+
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/src/ ./src/
+
+USER node
+
+EXPOSE 8080
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD node -e "fetch('http://127.0.0.1:8080/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+
+CMD ["node", "src/server.js"]
+```
+
+符合 Skill 规则 B：多阶段构建、最小基础镜像（slim）、非 root（`USER node`，UID 1000）、日志 stdout。
+
+> 注：Skill 示例使用 Go + distroless；对 Node.js，`gcr.io/distroless/nodejs` 可用但调试不便，且本项目零依赖，`node:18-slim` 已足够小且与 Skill 资产一致。如需进一步缩小可切换到 distroless。
+
+### 5.7 k8s/deployment.yaml（符合 Skill 清单）
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-normalizer
+  namespace: default
+  labels:
+    app: order-normalizer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: order-normalizer
+  template:
+    metadata:
+      labels:
+        app: order-normalizer
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: order-normalizer
+          image: <REGION>-docker.pkg.dev/<PROJECT>/<REPO>/order-normalizer:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "8080"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-normalizer
+  namespace: default
+  labels:
+    app: order-normalizer
+spec:
+  type: ClusterIP
+  selector:
+    app: order-normalizer
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+```
+
+Skill 清单逐项核对：
+
+| 清单项 | 状态 |
+|---|---|
+| 资源 requests/limits | ✅ cpu 100m/200m, memory 128Mi/256Mi |
+| livenessProbe | ✅ /healthz |
+| readinessProbe | ✅ /readyz |
+| 至少 2 副本 | ✅ replicas: 2 |
+| Service 类型恰当 | ✅ ClusterIP（内部） |
+| 非 root | ✅ runAsNonRoot + runAsUser 1000 |
+| 只读根文件系统 | ✅ readOnlyRootFilesystem: true |
+| 禁用特权升级 | ✅ allowPrivilegeEscalation: false |
+| 丢弃所有 Linux capabilities | ✅ drop: ALL |
+| seccomp RuntimeDefault | ✅ |
+| 不自动挂载 SA Token | ✅ automountServiceAccountToken: false |
+
+---
+
+## 6. 验证结果（可重复）
+
+### 6.1 单元测试
+
+命令：`cd gke-improved-project && node --test test.js`
+
+结果：
+```
+# tests 5
+# pass 5
+# fail 0
+# duration_ms 98.21
+```
+
+5 项全部通过，覆盖正常转换、默认值、边界值（amount=0）、错误路径（缺 id/null/undefined）、id=0/false 接受性。
+
+### 6.2 端点联调（一次性启动，验证后主动结束）
+
+命令：`PORT=18080 node src/server.js &` → curl → `kill`
+
+| 端点 | 方法 | 输入 | 预期 | 实际 |
+|---|---|---|---|---|
+| `/healthz` | GET | — | 200 OK | ✅ 200 "OK" |
+| `/readyz` | GET | — | 200 READY | ✅ 200 "READY" |
+| `/normalize` | POST | `{"id":42,"amount":"19.9"}` | 200 JSON | ✅ `{"id":"42","amount":19.9}` |
+| `/normalize` | POST | `{"amount":"5"}`（缺 id） | 400 错误 | ✅ 400 `{"error":"missing order id"}` |
+| `/` | GET | — | 200 | ✅ 200 "order-normalizer-service" |
+
+服务器进程已通过 `kill` 主动结束，无残留。
+
+### 6.3 YAML 静态校验
+
+命令：`python3 -c "import yaml; list(yaml.safe_load_all(open('k8s/deployment.yaml')))"`
+
+结果：2 个文档（Deployment + Service），语法正确，关键字段（端口 8080、双探针、replicas=2、resources）均存在。
+
+### 6.4 原始项目缺陷复现（对比验证）
+
+| 场景 | 命令 | 结果 |
+|---|---|---|
+| 原始项目直接运行 | `node test.js` | ❌ `ERR_MODULE_NOT_FOUND`（src/app.js 不存在），退出码 1 |
+| 修复路径但缺 type:module（Node 22） | `node test.js` | ⚠️ 输出结果但有 `MODULE_TYPELESS_PACKAGE_JSON` 警告 |
+| 同场景在 Node 18 容器 | — | ❌ 预期 `SyntaxError: Cannot use import statement outside a module` |
+
+---
+
+## 7. 关键取舍
+
+| 取舍点 | 选择 | 理由 | 代价 |
+|---|---|---|---|
+| 模块系统 | `"type": "module"`（ESM） | 与原始代码语法一致，避免重写为 CommonJS | 项目内所有 `.js` 均按 ESM 解析；若未来引入仅支持 CJS 的旧依赖需适配 |
+| 服务框架 | Node.js 内置 `http` | 零依赖，镜像最小，启动快 | 路由需手写，复杂业务应换 Express/Fastify |
+| 测试框架 | `node:test` 内置 | 零依赖，Node 18+ 原生支持 | 断言库功能少于 Jest/Vitest，但对本项目足够 |
+| 基础镜像 | `node:18-slim` | 与 Skill 资产一致，调试方便 | 比 distroless 大；可后续切换 |
+| Service 类型 | `ClusterIP` | Skill 建议内部用 ClusterIP，更安全 | 不直接对外暴露；需 Gateway API/Ingress 才能公网访问 |
+| 副本数 | 2 | Skill 要求生产至少 2 | 比 1 副本多一份资源消耗 |
+| readOnlyRootFilesystem | true | 安全加固，符合 Skill 资产做法 | 应用不能在运行时写本地文件；本项目无状态故无影响 |
+| 镜像标签 | `:latest` 占位 | 示例用途 | 生产应使用 digest（`@sha256:...`）以保证不可变 |
+
+---
+
+## 8. 依赖与风险
+
+### 8.1 依赖
+
+- **运行时**：Node.js >= 18（零 npm 依赖）
+- **构建**：Docker（或兼容 OCI 的构建工具）
+- **部署**：GKE 集群 + Artifact Registry 镜像仓库 + `kubectl` 或 MCP 工具（`apply_k8s_manifest` 等）
+- **校验**：Python 3 + PyYAML（仅本地静态校验用）
+
+### 8.2 风险
+
+1. **Node 版本差异风险**：本地 Node 22 对缺 `type` 的 ESM 仅警告，Node 18 直接报错。已通过添加 `"type": "module"` 消除，但 CI/CD 必须锁定与容器一致的 Node 版本。
+2. **镜像标签不可变风险**：清单中使用 `:latest` 占位，生产环境应替换为 digest，否则 `kubectl rollout restart` 可能拉取到非预期版本。
+3. **readOnlyRootFilesystem 兼容性**：若未来引入需要写临时文件的依赖（如某些日志库、缓存库），需额外配置 `emptyDir` 卷或移除该设置。
+4. **健康探针粒度**：当前 `/healthz` 仅检查进程存活，`/readyz` 检查内部标志；若未来接入数据库等外部依赖，应在 `/readyz` 中加入依赖连通性检查，避免 Pod 就绪但实际不可用。
+5. **无 HPA / PDB**：当前仅满足最小接入，生产应按 Skill"Next Steps"补充 `gke-workload-scaling`（自动扩缩）和 `gke-reliability`（PDB、拓扑分布）。
+6. **无 Secret/ConfigMap**：当前应用无敏感配置；若未来引入 API Key、数据库连接串等，必须使用 Kubernetes Secret 而非环境变量明文。
+
+---
+
+## 9. 阻断说明
+
+| 项目 | 状态 | 说明 |
+|---|---|---|
+| `docker build` | ⚠️ 未执行 | 当前沙箱无 Docker 守护进程（`docker: command not found`）。Dockerfile 已通过静态审查，结构符合多阶段/非 root 要求。 |
+| `docker push` 到 Artifact Registry | ❌ 未执行 | 需要 GCP 项目凭据与 Artifact Registry 仓库，按任务要求不访问生产凭据。 |
+| `kubectl apply` / MCP `apply_k8s_manifest` | ❌ 未执行 | 需要 GKE 集群凭据与连接，按任务要求不访问生产环境。 |
+| 漏洞扫描（`gcloud artifacts docker images describe --show-package-vulnerability`） | ❌ 未执行 | 依赖镜像已推送至 Artifact Registry。 |
+
+以上均为**环境与凭据限制**，非方案缺陷。在具备 Docker 和 GKE 访问权限的环境中可按下方复测方法完整执行。
+
+---
+
+## 10. 复测方法
+
+在具备 Docker + GKE 访问权限的环境中：
+
+```bash
+# 1. 单元测试
+cd gke-improved-project
+node --test test.js
+
+# 2. 本地服务验证（一次性）
+PORT=8080 node src/server.js &
+curl -f http://127.0.0.1:8080/healthz
+curl -f http://127.0.0.1:8080/readyz
+kill %1
+
+# 3. 构建镜像
+docker build -t <REGION>-docker.pkg.dev/<PROJECT>/<REPO>/order-normalizer:v1 .
+
+# 4. 推送并扫描
+gcloud auth configure-docker <REGION>-docker.pkg.dev --quiet
+docker push <REGION>-docker.pkg.dev/<PROJECT>/<REPO>/order-normalizer:v1
+gcloud artifacts docker images describe \
+  <REGION>-docker.pkg.dev/<PROJECT>/<REPO>/order-normalizer:v1 \
+  --show-package-vulnerability --quiet
+
+# 5. 替换清单中的镜像占位符并部署
+#    将 k8s/deployment.yaml 中 <REGION>/<PROJECT>/<REPO> 替换为实际值
+kubectl apply -f k8s/deployment.yaml
+kubectl rollout status deployment/order-normalizer
+kubectl get pods -l app=order-normalizer
+```
+
+---
+
+## 附录：文件清单
+
+本报告随附改进项目完整源码，位于 `gke-improved-project/` 目录：
+
+- `package.json`
+- `src/app.js`
+- `src/server.js`
+- `test.js`
+- `Dockerfile`
+- `.dockerignore`
+- `k8s/deployment.yaml`

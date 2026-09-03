@@ -1,0 +1,34 @@
+{
+  "updatedAt": "2026-09-03",
+  "executionCutoff": "2026-08-28（暂停前已有执行归档）",
+  "sourceRevision": 1346,
+  "has_more": false,
+  "counts": {
+    "changed_answer_cells": 2618,
+    "prompt_version_notes": 2832,
+    "later_attempts": 1099,
+    "new_or_replaced_case_links": 749,
+    "scores_held_for_provenance": 197,
+    "new_link_slots": 564,
+    "archived_links_not_in_sheet": 2,
+    "new_skill_cards": 208,
+    "last_batch_attempts": 16,
+    "skills": 1434,
+    "real_links": 3849,
+    "three_link_skills": 1240,
+    "zero_link_skills": 120
+  },
+  "workbuddyCases": 1122,
+  "notes": [
+    "只同步已有结果，未启动测试或评分",
+    "链接数量不代表成功数量",
+    "无分享链接的最后一轮结果单独标注"
+  ],
+  "localArtifacts": {
+    "files": 232,
+    "cases": 232,
+    "bytes": 330338312,
+    "sourceManifestHash": "c6bd3dde82b61b04fe03e40f2c0872a8e2a17ebef6e2eb1a2dd2b2753b58c2db",
+    "note": "本地已有附件按归档执行单独展示；未将旧版本产物冒充最新结果。"
+  }
+}

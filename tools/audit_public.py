@@ -49,6 +49,20 @@ def audit(root):
                     scan_bytes(z.read(info), label + '::' + info.filename, depth + 1)
             return
         s = data.decode('utf-8', errors='replace')
+        if label.endswith('.js') and s.lstrip().startswith('window.'):
+            try:
+                obj=json.loads(s.split('=',1)[1].strip().rstrip(';'))
+                strings=[]
+                def decoded(v):
+                    if isinstance(v,str):strings.append(v)
+                    elif isinstance(v,list):
+                        for x in v:decoded(x)
+                    elif isinstance(v,dict):
+                        for x in v.values():decoded(x)
+                decoded(obj)
+                s+='\n'+'\n'.join(strings)
+            except (ValueError,IndexError):
+                findings.append({'path':label,'rule':'data_parse_failed'})
         if DENIED.search(label):
             findings.append({'path': label, 'rule': 'forbidden_path'})
         for name, regex in PATTERNS.items():

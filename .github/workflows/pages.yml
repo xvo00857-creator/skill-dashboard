@@ -19,6 +19,7 @@ jobs:
         run: |
           node tests/comparison.mjs
           node tests/crawl-date.mjs
+          node tests/refresh.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

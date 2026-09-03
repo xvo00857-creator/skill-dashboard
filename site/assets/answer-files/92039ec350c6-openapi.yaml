@@ -1,0 +1,247 @@
+openapi: 3.1.0
+info:
+  title: Batch Task Execution API
+  version: 1.0.0
+  description: |
+    批量创建任务并查询执行状态的稳定接口。
+    来源说明：本规范基于通用 REST API 工程实践设计，非 accelerate Skill 所规定。
+    accelerate Skill 仅覆盖 HuggingFace 分布式训练，不包含任务管理 API 设计指导。
+  contact:
+    name: API Team
+servers:
+  - url: https://api.example.com/v1
+    description: Production
+  - url: https://staging-api.example.com/v1
+    description: Staging
+security:
+  - bearerAuth: []
+tags:
+  - name: Tasks
+    description: 任务批量创建与状态查询
+paths:
+  /tasks:batch:
+    post:
+      tags: [Tasks]
+      summary: 批量创建任务
+      description: |
+        幂等批量创建任务。使用 Idempotency-Key 保证重复请求不会重复创建。
+        最小权限：需要 tasks:write scope。
+      operationId: batchCreateTasks
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchCreateRequest'
+      responses:
+        '201':
+          description: 全部或部分任务创建成功
+          headers:
+            X-Idempotent-Replay:
+              schema: {type: boolean}
+              description: 是否为幂等重放
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/BatchCreateResponse'}
+        '207':
+          description: 多状态（部分失败）
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/BatchCreateResponse'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409':
+          description: Idempotency-Key 已被不同请求体使用
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+        '413':
+          description: 批量大小超限
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /tasks:
+    get:
+      tags: [Tasks]
+      summary: 查询任务列表（游标分页）
+      description: |
+        分页查询任务状态。最小权限：需要 tasks:read scope。
+      operationId: listTasks
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [PENDING, RUNNING, SUCCEEDED, FAILED, CANCELLED]
+        - name: batch_id
+          in: query
+          schema: {type: string}
+        - name: limit
+          in: query
+          schema: {type: integer, minimum: 1, maximum: 200, default: 50}
+        - name: cursor
+          in: query
+          schema: {type: string}
+          description: 上一页返回的 next_cursor，首页不传
+      responses:
+        '200':
+          description: 分页结果
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/TaskListResponse'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /tasks/{task_id}:
+    get:
+      tags: [Tasks]
+      summary: 查询单个任务状态
+      description: 最小权限：需要 tasks:read scope。
+      operationId: getTask
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: 任务详情
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Task'}
+        '404': {$ref: '#/components/responses/NotFound'}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT 中需包含 scope claim。
+        - tasks:write -> POST /tasks:batch
+        - tasks:read  -> GET /tasks, GET /tasks/{id}
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: |
+        客户端生成的幂等键（UUID v4 推荐）。
+        相同键 + 相同请求体 -> 返回首次结果（24h 内）。
+        相同键 + 不同请求体 -> 409。
+      schema: {type: string, maxLength: 128}
+  schemas:
+    BatchCreateRequest:
+      type: object
+      required: [tasks]
+      properties:
+        tasks:
+          type: array
+          minItems: 1
+          maxItems: 1000
+          items: {$ref: '#/components/schemas/TaskCreateItem'}
+      additionalProperties: false
+    TaskCreateItem:
+      type: object
+      required: [client_task_id, type, payload]
+      properties:
+        client_task_id: {type: string, maxLength: 128, description: 客户端幂等 ID，批次内去重}
+        type: {type: string, enum: [training, evaluation, inference, data_processing]}
+        payload: {type: object, additionalProperties: true}
+        priority: {type: string, enum: [LOW, NORMAL, HIGH], default: NORMAL}
+      additionalProperties: false
+    BatchCreateResponse:
+      type: object
+      required: [batch_id, results]
+      properties:
+        batch_id: {type: string}
+        results:
+          type: array
+          items: {$ref: '#/components/schemas/BatchResultItem'}
+    BatchResultItem:
+      type: object
+      required: [client_task_id, created]
+      properties:
+        client_task_id: {type: string}
+        task_id: {type: string}
+        status: {type: string, enum: [PENDING, RUNNING, SUCCEEDED, FAILED, CANCELLED]}
+        created: {type: boolean}
+        error: {$ref: '#/components/schemas/ErrorDetail'}
+    TaskListResponse:
+      type: object
+      required: [items]
+      properties:
+        items: {type: array, items: {$ref: '#/components/schemas/Task'}}
+        next_cursor: {type: string, nullable: true}
+        total_count: {type: integer}
+    Task:
+      type: object
+      required: [task_id, type, status, created_at, updated_at]
+      properties:
+        task_id: {type: string}
+        batch_id: {type: string, nullable: true}
+        type: {type: string, enum: [training, evaluation, inference, data_processing]}
+        status: {type: string, enum: [PENDING, RUNNING, SUCCEEDED, FAILED, CANCELLED]}
+        progress:
+          type: object
+          properties:
+            percent: {type: integer, minimum: 0, maximum: 100}
+            message: {type: string}
+        result: {type: object, additionalProperties: true, nullable: true}
+        error: {$ref: '#/components/schemas/ErrorDetail'}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+        started_at: {type: string, format: date-time, nullable: true}
+        finished_at: {type: string, format: date-time, nullable: true}
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error: {$ref: '#/components/schemas/ErrorDetail'}
+    ErrorDetail:
+      type: object
+      required: [code, message]
+      properties:
+        code: {type: string}
+        message: {type: string}
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field: {type: string}
+              issue: {type: string}
+        request_id: {type: string}
+  responses:
+    BadRequest:
+      description: 请求参数错误
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    Unauthorized:
+      description: 未认证
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    Forbidden:
+      description: 无权限
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    NotFound:
+      description: 资源不存在
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    RateLimited:
+      description: 限流
+      headers:
+        Retry-After:
+          schema: {type: integer}
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}

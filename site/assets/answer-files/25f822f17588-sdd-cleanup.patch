@@ -1,0 +1,180 @@
+diff --git a/docs/architecture/event-bus/plan.md b/docs/architecture/event-bus/plan.md
+deleted file mode 100644
+index ef7b4bb..0000000
+--- a/docs/architecture/event-bus/plan.md
++++ /dev/null
+@@ -1,8 +0,0 @@
+-# 事件总线实施计划
+-
+-状态：已完成
+-
+-1. 实现 on/off/emit
+-2. 实现 listenerCount
+-3. 补充测试
+-4. 替换旧插件系统
+diff --git a/docs/architecture/event-bus/tasks.md b/docs/architecture/event-bus/tasks.md
+deleted file mode 100644
+index 59f4ad4..0000000
+--- a/docs/architecture/event-bus/tasks.md
++++ /dev/null
+@@ -1,6 +0,0 @@
+-# 事件总线任务清单
+-
+-- [x] 实现 on/off/emit
+-- [x] 实现 listenerCount
+-- [x] 编写 tests/event-bus.test.js
+-- [x] 替换插件系统
+diff --git a/docs/architecture/plugin-system/plan.md b/docs/architecture/plugin-system/plan.md
+deleted file mode 100644
+index 5cf9153..0000000
+--- a/docs/architecture/plugin-system/plan.md
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# 插件系统实施计划
+-
+-状态：已完成（后被废弃）
+-
+-1. 实现 loadPlugin 注册机制
+-2. 提供插件 API
+-3. 后被 event-bus 取代
+diff --git a/docs/architecture/plugin-system/spec.md b/docs/architecture/plugin-system/spec.md
+deleted file mode 100644
+index f6e3794..0000000
+--- a/docs/architecture/plugin-system/spec.md
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# 插件系统 Spec（已废弃）
+-
+-状态：已被事件总线完全取代
+-
+-旧插件系统允许第三方通过 `loadPlugin` 注册钩子。该模块已被 `src/event-bus.js` 完全替换，
+-代码路径 `src/plugin-loader.js` 标记为 deprecated，无任何模块引用它。
+-此 spec 不包含可复用的决策记录。
+diff --git a/docs/architecture/plugin-system/tasks.md b/docs/architecture/plugin-system/tasks.md
+deleted file mode 100644
+index 9ae2b09..0000000
+--- a/docs/architecture/plugin-system/tasks.md
++++ /dev/null
+@@ -1,5 +0,0 @@
+-# 插件系统任务清单
+-
+-- [x] 实现 loadPlugin
+-- [x] 提供插件 API
+-- [x] 被 event-bus 取代后下线
+diff --git a/docs/features/dark-mode/plan.md b/docs/features/dark-mode/plan.md
+deleted file mode 100644
+index 108824c..0000000
+--- a/docs/features/dark-mode/plan.md
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# 暗色模式实施计划
+-
+-状态：已完成
+-
+-1. 实现 getTheme 按时间判断
+-2. 实现 applyTheme
+-3. 补充测试
+diff --git a/docs/features/dark-mode/spec.md b/docs/features/dark-mode/spec.md
+deleted file mode 100644
+index e145755..0000000
+--- a/docs/features/dark-mode/spec.md
++++ /dev/null
+@@ -1,8 +0,0 @@
+-# 暗色模式 Spec
+-
+-状态：已完成
+-
+-暗色模式按本地时间自动切换：18:00-06:00 为 dark，其余为 light。
+-`applyTheme(theme)` 接受 `dark` 或 `light`。
+-
+-此 spec 不定义跨模块契约、回归守卫或平台策略，仅记录已完成的实现细节。
+diff --git a/docs/features/dark-mode/tasks.md b/docs/features/dark-mode/tasks.md
+deleted file mode 100644
+index 9b1e405..0000000
+--- a/docs/features/dark-mode/tasks.md
++++ /dev/null
+@@ -1,5 +0,0 @@
+-# 暗色模式任务清单
+-
+-- [x] 实现 getTheme
+-- [x] 实现 applyTheme
+-- [x] 编写 tests/theme.test.js
+diff --git a/docs/features/user-auth/plan.md b/docs/features/user-auth/plan.md
+deleted file mode 100644
+index 1ad6d94..0000000
+--- a/docs/features/user-auth/plan.md
++++ /dev/null
+@@ -1,8 +0,0 @@
+-# 用户认证实施计划
+-
+-状态：已完成
+-
+-1. 实现 login 签发 token
+-2. 实现 verifyToken 校验与过期判断
+-3. 补充单元测试
+-4. 上线验证
+diff --git a/docs/features/user-auth/tasks.md b/docs/features/user-auth/tasks.md
+deleted file mode 100644
+index 1fa378e..0000000
+--- a/docs/features/user-auth/tasks.md
++++ /dev/null
+@@ -1,6 +0,0 @@
+-# 用户认证任务清单
+-
+-- [x] 实现 login
+-- [x] 实现 verifyToken
+-- [x] 编写 tests/auth.test.js
+-- [x] 验证通过
+diff --git a/docs/issues/001-login-redirect/issue.md b/docs/issues/001-login-redirect/issue.md
+deleted file mode 100644
+index 0e285ab..0000000
+--- a/docs/issues/001-login-redirect/issue.md
++++ /dev/null
+@@ -1,15 +0,0 @@
+-# Issue 001：登录后重定向循环
+-
+-- 关联 GitHub：https://github.com/example/mini-sdd-app/issues/42
+-- 状态：已修复
+-
+-## 现象
+-用户登录成功后被重定向回登录页，形成循环。
+-
+-## 根因
+-`verifyToken` 对有效 token 误判返回 null，导致鉴权守卫反复重定向。
+-
+-## 修复
+-修正 token 解码逻辑，有效 token 必须返回 `{ username }`。
+-回归测试见 `tests/auth.test.js`：`verifyToken decodes a valid token`。
+-本地代码与测试均证明 bug 不再存在。
+diff --git a/docs/FLOWS.md b/docs/FLOWS.md
+index 76b90e8..2772659 100644
+--- a/docs/FLOWS.md
++++ b/docs/FLOWS.md
+@@ -3,7 +3,7 @@
+ ## 登录流程
+ 1. 用户提交凭据，`auth.login` 返回 token。
+ 2. 客户端携带 token 访问，`auth.verifyToken` 校验。
+-3. 校验通过后进入主页；暗色模式按 [dark-mode spec](features/dark-mode/spec.md) 自动应用主题。
++3. 校验通过后进入主页；暗色模式按本地时间（18:00-06:00）自动应用 dark 主题。
+ 
+ ## 事件发布流程
+ 1. 模块通过 `eventBus.on` 订阅事件。
+diff --git a/docs/README.md b/docs/README.md
+index 7685a8c..009809a 100644
+--- a/docs/README.md
++++ b/docs/README.md
+@@ -2,14 +2,11 @@
+ 
+ ## 功能特性
+ - [用户认证](features/user-auth/spec.md) — 登录与 token 校验契约
+-- [暗色模式](features/dark-mode/spec.md) — 主题切换
+ - [团队工作区](features/team-workspaces/spec.md) — 进行中
+ 
+ ## 问题追踪
+-- [001 登录重定向循环](issues/001-login-redirect/issue.md)
+ - [002 Token 刷新](issues/002-token-refresh/issue.md)
+ - [003 头像上传](issues/003-avatar-upload/issue.md)
+ 
+ ## 架构
+ - [事件总线](architecture/event-bus/spec.md) — 当前维护的模块间通信边界
+-- [插件系统（已废弃）](architecture/plugin-system/spec.md)

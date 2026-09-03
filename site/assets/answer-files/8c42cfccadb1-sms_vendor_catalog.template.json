@@ -1,0 +1,50 @@
+[
+  {
+    "name": "<供应商A-填写公司全称>",
+    "category": "sms-notification",
+    "annual_spend_usd": null,
+    "annual_spend_cny": null,
+    "contract_end_date": "<YYYY-MM-DD，首次签约填合同到期日；未签约填预计签约日+1年>",
+    "criticality": null,
+    "uptime_pct": null,
+    "support_response_hours_p90": null,
+    "incident_count_last_12m": null,
+    "security_certs": [],
+    "renewal_terms": null,
+    "data_access": ["PII"],
+    "break_glass_plan": false,
+    "_notes": "criticality 取值 tier-1/tier-2/tier-3；renewal_terms 取值 manual-renew/fixed-term/evergreen/auto-renew；security_certs 取值见 SKILL.md cert enum（SOC2/SOC2-Type-II/ISO27001/HIPAA/PCI-DSS/FedRAMP/GDPR-DPA/CCPA），国内等保三级不在脚本枚举内，需在评估说明中单独记录。annual_spend 脚本以 USD 计，CNY 预算 12 万元上限按签约时汇率换算后填入 annual_spend_usd。"
+  },
+  {
+    "name": "<供应商B-填写公司全称>",
+    "category": "sms-notification",
+    "annual_spend_usd": null,
+    "annual_spend_cny": null,
+    "contract_end_date": null,
+    "criticality": null,
+    "uptime_pct": null,
+    "support_response_hours_p90": null,
+    "incident_count_last_12m": null,
+    "security_certs": [],
+    "renewal_terms": null,
+    "data_access": ["PII"],
+    "break_glass_plan": false,
+    "_notes": "同上。"
+  },
+  {
+    "name": "<供应商C-填写公司全称>",
+    "category": "sms-notification",
+    "annual_spend_usd": null,
+    "annual_spend_cny": null,
+    "contract_end_date": null,
+    "criticality": null,
+    "uptime_pct": null,
+    "support_response_hours_p90": null,
+    "incident_count_last_12m": null,
+    "security_certs": [],
+    "renewal_terms": null,
+    "data_access": ["PII"],
+    "break_glass_plan": false,
+    "_notes": "同上。填完后删除本 _notes 字段再喂给脚本。"
+  }
+]

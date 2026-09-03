@@ -1,0 +1,92 @@
+[
+  {
+    "task_id": "MiniEval/0",
+    "category": "算术",
+    "difficulty": "入门",
+    "prompt": "def add(a, b):\n    \"\"\"接收两个数字，返回它们的和。\"\"\"\n",
+    "canonical_solution": "    return a + b\n",
+    "test": "def check(candidate):\n    assert candidate(1, 2) == 3\n    assert candidate(-1, 1) == 0\n    assert candidate(0, 0) == 0\n    assert candidate(100, 200) == 300\n",
+    "entry_point": "add"
+  },
+  {
+    "task_id": "MiniEval/1",
+    "category": "字符串",
+    "difficulty": "入门",
+    "prompt": "def reverse_string(s):\n    \"\"\"接收一个字符串，返回其反转结果。\"\"\"\n",
+    "canonical_solution": "    return s[::-1]\n",
+    "test": "def check(candidate):\n    assert candidate(\"hello\") == \"olleh\"\n    assert candidate(\"\") == \"\"\n    assert candidate(\"a\") == \"a\"\n    assert candidate(\"12345\") == \"54321\"\n",
+    "entry_point": "reverse_string"
+  },
+  {
+    "task_id": "MiniEval/2",
+    "category": "列表",
+    "difficulty": "入门",
+    "prompt": "def find_max(numbers):\n    \"\"\"接收一个非空数字列表，返回其中的最大值。\"\"\"\n",
+    "canonical_solution": "    result = numbers[0]\n    for n in numbers:\n        if n > result:\n            result = n\n    return result\n",
+    "test": "def check(candidate):\n    assert candidate([1, 2, 3]) == 3\n    assert candidate([-1, -5, -2]) == -1\n    assert candidate([42]) == 42\n    assert candidate([3.14, 2.71, 1.61]) == 3.14\n",
+    "entry_point": "find_max"
+  },
+  {
+    "task_id": "MiniEval/3",
+    "category": "数学",
+    "difficulty": "简单",
+    "prompt": "def factorial(n):\n    \"\"\"接收非负整数 n，返回 n 的阶乘。factorial(0) 应返回 1。\"\"\"\n",
+    "canonical_solution": "    if n <= 1:\n        return 1\n    result = 1\n    for i in range(2, n + 1):\n        result *= i\n    return result\n",
+    "test": "def check(candidate):\n    assert candidate(0) == 1\n    assert candidate(1) == 1\n    assert candidate(5) == 120\n    assert candidate(10) == 3628800\n",
+    "entry_point": "factorial"
+  },
+  {
+    "task_id": "MiniEval/4",
+    "category": "字符串",
+    "difficulty": "简单",
+    "prompt": "def is_palindrome(s):\n    \"\"\"接收一个字符串，判断它是否是回文（正读反读相同），返回布尔值。\"\"\"\n",
+    "canonical_solution": "    return s == s[::-1]\n",
+    "test": "def check(candidate):\n    assert candidate(\"racecar\") is True\n    assert candidate(\"hello\") is False\n    assert candidate(\"\") is True\n    assert candidate(\"abba\") is True\n",
+    "entry_point": "is_palindrome"
+  },
+  {
+    "task_id": "MiniEval/5",
+    "category": "字符串",
+    "difficulty": "简单",
+    "prompt": "def count_vowels(s):\n    \"\"\"接收一个字符串，返回其中元音字母（a,e,i,o,u，不区分大小写）的个数。\"\"\"\n",
+    "canonical_solution": "    count = 0\n    for ch in s.lower():\n        if ch in \"aeiou\":\n            count += 1\n    return count\n",
+    "test": "def check(candidate):\n    assert candidate(\"hello\") == 2\n    assert candidate(\"AEIOU\") == 5\n    assert candidate(\"xyz\") == 0\n    assert candidate(\"\") == 0\n",
+    "entry_point": "count_vowels"
+  },
+  {
+    "task_id": "MiniEval/6",
+    "category": "列表",
+    "difficulty": "简单",
+    "prompt": "def remove_duplicates(numbers):\n    \"\"\"接收一个数字列表，返回去重后的新列表，保持元素首次出现的顺序。\"\"\"\n",
+    "canonical_solution": "    seen = set()\n    result = []\n    for n in numbers:\n        if n not in seen:\n            seen.add(n)\n            result.append(n)\n    return result\n",
+    "test": "def check(candidate):\n    assert candidate([1, 2, 2, 3, 1]) == [1, 2, 3]\n    assert candidate([]) == []\n    assert candidate([1, 1, 1]) == [1]\n    assert candidate([3, 1, 2, 1, 3]) == [3, 1, 2]\n",
+    "entry_point": "remove_duplicates"
+  },
+  {
+    "task_id": "MiniEval/7",
+    "category": "数学",
+    "difficulty": "中等",
+    "prompt": "def is_prime(n):\n    \"\"\"接收一个正整数，判断它是否为素数，返回布尔值。\"\"\"\n",
+    "canonical_solution": "    if n < 2:\n        return False\n    if n < 4:\n        return True\n    if n % 2 == 0:\n        return False\n    i = 3\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 2\n    return True\n",
+    "test": "def check(candidate):\n    assert candidate(2) is True\n    assert candidate(4) is False\n    assert candidate(17) is True\n    assert candidate(1) is False\n    assert candidate(97) is True\n    assert candidate(100) is False\n",
+    "entry_point": "is_prime"
+  },
+  {
+    "task_id": "MiniEval/8",
+    "category": "列表",
+    "difficulty": "中等",
+    "prompt": "def merge_sorted(a, b):\n    \"\"\"接收两个已升序排列的数字列表，返回合并后仍升序的新列表。\"\"\"\n",
+    "canonical_solution": "    result = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            result.append(a[i])\n            i += 1\n        else:\n            result.append(b[j])\n            j += 1\n    result.extend(a[i:])\n    result.extend(b[j:])\n    return result\n",
+    "test": "def check(candidate):\n    assert candidate([1, 3, 5], [2, 4, 6]) == [1, 2, 3, 4, 5, 6]\n    assert candidate([], [1, 2]) == [1, 2]\n    assert candidate([1, 1], [1, 1]) == [1, 1, 1, 1]\n    assert candidate([1, 5, 9], [2, 3, 7]) == [1, 2, 3, 5, 7, 9]\n",
+    "entry_point": "merge_sorted"
+  },
+  {
+    "task_id": "MiniEval/9",
+    "category": "字符串",
+    "difficulty": "中等",
+    "prompt": "def longest_word(s):\n    \"\"\"接收一个由空格分隔单词的字符串，返回其中最长的单词；若有多个长度相同，返回第一个。输入不含标点。\"\"\"\n",
+    "canonical_solution": "    words = s.split()\n    if not words:\n        return \"\"\n    longest = words[0]\n    for w in words[1:]:\n        if len(w) > len(longest):\n            longest = w\n    return longest\n",
+    "test": "def check(candidate):\n    assert candidate(\"hello world\") == \"hello\"\n    assert candidate(\"a bb ccc\") == \"ccc\"\n    assert candidate(\"one\") == \"one\"\n    assert candidate(\"cat dog elephant\") == \"elephant\"\n",
+    "entry_point": "longest_word"
+  }
+]

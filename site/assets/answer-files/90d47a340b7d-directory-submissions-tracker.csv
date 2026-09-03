@@ -1,0 +1,25 @@
+Directory,Tier,URL,Category,DR,Dofollow,Submission Date,Status,Live URL,Backlink Verified,Positioning Variant Used,Tags Used,Account Email,Notes
+微信小程序搜索优化,A,微信后台 > 推广 > 搜索,微信生态,,N/A,,Draft,,,Tier A,适老化/银发/长辈模式,,,小程序名称/标签/描述优化；核心关键词覆盖
+微信公众号,A,https://mp.weixin.qq.com,微信生态,,N/A,,Draft,,,Tier A,适老化/银发/长辈模式,,,发布3-5篇场景文章作为目的地
+微信视频号,A,https://channels.weixin.qq.com,微信生态,,N/A,,Draft,,,Tier A,银发科技/教爸妈用手机,,,慢速中文字幕短视频
+高德地图商户标注,B,https://amap.com/poi,本地商户,,Yes,,Draft,,,Tier B,社区服务/适老化/线下指导,,,需要营业执照或合作社区地址
+百度地图商户标注,B,https://bgc.baidu.com,本地商户,,Yes,,Draft,,,Tier B,社区服务/适老化/线下指导,,,
+腾讯地图商户标注,B,https://ugc.map.qq.com,本地商户,,Yes,,Draft,,,Tier B,社区服务/适老化/线下指导,,,
+大众点评,B,https://biz.dianping.com,本地商户,,Yes,,Draft,,,Tier B,社区服务/适老化,,,如有线下服务点
+小红书,C,https://business.xiaohongshu.com,内容平台,,Nofollow,,Draft,,,Tier C,银发科技/教爸妈用手机/适老化改造,,,企业号认证；发布图文+短视频
+抖音,C,https://fxg.jinritemai.com,内容平台,,Nofollow,,Draft,,,Tier C,银发科技/教爸妈用手机/孝心好物,,,短视频教程
+知乎,C,https://www.zhihu.com,内容平台,,Yes,,Draft,,,Tier C,智能手机教程/中老年App,,,回答"教爸妈用手机"类问题
+B站,C,https://member.bilibili.com,内容平台,,Yes,,Draft,,,Tier C,智能手机教程,,,如适用；长视频教程
+社区公告栏（首批3-5个）,D,线下,线下社区,,N/A,,Draft,,,Tier D,社区服务/适老化/免费体验,,,大字海报+二维码+联系人
+居委会合作,D,线下,线下社区,,N/A,,Draft,,,Tier D,社区服务/公益/适老化,,,需提前沟通
+老年大学/活动中心,D,线下,线下社区,,N/A,,Draft,,,Tier D,老年服务/智能手机教学,,,可合作办讲座
+社区微信群,D,微信,线下社区,,N/A,,Draft,,,Tier D,社区服务/适老化,,,通过社区工作人员拉群
+美篇,E,https://www.meipian.cn,银发垂直,,Nofollow,,Draft,,,Tier E,50+/适老化/银发经济,,,需核实当前是否接受企业提交
+糖豆,E,https://www.tangdou.com,银发垂直,,Nofollow,,Draft,,,Tier E,50+/适老化/中老年,,,需核实当前是否接受企业提交
+中文免费新闻稿,F,（选用具体平台后填入）,新闻稿,,Yes,,Draft,,,Tier F,适老化/银发科技/社区服务,,,审核周期不确定
+虎嗅/36kr投稿,F,https://www.huxiu.com 等,科技媒体,,Yes,,Draft,,,Tier F,适老化/银发科技,,,有编辑审核，不一定通过
+企查查/天眼查,G,https://www.qcc.com,企业信息,,Yes,,Draft,,,Tier G,企业认证/信任锚点,,,完善企业信息
+微信认证（企业主体）,G,微信后台,企业信息,,N/A,,Draft,,,Tier G,企业认证/信任锚点,,,已认证则跳过
+GitHub（如有开源组件）,H,https://github.com,Profile,98,Yes,,Draft,,,Dev,开源/技术,,,仅当有开源内容时
+About.me,H,https://about.me,Profile,85,Yes,,Draft,,,Profile,适老化/银发科技,,,快速profile，可选
+Gravatar,H,https://gravatar.com,Profile,90,Yes,,Draft,,,Profile,,,快速设置，可选

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Agent 新手训练营内部方案 v0.1</title>
+  <style>
+    :root{--ink:#172033;--muted:#697386;--line:#e5e9f2;--blue:#315fe8;--soft:#f6f8fc;--green:#168568}
+    *{box-sizing:border-box}body{margin:0;background:#eef2f7;color:var(--ink);font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+    main{max-width:920px;margin:24px auto;padding:42px 54px;background:#fff;border-radius:16px;box-shadow:0 12px 34px rgba(24,38,69,.09)}
+    .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tag{border-radius:999px;padding:4px 10px;background:#edf3ff;color:#3159b0;font-size:12px;font-weight:700}.tag.gray{background:#f0f2f5;color:#667085}
+    h1{font-size:30px;line-height:1.25;margin:0 0 8px}.lead{color:var(--muted);margin:0 0 30px}h2{font-size:21px;margin:34px 0 14px;padding-bottom:8px;border-bottom:2px solid #dfe6f4}h3{font-size:16px;margin:22px 0 8px}
+    .callout{background:#f4f7ff;border-left:4px solid var(--blue);padding:14px 16px;border-radius:8px;margin:14px 0}.note{background:#f2fbf7;border-left-color:var(--green)}
+    table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:14px}th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}th{background:var(--soft);font-weight:700}ol,ul{padding-left:22px}.outline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 14px;padding:0;list-style:none}.outline li{border:1px solid var(--line);border-radius:9px;padding:10px 12px}.outline b{display:block}.outline span{color:var(--muted);font-size:13px}
+    .foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+    @media(max-width:640px){main{margin:0;padding:24px 18px;border-radius:0}.outline{grid-template-columns:1fr}h1{font-size:24px}table{font-size:12px}th,td{padding:7px}}
+  </style>
+</head>
+<body><main>
+  <div class="meta"><span class="tag">豆包 Markdown Artifact</span><span class="tag gray">首版草案 · 08-07 10:11</span></div>
+  <h1>AI Agent 新手训练营内部方案 v0.1</h1>
+  <p class="lead">通过澄清问题、明确假设和分阶段共创，形成可继续迭代的内部训练营方案。</p>
+
+  <h2>一、5 个关键澄清问题</h2>
+  <table><thead><tr><th>#</th><th>问题</th><th>为什么重要</th></tr></thead><tbody>
+    <tr><td>1</td><td>目标受众是谁？全员 / 产品经理 / 工程师 / 运营 / 新入职员工 / 特定业务线？</td><td>决定课程深度、案例选择和入门门槛</td></tr>
+    <tr><td>2</td><td>核心目标是什么？普及认知 / 提升日常生产力 / 培养内部 Agent 专家 / 推动业务场景落地？</td><td>决定课程是“宽而浅”还是“窄而深”</td></tr>
+    <tr><td>3</td><td>训练营形式与周期？线上 / 线下、持续几周、每周频次、是否有实战项目？</td><td>决定运营节奏和资源投入</td></tr>
+    <tr><td>4</td><td>预算与资源约束？内部讲师 vs 外部、是否采购平台 / 工具、是否设激励奖金？</td><td>决定方案可行性和落地难度</td></tr>
+    <tr><td>5</td><td>成功衡量标准？完课率 / NPS 满意度 / 实战产出物数量 / 业务指标提升？</td><td>决定复盘口径和向上汇报逻辑</td></tr>
+  </tbody></table>
+
+  <h2>二、基于明确假设的首版方案</h2>
+  <div class="callout"><b>假设声明</b><br>受众为公司全员（侧重产品 / 运营 / 研发）；目标为“从认知到实战”的能力提升；采用 4 周线上轻量训练营、内部讲师制，以完课率和实战产出为核心指标。所有假设项均需后续确认。</div>
+
+  <h2>三、方案结构概览</h2>
+  <ul class="outline">
+    <li><b>01 项目背景与目标</b><span>为什么做、要达成什么</span></li>
+    <li><b>02 训练营定位与受众</b><span>给谁、什么调性</span></li>
+    <li><b>03 课程体系设计</b><span>4 周递进式课程 + 工具栈</span></li>
+    <li><b>04 运营与交付机制</b><span>学习路径、激励、社群</span></li>
+    <li><b>05 师资与资源</b><span>讲师、平台、内容</span></li>
+    <li><b>06 评估与成功指标</b><span>5 个核心指标 + 二级指标</span></li>
+    <li><b>07 时间表与里程碑</b><span>筹备 → 预热 → 交付 → 收尾</span></li>
+    <li><b>08 预算与资源需求</b><span>费用估算 + 人力配置</span></li>
+    <li><b>09 风险与应对</b><span>5 大风险及预案</span></li>
+    <li><b>10 附录与待确认项</b><span>10 项待验证假设</span></li>
+  </ul>
+
+  <h2>四、待确认项 TOP 10</h2>
+  <table><thead><tr><th>#</th><th>待确认项</th><th>影响范围</th></tr></thead><tbody>
+    <tr><td>1</td><td>目标受众是全员还是特定岗位？</td><td>课程深度、案例选择</td></tr>
+    <tr><td>2</td><td>核心目标：普及认知 vs 业务落地？</td><td>课程侧重、评估指标</td></tr>
+    <tr><td>3</td><td>4 周线上形式是否合适？</td><td>节奏、内容量</td></tr>
+    <tr><td>4</td><td>首期规模 200–300 人？</td><td>运营资源配置</td></tr>
+    <tr><td>5</td><td>内部讲师制是否可行？</td><td>预算、内容质量</td></tr>
+    <tr><td>6</td><td>预算范围？</td><td>激励、外部资源</td></tr>
+    <tr><td>7</td><td>公司允许使用的 Agent 工具清单？</td><td>课程工具栈</td></tr>
+    <tr><td>8</td><td>首期启动时间？</td><td>筹备周期</td></tr>
+    <tr><td>9</td><td>核心指标优先级？</td><td>运营重心</td></tr>
+    <tr><td>10</td><td>项目归属哪个部门主导？</td><td>决策链、资源协调</td></tr>
+  </tbody></table>
+
+  <h2>五、Skill 执行说明</h2>
+  <div class="callout note"><b>实际读取</b>：doc-coauthoring/SKILL.md<br><b>关键影响</b>：Context Gathering 要求先问关键问题；Artifact Management 要求用独立文档承载首版草案；Quality over Speed 要求每轮产生实质改进。</div>
+  <p class="foot">此预览依据豆包分享页公开可见的 Artifact 内容还原。原产物是豆包内部 Markdown Artifact，并非飞书 Docx / Wiki 文档。</p>
+</main></body></html>

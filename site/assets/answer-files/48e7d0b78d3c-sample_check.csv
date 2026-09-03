@@ -1,0 +1,11 @@
+﻿order_id,原始store_name,清洗后amount,清洗后qty,清洗后store_standard,门店状态,金额状态,数量状态,行标记
+A013,天河店,79.0,2,广州天河店,OK,OK,OK,OK
+A012,广州天河店,49.9,3,广州天河店,OK,OK,OK,OK
+,未知门店,100.0,1,未知门店,NEEDS_REVIEW,OK,OK,MISSING_ORDER_ID
+A021,海淀店,320.0,2,北京海淀店,OK,OK,OK,OK
+A020,北京朝阳店,500.0,,北京朝阳店,OK,OK,MISSING,OK
+A006,北京海淀店,,1,北京海淀店,OK,INVALID,OK,OK
+A007,上海浦东店,300.0,,上海浦东店,OK,OK,MISSING,OK
+A019,成都春熙路店,99.0,1,成都春熙路店,NEEDS_REVIEW,OK,OK,OK
+A009,上海徐汇店,59.9,1,上海徐汇店,OK,OK,OK,OK
+A010,杭州西湖店,899.0,1,杭州西湖店,OK,OK,OK,OK

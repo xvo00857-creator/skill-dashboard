@@ -1,0 +1,58 @@
+{
+  "_comment": "商品图工作流的模板化输入参数示例。修改这些值即可复用工作流，无需改动图结构。",
+  "workflow_path": "product_image_workflow_api.json",
+  "output_node": "9",
+  "templated_inputs": {
+    "positive_prompt": {
+      "node_id": "6",
+      "input_key": "text",
+      "value": "product photography, a ceramic coffee mug on a clean white background, studio lighting, soft shadows, high detail, 8k uhd, commercial product shot, centered composition"
+    },
+    "negative_prompt": {
+      "node_id": "7",
+      "input_key": "text",
+      "value": "blurry, low quality, low resolution, watermark, text, logo, deformed, distorted, bad anatomy, extra objects, cluttered background, harsh shadows, overexposed, underexposed, jpeg artifacts, noise"
+    },
+    "seed": {
+      "node_id": "3",
+      "input_key": "seed",
+      "value": 42
+    },
+    "width": {
+      "node_id": "5",
+      "input_key": "width",
+      "value": 1024
+    },
+    "height": {
+      "node_id": "5",
+      "input_key": "height",
+      "value": 1024
+    },
+    "steps": {
+      "node_id": "3",
+      "input_key": "steps",
+      "value": 30
+    },
+    "cfg": {
+      "node_id": "3",
+      "input_key": "cfg",
+      "value": 7.0
+    },
+    "sampler_name": {
+      "node_id": "3",
+      "input_key": "sampler_name",
+      "value": "dpmpp_2m"
+    },
+    "scheduler": {
+      "node_id": "3",
+      "input_key": "scheduler",
+      "value": "karras"
+    },
+    "filename_prefix": {
+      "node_id": "9",
+      "input_key": "filename_prefix",
+      "value": "product_image"
+    }
+  },
+  "fixed_inputs_note": "以下节点为固定节点，不应在复用时随意改动：4 (CheckpointLoaderSimple 模型加载器)、图中所有连线 (wiring)。如需换模型，仅修改节点4的 ckpt_name，并确保模型文件已放入 ComfyUI/models/checkpoints/。"
+}

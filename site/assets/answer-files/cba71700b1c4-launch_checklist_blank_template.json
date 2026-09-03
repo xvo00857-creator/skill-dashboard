@@ -1,0 +1,158 @@
+{
+  "product": [
+    {
+      "item": "Beta tested with real users (\u226510)",
+      "status": "done",
+      "weight": 3
+    },
+    {
+      "item": "Core user journey validated end-to-end",
+      "status": "done",
+      "weight": 3
+    },
+    {
+      "item": "Known P0/P1 bugs resolved",
+      "status": "partial",
+      "weight": 3
+    },
+    {
+      "item": "User-facing documentation complete",
+      "status": "partial",
+      "weight": 2
+    },
+    {
+      "item": "In-app onboarding / empty states ready",
+      "status": "done",
+      "weight": 2
+    },
+    {
+      "item": "Support team trained on common Q&A",
+      "status": "not_started",
+      "weight": 2
+    },
+    {
+      "item": "Pricing finalised and live",
+      "status": "done",
+      "weight": 2
+    },
+    {
+      "item": "Accessibility basics checked (WCAG AA)",
+      "status": "not_started",
+      "weight": 1
+    },
+    {
+      "item": "Localisation / i18n ready (if applicable)",
+      "status": "done",
+      "weight": 1
+    },
+    {
+      "item": "Feedback collection mechanism in place",
+      "status": "partial",
+      "weight": 1
+    }
+  ],
+  "marketing": [
+    {
+      "item": "Landing page live and conversion-optimised",
+      "status": "done",
+      "weight": 3
+    },
+    {
+      "item": "Email announcement list ready (\u2265100)",
+      "status": "done",
+      "weight": 3
+    },
+    {
+      "item": "Press / media kit prepared",
+      "status": "partial",
+      "weight": 2
+    },
+    {
+      "item": "Social media assets created",
+      "status": "done",
+      "weight": 2
+    },
+    {
+      "item": "Product Hunt / launch platform submission",
+      "status": "not_started",
+      "weight": 2
+    },
+    {
+      "item": "SEO meta tags and OG images set",
+      "status": "done",
+      "weight": 2
+    },
+    {
+      "item": "Influencer / community outreach planned",
+      "status": "partial",
+      "weight": 2
+    },
+    {
+      "item": "Launch-day email sequence scheduled",
+      "status": "not_started",
+      "weight": 2
+    },
+    {
+      "item": "Paid ads creative prepared (if applicable)",
+      "status": "not_started",
+      "weight": 1
+    },
+    {
+      "item": "Referral / viral loop mechanism designed",
+      "status": "not_started",
+      "weight": 1
+    }
+  ],
+  "technical": [
+    {
+      "item": "Production monitoring & alerting active",
+      "status": "done",
+      "weight": 3
+    },
+    {
+      "item": "Load / performance tested at 5\u00d7 expected",
+      "status": "partial",
+      "weight": 3
+    },
+    {
+      "item": "Rollback plan documented and rehearsed",
+      "status": "not_started",
+      "weight": 3
+    },
+    {
+      "item": "Database backups verified and automated",
+      "status": "done",
+      "weight": 2
+    },
+    {
+      "item": "CDN / caching configured",
+      "status": "done",
+      "weight": 2
+    },
+    {
+      "item": "Error tracking (Sentry/similar) live",
+      "status": "done",
+      "weight": 2
+    },
+    {
+      "item": "SSL / HTTPS confirmed on all endpoints",
+      "status": "done",
+      "weight": 2
+    },
+    {
+      "item": "Analytics events firing correctly",
+      "status": "partial",
+      "weight": 2
+    },
+    {
+      "item": "Rate limiting / DDoS protection in place",
+      "status": "partial",
+      "weight": 2
+    },
+    {
+      "item": "Feature flags configured for safe rollout",
+      "status": "not_started",
+      "weight": 1
+    }
+  ]
+}

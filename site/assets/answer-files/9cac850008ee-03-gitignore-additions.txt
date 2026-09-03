@@ -1,0 +1,8 @@
+# ─── 新增：确保密钥文件不入库 ─────────────────────────
+.env
+.env.local
+.env.*.local
+
+# 现有 .gitignore 内容保持不变
+node_modules/
+dist/

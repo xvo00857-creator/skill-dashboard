@@ -1,0 +1,48 @@
+{
+  "summary": {
+    "eval_time": "2026-08-12 12:00:00",
+    "agent": "your_agent.py",
+    "mode": "agent",
+    "n_problems": 10,
+    "n_samples_per_problem": 1,
+    "timeout_seconds": 10,
+    "passed": 0,
+    "pass_rate_at1": 0.0,
+    "pass_at_k": {
+      "pass@1": 0.0
+    },
+    "failure_breakdown": {
+      "syntax_error": 0,
+      "runtime_error": 0,
+      "wrong_answer": 0,
+      "timeout": 0,
+      "empty_generation": 0,
+      "missing_function": 0
+    },
+    "by_category": {
+      "字符串": {"total": 0, "passed": 0, "pass_rate": 0.0},
+      "数学": {"total": 0, "passed": 0, "pass_rate": 0.0},
+      "列表": {"total": 0, "passed": 0, "pass_rate": 0.0},
+      "算术": {"total": 0, "passed": 0, "pass_rate": 0.0}
+    },
+    "by_difficulty": {
+      "入门": {"total": 0, "passed": 0, "pass_rate": 0.0},
+      "简单": {"total": 0, "passed": 0, "pass_rate": 0.0},
+      "中等": {"total": 0, "passed": 0, "pass_rate": 0.0}
+    }
+  },
+  "results": [
+    {
+      "task_id": "MiniEval/0",
+      "category": "算术",
+      "difficulty": "入门",
+      "entry_point": "add",
+      "status": "passed | wrong_answer | syntax_error | runtime_error | timeout | empty_generation | missing_function",
+      "detail": "失败时的错误详情",
+      "duration": 0.0,
+      "n_samples": 1,
+      "n_correct": 0,
+      "samples": null
+    }
+  ]
+}

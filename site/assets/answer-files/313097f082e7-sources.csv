@@ -1,0 +1,12 @@
+id,slug,type,credibility,recency,bias,key_finding
+01,WHO 5G health Q&A,regulatory,High,Medium,Low,"No adverse health effect causally linked; only a few studies at 5G frequencies"
+02,ICNIRP 5G page,regulatory,High,Medium-High,Medium,"5G exposures will not cause harm if within ICNIRP 2020 guidelines; protects all substantiated effects regardless of mechanism"
+03,Simkó et al 2021 systematic review,academic,High,Medium,Low,"No confirmed evidence low-level >6 GHz RF hazardous to health; 107 studies mostly low quality; no dose-response"
+04,McCredden et al 2023 critique,academic,Medium,High,Medium-High,"Assumption of safety not evidence-based; logical fallacies in regulatory communication; theoretical risks (Brillouin precursors, sweat ducts)"
+05,FCC RF Safety,regulatory,High,Medium,Low,"FCC maintains 1996 limits reaffirmed 2019; best available evidence supports current limits"
+06,IEEE COMAR 2020,academic/consensus,High,Medium,Low,"Results do not support determination of adverse effects below guidelines; MMW literature more limited and mixed quality"
+07,Michelant et al 2026 26 GHz RCT,academic,High,High,Low,"Triple-blind RCT N=31: acute 26 GHz exposure no effect on salivary cortisol/alpha-amylase"
+08,Pall 2022 VGCC review,academic,Low-Medium,Medium,High,"Proposes VGCC calcium channel mechanism; magnetic field penetration; not mainstream accepted"
+09,Leszczynski 2020 skin review,academic,Medium,Medium,Medium,"~99 skin studies total; evidence insufficient for science-based limits; precautionary approach"
+10,Zhadobov et al 2010 60 GHz,academic,High,Medium,Low,"60 GHz at 1 mW/cm² does not alter cell viability, gene expression, protein conformation in vitro"
+11,Rubik & Brown 2021 5G-COVID,academic,Very Low,N/A,High,"Proposed 5G-COVID link; WIDELY DEBUNKED; included only to flag as non-credible"

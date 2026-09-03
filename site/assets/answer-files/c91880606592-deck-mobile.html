@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Deck 设计规范 · 手机竖屏版</title>
+  <style>
+    :root {
+      --navy: #102843;   /* 深蓝 */
+      --cream: #F6F1E7;  /* 米白 */
+      --orange: #FF6A13; /* 亮橙 */
+      --navy-70: rgba(16, 40, 67, 0.72);
+      --navy-12: rgba(16, 40, 67, 0.12);
+      --cream-80: rgba(246, 241, 231, 0.82);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      background: var(--cream);
+      color: var(--navy);
+      font: 17px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    .deck {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    .deck::-webkit-scrollbar { display: none; }
+
+    /* 顶部进度条 —— SKILL.md 要求 */
+    .progress { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: var(--navy-12); z-index: 50; }
+    .progress > i { display: block; height: 100%; width: 0; background: var(--orange); transition: width .35s ease; }
+
+    .slide {
+      flex: 0 0 100%;
+      height: 100%;
+      padding: 44px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      position: relative;
+      overflow-y: auto;
+    }
+    /* 竖屏内容列：手机上满宽，桌面预览时居中收窄为手机宽度 */
+    .col { width: 100%; max-width: 440px; margin: 0 auto; }
+    .slide.dark { background: var(--navy); color: var(--cream); }
+    .slide.dark .body { color: var(--cream-80); }
+
+    .eyebrow { font-size: 12px; letter-spacing: 0.18em; color: var(--orange); font-weight: 600; margin: 0 0 12px; }
+    .slide h1 { font-size: clamp(34px, 9vw, 50px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 14px; font-weight: 700; }
+    .slide h2 { font-size: clamp(25px, 6.8vw, 34px); line-height: 1.18; letter-spacing: -0.01em; margin: 0 0 12px; font-weight: 700; }
+    .slide .body { font-size: 17px; color: var(--navy-70); margin: 0; }
+    .slide .lead { font-size: 18px; color: var(--navy-70); }
+
+    /* 封面：上图下文 */
+    .cover .art { width: 100%; aspect-ratio: 16/10; border-radius: 12px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 16px 40px rgba(16,40,67,0.22); }
+    .cover .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cover .tag { display: inline-block; font-size: 12px; color: var(--orange); border: 1px solid var(--orange); border-radius: 999px; padding: 4px 12px; margin-bottom: 16px; letter-spacing: 0.08em; }
+
+    /* 要点列表（竖排） */
+    .pts { margin-top: 18px; }
+    .pts .pt { border-top: 2px solid var(--orange); padding: 10px 0; }
+    .pts .pt:last-child { border-bottom: 2px solid var(--orange); }
+    .pts .pt .h { font-size: 17px; font-weight: 600; margin: 0 0 5px; }
+    .pts .pt .p { color: var(--navy-70); margin: 0; font-size: 15px; line-height: 1.55; }
+    .dark .pts .pt .p { color: var(--cream-80); }
+
+    /* 色板（竖排） */
+    .swatches { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+    .sw { border-radius: 10px; overflow: hidden; border: 1px solid var(--navy-12); display: grid; grid-template-columns: 72px 1fr; }
+    .sw .chip { min-height: 60px; }
+    .sw .meta { padding: 12px 14px; background: #fff; display: flex; flex-direction: column; justify-content: center; }
+    .sw .meta .n { font-weight: 600; font-size: 15px; margin: 0 0 3px; }
+    .sw .meta code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--navy-70); }
+    .sw .meta .u { font-size: 12px; color: var(--navy-70); margin-top: 3px; }
+
+    /* 字号阶梯 */
+    .type-scale { margin-top: 18px; border-top: 1px solid var(--navy-12); }
+    .type-row { padding: 9px 0; border-bottom: 1px solid var(--navy-12); }
+    .type-row .lbl { font-size: 11px; color: var(--orange); font-weight: 600; letter-spacing: 0.08em; display: block; margin-bottom: 4px; }
+    .type-row .spec { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px; color: var(--navy-70); display: block; margin-top: 4px; }
+
+    /* 图文（竖排） */
+    .pic { border-radius: 12px; overflow: hidden; margin: 14px 0; box-shadow: 0 14px 34px rgba(16,40,67,0.18); background: #fff; }
+    .pic img { width: 100%; display: block; max-height: 36vh; object-fit: contain; }
+    .split ul { margin: 14px 0 0; padding: 0; list-style: none; }
+    .split ul li { position: relative; padding-left: 20px; margin-bottom: 9px; color: var(--navy-70); font-size: 16px; }
+    .split ul li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 8px; height: 8px; border-radius: 2px; background: var(--orange); }
+    .dark .split ul li { color: var(--cream-80); }
+
+    /* 按键 */
+    .keys { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+    .key { display: flex; align-items: center; gap: 8px; }
+    .key kbd { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; font-weight: 600; border: 1.5px solid var(--navy); border-bottom-width: 3px; border-radius: 7px; padding: 5px 10px; background: #fff; color: var(--navy); }
+    .dark .key kbd { border-color: var(--cream); background: rgba(246,241,231,0.08); color: var(--cream); }
+    .key span { font-size: 14px; color: var(--navy-70); }
+    .dark .key span { color: var(--cream-80); }
+
+    /* 检查清单 */
+    .checklist { margin-top: 16px; border-top: 1px solid var(--navy-12); }
+    .check-row { display: grid; grid-template-columns: 26px 1fr 56px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--navy-12); gap: 10px; }
+    .check-row .ic { width: 20px; height: 20px; border-radius: 50%; background: var(--orange); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+    .check-row .t { font-size: 15px; line-height: 1.4; }
+    .check-row .st { font-size: 11px; font-weight: 600; color: var(--orange); text-align: right; letter-spacing: 0.05em; }
+    .dark .check-row { border-color: rgba(246,241,231,0.18); }
+    .dark .check-row .t { color: var(--cream); }
+
+    .counter { position: fixed; bottom: 18px; right: 20px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px; color: var(--navy); background: #fff; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--navy-12); z-index: 40; }
+    .hint { position: fixed; bottom: 20px; left: 20px; font-size: 11px; color: var(--navy-70); z-index: 40; }
+  </style>
+</head>
+<body>
+  <div class="progress"><i id="bar"></i></div>
+
+  <div class="deck">
+  <!-- 1 封面 -->
+  <section class="slide dark" data-od-id="slide-1">
+    <div class="col cover">
+      <div class="art"><img src="https://aka.doubaocdn.com/s/Xn9SUo1LwK" alt="封面抽象几何图" /></div>
+      <div>
+        <span class="tag">DESIGN SPEC · v1.0</span>
+        <h1>Simple Deck<br/>设计规范</h1>
+        <p class="body lead">干净通用的横向滑动演示文稿。三色体系、双尺寸适配、键盘与地址栏同步。</p>
+        <p class="body" style="margin-top:14px;font-size:14px;">手机竖屏版 · 9:16 · 2026-08</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 设计原则 -->
+  <section class="slide" data-od-id="slide-2">
+    <div class="col">
+      <div class="eyebrow">PRINCIPLES · 设计原则</div>
+      <h2>三条原则，来自模板定义本身。</h2>
+      <p class="body">本规范严格依据 deck-simple 模板：横向滑动、单页单义、图文各一，不做杂志化排版。</p>
+      <div class="pts">
+        <div class="pt"><h3 class="h">横向滑动</h3><p class="p">每页占满一屏，左右方向键或触控滑动切换，滚动吸附对齐。</p></div>
+        <div class="pt"><h3 class="h">单页单义</h3><p class="p">每页只讲一个核心信息，配一张图或一个图表，降低认知负担。</p></div>
+        <div class="pt"><h3 class="h">克制通用</h3><p class="p">面向 pitch / overview / study，留白充足，拒绝杂志式多栏混排。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 色彩 -->
+  <section class="slide" data-od-id="slide-3">
+    <div class="col">
+      <div class="eyebrow">COLOR · 色彩体系</div>
+      <h2>只有三种颜色，各司其职。</h2>
+      <p class="body">深蓝承载文字与结构，米白作为底色，亮橙只用于强调与进度。正文与背景对比度充足。</p>
+      <div class="swatches">
+        <div class="sw">
+          <div class="chip" style="background:#102843;"></div>
+          <div class="meta"><p class="n">深蓝 Navy</p><code>#102843</code><p class="u">正文 / 标题 / 深色页底</p></div>
+        </div>
+        <div class="sw">
+          <div class="chip" style="background:#F6F1E7;"></div>
+          <div class="meta"><p class="n">米白 Cream</p><code>#F6F1E7</code><p class="u">页面底色 / 深色页文字</p></div>
+        </div>
+        <div class="sw">
+          <div class="chip" style="background:#FF6A13;"></div>
+          <div class="meta"><p class="n">亮橙 Orange</p><code>#FF6A13</code><p class="u">强调 / 进度条 / 分隔线</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 字体排版 -->
+  <section class="slide" data-od-id="slide-4">
+    <div class="col">
+      <div class="eyebrow">TYPOGRAPHY · 字体排版</div>
+      <h2>层级靠字号与字重，不靠颜色堆砌。</h2>
+      <p class="body">系统无衬线字体，中文回退 PingFang / 微软雅黑；行高 1.6，正文不小于 17px。</p>
+      <div class="type-scale">
+        <div class="type-row">
+          <span class="lbl">H1</span>
+          <span style="font-size:clamp(34px,9vw,50px);font-weight:700;line-height:1.1;">封面主标题</span>
+          <span class="spec">34–50 / 700</span>
+        </div>
+        <div class="type-row">
+          <span class="lbl">H2</span>
+          <span style="font-size:clamp(25px,6.8vw,34px);font-weight:700;">内容页标题</span>
+          <span class="spec">25–34 / 700</span>
+        </div>
+        <div class="type-row">
+          <span class="lbl">BODY</span>
+          <span style="font-size:17px;color:var(--navy-70);">正文，十七像素，行高一点六。</span>
+          <span class="spec">17 / 400</span>
+        </div>
+        <div class="type-row">
+          <span class="lbl">EYEBROW</span>
+          <span style="font-size:12px;letter-spacing:0.18em;color:var(--orange);font-weight:600;">栏目标签</span>
+          <span class="spec">12 / 600</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 桌面布局 -->
+  <section class="slide" data-od-id="slide-5">
+    <div class="col split">
+      <div>
+        <div class="eyebrow">DESKTOP · 桌面横屏</div>
+        <h2>16:9 满屏，左右滑动。</h2>
+        <p class="body">桌面版每页占满视口，采用左右分栏或三栏网格，适合大屏演示与投屏。</p>
+      </div>
+      <div class="pic"><img src="https://aka.doubaocdn.com/s/KeYNUvPrbz" alt="桌面显示器展示幻灯片" /></div>
+      <ul>
+        <li>页内边距 72–96px，呼吸感充足</li>
+        <li>图文分栏，图片最大宽度约占半屏</li>
+        <li>顶部进度条 + 右下角页码</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6 手机布局 -->
+  <section class="slide" data-od-id="slide-6">
+    <div class="col split">
+      <div>
+        <div class="eyebrow">MOBILE · 手机竖屏</div>
+        <h2>9:16 单列，触控滑动。</h2>
+        <p class="body">同一套内容与配色重排为单列，缩小边距与字号，正文不低于 17px，保证手机上可读。</p>
+      </div>
+      <div class="pic"><img src="https://aka.doubaocdn.com/s/lfzeqbornA" alt="手机展示竖屏幻灯片" /></div>
+      <ul>
+        <li>页内边距收窄至约 28–40px</li>
+        <li>三栏网格折叠为单列</li>
+        <li>保留横向滑动与进度条</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7 交互 -->
+  <section class="slide dark" data-od-id="slide-7">
+    <div class="col">
+      <div class="eyebrow">INTERACTION · 交互</div>
+      <h2>键盘、滑动、地址栏三者同步。</h2>
+      <p class="body">按模板要求实现键盘左右切换与 hash 同步：刷新或分享链接可直接定位到对应页。</p>
+      <div class="keys">
+        <div class="key"><kbd>←</kbd><span>上一页</span></div>
+        <div class="key"><kbd>→</kbd><span>下一页</span></div>
+        <div class="key"><kbd>Space</kbd><span>下一页</span></div>
+      </div>
+      <div class="pts" style="margin-top:22px;">
+        <div class="pt"><h3 class="h">进度条</h3><p class="p">顶部 4px 亮橙条，随翻页实时推进。</p></div>
+        <div class="pt"><h3 class="h">Hash 同步</h3><p class="p">地址栏写入 #slide-N，支持外链定位与刷新保持。</p></div>
+        <div class="pt"><h3 class="h">触控滑动</h3><p class="p">左右滑动后自动吸附到最近一页。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 一致性检查 -->
+  <section class="slide" data-od-id="slide-8">
+    <div class="col">
+      <div class="eyebrow">CONSISTENCY · 一致性检查</div>
+      <h2>交付前逐项核对，结果如下。</h2>
+      <div class="checklist">
+        <div class="check-row"><span class="ic">✓</span><span class="t">仅使用深蓝、米白、亮橙三色</span><span class="st">通过</span></div>
+        <div class="check-row"><span class="ic">✓</span><span class="t">正文对比度充足，不小于 17px</span><span class="st">通过</span></div>
+        <div class="check-row"><span class="ic">✓</span><span class="t">每页一个核心信息，配一图或一图表</span><span class="st">通过</span></div>
+        <div class="check-row"><span class="ic">✓</span><span class="t">进度条、键盘、hash 同步均已实现</span><span class="st">通过</span></div>
+        <div class="check-row"><span class="ic">✓</span><span class="t">两版内容、配色、页码一致</span><span class="st">通过</span></div>
+        <div class="check-row"><span class="ic">✓</span><span class="t">未做杂志化混排，符合 simple deck</span><span class="st">通过</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 收尾 -->
+  <section class="slide dark" data-od-id="slide-9">
+    <div class="col">
+      <div class="eyebrow">DELIVERY · 交付</div>
+      <h1>两种尺寸，<br/>同一套规范。</h1>
+      <p class="body lead">deck-desktop.html（16:9 横屏）与 deck-mobile.html（9:16 竖屏），浏览器直接打开，方向键或滑动翻页。</p>
+      <p class="body" style="margin-top:16px;font-size:13px;">注：本 deck 以设计规范本身为内容载体，未引用外部业务数据；图片由 Seedream 5.0 Pro 生成。</p>
+    </div>
+  </section>
+  </div><!-- /.deck -->
+
+  <div class="counter" id="counter">1 / 9</div>
+  <div class="hint">← / → 翻页 · 滑动翻页</div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('counter');
+    const bar = document.getElementById('bar');
+    let active = 0;
+
+    // 横向滚动容器
+    const scrollerEl = document.querySelector('.deck');
+
+    function paint(i) {
+      counter.textContent = (i + 1) + ' / ' + slides.length;
+      bar.style.width = ((i + 1) / slides.length * 100) + '%';
+      const dark = slides[i].classList.contains('dark');
+      counter.style.color = dark ? 'var(--cream)' : 'var(--navy)';
+      counter.style.background = dark ? 'rgba(16,40,67,0.6)' : '#fff';
+      counter.style.borderColor = dark ? 'rgba(246,241,231,0.2)' : 'var(--navy-12)';
+    }
+    function targetLeft(i) { return slides[i].offsetLeft; }
+    function getScrollLeft() { return scrollerEl.scrollLeft || 0; }
+
+    // 程序滚动标志：抑制滚动停止后的自动吸附
+    let programmatic = false;
+    let settleTimer = null;
+    let snapTimer = null;
+
+    function nearestSlide() {
+      const x = getScrollLeft();
+      let best = 0, bestD = Infinity;
+      for (let k = 0; k < slides.length; k++) {
+        const d = Math.abs(targetLeft(k) - x);
+        if (d < bestD) { bestD = d; best = k; }
+      }
+      return best;
+    }
+    function scrollToSlide(i, smooth) {
+      const left = targetLeft(i);
+      programmatic = true;
+      if (typeof scrollerEl.scrollTo === 'function') {
+        scrollerEl.scrollTo({ left, behavior: smooth ? 'smooth' : 'auto' });
+      } else {
+        scrollerEl.scrollLeft = left;
+      }
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => { programmatic = false; }, smooth ? 520 : 80);
+    }
+    function go(i, push) {
+      const next = Math.max(0, Math.min(slides.length - 1, i));
+      active = next;
+      paint(next);
+      scrollToSlide(next, push !== false);
+      history.replaceState(null, '', '#slide-' + (next + 1));
+      requestAnimationFrame(() => paint(next));
+    }
+    function syncFromScroll() {
+      const best = nearestSlide();
+      if (best !== active) { active = best; paint(best); history.replaceState(null, '', '#slide-' + (best + 1)); }
+    }
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (programmatic) {
+            // 程序滚动中：进度条跟随滚动比例，不改动 active / 页码 / hash
+            const ratio = (getScrollLeft() + scrollerEl.clientWidth) / scrollerEl.scrollWidth;
+            bar.style.width = Math.min(100, ratio * 100) + '%';
+          } else {
+            syncFromScroll();
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+      // 用户手动滚动/滑动停止后，吸附到最近一页
+      if (!programmatic) {
+        clearTimeout(snapTimer);
+        snapTimer = setTimeout(() => {
+          const best = nearestSlide();
+          if (Math.abs(targetLeft(best) - getScrollLeft()) > 3) {
+            programmatic = true;
+            scrollerEl.scrollTo({ left: targetLeft(best), behavior: 'smooth' });
+            clearTimeout(settleTimer);
+            settleTimer = setTimeout(() => { programmatic = false; }, 480);
+          }
+        }, 160);
+      }
+    }
+    function onKey(e) {
+      if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(active + 1, false); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(active - 1, false); }
+      else if (e.key === 'Home') { e.preventDefault(); go(0, false); }
+      else if (e.key === 'End') { e.preventDefault(); go(slides.length - 1, false); }
+    }
+    window.addEventListener('keydown', onKey, true);
+    scrollerEl.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('hashchange', () => {
+      const m = /#slide-(\d+)/.exec(location.hash);
+      if (m) go(parseInt(m[1], 10) - 1, false);
+    });
+
+    document.body.setAttribute('tabindex', '-1');
+    document.body.style.outline = 'none';
+    function focusDeck() { try { window.focus(); document.body.focus({ preventScroll: true }); } catch (_) {} }
+    document.addEventListener('mousedown', focusDeck);
+    window.addEventListener('load', () => {
+      focusDeck();
+      const m = /#slide-(\d+)/.exec(location.hash);
+      if (m) { go(parseInt(m[1], 10) - 1, false); } else { paint(0); }
+    });
+  </script>
+</body>
+</html>

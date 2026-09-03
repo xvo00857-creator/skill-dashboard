@@ -1,0 +1,22 @@
+--- package.json.orig	2026-08-13 22:41:25
++++ package.json	2026-08-13 22:30:20
+@@ -1 +1 @@
+-{"name":"wechat-skill-eval-sample","version":"1.0.0","private":true,"scripts":{"test":"node test.js"}}
+\ No newline at end of file
++{"name":"wechat-skill-eval-sample","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node test.js"}}
+--- new file: src/app.js ---
+--- /dev/null	2026-08-13 22:41:25
++++ src/app.js	2026-08-13 22:30:02
+@@ -0,0 +1,12 @@
++// Minimal order normalizer.
++// Coerces a numeric string `amount` to a finite number; preserves other fields.
++export function normalizeOrder(order) {
++  if (order === null || typeof order !== "object") {
++    throw new TypeError("normalizeOrder: order must be an object");
++  }
++  const parsed = Number(order.amount);
++  return {
++    ...order,
++    amount: Number.isFinite(parsed) ? parsed : order.amount,
++  };
++}

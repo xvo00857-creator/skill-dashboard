@@ -1,0 +1,17 @@
+=== 惯性参数三角不等式验证 ===
+  base_link            m=0.350kg  ixx=0.0007962 iyy=0.0007962 izz=0.0005294  三角不等式: PASS
+  shoulder_link        m=0.100kg  ixx=0.0000542 iyy=0.0000542 izz=0.0000267  三角不等式: PASS
+  upper_arm_link       m=0.120kg  ixx=0.0000245 iyy=0.0001333 izz=0.0001333  三角不等式: PASS
+  forearm_link         m=0.100kg  ixx=0.0000204 iyy=0.0000870 izz=0.0000870  三角不等式: PASS
+  wrist_pitch_link     m=0.080kg  ixx=0.0000273 iyy=0.0000440 izz=0.0000380  三角不等式: PASS
+  wrist_roll_link      m=0.070kg  ixx=0.0000420 iyy=0.0000219 izz=0.0000420  三角不等式: PASS
+  flange_link          m=0.040kg  ixx=0.0000095 iyy=0.0000095 izz=0.0000180  三角不等式: PASS
+  tool0                无 inertial (frame-only)
+
+=== 总结 ===
+机器人名称: mycobot280
+根连杆: base_link
+连杆数: 8, 关节数: 7, links-1==joints: True
+网格引用数: 0 (0=全部基本几何体)
+惯性三角不等式: 全部通过
+Skill 验证器 read_urdf_source: 无异常返回 -> PASS

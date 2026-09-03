@@ -1,0 +1,6 @@
+deployed_at: 2026-08-11T22:01:02Z
+agents_version: 24
+setup_skill_version: 1.2.7
+target_cli: generic
+resolver_strategy: project-local-skill-reference
+references_dir: skills/story-setup/references/agent-references

@@ -1,0 +1,71 @@
+# 实验集中配置 —— 所有脚本从这里读取，便于版本化与复现
+# 注意：model_name / dataset_name 为占位候选，开工前必须按许可证与硬件确认替换。
+
+experiment:
+  id: "qlora-instruct-2w-v1"   # 实验 ID，用于归档
+  seed: 42
+  output_dir: "./checkpoints"
+  results_dir: "./results"
+
+model:
+  # 候选基础模型（需确认许可证）：7B-8B 级开源模型
+  # 例如 "mistralai/Mistral-7B-v0.3" 或 "Qwen/Qwen2-7B-Instruct" 等
+  name: "TBD_BASE_MODEL"        # TODO(开工前确认)
+  torch_dtype: "bfloat16"
+  max_seq_length: 2048
+
+data:
+  # 公开数据集（需确认许可证），HuggingFace 数据集名或本地 JSONL 路径
+  name: "TBD_PUBLIC_DATASET"    # TODO(开工前确认)
+  split: "train"
+  input_dir: "./data/raw"
+  output_dir: "./data/processed"
+  # 质量过滤阈值（token 数）
+  min_input_tokens: 10
+  max_input_tokens: 2048
+  min_output_tokens: 20
+  max_output_tokens: 2048
+  max_total_tokens: 4096
+  # 去重
+  fuzzy_dedup_threshold: 0.85
+  # 切分
+  val_size: 0.1
+  test_size: 0.0               # 若数据集自带 test 则置 0 并在 prepare_data 中指定
+  stratify_field: null
+
+method: "qlora"                 # "lora" 或 "qlora"；>7B 按 Skill MUST 使用参数高效方法
+
+lora:
+  r: 16
+  lora_alpha: 32               # 通常为 2*r
+  lora_dropout: 0.05
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]  # 消融时再加 MLP 三件套
+  bias: "none"
+
+training:
+  num_train_epochs: 3
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8   # 有效 batch = 16
+  learning_rate: 1.0e-4            # QLoRA 起步 1e-4（LoRA 可 2e-4）
+  lr_scheduler_type: "cosine"
+  warmup_ratio: 0.03               # Skill MUST：必须有 warmup
+  weight_decay: 0.01
+  max_grad_norm: 0.3
+  bf16: true
+  gradient_checkpointing: true
+  optim: "paged_adamw_8bit"
+  logging_steps: 10
+  eval_steps: 100
+  save_steps: 100
+  save_total_limit: 3
+  group_by_length: true
+
+eval:
+  max_new_tokens: 256
+  do_sample: false              # 贪心解码，保证基线与微调可复现对比
+  # 任务类型："generation"（ROUGE/BLEU/BERTScore）或 "classification"（Accuracy/F1）
+  task_type: "generation"
+  num_beams: 1
+  # 延迟基准
+  warmup_runs: 3
+  benchmark_runs: 10

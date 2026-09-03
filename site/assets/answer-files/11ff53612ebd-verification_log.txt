@@ -1,0 +1,491 @@
+================================================================
+ 验证记录 - 2026-08-12 06:34:07 CST
+ Python: Python 3.9.6
+ 平台: Darwin arm64
+================================================================
+
+=== 1. 单元测试 ===
+test_no_files_created_outside_project (test_ft_router.TestConstraints)
+所有交付物都在 finetuning-router/ 目录内。 ... ok
+test_no_third_party_imports (test_ft_router.TestConstraints)
+ft_router.py 只导入标准库。 ... ok
+test_skill_files_unmodified (test_ft_router.TestConstraints)
+解压出的 Skill 原文件未被修改（通过检查文件存在且内容关键句仍在）。 ... ok
+test_blackwell_nvfp4 (test_ft_router.TestDeployQuantization) ... ok
+test_edge_gguf (test_ft_router.TestDeployQuantization) ... ok
+test_hopper_fp8 (test_ft_router.TestDeployQuantization) ... ok
+test_older_awq (test_ft_router.TestDeployQuantization) ... ok
+test_example_files_all_valid (test_ft_router.TestInputValidation)
+examples/ 下所有 JSON 都能被路由且不抛异常。 ... ok
+test_full_ft_with_int4_rejected (test_ft_router.TestInputValidation) ... ok
+test_invalid_data_shape (test_ft_router.TestInputValidation) ... ok
+test_invalid_json_via_cli (test_ft_router.TestInputValidation) ... ok
+test_missing_eval_harness_field (test_ft_router.TestInputValidation) ... ok
+test_70b_qlora_anchor (test_ft_router.TestMemoryMath)
+70B-class QLoRA: ~40GB real-world anchor. ... ok
+test_8b_lora_bf16_anchor (test_ft_router.TestMemoryMath)
+8B-class LoRA bf16: weights ~16GB. ... ok
+test_8b_qlora_anchor (test_ft_router.TestMemoryMath)
+8B-class QLoRA: weights ~4GB. ... ok
+test_8bit_adamw_quarters_optimizer (test_ft_router.TestMemoryMath)
+8-bit AdamW 将 optimizer 项约降至 1/4。 ... ok
+test_dtype_bytes_table (test_ft_router.TestMemoryMath) ... ok
+test_full_ft_optimizer_terms (test_ft_router.TestMemoryMath)
+Full FT: optimizer + gradients 对全部参数计算。 ... ok
+test_gradient_checkpointing_saves_30pct (test_ft_router.TestMemoryMath)
+gradient checkpointing 对 activations 节省约 30%。 ... ok
+test_lora_optimizer_negligible (test_ft_router.TestMemoryMath)
+LoRA/QLoRA 的 optimizer/gradients 仅 adapter，可忽略。 ... ok
+test_memory_fit_and_headroom (test_ft_router.TestMemoryMath) ... ok
+test_memory_overflow_warns (test_ft_router.TestMemoryMath) ... ok
+test_demos_routes_to_sft (test_ft_router.TestMethodRouter)
+Have input/output demonstrations → SFT ... ok
+test_no_data_shape_needs_info (test_ft_router.TestMethodRouter) ... ok
+test_preference_pairs_length_bias_simpo (test_ft_router.TestMethodRouter)
+length-bias → SimPo ... ok
+test_preference_pairs_memory_bound_orpo (test_ft_router.TestMethodRouter)
+memory-bound → ORPO ... ok
+test_preference_pairs_routes_to_dpo (test_ft_router.TestMethodRouter)
+Have preference pairs → DPO (vanilla) ... ok
+test_rl_blocked_when_model_never_succeeds (test_ft_router.TestMethodRouter)
+RL is not the fix for a model that never succeeds → SFT first ... ok
+test_unpaired_feedback_routes_to_kto (test_ft_router.TestMethodRouter)
+unpaired 👍/👎 → KTO ... ok
+test_verifiable_success_routes_to_grpo (test_ft_router.TestMethodRouter)
+verifiable pass/fail → GRPO+RLVR ... ok
+test_worked_example_math_autograde (test_ft_router.TestMethodRouter)
+SKILL.md worked example: math auto-grade → GRPO+RLVR ... ok
+test_worked_example_pricing_page (test_ft_router.TestMethodRouter)
+SKILL.md worked example: this week's pricing → RAG ... ok
+test_worked_example_support_macros (test_ft_router.TestMethodRouter)
+SKILL.md worked example: support macros → SFT ... ok
+test_worked_example_unpaired_thumbs (test_ft_router.TestMethodRouter)
+SKILL.md worked example: unpaired thumbs → KTO not DPO ... ok
+test_12_32b_full_ft_warns_on_spark (test_ft_router.TestModelSelection) ... ok
+test_70b_full_ft_warns (test_ft_router.TestModelSelection)
+70B+ full FT bf16 不可行，应警告。 ... ok
+test_catalog_freshness_current (test_ft_router.TestModelSelection)
+当前日期 2026-08-12，catalog 日期 2026-07-14，29 天，新鲜。 ... ok
+test_catalog_includes_model_names_only_in_catalog (test_ft_router.TestModelSelection)
+SKILL.md: 模型名只出现在 catalog 中，路由结果按 size class。 ... ok
+test_catalog_stale_warning_after_quarter (test_ft_router.TestModelSelection)
+超过 90 天应警告。 ... ok
+test_size_class_lookup (test_ft_router.TestModelSelection) ... ok
+test_domain_text_10_to_500_rag_plus_finetune (test_ft_router.TestOffRamps)
+10MB-500MB → RAG + fine-tune（继续路由到 SFT，附带警告） ... ok
+test_domain_text_500_to_10gb_cpt_then_sft (test_ft_router.TestOffRamps)
+500MB-10GB → CPT then SFT ... ok
+test_domain_text_over_10gb_cpt_required (test_ft_router.TestOffRamps)
+>10GB → CPT required ... ok
+test_domain_text_under_10mb_rag_only (test_ft_router.TestOffRamps)
+<10MB → RAG only ... ok
+test_no_eval_harness_stops (test_ft_router.TestOffRamps)
+No eval harness yet → Stop ... ok
+test_shifting_behavior_routes_to_prompt_engineering (test_ft_router.TestOffRamps)
+Desired behavior still being figured out → prompt engineering ... ok
+test_volatile_facts_routes_to_rag (test_ft_router.TestOffRamps)
+Facts change often → RAG ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 0.102s
+
+OK
+
+=== 2. 零依赖检查（pip list 中无第三方包被 ft_router 导入）===
+导入模块: ['argparse', 'datetime', 'json', 'sys']
+第三方依赖: 无（纯标准库）
+
+=== 3. 全部示例端到端运行 ===
+--- 输入: examples/case_70b_qlora.json ---
+{
+  "description": "70B 模型 QLoRA 显存估算（~40GB anchor）",
+  "has_eval_harness": true,
+  "facts_volatile": false,
+  "behavior_shifting": false,
+  "data_shape": "demos",
+  "params_billion": 70,
+  "method": "qlora",
+  "dtype": "int4",
+  "optimizer": "adamw_8bit",
+  "available_memory_gb": 80,
+  "gradient_checkpointing": true,
+  "hardware": "hopper"
+}
+--- 输出 ---
+{
+  "route": "SFT",
+  "sub_method": "LoRA/QLoRA, all-linear, alpha=2r",
+  "reason": "有输入/输出示范数据 → SFT。",
+  "next_skill": "lora-qlora-recipes",
+  "cpt_advice": null,
+  "model": {
+    "size_class": "70B+",
+    "text_recommendation": "Llama 3.3 70B class",
+    "vision_recommendation": "Use the 12-32B vision class instead — no 70B+ VLM recommendation",
+    "spark_feasibility": "QLoRA-only, ~40GB, 30-48h for 3 epochs",
+    "notes": "bf16 is not feasible at this class on a single Spark; QLoRA is the only path in."
+  },
+  "memory": {
+    "weights_gb": 35.0,
+    "optimizer_gb": 0.0,
+    "gradients_gb": 0.0,
+    "adapter_gb": 0.5,
+    "quant_overhead_gb": 4.65,
+    "activations_gb": 0.0,
+    "activations_note": "activations 未计入（随 batch/seq_len/架构变化）；请根据实际 batch 与 packing 长度估算后预留余量。启用 gradient checkpointing 可节省约 30%。",
+    "total_gb": 40.15,
+    "gradient_checkpointing": true,
+    "fits": true,
+    "headroom_pct": 49.8
+  },
+  "deploy": "FP8 (Hopper+)",
+  "warnings": [],
+  "catalog_fresh": {
+    "last_verified": "2026-07-14",
+    "age_days": 29,
+    "fresh": true
+  },
+  "stop": false
+}
+
+--- 输入: examples/case_cpt_then_sft.json ---
+{
+  "description": "2GB 领域文本（500MB-10GB）→ CPT then SFT",
+  "has_eval_harness": true,
+  "facts_volatile": false,
+  "behavior_shifting": false,
+  "domain_text_mb": 2048,
+  "data_shape": "demos",
+  "params_billion": 8,
+  "method": "lora",
+  "dtype": "bf16",
+  "available_memory_gb": 24,
+  "hardware": "hopper"
+}
+--- 输出 ---
+{
+  "route": "SFT",
+  "sub_method": "LoRA/QLoRA, all-linear, alpha=2r",
+  "reason": "有输入/输出示范数据 → SFT。",
+  "next_skill": "lora-qlora-recipes",
+  "cpt_advice": "领域文本 2048MB（500MB-10GB）：先 CPT 再 SFT。CPT 学习率约为预训练 LR 的 10%。注意：本插件不执行 CPT run，仅提供选型与 LR 指导。",
+  "model": {
+    "size_class": "7-9B",
+    "text_recommendation": "Qwen3 8B, Llama-class 8B",
+    "vision_recommendation": "Qwen2.5-VL-7B",
+    "spark_feasibility": "Full fine-tune ceiling",
+    "notes": "Above this class, full FT stops being the default on Spark."
+  },
+  "memory": {
+    "weights_gb": 16.0,
+    "optimizer_gb": 0.0,
+    "gradients_gb": 0.0,
+    "adapter_gb": 0.2,
+    "quant_overhead_gb": 0.0,
+    "activations_gb": 0.0,
+    "activations_note": "activations 未计入（随 batch/seq_len/架构变化）；请根据实际 batch 与 packing 长度估算后预留余量。启用 gradient checkpointing 可节省约 30%。",
+    "total_gb": 16.2,
+    "gradient_checkpointing": false,
+    "fits": true,
+    "headroom_pct": 32.5
+  },
+  "deploy": "FP8 (Hopper+)",
+  "warnings": [
+    "领域文本 2048MB（500MB-10GB）：先 CPT 再 SFT。CPT 学习率约为预训练 LR 的 10%。注意：本插件不执行 CPT run，仅提供选型与 LR 指导。"
+  ],
+  "catalog_fresh": {
+    "last_verified": "2026-07-14",
+    "age_days": 29,
+    "fresh": true
+  },
+  "stop": false
+}
+
+--- 输入: examples/case_grpo.json ---
+{
+  "description": "数学题自动判对错：可验证信号 → GRPO+RLVR",
+  "has_eval_harness": true,
+  "facts_volatile": false,
+  "behavior_shifting": false,
+  "data_shape": "verifiable_success",
+  "model_succeeds_sometimes": true,
+  "params_billion": 8,
+  "method": "lora",
+  "dtype": "bf16",
+  "available_memory_gb": 40,
+  "gradient_checkpointing": true,
+  "hardware": "hopper"
+}
+--- 输出 ---
+{
+  "route": "GRPO+RLVR",
+  "sub_method": "GRPO with verifiable reward",
+  "reason": "有可自动判对错的通过/失败信号 → GRPO+RLVR。失败模式对应的变体（DAPO/GSPO/Dr.GRPO）参见 grpo-rlvr-training skill。",
+  "next_skill": "grpo-rlvr-training",
+  "cpt_advice": null,
+  "model": {
+    "size_class": "7-9B",
+    "text_recommendation": "Qwen3 8B, Llama-class 8B",
+    "vision_recommendation": "Qwen2.5-VL-7B",
+    "spark_feasibility": "Full fine-tune ceiling",
+    "notes": "Above this class, full FT stops being the default on Spark."
+  },
+  "memory": {
+    "weights_gb": 16.0,
+    "optimizer_gb": 0.0,
+    "gradients_gb": 0.0,
+    "adapter_gb": 0.2,
+    "quant_overhead_gb": 0.0,
+    "activations_gb": 0.0,
+    "activations_note": "activations 未计入（随 batch/seq_len/架构变化）；请根据实际 batch 与 packing 长度估算后预留余量。启用 gradient checkpointing 可节省约 30%。",
+    "total_gb": 16.2,
+    "gradient_checkpointing": true,
+    "fits": true,
+    "headroom_pct": 59.5
+  },
+  "deploy": "FP8 (Hopper+)",
+  "warnings": [
+    "GRPO+RLVR 用于可验证推理任务（数学、代码、工具调用）；主观品味判断应走 DPO。"
+  ],
+  "catalog_fresh": {
+    "last_verified": "2026-07-14",
+    "age_days": 29,
+    "fresh": true
+  },
+  "stop": false
+}
+
+--- 输入: examples/case_kto.json ---
+{
+  "description": "非成对点赞点踩 → KTO",
+  "has_eval_harness": true,
+  "facts_volatile": false,
+  "behavior_shifting": false,
+  "data_shape": "unpaired_feedback",
+  "params_billion": 14,
+  "method": "lora",
+  "dtype": "bf16",
+  "available_memory_gb": 48,
+  "hardware": "hopper"
+}
+--- 输出 ---
+{
+  "route": "KTO",
+  "sub_method": null,
+  "reason": "有非成对的点赞/点踩信号 → KTO。DPO 需要成对偏好，非成对反馈不能用 DPO。",
+  "next_skill": "preference-optimization",
+  "cpt_advice": null,
+  "model": {
+    "size_class": "12-32B",
+    "text_recommendation": "Qwen3 14B/32B, Gemma 3 27B",
+    "vision_recommendation": "Qwen2.5-VL-32B",
+    "spark_feasibility": "LoRA-only; 27B is the LoRA ceiling at pack<=1024",
+    "notes": "27B is the largest dense model that fits a LoRA run on a single Spark."
+  },
+  "memory": {
+    "weights_gb": 28.0,
+    "optimizer_gb": 0.0,
+    "gradients_gb": 0.0,
+    "adapter_gb": 0.25,
+    "quant_overhead_gb": 0.0,
+    "activations_gb": 0.0,
+    "activations_note": "activations 未计入（随 batch/seq_len/架构变化）；请根据实际 batch 与 packing 长度估算后预留余量。启用 gradient checkpointing 可节省约 30%。",
+    "total_gb": 28.25,
+    "gradient_checkpointing": false,
+    "fits": true,
+    "headroom_pct": 41.1
+  },
+  "deploy": "FP8 (Hopper+)",
+  "warnings": [],
+  "catalog_fresh": {
+    "last_verified": "2026-07-14",
+    "age_days": 29,
+    "fresh": true
+  },
+  "stop": false
+}
+
+--- 输入: examples/case_no_eval.json ---
+{
+  "description": "无 eval harness → 必须停止",
+  "has_eval_harness": false,
+  "facts_volatile": false,
+  "behavior_shifting": false,
+  "data_shape": "demos",
+  "params_billion": 8
+}
+--- 输出 ---
+{
+  "route": "STOP",
+  "sub_method": null,
+  "reason": "没有评估框架（eval harness）。在选择任何微调方法之前，必须先建立可衡量的评估基线。请先参见 eval-harness-first。",
+  "next_skill": "eval-harness-first",
+  "cpt_advice": null,
+  "model": null,
+  "memory": null,
+  "deploy": null,
+  "warnings": [],
+  "catalog_fresh": {
+    "last_verified": "2026-07-14",
+    "age_days": 29,
+    "fresh": true
+  },
+  "stop": true
+}
+
+--- 输入: examples/case_rag.json ---
+{
+  "description": "本周定价页：易变事实，应走 RAG",
+  "has_eval_harness": true,
+  "facts_volatile": true,
+  "behavior_shifting": false,
+  "data_shape": "none"
+}
+--- 输出 ---
+{
+  "route": "RAG",
+  "sub_method": null,
+  "reason": "需求是易变事实（价格、文档、新闻等）。微调会固化快照，事实一变就过时；应使用 RAG 从最新数据源检索。",
+  "next_skill": null,
+  "cpt_advice": null,
+  "model": null,
+  "memory": null,
+  "deploy": null,
+  "warnings": [],
+  "catalog_fresh": {
+    "last_verified": "2026-07-14",
+    "age_days": 29,
+    "fresh": true
+  },
+  "stop": false
+}
+
+--- 输入: examples/case_rl_never_succeeds.json ---
+{
+  "description": "RL 但模型从未成功 → 先 SFT",
+  "has_eval_harness": true,
+  "facts_volatile": false,
+  "behavior_shifting": false,
+  "data_shape": "verifiable_success",
+  "model_succeeds_sometimes": false,
+  "params_billion": 8,
+  "method": "lora",
+  "dtype": "bf16",
+  "available_memory_gb": 24
+}
+--- 输出 ---
+{
+  "route": "SFT",
+  "sub_method": "先 SFT，再 RL",
+  "reason": "模型当前在该任务上从未成功。GRPO 等 RL 方法只能打磨已有能力，不能从零教会能力。应先用 SFT 让模型至少偶尔成功，再引入 RL。",
+  "next_skill": "lora-qlora-recipes",
+  "cpt_advice": null,
+  "model": {
+    "size_class": "7-9B",
+    "text_recommendation": "Qwen3 8B, Llama-class 8B",
+    "vision_recommendation": "Qwen2.5-VL-7B",
+    "spark_feasibility": "Full fine-tune ceiling",
+    "notes": "Above this class, full FT stops being the default on Spark."
+  },
+  "memory": {
+    "weights_gb": 16.0,
+    "optimizer_gb": 0.0,
+    "gradients_gb": 0.0,
+    "adapter_gb": 0.2,
+    "quant_overhead_gb": 0.0,
+    "activations_gb": 0.0,
+    "activations_note": "activations 未计入（随 batch/seq_len/架构变化）；请根据实际 batch 与 packing 长度估算后预留余量。启用 gradient checkpointing 可节省约 30%。",
+    "total_gb": 16.2,
+    "gradient_checkpointing": false,
+    "fits": true,
+    "headroom_pct": 32.5
+  },
+  "deploy": null,
+  "warnings": [
+    "RL 前置条件未满足：模型必须至少偶尔成功。SFT 完成后再回到 GRPO+RLVR。"
+  ],
+  "catalog_fresh": {
+    "last_verified": "2026-07-14",
+    "age_days": 29,
+    "fresh": true
+  },
+  "stop": false
+}
+
+--- 输入: examples/case_sft.json ---
+{
+  "description": "客服话术：有输入/输出对话示范，行为稳定",
+  "has_eval_harness": true,
+  "facts_volatile": false,
+  "behavior_shifting": false,
+  "data_shape": "demos",
+  "params_billion": 8,
+  "method": "lora",
+  "dtype": "bf16",
+  "optimizer": "adamw",
+  "available_memory_gb": 24,
+  "gradient_checkpointing": true,
+  "hardware": "hopper"
+}
+--- 输出 ---
+{
+  "route": "SFT",
+  "sub_method": "LoRA/QLoRA, all-linear, alpha=2r",
+  "reason": "有输入/输出示范数据 → SFT。",
+  "next_skill": "lora-qlora-recipes",
+  "cpt_advice": null,
+  "model": {
+    "size_class": "7-9B",
+    "text_recommendation": "Qwen3 8B, Llama-class 8B",
+    "vision_recommendation": "Qwen2.5-VL-7B",
+    "spark_feasibility": "Full fine-tune ceiling",
+    "notes": "Above this class, full FT stops being the default on Spark."
+  },
+  "memory": {
+    "weights_gb": 16.0,
+    "optimizer_gb": 0.0,
+    "gradients_gb": 0.0,
+    "adapter_gb": 0.2,
+    "quant_overhead_gb": 0.0,
+    "activations_gb": 0.0,
+    "activations_note": "activations 未计入（随 batch/seq_len/架构变化）；请根据实际 batch 与 packing 长度估算后预留余量。启用 gradient checkpointing 可节省约 30%。",
+    "total_gb": 16.2,
+    "gradient_checkpointing": true,
+    "fits": true,
+    "headroom_pct": 32.5
+  },
+  "deploy": "FP8 (Hopper+)",
+  "warnings": [],
+  "catalog_fresh": {
+    "last_verified": "2026-07-14",
+    "age_days": 29,
+    "fresh": true
+  },
+  "stop": false
+}
+
+=== 4. 异常输入处理验证 ===
+--- 4a. 非法 JSON ---
+{
+  "error": "JSON 解析失败: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+}
+退出码: 2
+
+--- 4b. 缺少必填字段 ---
+{
+  "error": "缺少必填字段: has_eval_harness"
+}
+退出码: 2
+
+--- 4c. 全量微调+int4 非法组合 ---
+{
+  "error": "全量微调不支持 int4 量化 dtype；请使用 bf16/fp16/fp32。"
+}
+退出码: 2
+
+=== 5. stdin 管道输入验证 ===
+管道输入路由结果: RAG
+
+================================================================
+ 验证完成
+================================================================

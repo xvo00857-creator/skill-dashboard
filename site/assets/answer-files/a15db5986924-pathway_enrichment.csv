@@ -1,0 +1,155 @@
+pathway_id,pathway_name,n_input_in_pathway,pathway_size,n_input_total,background_size,enrichment_factor,odds_ratio,p_value,hit_uniprot_accs,fdr_bh
+hsa04650,Natural killer cell mediated cytotoxicity - Homo sapiens (human),11,133,14,9422,55.6617,279.0874,1.024e-18,O43561;O95644;P04049;P06239;P15498;P19174;P28482;P43403;P62993;P63000;Q07889,1.577e-16
+hsa04660,T cell receptor signaling pathway - Homo sapiens (human),10,122,14,9422,55.1639,207.5,8.735e-17,O43561;O95644;P04049;P06239;P15498;P19174;P28482;P43403;P62993;Q07889,6.726e-15
+hsa04664,Fc epsilon RI signaling pathway - Homo sapiens (human),8,69,14,9422,78.029,204.306,1.579e-14,O43561;P04049;P15498;P19174;P28482;P62993;P63000;Q07889,8.107e-13
+hsa05135,Yersinia infection - Homo sapiens (human),9,138,14,9422,43.8913,129.4744,4.489e-14,O43561;O95644;P06239;P12931;P15498;P19174;P28482;P43403;P63000,1.728e-12
+hsa05235,PD-L1 expression and PD-1 checkpoint pathway in cancer - Homo sapiens (human),7,90,14,9422,52.3444,112.3494,1.861e-11,O43561;O95644;P04049;P06239;P19174;P28482;P43403,5.172e-10
+hsa04662,B cell receptor signaling pathway - Homo sapiens (human),7,91,14,9422,51.7692,111.0,2.015e-11,O95644;P04049;P15498;P28482;P62993;P63000;Q07889,5.172e-10
+hsa04062,Chemokine signaling pathway - Homo sapiens (human),8,193,14,9422,27.8964,66.4721,7.251e-11,P04049;P12931;P15498;P19174;P28482;P62993;P63000;Q07889,1.595e-09
+hsa05205,Proteoglycans in cancer - Homo sapiens (human),8,204,14,9422,26.3922,62.6667,1.132e-10,P04049;P12931;P15498;P19174;P28482;P62993;P63000;Q07889,2.179e-09
+hsa04014,Ras signaling pathway - Homo sapiens (human),8,239,14,9422,22.5272,52.9697,4.018e-10,O43561;P04049;P19174;P28482;P43403;P62993;P63000;Q07889,6.876e-09
+hsa01521,EGFR tyrosine kinase inhibitor resistance - Homo sapiens (human),6,80,14,9422,50.475,94.6014,8.812e-10,P04049;P12931;P19174;P28482;P62993;Q07889,1.357e-08
+hsa04012,ErbB signaling pathway - Homo sapiens (human),6,86,14,9422,46.9535,87.45,1.373e-09,P04049;P12931;P19174;P28482;P62993;Q07889,1.922e-08
+hsa04658,Th1 and Th2 cell differentiation - Homo sapiens (human),6,93,14,9422,43.4194,80.3534,2.214e-09,O43561;O95644;P06239;P19174;P28482;P43403,2.841e-08
+hsa04666,Fc gamma R-mediated phagosome formation - Homo sapiens (human),6,98,14,9422,41.2041,75.9457,3.046e-09,O43561;P04049;P15498;P19174;P28482;P63000,3.565e-08
+hsa05231,Choline metabolism in cancer - Homo sapiens (human),6,99,14,9422,40.7879,75.121,3.241e-09,P04049;P19174;P28482;P62993;P63000;Q07889,3.565e-08
+hsa04659,Th17 cell differentiation - Homo sapiens (human),6,109,14,9422,37.0459,67.7549,5.813e-09,O43561;O95644;P06239;P19174;P28482;P43403,5.651e-08
+hsa04510,Focal adhesion - Homo sapiens (human),7,203,14,9422,23.2069,47.0,5.871e-09,P04049;P12931;P15498;P28482;P62993;P63000;Q07889,5.651e-08
+hsa04015,Rap1 signaling pathway - Homo sapiens (human),7,212,14,9422,22.2217,44.8927,7.943e-09,O43561;P04049;P12931;P15498;P19174;P28482;P63000,7.195e-08
+hsa04722,Neurotrophin signaling pathway - Homo sapiens (human),6,120,14,9422,33.65,61.1447,1.040e-08,P04049;P19174;P28482;P62993;P63000;Q07889,8.899e-08
+hsa05163,Human cytomegalovirus infection - Homo sapiens (human),7,227,14,9422,20.7533,41.7636,1.278e-08,O95644;P04049;P12931;P28482;P62993;P63000;Q07889,1.035e-07
+hsa04370,VEGF signaling pathway - Homo sapiens (human),5,60,14,9422,56.0833,94.4747,1.693e-08,P04049;P12931;P19174;P28482;P63000,1.304e-07
+hsa05211,Renal cell carcinoma - Homo sapiens (human),5,70,14,9422,48.0714,79.8547,3.722e-08,P04049;P28482;P62993;P63000;Q07889,2.729e-07
+hsa04917,Prolactin signaling pathway - Homo sapiens (human),5,71,14,9422,47.3944,78.6364,4.000e-08,P04049;P12931;P28482;P62993;Q07889,2.800e-07
+hsa05223,Non-small cell lung cancer - Homo sapiens (human),5,73,14,9422,46.0959,76.3072,4.608e-08,P04049;P19174;P28482;P62993;Q07889,3.085e-07
+hsa05214,Glioma - Homo sapiens (human),5,76,14,9422,44.2763,73.0595,5.654e-08,P04049;P19174;P28482;P62993;Q07889,3.628e-07
+hsa05161,Hepatitis B - Homo sapiens (human),6,163,14,9422,24.773,44.1927,6.548e-08,O95644;P04049;P12931;P28482;P62993;Q07889,4.034e-07
+hsa04517,IgSF CAM signaling - Homo sapiens (human),7,300,14,9422,15.7033,31.1092,8.768e-08,P06239;P12931;P15498;P19174;P28482;P62993;P63000,5.193e-07
+hsa05210,Colorectal cancer - Homo sapiens (human),5,87,14,9422,38.6782,63.1843,1.121e-07,P04049;P28482;P62993;P63000;Q07889,6.393e-07
+hsa04540,Gap junction - Homo sapiens (human),5,90,14,9422,37.3889,60.9346,1.330e-07,P04049;P12931;P28482;P62993;Q07889,7.315e-07
+hsa04912,GnRH signaling pathway - Homo sapiens (human),5,93,14,9422,36.1828,58.8384,1.569e-07,P04049;P12931;P28482;P62993;Q07889,8.332e-07
+hsa05167,Kaposi sarcoma-associated herpesvirus infection - Homo sapiens (human),6,196,14,9422,20.602,36.3868,1.963e-07,O95644;P04049;P12931;P19174;P28482;P63000,1.007e-06
+hsa01522,Endocrine resistance - Homo sapiens (human),5,99,14,9422,33.9899,55.0473,2.149e-07,P04049;P12931;P28482;P62993;Q07889,1.067e-06
+hsa05417,Lipid and atherosclerosis - Homo sapiens (human),6,216,14,9422,18.6944,32.85,3.489e-07,O95644;P12931;P15498;P19174;P28482;P63000,1.679e-06
+hsa05208,Chemical carcinogenesis - reactive oxygen species - Homo sapiens (human),6,227,14,9422,17.7885,31.1776,4.678e-07,P04049;P12931;P28482;P62993;P63000;Q07889,2.183e-06
+hsa04810,Regulation of actin cytoskeleton - Homo sapiens (human),6,232,14,9422,17.4052,30.4712,5.320e-07,P04049;P12931;P15498;P28482;P63000;Q07889,2.409e-06
+hsa04935,"Growth hormone synthesis, secretion and action - Homo sapiens (human)",5,122,14,9422,27.582,44.1168,6.114e-07,P04049;P19174;P28482;P62993;Q07889,2.690e-06
+hsa04926,Relaxin signaling pathway - Homo sapiens (human),5,130,14,9422,25.8846,41.2578,8.389e-07,P04049;P12931;P28482;P62993;Q07889,3.588e-06
+hsa04915,Estrogen signaling pathway - Homo sapiens (human),5,139,14,9422,24.2086,38.4494,1.170e-06,P04049;P12931;P28482;P62993;Q07889,4.869e-06
+hsa04380,Osteoclast differentiation - Homo sapiens (human),5,142,14,9422,23.6972,37.5953,1.301e-06,O95644;P06239;P28482;P62993;P63000,5.231e-06
+hsa05213,Endometrial cancer - Homo sapiens (human),4,59,14,9422,45.6271,68.0218,1.325e-06,P04049;P28482;P62993;Q07889,5.231e-06
+hsa04072,Phospholipase D signaling pathway - Homo sapiens (human),5,149,14,9422,22.5839,35.7407,1.651e-06,P04049;P19174;P28482;P62993;Q07889,6.355e-06
+hsa05221,Acute myeloid leukemia - Homo sapiens (human),4,68,14,9422,39.5882,58.4,2.352e-06,P04049;P28482;P62993;Q07889,8.836e-06
+hsa04010,MAPK signaling pathway - Homo sapiens (human),6,301,14,9422,13.4153,23.1686,2.447e-06,O95644;P04049;P28482;P62993;P63000;Q07889,8.972e-06
+hsa05225,Hepatocellular carcinoma - Homo sapiens (human),5,170,14,9422,19.7941,31.1212,3.164e-06,P04049;P19174;P28482;P62993;Q07889,1.133e-05
+hsa05220,Chronic myeloid leukemia - Homo sapiens (human),4,77,14,9422,34.961,51.1507,3.879e-06,P04049;P28482;P62993;Q07889,1.358e-05
+hsa04360,Axon guidance - Homo sapiens (human),5,184,14,9422,18.288,28.6437,4.669e-06,P04049;P12931;P19174;P28482;P63000,1.598e-05
+hsa04613,Neutrophil extracellular trap formation - Homo sapiens (human),5,195,14,9422,17.2564,26.9532,6.205e-06,P04049;P12931;P19174;P28482;P63000,2.077e-05
+hsa05170,Human immunodeficiency virus 1 infection - Homo sapiens (human),5,214,14,9422,15.7243,24.4524,9.773e-06,O95644;P04049;P19174;P28482;P63000,3.202e-05
+hsa05207,Chemical carcinogenesis - receptor activation - Homo sapiens (human),5,217,14,9422,15.5069,24.0985,1.046e-05,P04049;P12931;P28482;P62993;Q07889,3.355e-05
+hsa04933,AGE-RAGE signaling pathway in diabetic complications - Homo sapiens (human),4,101,14,9422,26.6535,38.3959,1.147e-05,O95644;P19174;P28482;P63000,3.604e-05
+hsa04024,cAMP signaling pathway - Homo sapiens (human),5,226,14,9422,14.8894,23.0945,1.275e-05,O95644;P04049;P15498;P28482;P63000,3.926e-05
+hsa04625,C-type lectin receptor signaling pathway - Homo sapiens (human),4,105,14,9422,25.6381,36.8594,1.338e-05,O95644;P04049;P12931;P28482,3.962e-05
+hsa04064,NF-kappa B signaling pathway - Homo sapiens (human),4,105,14,9422,25.6381,36.8594,1.338e-05,O43561;P06239;P19174;P43403,3.962e-05
+hsa05215,Prostate cancer - Homo sapiens (human),4,106,14,9422,25.3962,36.4941,1.389e-05,P04049;P28482;P62993;Q07889,4.036e-05
+hsa04919,Thyroid hormone signaling pathway - Homo sapiens (human),4,122,14,9422,22.0656,31.4915,2.423e-05,P04049;P12931;P19174;P28482,6.910e-05
+hsa05219,Bladder cancer - Homo sapiens (human),3,41,14,9422,49.2439,67.2488,2.693e-05,P04049;P12931;P28482,7.541e-05
+hsa04068,FoxO signaling pathway - Homo sapiens (human),4,133,14,9422,20.2406,28.7721,3.404e-05,P04049;P28482;P62993;Q07889,9.361e-05
+hsa04910,Insulin signaling pathway - Homo sapiens (human),4,138,14,9422,19.5072,27.6836,3.935e-05,P04049;P28482;P62993;Q07889,1.063e-04
+hsa05224,Breast cancer - Homo sapiens (human),4,148,14,9422,18.1892,25.7333,5.177e-05,P04049;P28482;P62993;Q07889,1.375e-04
+hsa05226,Gastric cancer - Homo sapiens (human),4,150,14,9422,17.9467,25.3753,5.456e-05,P04049;P28482;P62993;Q07889,1.424e-04
+hsa04921,Oxytocin signaling pathway - Homo sapiens (human),4,154,14,9422,17.4805,24.688,6.048e-05,O95644;P04049;P12931;P28482,1.552e-04
+hsa05160,Hepatitis C - Homo sapiens (human),4,156,14,9422,17.2564,24.3579,6.360e-05,P04049;P28482;P62993;Q07889,1.606e-04
+hsa05200,Pathways in cancer - Homo sapiens (human),6,533,14,9422,7.576,12.639,6.476e-05,P04049;P19174;P28482;P62993;P63000;Q07889,1.608e-04
+hsa04150,mTOR signaling pathway - Homo sapiens (human),4,158,14,9422,17.038,24.0364,6.685e-05,P04049;P28482;P62993;Q07889,1.634e-04
+hsa05206,MicroRNAs in cancer - Homo sapiens (human),5,323,14,9422,10.418,15.8805,7.120e-05,P04049;P19174;P28482;P62993;Q07889,1.713e-04
+hsa04151,PI3K-Akt signaling pathway - Homo sapiens (human),5,362,14,9422,9.2956,14.085,1.224e-04,P04049;P28482;P62993;P63000;Q07889,2.899e-04
+hsa05034,Alcoholism - Homo sapiens (human),4,191,14,9422,14.0942,19.7241,1.397e-04,P04049;P28482;P62993;Q07889,3.233e-04
+hsa05120,Epithelial cell signaling in Helicobacter pylori infection - Homo sapiens (human),3,71,14,9422,28.4366,37.4599,1.406e-04,P12931;P19174;P63000,3.233e-04
+hsa05212,Pancreatic cancer - Homo sapiens (human),3,77,14,9422,26.2208,34.4005,1.791e-04,P04049;P28482;P63000,4.055e-04
+hsa05203,Viral carcinogenesis - Homo sapiens (human),4,205,14,9422,13.1317,18.3224,1.836e-04,P12931;P28482;P62993;P63000,4.097e-04
+hsa04520,Adherens junction - Homo sapiens (human),3,93,14,9422,21.7097,28.2364,3.132e-04,P12931;P28482;P63000,6.891e-04
+hsa05131,Shigellosis - Homo sapiens (human),4,253,14,9422,10.6403,14.7133,4.109e-04,P12931;P19174;P28482;P63000,8.913e-04
+hsa04670,Leukocyte transendothelial migration - Homo sapiens (human),3,116,14,9422,17.4052,22.4336,5.995e-04,P15498;P19174;P63000,1.282e-03
+hsa04071,Sphingolipid signaling pathway - Homo sapiens (human),3,125,14,9422,16.152,20.7586,7.457e-04,P04049;P28482;P63000,1.573e-03
+hsa04550,Signaling pathways regulating pluripotency of stem cells - Homo sapiens (human),3,144,14,9422,14.0208,17.9246,1.125e-03,P04049;P28482;P62993,2.341e-03
+hsa05165,Human papillomavirus infection - Homo sapiens (human),4,333,14,9422,8.0841,11.0383,1.158e-03,P04049;P28482;P62993;Q07889,2.377e-03
+hsa05340,Primary immunodeficiency - Homo sapiens (human),2,38,14,9422,35.4211,43.3889,1.398e-03,P06239;P43403,2.833e-03
+hsa04218,Cellular senescence - Homo sapiens (human),3,157,14,9422,12.8599,16.3884,1.444e-03,O95644;P04049;P28482,2.850e-03
+hsa04148,Efferocytosis - Homo sapiens (human),3,157,14,9422,12.8599,16.3884,1.444e-03,O95644;P28482;P63000,2.850e-03
+hsa04022,cGMP-PKG signaling pathway - Homo sapiens (human),3,166,14,9422,12.1627,15.4685,1.695e-03,O95644;P04049;P28482,3.304e-03
+hsa04630,JAK-STAT signaling pathway - Homo sapiens (human),3,168,14,9422,12.0179,15.2777,1.754e-03,P04049;P62993;Q07889,3.376e-03
+hsa05152,Tuberculosis - Homo sapiens (human),3,181,14,9422,11.1547,14.142,2.171e-03,P04049;P12931;P28482,4.128e-03
+hsa04519,Cadherin signaling - Homo sapiens (human),4,404,14,9422,6.6634,9.008,2.366e-03,P04049;P15498;P28482;P63000,4.444e-03
+hsa05130,Pathogenic Escherichia coli infection - Homo sapiens (human),3,201,14,9422,10.0448,12.686,2.927e-03,P12931;P28482;P63000,5.430e-03
+hsa04730,Long-term depression - Homo sapiens (human),2,60,14,9422,22.4333,26.8678,3.455e-03,P04049;P28482,6.334e-03
+hsa05166,Human T-cell leukemia virus 1 infection - Homo sapiens (human),3,224,14,9422,9.0134,11.3373,3.975e-03,O95644;P06239;P28482,7.203e-03
+hsa04929,GnRH secretion - Homo sapiens (human),2,65,14,9422,20.7077,24.7222,4.043e-03,P04049;P28482,7.239e-03
+hsa04720,Long-term potentiation - Homo sapiens (human),2,67,14,9422,20.0896,23.9564,4.290e-03,P04049;P28482,7.594e-03
+hsa05022,Pathways of neurodegeneration - multiple diseases - Homo sapiens (human),4,481,14,9422,5.5967,7.4893,4.457e-03,P04049;P19174;P28482;P63000,7.800e-03
+hsa05230,Central carbon metabolism in cancer - Homo sapiens (human),2,71,14,9422,18.9577,22.558,4.805e-03,P04049;P28482,8.315e-03
+hsa05218,Melanoma - Homo sapiens (human),2,73,14,9422,18.4384,21.9178,5.073e-03,P04049;P28482,8.681e-03
+hsa05132,Salmonella infection - Homo sapiens (human),3,249,14,9422,8.1084,10.1574,5.349e-03,P04049;P28482;P63000,9.052e-03
+hsa05100,Bacterial invasion of epithelial cells - Homo sapiens (human),2,78,14,9422,17.2564,20.4649,5.773e-03,P12931;P63000,9.663e-03
+hsa04750,Inflammatory mediator regulation of TRP channels - Homo sapiens (human),2,99,14,9422,13.596,15.9983,9.161e-03,P12931;P19174,1.517e-02
+hsa04916,Melanogenesis - Homo sapiens (human),2,101,14,9422,13.3267,15.6717,9.520e-03,P04049;P28482,1.560e-02
+hsa04620,Toll-like receptor signaling pathway - Homo sapiens (human),2,109,14,9422,12.3486,14.4875,1.102e-02,P28482;P63000,1.781e-02
+hsa04914,Progesterone-mediated oocyte maturation - Homo sapiens (human),2,110,14,9422,12.2364,14.3519,1.122e-02,P04049;P28482,1.781e-02
+hsa04066,HIF-1 signaling pathway - Homo sapiens (human),2,110,14,9422,12.2364,14.3519,1.122e-02,P19174;P28482,1.781e-02
+hsa04928,"Parathyroid hormone synthesis, secretion and action - Homo sapiens (human)",2,115,14,9422,11.7043,13.7094,1.221e-02,P04049;P28482,1.900e-02
+hsa04726,Serotonergic synapse - Homo sapiens (human),2,115,14,9422,11.7043,13.7094,1.221e-02,P04049;P28482,1.900e-02
+hsa04611,Platelet activation - Homo sapiens (human),2,126,14,9422,10.6825,12.4785,1.453e-02,P12931;P28482,2.238e-02
+hsa04270,Vascular smooth muscle contraction - Homo sapiens (human),2,135,14,9422,9.9704,11.6228,1.657e-02,P04049;P28482,2.526e-02
+hsa04210,Apoptosis - Homo sapiens (human),2,138,14,9422,9.7536,11.3627,1.727e-02,P04049;P28482,2.608e-02
+hsa04371,Apelin signaling pathway - Homo sapiens (human),2,140,14,9422,9.6143,11.1957,1.775e-02,P04049;P28482,2.653e-02
+hsa05418,Fluid shear stress and atherosclerosis - Homo sapiens (human),2,142,14,9422,9.4789,11.0333,1.823e-02,P12931;P63000,2.699e-02
+hsa04518,Integrin signaling - Homo sapiens (human),2,154,14,9422,8.7403,10.1491,2.123e-02,P12931;P63000,3.114e-02
+hsa04140,Autophagy - animal - Homo sapiens (human),2,169,14,9422,7.9645,9.2226,2.527e-02,P04049;P28482,3.671e-02
+hsa04530,Tight junction - Homo sapiens (human),2,171,14,9422,7.8713,9.1114,2.583e-02,P12931;P63000,3.717e-02
+hsa05164,Influenza A - Homo sapiens (human),2,173,14,9422,7.7803,9.0029,2.639e-02,P04049;P28482,3.763e-02
+hsa04310,Wnt signaling pathway - Homo sapiens (human),2,178,14,9422,7.5618,8.7424,2.782e-02,O95644;P63000,3.931e-02
+hsa04714,Thermogenesis - Homo sapiens (human),2,234,14,9422,5.7521,6.592,4.593e-02,P62993;Q07889,6.430e-02
+hsa05171,Coronavirus disease - Homo sapiens (human),2,239,14,9422,5.6318,6.4494,4.771e-02,P19174;P28482,6.620e-02
+hsa04020,Calcium signaling pathway - Homo sapiens (human),2,254,14,9422,5.2992,6.0556,5.323e-02,O95644;P19174,7.245e-02
+hsa05216,Thyroid cancer - Homo sapiens (human),1,37,14,9422,18.1892,20.0256,5.363e-02,P28482,7.245e-02
+hsa05143,African trypanosomiasis - Homo sapiens (human),1,37,14,9422,18.1892,20.0256,5.363e-02,P68871,7.245e-02
+hsa04960,Aldosterone-regulated sodium reabsorption - Homo sapiens (human),1,38,14,9422,17.7105,19.4823,5.504e-02,P28482,7.367e-02
+hsa04145,Phagocytosis - Homo sapiens (human),2,260,14,9422,5.1769,5.9109,5.549e-02,P02768;P63000,7.367e-02
+hsa05020,Prion disease - Homo sapiens (human),2,276,14,9422,4.8768,5.556,6.171e-02,P28482;P63000,8.123e-02
+hsa04930,Type II diabetes mellitus - Homo sapiens (human),1,47,14,9422,14.3191,15.6555,6.766e-02,P28482,8.830e-02
+hsa05144,Malaria - Homo sapiens (human),1,50,14,9422,13.46,14.6923,7.183e-02,P68871,9.296e-02
+hsa05110,Vibrio cholerae infection - Homo sapiens (human),1,51,14,9422,13.1961,14.3969,7.322e-02,P19174,9.397e-02
+hsa05321,Inflammatory bowel disease - Homo sapiens (human),1,66,14,9422,10.197,11.0568,9.379e-02,O95644,1.194e-01
+hsa05416,Viral myocarditis - Homo sapiens (human),1,70,14,9422,9.6143,10.4114,9.920e-02,P63000,1.252e-01
+hsa01524,Platinum drug resistance - Homo sapiens (human),1,75,14,9422,8.9733,9.7027,1.059e-01,P28482,1.316e-01
+hsa04918,Thyroid hormone synthesis - Homo sapiens (human),1,75,14,9422,8.9733,9.7027,1.059e-01,P02768,1.316e-01
+hsa05140,Leishmaniasis - Homo sapiens (human),1,78,14,9422,8.6282,9.3217,1.099e-01,P28482,1.333e-01
+hsa05133,Pertussis - Homo sapiens (human),1,78,14,9422,8.6282,9.3217,1.099e-01,P28482,1.333e-01
+hsa00562,Inositol phosphate metabolism - Homo sapiens (human),1,78,14,9422,8.6282,9.3217,1.099e-01,P19174,1.333e-01
+hsa05010,Alzheimer disease - Homo sapiens (human),2,389,14,9422,3.4602,3.885,1.116e-01,P04049;P28482,1.343e-01
+hsa04727,GABAergic synapse - Homo sapiens (human),1,89,14,9422,7.5618,8.1469,1.245e-01,P12931,1.486e-01
+hsa04657,IL-17 signaling pathway - Homo sapiens (human),1,94,14,9422,7.1596,7.7047,1.311e-01,P28482,1.552e-01
+hsa04713,Circadian entrainment - Homo sapiens (human),1,97,14,9422,6.9381,7.4615,1.350e-01,P28482,1.587e-01
+hsa04070,Phosphatidylinositol signaling system - Homo sapiens (human),1,98,14,9422,6.8673,7.3838,1.363e-01,P19174,1.590e-01
+hsa05142,Chagas disease - Homo sapiens (human),1,103,14,9422,6.534,7.0181,1.427e-01,P28482,1.640e-01
+hsa04972,Pancreatic secretion - Homo sapiens (human),1,103,14,9422,6.534,7.0181,1.427e-01,P63000,1.640e-01
+hsa04137,Mitophagy - animal - Homo sapiens (human),1,105,14,9422,6.4095,6.8817,1.453e-01,P12931,1.657e-01
+hsa04350,TGF-beta signaling pathway - Homo sapiens (human),1,110,14,9422,6.1182,6.5625,1.517e-01,P28482,1.718e-01
+hsa05145,Toxoplasmosis - Homo sapiens (human),1,112,14,9422,6.0089,6.4428,1.543e-01,P28482,1.734e-01
+hsa04725,Cholinergic synapse - Homo sapiens (human),1,115,14,9422,5.8522,6.2713,1.581e-01,P28482,1.764e-01
+hsa04724,Glutamatergic synapse - Homo sapiens (human),1,116,14,9422,5.8017,6.2161,1.593e-01,P28482,1.765e-01
+hsa04668,TNF signaling pathway - Homo sapiens (human),1,119,14,9422,5.6555,6.0561,1.631e-01,P28482,1.794e-01
+hsa04114,Oocyte meiosis - Homo sapiens (human),1,138,14,9422,4.8768,5.2055,1.867e-01,P28482,2.040e-01
+hsa04723,Retrograde endocannabinoid signaling - Homo sapiens (human),1,149,14,9422,4.5168,4.8129,2.001e-01,P28482,2.171e-01
+hsa04261,Adrenergic signaling in cardiomyocytes - Homo sapiens (human),1,154,14,9422,4.3701,4.6531,2.062e-01,P28482,2.218e-01
+hsa04934,Cushing syndrome - Homo sapiens (human),1,155,14,9422,4.3419,4.6224,2.074e-01,P28482,2.218e-01
+hsa04932,Non-alcoholic fatty liver disease - Homo sapiens (human),1,157,14,9422,4.2866,4.5621,2.098e-01,P63000,2.228e-01
+hsa05168,Herpes simplex virus 1 infection - Homo sapiens (human),1,180,14,9422,3.7389,3.9661,2.368e-01,P12931,2.498e-01
+hsa04621,NOD-like receptor signaling pathway - Homo sapiens (human),1,187,14,9422,3.5989,3.8139,2.449e-01,P28482,2.565e-01
+hsa05169,Epstein-Barr virus infection - Homo sapiens (human),1,205,14,9422,3.2829,3.4706,2.652e-01,P63000,2.741e-01
+hsa05415,Diabetic cardiomyopathy - Homo sapiens (human),1,205,14,9422,3.2829,3.4706,2.652e-01,P63000,2.741e-01
+hsa04081,Hormone signaling - Homo sapiens (human),1,219,14,9422,3.0731,3.2428,2.807e-01,P12931,2.882e-01
+hsa04144,Endocytosis - Homo sapiens (human),1,250,14,9422,2.692,2.8295,3.139e-01,P12931,3.202e-01
+hsa05012,Parkinson disease - Homo sapiens (human),1,269,14,9422,2.5019,2.6234,3.336e-01,P19174,3.379e-01
+hsa05014,Amyotrophic lateral sclerosis - Homo sapiens (human),1,369,14,9422,1.8238,1.8896,4.286e-01,P63000,4.314e-01
+hsa01100,Metabolic pathways - Homo sapiens (human),1,1590,14,9422,0.4233,0.3785,9.249e-01,P19174,9.249e-01

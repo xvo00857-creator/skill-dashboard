@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">整理研究资料并生成汇报：最小技能组合</title>
+<desc id="desc">将已有或可检索的研究资料整理为结构清晰、可审核的汇报文档；优先本地已安装技能，不新增非必要依赖，外部账号只到确认前步骤。</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#07152f"/><stop offset="1" stop-color="#123b5d"/></linearGradient></defs>
+<rect width="1200" height="760" rx="36" fill="url(#bg)"/>
+<circle cx="1080" cy="90" r="160" fill="#38bdf8" opacity="0.10"/>
+<circle cx="1120" cy="30" r="80" fill="#a78bfa" opacity="0.12"/>
+<text x="64" y="72" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="700" fill="#7dd3fc">AGENT SKILL STACK</text>
+<text x="64" y="122" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="38" font-weight="750" fill="#ffffff">整理研究资料并生成汇报：最小技能组合</text>
+<text x="64" y="166" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="24" font-weight="400" fill="#dbeafe">将已有或可检索的研究资料整理为结构清晰、可审核的汇报文档；优先本地已安装技能，不新增非必要依赖，外部账号只到确认前步骤。</text>
+<rect x="56" y="222" width="1088" height="72" rx="18" fill="#ffffff" opacity="0.96"/>
+<text x="84" y="253" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="24" font-weight="700" fill="#0f172a">doubao-book-writer</text>
+<text x="84" y="279" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="400" fill="#475569">主力：把研究资料组装/改写为研究/咨询/调查报告并质检交付</text>
+<rect x="956" y="240" width="160" height="36" rx="18" fill="#dbeafe"/>
+<text x="976" y="265" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" fill="#1d4ed8">Recommended</text>
+<rect x="56" y="314" width="1088" height="72" rx="18" fill="#ffffff" opacity="0.96"/>
+<text x="84" y="345" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="24" font-weight="700" fill="#0f172a">doubao-academic-researcher</text>
+<text x="84" y="371" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="400" fill="#475569">可选前置：资料为学术文献时，负责检索、引用核验与证据综合</text>
+<rect x="956" y="332" width="160" height="36" rx="18" fill="#ede9fe"/>
+<text x="976" y="357" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" fill="#7c3aed">Optional</text>
+<rect x="56" y="406" width="1088" height="72" rx="18" fill="#ffffff" opacity="0.96"/>
+<text x="84" y="437" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="24" font-weight="700" fill="#0f172a">lark-ppt</text>
+<text x="84" y="463" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="400" fill="#475569">备选交付：汇报需演示文稿形式时替代文档交付</text>
+<rect x="956" y="424" width="160" height="36" rx="18" fill="#ede9fe"/>
+<text x="976" y="449" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" fill="#7c3aed">Optional</text>
+<text x="64" y="502" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700" fill="#7dd3fc">SAFETY BOUNDARY</text>
+<text x="72" y="532" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="400" fill="#e2e8f0">• 不新增 npm/pip 依赖；book-writer 仅需 Node(&gt;=18 实测) 与 make，飞书交付可 SKIP_LARK=1 跳过</text>
+<text x="72" y="562" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="400" fill="#e2e8f0">• 不改动无关文件；所有试跑产物在工作目录内，可删除</text>
+<text x="72" y="592" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="400" fill="#e2e8f0">• 飞书/lark-cli 等外部账号只做 dry-run，不实际创建文档</text>
+<line x1="64" y1="682" x2="1136" y2="682" stroke="#7dd3fc" opacity="0.25"/>
+<text x="64" y="722" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="500" fill="#bae6fd">Minimal. Audited. Local dry-run verified.</text>
+<text x="934" y="722" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="500" fill="#bae6fd">Verified: 2026-08-12</text>
+</svg>

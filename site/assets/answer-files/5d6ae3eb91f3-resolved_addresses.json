@@ -1,0 +1,38 @@
+[
+  {
+    "source_id": "cust-1001",
+    "input_address_id": "usps_V210079628|10||3797",
+    "address_line_one": "10 Downing St",
+    "address_line_two": "",
+    "city": "Montpelier",
+    "state": "VT",
+    "zip_code": "05602",
+    "country_iso_2": "US",
+    "confidence": 1,
+    "match_information": "Single Response - deliverable address found."
+  },
+  {
+    "source_id": "cust-1002",
+    "input_address_id": "usps_Z105730754|10||2411",
+    "address_line_one": "10 S Downing St",
+    "address_line_two": "",
+    "city": "Denver",
+    "state": "CO",
+    "zip_code": "80209",
+    "country_iso_2": "US",
+    "confidence": 1,
+    "match_information": "Single Response - deliverable address found."
+  },
+  {
+    "source_id": "cust-1003",
+    "input_address_id": "usps_Z122966113|2202|10|5264",
+    "address_line_one": "2202 N Downing St",
+    "address_line_two": "Apt 10",
+    "city": "Denver",
+    "state": "CO",
+    "zip_code": "80205",
+    "country_iso_2": "US",
+    "confidence": 1,
+    "match_information": "Single Response - deliverable address found."
+  }
+]

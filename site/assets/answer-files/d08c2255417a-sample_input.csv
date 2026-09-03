@@ -1,0 +1,7 @@
+id,action,target,payload,verified
+R001,update_notice,公告栏-测试分区,这是一条普通公告内容：系统将于本周日例行维护2小时。,true
+R002,grant_permission,项目组-示例项目,将成员示例用户A加入只读权限组（数据来源待核实，需二次确认）。,false
+R003,send_email,用户邮箱,向 zhang****@example.com 发送营销邮件，手机号 13800138000。,true
+R004,delete_record,订单表-测试分区,永久删除 2024 年之前的全部历史订单记录，不可恢复。,true
+R005,bulk_payout,财务-测试账户,向身份证 110101199001011234 对应账户批量打款，金额待确认。,false
+R006,update_config,功能开关-测试,开启灰度开关 feature_x 比例 5%。,true

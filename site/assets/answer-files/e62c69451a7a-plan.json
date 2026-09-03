@@ -1,0 +1,26 @@
+{
+  "run_id": "4803294fb7f826a0",
+  "generated_at": "2026-08-12T06:18:55Z",
+  "mode": "live",
+  "mcp_configured": false,
+  "total_batches": 1,
+  "expensive_columns": [
+    "org_traffic"
+  ],
+  "batches": [
+    {
+      "batch_index": 0,
+      "tool": "AHREFS_BATCH_URL_ANALYSIS",
+      "target_count": 3,
+      "params_summary": {
+        "select": [
+          "domain_rating",
+          "backlinks",
+          "refdomains",
+          "org_traffic"
+        ],
+        "country": "us"
+      }
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+﻿order_id,dup_count,conflict_fields,raw_row
+A001,>=2,,"{""order_id"": ""A001"", ""store_name"": ""北京朝阳店"", ""amount"": ""199.50"", ""qty"": ""2""}"
+A003,>=2,amount,"{""order_id"": ""A003"", ""store_name"": ""北京朝阳店"", ""amount"": ""1300.00"", ""qty"": ""3""}"

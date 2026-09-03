@@ -1,0 +1,130 @@
+{
+  "total_cases": 5,
+  "passed": 5,
+  "pass_rate": 1.0,
+  "average_score": 1.0,
+  "threshold": 0.8,
+  "meets_threshold": true,
+  "failure_distribution": {
+    "none": 5
+  },
+  "average_by_category": {
+    "string": 1.0,
+    "number": 1.0,
+    "data_transform": 1.0,
+    "edge_case": 1.0
+  },
+  "average_by_difficulty": {
+    "easy": 1.0,
+    "medium": 1.0,
+    "hard": 1.0
+  },
+  "dimension_averages": {
+    "accuracy": 1.0,
+    "edge_case": 1.0,
+    "code_quality": 1.0,
+    "efficiency": 1.0
+  },
+  "cases": [
+    {
+      "case_id": "C01",
+      "title": "字符串按词反转",
+      "category": "string",
+      "difficulty": "easy",
+      "passed": true,
+      "failure_type": "none",
+      "tests_run": 6,
+      "tests_failed": 0,
+      "weighted_score": 1.0,
+      "scores": {
+        "accuracy": 1.0,
+        "edge_case": 1.0,
+        "code_quality": 1.0,
+        "efficiency": 1.0
+      },
+      "iterations": 1,
+      "quality_notes": [],
+      "error_output": "test_basic (test_solution.TestReverseWords) ... ok\ntest_empty (test_solution.TestReverseWords) ... ok\ntest_palindrome_word (test_solution.TestReverseWords) ... ok\ntest_single_char_words (test_solution.TestReverseWords) ... ok\ntest_single_word (test_solution.TestReverseWords) ... ok\ntest_three_words (test_solution.TestReverseWords) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "case_id": "C02",
+      "title": "FizzBuzz 变体",
+      "category": "number",
+      "difficulty": "easy",
+      "passed": true,
+      "failure_type": "none",
+      "tests_run": 7,
+      "tests_failed": 0,
+      "weighted_score": 1.0,
+      "scores": {
+        "accuracy": 1.0,
+        "edge_case": 1.0,
+        "code_quality": 1.0,
+        "efficiency": 1.0
+      },
+      "iterations": 2,
+      "quality_notes": [],
+      "error_output": "test_basic (test_solution.TestFizzBuzz) ... ok\ntest_first_three (test_solution.TestFizzBuzz) ... ok\ntest_fizzbuzz_at_15 (test_solution.TestFizzBuzz) ... ok\ntest_length (test_solution.TestFizzBuzz) ... ok\ntest_negative (test_solution.TestFizzBuzz) ... ok\ntest_one (test_solution.TestFizzBuzz) ... ok\ntest_zero (test_solution.TestFizzBuzz) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "case_id": "C03",
+      "title": "按字段分组",
+      "category": "data_transform",
+      "difficulty": "medium",
+      "passed": true,
+      "failure_type": "none",
+      "tests_run": 6,
+      "tests_failed": 0,
+      "weighted_score": 1.0,
+      "scores": {
+        "accuracy": 1.0,
+        "edge_case": 1.0,
+        "code_quality": 1.0,
+        "efficiency": 1.0
+      },
+      "iterations": 1,
+      "quality_notes": [],
+      "error_output": "test_basic (test_solution.TestGroupByKey) ... ok\ntest_empty (test_solution.TestGroupByKey) ... ok\ntest_missing_key (test_solution.TestGroupByKey) ... ok\ntest_order_preserved (test_solution.TestGroupByKey) ... ok\ntest_single_group (test_solution.TestGroupByKey) ... ok\ntest_string_values (test_solution.TestGroupByKey) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "case_id": "C04",
+      "title": "回文检测（含边界）",
+      "category": "edge_case",
+      "difficulty": "medium",
+      "passed": true,
+      "failure_type": "none",
+      "tests_run": 8,
+      "tests_failed": 0,
+      "weighted_score": 1.0,
+      "scores": {
+        "accuracy": 1.0,
+        "edge_case": 1.0,
+        "code_quality": 1.0,
+        "efficiency": 1.0
+      },
+      "iterations": 2,
+      "quality_notes": [],
+      "error_output": "test_case_insensitive (test_solution.TestIsPalindrome) ... ok\ntest_classic (test_solution.TestIsPalindrome) ... ok\ntest_empty (test_solution.TestIsPalindrome) ... ok\ntest_not_palindrome (test_solution.TestIsPalindrome) ... ok\ntest_numbers (test_solution.TestIsPalindrome) ... ok\ntest_only_punctuation (test_solution.TestIsPalindrome) ... ok\ntest_single_char (test_solution.TestIsPalindrome) ... ok\ntest_with_spaces (test_solution.TestIsPalindrome) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "case_id": "C05",
+      "title": "安全计算器",
+      "category": "edge_case",
+      "difficulty": "hard",
+      "passed": true,
+      "failure_type": "none",
+      "tests_run": 8,
+      "tests_failed": 0,
+      "weighted_score": 1.0,
+      "scores": {
+        "accuracy": 1.0,
+        "edge_case": 1.0,
+        "code_quality": 1.0,
+        "efficiency": 1.0
+      },
+      "iterations": 1,
+      "quality_notes": [],
+      "error_output": "test_add (test_solution.TestCalculate) ... ok\ntest_divide (test_solution.TestCalculate) ... ok\ntest_divide_zero (test_solution.TestCalculate) ... ok\ntest_float (test_solution.TestCalculate) ... ok\ntest_invalid_op (test_solution.TestCalculate) ... ok\ntest_multiply (test_solution.TestCalculate) ... ok\ntest_negative (test_solution.TestCalculate) ... ok\ntest_subtract (test_solution.TestCalculate) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.000s\n\nOK\n"
+    }
+  ]
+}

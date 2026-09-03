@@ -1,0 +1,30 @@
+{
+  "run_id": "run-20260812071358",
+  "session_id": "sess-7aa3a95ea68b",
+  "mode": "simulate",
+  "started_at": "2026-08-12T07:13:58",
+  "finished_at": "2026-08-12T07:13:58",
+  "stages": [
+    {
+      "name": "discover",
+      "status": "ok",
+      "duration_ms": 0,
+      "error": null
+    },
+    {
+      "name": "connect",
+      "status": "error",
+      "duration_ms": 0,
+      "error": "E2: Adyntel 连接未就绪，需人工授权: https://example.com/auth/adyntel?session=sess-7aa3a95ea68b"
+    }
+  ],
+  "exceptions": [
+    {
+      "stage": "connect",
+      "message": "E2: Adyntel 连接未就绪，需人工授权: https://example.com/auth/adyntel?session=sess-7aa3a95ea68b"
+    }
+  ],
+  "summary": null,
+  "notify_result": null,
+  "final_status": "awaiting_auth"
+}

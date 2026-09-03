@@ -1,0 +1,252 @@
+{
+  "illustrative_inventory": {
+    "ec2_instances": [
+      {
+        "id": "i-example1",
+        "cpu_utilization": 5,
+        "pricing": "on-demand"
+      },
+      {
+        "id": "i-example2",
+        "cpu_utilization": 60,
+        "pricing": "on-demand"
+      }
+    ],
+    "s3_buckets": [
+      {
+        "name": "example-logs",
+        "size_gb": 600,
+        "storage_class": "STANDARD",
+        "has_lifecycle_policy": false
+      }
+    ],
+    "rds_instances": [
+      {
+        "name": "example-aurora",
+        "engine": "aurora-postgresql",
+        "utilization": 20,
+        "monthly_cost": 300,
+        "connections_per_day": 500
+      }
+    ],
+    "dynamodb_tables": [
+      {
+        "name": "example-table",
+        "billing_mode": "PROVISIONED",
+        "read_capacity_units": 100,
+        "write_capacity_units": 100,
+        "utilization_percentage": 10
+      }
+    ],
+    "nat_gateways": [
+      {
+        "id": "nat-a"
+      },
+      {
+        "id": "nat-b"
+      }
+    ],
+    "multi_az_required": false,
+    "vpc_endpoints": [],
+    "s3_data_transfer_gb": 200,
+    "cloudwatch_log_groups": [
+      {
+        "name": "/aws/lambda/example",
+        "retention_days": -1,
+        "size_gb": 20
+      }
+    ],
+    "elastic_ips": [
+      {
+        "id": "eip1",
+        "attached": false
+      }
+    ],
+    "has_budget_alerts": false,
+    "has_cost_explorer": false
+  },
+  "analysis": {
+    "current_monthly_spend": 2000,
+    "potential_monthly_savings": 293.73,
+    "optimized_monthly_spend": 1706.27,
+    "savings_percentage": 14.69,
+    "recommendations": [
+      {
+        "service": "EC2",
+        "type": "Idle Resources",
+        "issue": "1 EC2 instances with <10% CPU utilization",
+        "recommendation": "Stop or terminate idle instances, or downsize to smaller instance types",
+        "potential_savings": 50,
+        "priority": "high"
+      },
+      {
+        "service": "EC2",
+        "type": "Pricing Optimization",
+        "issue": "2 instances on On-Demand pricing",
+        "recommendation": "Purchase Compute Savings Plan or Reserved Instances for predictable workloads (1-year commitment)",
+        "potential_savings": 30.0,
+        "priority": "medium"
+      },
+      {
+        "service": "S3",
+        "type": "Lifecycle Policy",
+        "issue": "Bucket example-logs (600 GB) has no lifecycle policy",
+        "recommendation": "Implement lifecycle policy: Transition to IA after 30 days, Glacier after 90 days",
+        "potential_savings": 9.0,
+        "priority": "medium"
+      },
+      {
+        "service": "S3",
+        "type": "Storage Class",
+        "issue": "Large bucket (600 GB) using STANDARD storage",
+        "recommendation": "Enable S3 Intelligent-Tiering for automatic cost optimization",
+        "potential_savings": 3.0,
+        "priority": "high"
+      },
+      {
+        "service": "RDS Aurora",
+        "type": "Serverless Migration",
+        "issue": "Aurora instance example-aurora has low utilization (<30%)",
+        "recommendation": "Migrate to Aurora Serverless v2 for auto-scaling and pay-per-use",
+        "potential_savings": 120.0,
+        "priority": "medium"
+      },
+      {
+        "service": "DynamoDB",
+        "type": "Billing Mode",
+        "issue": "Table example-table has low utilization with provisioned capacity",
+        "recommendation": "Switch to On-Demand billing mode for variable workloads",
+        "potential_savings": 17.081999999999997,
+        "priority": "medium"
+      },
+      {
+        "service": "NAT Gateway",
+        "type": "Resource Consolidation",
+        "issue": "2 NAT Gateways deployed (multi-AZ not required)",
+        "recommendation": "Use single NAT Gateway in dev/staging, or consider VPC endpoints for AWS services",
+        "potential_savings": 45,
+        "priority": "high"
+      },
+      {
+        "service": "VPC",
+        "type": "VPC Endpoints",
+        "issue": "High S3 data transfer without VPC endpoints",
+        "recommendation": "Create VPC endpoints for S3 and DynamoDB to avoid NAT Gateway costs",
+        "potential_savings": 9.0,
+        "priority": "medium"
+      },
+      {
+        "service": "CloudWatch Logs",
+        "type": "Retention Policy",
+        "issue": "Log group /aws/lambda/example has infinite retention",
+        "recommendation": "Set retention to 7 days for non-compliance logs, 30 days for production",
+        "potential_savings": 7.0,
+        "priority": "low"
+      },
+      {
+        "service": "EC2",
+        "type": "Unused Resources",
+        "issue": "1 unattached Elastic IPs",
+        "recommendation": "Release unused Elastic IPs to avoid hourly charges",
+        "potential_savings": 3.65,
+        "priority": "high"
+      },
+      {
+        "service": "AWS Budgets",
+        "type": "Cost Monitoring",
+        "issue": "No budget alerts configured",
+        "recommendation": "Set up AWS Budgets with alerts at 50%, 80%, 100% of monthly budget",
+        "potential_savings": 0,
+        "priority": "high"
+      },
+      {
+        "service": "Cost Management",
+        "type": "Visibility",
+        "issue": "Cost Explorer not enabled",
+        "recommendation": "Enable AWS Cost Explorer to track spending patterns and identify anomalies",
+        "potential_savings": 0,
+        "priority": "medium"
+      }
+    ],
+    "priority_actions": [
+      {
+        "service": "EC2",
+        "type": "Idle Resources",
+        "issue": "1 EC2 instances with <10% CPU utilization",
+        "recommendation": "Stop or terminate idle instances, or downsize to smaller instance types",
+        "potential_savings": 50,
+        "priority": "high"
+      },
+      {
+        "service": "NAT Gateway",
+        "type": "Resource Consolidation",
+        "issue": "2 NAT Gateways deployed (multi-AZ not required)",
+        "recommendation": "Use single NAT Gateway in dev/staging, or consider VPC endpoints for AWS services",
+        "potential_savings": 45,
+        "priority": "high"
+      },
+      {
+        "service": "EC2",
+        "type": "Unused Resources",
+        "issue": "1 unattached Elastic IPs",
+        "recommendation": "Release unused Elastic IPs to avoid hourly charges",
+        "potential_savings": 3.65,
+        "priority": "high"
+      },
+      {
+        "service": "S3",
+        "type": "Storage Class",
+        "issue": "Large bucket (600 GB) using STANDARD storage",
+        "recommendation": "Enable S3 Intelligent-Tiering for automatic cost optimization",
+        "potential_savings": 3.0,
+        "priority": "high"
+      },
+      {
+        "service": "AWS Budgets",
+        "type": "Cost Monitoring",
+        "issue": "No budget alerts configured",
+        "recommendation": "Set up AWS Budgets with alerts at 50%, 80%, 100% of monthly budget",
+        "potential_savings": 0,
+        "priority": "high"
+      }
+    ]
+  },
+  "optimization_checklist": [
+    {
+      "category": "Immediate Actions (Today)",
+      "items": [
+        "Release unattached Elastic IPs",
+        "Stop idle EC2 instances",
+        "Delete unused EBS volumes",
+        "Set up budget alerts"
+      ]
+    },
+    {
+      "category": "This Week",
+      "items": [
+        "Implement S3 lifecycle policies",
+        "Consolidate NAT Gateways in non-prod",
+        "Set CloudWatch Logs retention to 7 days",
+        "Review and rightsize EC2/RDS instances"
+      ]
+    },
+    {
+      "category": "This Month",
+      "items": [
+        "Evaluate Savings Plans or Reserved Instances",
+        "Migrate to Aurora Serverless where applicable",
+        "Implement VPC endpoints for S3/DynamoDB",
+        "Switch DynamoDB tables to On-Demand if variable load"
+      ]
+    },
+    {
+      "category": "Ongoing",
+      "items": [
+        "Review Cost Explorer weekly",
+        "Tag all resources for cost allocation",
+        "Monitor Trusted Advisor recommendations",
+        "Conduct monthly cost review meetings"
+      ]
+    }
+  ]
+}

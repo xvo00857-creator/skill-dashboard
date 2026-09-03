@@ -1,0 +1,42 @@
+校验目录: /Users/bytedance/Doubao/chats/2026-08-12/new-chat-570/deliverables
+
+=== installplan-openkruise.yaml ===
+[✓] installplan-openkruise.yaml: YAML 语法合法
+[✓] InstallPlan: apiVersion=kubesphere.io/v1alpha1
+[✓] InstallPlan: kind=InstallPlan
+[✓] InstallPlan: metadata.name == spec.extension.name
+[✓] InstallPlan: 扩展名为 openkruise
+[✓] InstallPlan: 扩展版本为 1.0.3（本环境默认）
+[✓] InstallPlan: upgradeStrategy=Manual
+[✓] InstallPlan: 集群作用域，metadata.namespace 不存在
+[✓] InstallPlan: spec.enabled=true
+[✓] InstallPlan: clusterScheduling.placement.clusters 非空
+[✓] InstallPlan: 未臆造 spec.config（无自定义需求时省略）
+
+=== sidecarset-log-agent.yaml ===
+[✓] sidecarset-log-agent.yaml: YAML 语法合法
+[✓] SidecarSet: apiVersion=apps.kruise.io/v1alpha1
+[✓] SidecarSet: kind=SidecarSet
+[✓] SidecarSet: metadata.name=log-agent
+[✓] SidecarSet: selector.matchLabels.app=demo
+[✓] SidecarSet: namespaceSelector.matchLabels 存在
+[✓] SidecarSet: 至少一个容器
+[✓] SidecarSet: 容器镜像 fluent/fluent-bit:2.2
+[✓] SidecarSet: updateStrategy.type=RollingUpdate
+
+=== cloneset-sample-app.yaml ===
+[✓] cloneset-sample-app.yaml: YAML 语法合法
+[✓] CloneSet: apiVersion=apps.kruise.io/v1alpha1
+[✓] CloneSet: kind=CloneSet
+[✓] CloneSet: metadata.name=sample-app
+[✓] CloneSet: namespace=demo-project
+[✓] CloneSet: replicas=3
+[✓] CloneSet: selector.matchLabels.app=sample-app
+[✓] CloneSet: 至少一个容器
+[✓] CloneSet: 容器镜像 nginx:1.25
+[✓] CloneSet: updateStrategy.type=InPlaceIfPossible
+[✓] CloneSet: updateStrategy.maxUnavailable=1
+
+================================================
+合计: 31 项, 通过 31, 失败 0
+结果: 全部通过

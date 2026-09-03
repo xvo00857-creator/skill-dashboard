@@ -1,0 +1,21 @@
+# 两周期微调实验依赖
+# 注意：以下版本为编写时的常见兼容组合，未在本次环境实际安装验证；
+# 请在目标 GPU 环境执行 `pip install -r requirements.txt` 后按报错调整，
+# 并将最终通过的版本冻结到 requirements.lock.txt。
+torch>=2.1
+transformers>=4.41
+datasets>=2.19
+peft>=0.11
+trl>=0.9
+accelerate>=0.30
+bitsandbytes>=0.43
+evaluate>=0.4
+scikit-learn>=1.3
+rouge-score>=0.1
+nltk>=3.8
+datasketch>=1.6
+pyyaml>=6.0
+sentencepiece>=0.2
+protobuf>=3.20
+# 可选：Flash Attention（需按 CUDA 版本单独安装，未装则脚本自动回退）
+# flash-attn>=2.5

@@ -1,0 +1,72 @@
+[
+  {
+    "offer_id": "689123456792",
+    "title": "太阳能充电宝 户外防水 30000mAh露营必备",
+    "price": "68.00",
+    "moq": 1,
+    "supplier": "广州户外装备厂",
+    "supplier_rating": "4.7",
+    "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01aaaaaaaa.jpg",
+    "image_urls": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01aaaaaaaa.jpg"
+    ],
+    "detail_url": "https://detail.1688.com/offer/689123456792.html",
+    "location": "广东广州"
+  },
+  {
+    "offer_id": "689123456793",
+    "title": "透明机甲风充电宝 22.5W超级快充数显",
+    "price": "52.00",
+    "moq": 2,
+    "supplier": "深圳潮玩电子",
+    "supplier_rating": "4.8",
+    "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01bbbbbbbb.jpg",
+    "image_urls": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01bbbbbbbb.jpg"
+    ],
+    "detail_url": "https://detail.1688.com/offer/689123456793.html",
+    "location": "广东深圳"
+  },
+  {
+    "offer_id": "689123456790",
+    "title": "磁吸无线充电宝 MagSafe兼容 15W快充",
+    "price": "45.00",
+    "moq": 1,
+    "supplier": "东莞电源科技",
+    "supplier_rating": "4.9",
+    "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01yyyyyyyy.jpg",
+    "image_urls": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01yyyyyyyy.jpg"
+    ],
+    "detail_url": "https://detail.1688.com/offer/689123456790.html",
+    "location": "广东东莞"
+  },
+  {
+    "offer_id": "689123456789",
+    "title": "20000毫安大容量充电宝 超薄便携 快充通用",
+    "price": "28.50",
+    "moq": 2,
+    "supplier": "深圳数码源头厂",
+    "supplier_rating": "4.8",
+    "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01xxxxxxxx.jpg",
+    "image_urls": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01xxxxxxxx.jpg"
+    ],
+    "detail_url": "https://detail.1688.com/offer/689123456789.html",
+    "location": "广东深圳"
+  },
+  {
+    "offer_id": "689123456791",
+    "title": "迷你胶囊充电宝 5000mAh口红大小应急电源",
+    "price": "19.80",
+    "moq": 5,
+    "supplier": "义乌小电工厂",
+    "supplier_rating": "4.6",
+    "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01zzzzzzzz.jpg",
+    "image_urls": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01zzzzzzzz.jpg"
+    ],
+    "detail_url": "https://detail.1688.com/offer/689123456791.html",
+    "location": "浙江义乌"
+  }
+]

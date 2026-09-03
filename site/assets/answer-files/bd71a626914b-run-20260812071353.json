@@ -1,0 +1,62 @@
+{
+  "run_id": "run-20260812071353",
+  "session_id": "sess-d3cb486f38f2",
+  "mode": "simulate",
+  "started_at": "2026-08-12T07:13:53",
+  "finished_at": "2026-08-12T07:13:53",
+  "stages": [
+    {
+      "name": "discover",
+      "status": "ok",
+      "duration_ms": 0,
+      "error": null
+    },
+    {
+      "name": "connect",
+      "status": "ok",
+      "duration_ms": 0,
+      "error": null
+    },
+    {
+      "name": "collect",
+      "status": "ok",
+      "duration_ms": 2,
+      "error": null
+    },
+    {
+      "name": "summarize",
+      "status": "ok",
+      "duration_ms": 0,
+      "error": null
+    },
+    {
+      "name": "notify",
+      "status": "ok",
+      "duration_ms": 0,
+      "error": null
+    }
+  ],
+  "exceptions": [],
+  "summary": {
+    "week_start": "2026-08-10",
+    "week_end": "2026-08-16",
+    "total_records": 5,
+    "date_missing_count": 1,
+    "categories": {
+      "spend": 3,
+      "income": 2
+    },
+    "amount_sum": 85.0,
+    "amount_avg": 17.0,
+    "empty_week": false,
+    "generated_at": "2026-08-12T07:13:53",
+    "_pages_fetched": 2,
+    "_raw_count": 5
+  },
+  "notify_result": {
+    "sent": true,
+    "to": "owner@example.com",
+    "at": "2026-08-12T07:13:53"
+  },
+  "final_status": "success"
+}

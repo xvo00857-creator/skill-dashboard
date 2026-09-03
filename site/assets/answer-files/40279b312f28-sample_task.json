@@ -1,0 +1,13 @@
+{
+  "tool": "AHREFS_BATCH_URL_ANALYSIS",
+  "params": {
+    "targets": [
+      {"url": "example.com", "mode": "domain", "protocol": "both"},
+      {"url": "example.org", "mode": "domain", "protocol": "both"},
+      {"url": "example.net", "mode": "subdomains", "protocol": "both"}
+    ],
+    "select": ["domain_rating", "backlinks", "refdomains", "org_traffic"],
+    "country": "us",
+    "output": "json"
+  }
+}

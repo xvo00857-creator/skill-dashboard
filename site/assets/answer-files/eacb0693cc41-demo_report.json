@@ -1,0 +1,23 @@
+{
+  "report_time": "2026-08-12T09:12:53.053290",
+  "session_id": "sess-2f7c1e592c33",
+  "mode": "dry-run",
+  "preflight_passed": false,
+  "mcp_endpoint": "https://rube.app/mcp",
+  "mcp_host_resolvable": false,
+  "required_mcp_tools": [
+    "RUBE_SEARCH_TOOLS",
+    "RUBE_MANAGE_CONNECTIONS",
+    "RUBE_MULTI_EXECUTE_TOOL"
+  ],
+  "input_files": [],
+  "pending_after_dedup": 0,
+  "skill_rules_applied": [
+    "Always call RUBE_SEARCH_TOOLS first (不硬编码 slug/schema)",
+    "Verify RUBE_MANAGE_CONNECTIONS shows ACTIVE before executing",
+    "RUBE_MULTI_EXECUTE_TOOL 必须包含 memory 参数(可为空对象)",
+    "同工作流复用 session_id",
+    "分页结果循环拉取直到无分页令牌"
+  ],
+  "note": "本报告为预检/干跑的真实输出；未调用 Affinda，未产生或伪造任何解析数据。"
+}

@@ -1,0 +1,59 @@
+{
+  "dimensions": ["UX", "Features", "Pricing", "Integrations", "Support", "Performance", "Security"],
+  "weights": {
+    "UX": 2.0,
+    "Features": 1.8,
+    "Pricing": 1.2,
+    "Integrations": 1.2,
+    "Support": 0.8,
+    "Performance": 1.0,
+    "Security": 1.0
+  },
+  "competitors": [
+    {
+      "name": "Miro",
+      "scores": {
+        "UX": 8,
+        "Features": 9,
+        "Pricing": 6,
+        "Integrations": 9,
+        "Support": 7,
+        "Performance": 7,
+        "Security": 8
+      },
+      "pricing": {"model": "freemium per-seat", "entry": "$8/member/mo (Starter, annual)", "free_tier": "3 editable boards, low-res export w/ watermark"},
+      "strengths": ["6000+ Miroverse templates", "miro.new one-click board", "deepest integration ecosystem (Jira/ADO/Asana/Slack/Teams/MS directory)", "AI credits + MCP", "advanced sharing permissions on paid tiers"],
+      "weaknesses": ["Free plan: 3 boards, low-res watermarked export, view-only visitors", "no CSV export on mobile/tablet, no PPT/PNG/SVG native export", "heavy boards lag", "voting/timer gated on Starter+"]
+    },
+    {
+      "name": "FigJam",
+      "scores": {
+        "UX": 9,
+        "Features": 7,
+        "Pricing": 8,
+        "Integrations": 7,
+        "Support": 7,
+        "Performance": 8,
+        "Security": 7
+      },
+      "pricing": {"model": "freemium per-seat (bundled w/ Figma)", "entry": "$5/editor/mo (Collab seat, annual)", "free_tier": "3 FigJam files, full export, Open Session 24h anon edit"},
+      "strengths": ["figjam.new instant blank board", "Open Session: 24h password-protected anon edit, no signup", "bottom toolbar + playful emotes/cursor chat/high-fives", "native copy-paste into Figma Design", "imports Miro/Mural/Lucid/Jamboard/PDF/CSV", "free tier exports PNG/JPG/PDF/CSV without watermark"],
+      "weaknesses": ["lighter feature set (no advanced diagramming, no Gantt/PM)", "third-party integrations fewer than Miro", "Open Session cannot use audio/comments with visitors", "permissions model simpler (no Facilitate role)"]
+    },
+    {
+      "name": "Mural",
+      "scores": {
+        "UX": 7,
+        "Features": 8,
+        "Pricing": 7,
+        "Integrations": 7,
+        "Support": 6,
+        "Performance": 7,
+        "Security": 8
+      },
+      "pricing": {"model": "freemium per-seat", "entry": "$9.99/member/mo (Team+, annual)", "free_tier": "3 murals, unlimited members+visitors, facilitation tools free"},
+      "strengths": ["6-step onboarding quest w/ emoji/confetti", "in-canvas contextual prompts (no blank canvas)", "Facilitate permission role (timer/voting/summon/private mode)", "200+ templates with facilitation tips", "unlimited visitors on all plans, visitor display-name gate", "CSV bulk email import, embed code + ZIP/HTML export"],
+      "weaknesses": ["export is async (email link, 5-15 min) not instant", "no native CSV export of sticky/table text", "customer support cited as slow, mobile bugs", "no built-in video chat", "visitors cannot be invited via email (link only)"]
+    }
+  ]
+}

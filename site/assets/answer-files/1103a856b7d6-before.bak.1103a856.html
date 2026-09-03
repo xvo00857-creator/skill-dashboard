@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>动画性能演示 - 修复前（合成样例）</title>
+<style>
+  /* ===== 违规 R1/R2：在大面积面板上连续动画布局属性 width ===== */
+  .panel {
+    width: 200px;
+    height: 300px;
+    background: #4a90e2;
+    transition: width 0.3s ease;          /* 违规：动画 width 触发布局 */
+    will-change: width, left, top, opacity, transform; /* 违规 R6：长期挂多个 will-change */
+  }
+  .panel.open { width: 600px; }           /* 违规：通过 width 做展开动效 */
+
+  /* ===== 违规 R5：动画用于 transform 的 CSS 变量 ===== */
+  .card {
+    --tx: 0px;
+    transform: translateX(var(--tx));
+    transition: --tx 0.4s ease;           /* 违规：动画驱动 transform 的变量 */
+  }
+
+  /* ===== 违规 R7：在大面积元素上连续动画 blur，且 >8px ===== */
+  .hero {
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    animation: pulseBlur 2s infinite ease-in-out; /* 违规：连续动画 blur */
+  }
+  @keyframes pulseBlur {
+    0%   { filter: blur(0px); }
+    50%  { filter: blur(20px); }          /* 违规：blur 20px > 8px，大面积 */
+    100% { filter: blur(0px); }
+  }
+
+  /* ===== 违规 R6：对多个元素长期声明 will-change ===== */
+  .list-item {
+    will-change: transform, opacity;      /* 违规：列表每项都长期提升层 */
+    height: 80px;
+    margin: 8px;
+    background: #eee;
+  }
+
+  .reveal { opacity: 0; }
+</style>
+</head>
+<body>
+  <div class="hero" id="hero"></div>
+  <div class="panel" id="panel"></div>
+  <div class="card" id="card">卡片</div>
+  <div id="list">
+    <div class="list-item">1</div>
+    <div class="list-item">2</div>
+    <div class="list-item">3</div>
+  </div>
+
+  <script>
+    const panel = document.getElementById('panel');
+    const card  = document.getElementById('card');
+    const hero  = document.getElementById('hero');
+    const items = document.querySelectorAll('.list-item');
+
+    // ===== 违规 R1/R4：用 scroll 事件逐帧驱动 opacity，连续触发样式写入 =====
+    window.addEventListener('scroll', () => {
+      hero.style.opacity = 1 - (window.scrollY / 500);   // 违规：scroll 驱动动画
+    });
+
+    // ===== 违规 R1：rAF 循环没有停止条件 =====
+    function loop() {
+      card.style.transform = 'translateX(' + (Math.sin(Date.now() / 500) * 50) + 'px)';
+      requestAnimationFrame(loop);                        // 违规：无停止条件，离屏仍运行
+    }
+    requestAnimationFrame(loop);
+
+    // ===== 违规 R1/R3：布局抖动——同一帧内交错读写布局 =====
+    items.forEach((el) => {
+      const x = el.getBoundingClientRect().left;          // 读
+      el.style.left = (x + 10) + 'px';                    // 写（触发布局）
+      const y = el.getBoundingClientRect().top;           // 又读（强制回流）
+      el.style.top = y + 'px';                            // 又写
+    });
+
+    // ===== 违规 R1：两套动画系统同时改同一属性（CSS 变量 transition + JS 直接写 transform） =====
+    card.style.setProperty('--tx', '100px');              // CSS 变量驱动 transition
+    card.style.transform = 'translateX(200px)';           // 同时 JS 又写 transform，冲突
+  </script>
+</body>
+</html>

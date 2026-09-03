@@ -1,0 +1,45 @@
+# Research State — Central Project Tracking
+
+project:
+  title: "城市公共服务体验调研（演示数据）证据矩阵"
+  question: "从所附 12 页合成报告中提取研究问题、方法、主要证据、局限与未回答问题，并标注页码"
+  status: concluded
+  started: "2026-08-13"
+  domain: "document-analysis"
+
+literature:
+  key_papers:
+    - id: "source_report_12_pages"
+      title: "城市公共服务体验调研（演示数据）"
+      authors: "(anonymous)"
+      year: 2026
+      relevance: "唯一一手来源；12 页合成样本，含 3 个表格"
+  open_problems:
+    - "报告无方法学章节，无法还原研究设计"
+    - "信息反馈完整性维度无数据支撑"
+  evidence_gaps:
+    - "无抽样方法、样本人口学、调查时间、统计检验"
+    - "无原始数据或置信区间"
+
+hypotheses: []
+# 不适用：本任务为文档证据提取，无待实验检验的假设
+
+experiments:
+  proxy_metric: ""
+  baseline_value: null
+  best_value: null
+  total_runs: 0
+  trajectory: []
+
+outer_loop:
+  cycle: 1
+  last_direction: conclude
+  last_reflection: "单次综合即结论：文档为合成演示样本，证据矩阵已生成；内循环/论文写作不适用。"
+
+workspace:
+  findings: "findings.md"
+  log: "research-log.md"
+  literature_dir: "literature/"
+  experiments_dir: ""
+  to_human_dir: "to_human/"
+  paper_dir: ""

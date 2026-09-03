@@ -1,0 +1,23 @@
+--- a/package.json
++++ b/package.json
+@@ -1 +1 @@
+-{"name":"wechat-skill-eval-sample","version":"1.0.0","private":true,"scripts":{"test":"node test.js"}}
++{"name":"wechat-skill-eval-sample","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node --test test.js"}}
+--- a/test.js
++++ b/test.js
+@@ -1,2 +1,17 @@
++import { test } from "node:test";
++import assert from "node:assert/strict";
+ import { normalizeOrder } from "./src/app.js";
+-console.log(normalizeOrder({ id: 42, amount: "19.9" }));
++
++test("normalizeOrder returns a normalized object for a valid order", () => {
++  const result = normalizeOrder({ id: 42, amount: "19.9" });
++  assert.ok(result !== undefined && result !== null, "result must be defined");
++  assert.equal(typeof result, "object");
++  assert.equal(result.id, 42);
++});
++
++test("normalizeOrder rejects an order without an amount", () => {
++  assert.throws(() => normalizeOrder({ id: 1 }), /amount/);
++});

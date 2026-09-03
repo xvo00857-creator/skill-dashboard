@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kotlin 趣味问答——基础与进阶两条路径，即时反馈，手机电脑均可参与">
+    <title>Kotlin 趣味问答</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="app-header" role="banner">
+        <h1 class="app-title">Kotlin 趣味问答</h1>
+        <p class="app-subtitle">检验你的 Kotlin 功底，从基础到进阶</p>
+    </header>
+
+    <main id="main" class="app-main" role="main">
+
+        <!-- 开始界面 -->
+        <section id="screen-start" class="screen screen--active" aria-labelledby="start-heading">
+            <h2 id="start-heading" class="screen-heading">选择你的路径</h2>
+            <p class="screen-desc">两条路径均为 8 道题，每题 30 秒。答对即时反馈，答错查看解析。</p>
+
+            <div class="path-cards">
+                <button class="path-card path-card--basic" type="button" data-path="BASIC" aria-describedby="basic-desc">
+                    <span class="path-card__icon" aria-hidden="true">🌱</span>
+                    <span class="path-card__title">基础路径</span>
+                    <span id="basic-desc" class="path-card__desc">变量、空安全、数据类、字符串模板等入门概念</span>
+                    <span class="path-card__meta">适合：刚接触 Kotlin</span>
+                </button>
+
+                <button class="path-card path-card--advanced" type="button" data-path="ADVANCED" aria-describedby="advanced-desc">
+                    <span class="path-card__icon" aria-hidden="true">🚀</span>
+                    <span class="path-card__title">进阶路径</span>
+                    <span id="advanced-desc" class="path-card__desc">协程、Flow、sealed class、作用域函数等进阶主题</span>
+                    <span class="path-card__meta">适合：有 Kotlin 经验</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 答题界面 -->
+        <section id="screen-quiz" class="screen" aria-labelledby="question-prompt" hidden>
+            <div class="quiz-topbar">
+                <div class="quiz-progress" role="progressbar"
+                     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                     aria-label="答题进度">
+                    <div class="quiz-progress__bar" id="progress-bar"></div>
+                </div>
+                <div class="quiz-info">
+                    <span class="quiz-info__item" id="question-counter" aria-live="polite">第 1 / 8 题</span>
+                    <span class="quiz-info__item quiz-info__score" id="score-display">得分：0</span>
+                    <span class="quiz-info__item quiz-info__timer" id="timer-display" aria-live="off" aria-label="本题剩余时间">30 秒</span>
+                </div>
+            </div>
+
+            <article class="question-card" aria-labelledby="question-prompt">
+                <h2 id="question-prompt" class="question-prompt" tabindex="-1"></h2>
+                <pre class="code-snippet" id="code-snippet" hidden><code></code></pre>
+
+                <div class="options" id="options-container" role="radiogroup" aria-label="答案选项"></div>
+
+                <div class="feedback" id="feedback" aria-live="assertive" hidden>
+                    <p class="feedback__result" id="feedback-result"></p>
+                    <p class="feedback__explanation" id="feedback-explanation"></p>
+                </div>
+
+                <button class="btn btn--primary btn--next" id="btn-next" type="button" hidden>
+                    下一题
+                </button>
+            </article>
+        </section>
+
+        <!-- 结果界面 -->
+        <section id="screen-result" class="screen" aria-labelledby="result-heading" hidden>
+            <h2 id="result-heading" class="screen-heading">答题结束</h2>
+
+            <div class="result-summary" aria-live="polite">
+                <p class="result-score" id="result-score">0 / 8</p>
+                <p class="result-accuracy" id="result-accuracy">正确率 0%</p>
+                <p class="result-time" id="result-time"></p>
+            </div>
+
+            <div class="result-badge" id="result-badge" aria-hidden="true"></div>
+
+            <div class="result-actions">
+                <button class="btn btn--primary" id="btn-retry" type="button">再来一次</button>
+                <button class="btn btn--secondary" id="btn-home" type="button">返回首页</button>
+            </div>
+
+            <details class="result-review" id="result-review">
+                <summary>查看答题回顾</summary>
+                <div class="review-list" id="review-list"></div>
+            </details>
+        </section>
+
+    </main>
+
+    <footer class="app-footer" role="contentinfo">
+        <p>基于 kotlin-specialist Skill 构建 · Kotlin 1.9+ · 协程 / Flow / sealed class</p>
+    </footer>
+
+    <!-- 屏幕阅读器实时播报区域 -->
+    <div class="sr-only" aria-live="polite" id="sr-announcer"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

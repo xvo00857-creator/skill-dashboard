@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目状态仪表盘</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳转到主要内容</a>
+
+  <header class="page-header" role="banner">
+    <div class="page-header__inner">
+      <h1 class="page-title">项目状态仪表盘</h1>
+      <p class="page-subtitle">跟踪团队项目进展、风险与交付节点</p>
+    </div>
+  </header>
+
+  <main id="main-content" class="container" role="main">
+    <!-- 筛选区 -->
+    <section class="filters" aria-labelledby="filters-heading">
+      <h2 id="filters-heading" class="filters__heading">筛选项目</h2>
+      <div class="filters__grid">
+        <div class="field">
+          <label for="search-input" class="field__label">搜索项目</label>
+          <input
+            type="search"
+            id="search-input"
+            class="field__control"
+            placeholder="按项目名称或负责人搜索"
+            autocomplete="off"
+            aria-describedby="results-count"
+          >
+        </div>
+
+        <div class="field">
+          <label for="status-filter" class="field__label">状态</label>
+          <select id="status-filter" class="field__control">
+            <option value="all">全部状态</option>
+            <option value="active">进行中</option>
+            <option value="at-risk">有风险</option>
+            <option value="on-hold">已暂停</option>
+            <option value="completed">已完成</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="priority-filter" class="field__label">优先级</label>
+          <select id="priority-filter" class="field__control">
+            <option value="all">全部优先级</option>
+            <option value="high">高</option>
+            <option value="medium">中</option>
+            <option value="low">低</option>
+          </select>
+        </div>
+
+        <div class="field field--action">
+          <button type="button" id="clear-filters" class="btn btn--ghost" hidden>
+            清除筛选
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 状态卡片 -->
+    <section class="stats" aria-labelledby="stats-heading">
+      <h2 id="stats-heading" class="sr-only">项目概览</h2>
+      <ul class="stats__grid" role="list">
+        <li class="stat-card">
+          <span class="stat-card__label">全部项目</span>
+          <span class="stat-card__value" data-stat="total">0</span>
+        </li>
+        <li class="stat-card stat-card--active">
+          <span class="stat-card__label">
+            <span class="status-dot" aria-hidden="true"></span>进行中
+          </span>
+          <span class="stat-card__value" data-stat="active">0</span>
+        </li>
+        <li class="stat-card stat-card--risk">
+          <span class="stat-card__label">
+            <span class="status-dot" aria-hidden="true"></span>有风险
+          </span>
+          <span class="stat-card__value" data-stat="at-risk">0</span>
+        </li>
+        <li class="stat-card stat-card--hold">
+          <span class="stat-card__label">
+            <span class="status-dot" aria-hidden="true"></span>已暂停
+          </span>
+          <span class="stat-card__value" data-stat="on-hold">0</span>
+        </li>
+        <li class="stat-card stat-card--done">
+          <span class="stat-card__label">
+            <span class="status-dot" aria-hidden="true"></span>已完成
+          </span>
+          <span class="stat-card__value" data-stat="completed">0</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 表格区 -->
+    <section class="table-section" aria-labelledby="table-heading">
+      <div class="table-section__head">
+        <h2 id="table-heading" class="table-section__title">项目列表</h2>
+        <span id="results-count" class="results-count" aria-live="polite" aria-atomic="true"></span>
+      </div>
+
+      <!-- 加载骨架屏 -->
+      <div id="loading-state" class="loading" aria-busy="true" aria-label="正在加载项目数据">
+        <div class="loading__row"></div>
+        <div class="loading__row"></div>
+        <div class="loading__row"></div>
+        <div class="loading__row"></div>
+      </div>
+
+      <!-- 空状态 -->
+      <div id="empty-state" class="empty-state" role="status" hidden>
+        <svg class="empty-state__icon" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true" focusable="false">
+          <rect x="6" y="10" width="36" height="28" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M14 20h20M14 27h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="34" cy="32" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M34 29v3l2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
+        <h3 class="empty-state__title">未找到匹配的项目</h3>
+        <p class="empty-state__desc">当前筛选条件下没有项目，请尝试调整搜索关键词或清除筛选。</p>
+        <button type="button" class="btn btn--primary" id="empty-clear-filters">清除筛选条件</button>
+      </div>
+
+      <!-- 数据表格 -->
+      <div class="table-wrap" id="table-wrap" hidden>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col" class="data-table__col-name">项目名称</th>
+              <th scope="col">负责人</th>
+              <th scope="col">状态</th>
+              <th scope="col">优先级</th>
+              <th scope="col" class="data-table__col-date">截止日期</th>
+              <th scope="col" class="data-table__col-progress">进度</th>
+            </tr>
+          </thead>
+          <tbody id="project-tbody">
+            <!-- 由 JS 渲染 -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer" role="contentinfo">
+    <p>数据为本地模拟数据，仅用于演示 · 键盘 Tab 可遍历所有交互元素</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

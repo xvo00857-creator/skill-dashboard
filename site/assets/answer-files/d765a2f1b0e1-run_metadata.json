@@ -1,0 +1,37 @@
+{
+  "pipeline": "bioservices reproducible protein-list analysis",
+  "bioservices_version": "1.16.0",
+  "python": "3.9.6",
+  "start_utc": "2026-08-11T22:51:28.047565+00:00",
+  "end_utc": "2026-08-11T22:54:27.976491+00:00",
+  "duration_seconds": 179.9,
+  "input_file": "input/uniprot_ids.txt",
+  "input_count_raw": 14,
+  "input_count_after_dedup": 14,
+  "qc_pass": 14,
+  "kegg_mapped": 14,
+  "pathway_annotation_rows": 526,
+  "pathways_tested": 154,
+  "pathways_fdr_lt_0_05": 109,
+  "go_annotation_rows": 3840,
+  "data_sources": {
+    "uniprot": "https://rest.uniprot.org/",
+    "kegg": "https://rest.kegg.jp/",
+    "quickgo": "https://www.ebi.ac.uk/QuickGO/"
+  },
+  "background": {
+    "source": "https://rest.kegg.jp/link/pathway/hsa",
+    "note": "KEGG 人类全部通路-基因注释，实时获取"
+  },
+  "statistics": {
+    "enrichment_test": "Fisher exact test, one-sided greater",
+    "multiple_testing": "Benjamini-Hochberg FDR",
+    "significance_threshold": "FDR < 0.05"
+  },
+  "known_limitations": [
+    "PSICQUIC 在 bioservices 1.16.0 中缺失，未做蛋白互作分析",
+    "NCBI BLAST 需要 NCBI_EMAIL，本流程未包含",
+    "KEGG.link() 因 /list/organism 返回 400 不可用，背景改用直连 REST",
+    "QuickGO 每页上限 99 条，按页获取"
+  ]
+}

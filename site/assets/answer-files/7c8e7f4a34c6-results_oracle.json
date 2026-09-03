@@ -1,0 +1,177 @@
+{
+  "summary": {
+    "eval_time": "2026-08-12 04:30:07",
+    "agent": "mock_agent.py",
+    "mode": "agent",
+    "n_problems": 10,
+    "n_samples_per_problem": 1,
+    "timeout_seconds": 10,
+    "passed": 10,
+    "pass_rate_at1": 1.0,
+    "pass_at_k": {
+      "pass@1": 1.0
+    },
+    "failure_breakdown": {},
+    "by_category": {
+      "列表": {
+        "total": 3,
+        "passed": 3,
+        "pass_rate": 1.0
+      },
+      "字符串": {
+        "total": 4,
+        "passed": 4,
+        "pass_rate": 1.0
+      },
+      "数学": {
+        "total": 2,
+        "passed": 2,
+        "pass_rate": 1.0
+      },
+      "算术": {
+        "total": 1,
+        "passed": 1,
+        "pass_rate": 1.0
+      }
+    },
+    "by_difficulty": {
+      "中等": {
+        "total": 3,
+        "passed": 3,
+        "pass_rate": 1.0
+      },
+      "入门": {
+        "total": 3,
+        "passed": 3,
+        "pass_rate": 1.0
+      },
+      "简单": {
+        "total": 4,
+        "passed": 4,
+        "pass_rate": 1.0
+      }
+    }
+  },
+  "results": [
+    {
+      "task_id": "MiniEval/0",
+      "category": "算术",
+      "difficulty": "入门",
+      "entry_point": "add",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.03,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/1",
+      "category": "字符串",
+      "difficulty": "入门",
+      "entry_point": "reverse_string",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.028,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/2",
+      "category": "列表",
+      "difficulty": "入门",
+      "entry_point": "find_max",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.028,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/3",
+      "category": "数学",
+      "difficulty": "简单",
+      "entry_point": "factorial",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.029,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/4",
+      "category": "字符串",
+      "difficulty": "简单",
+      "entry_point": "is_palindrome",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.03,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/5",
+      "category": "字符串",
+      "difficulty": "简单",
+      "entry_point": "count_vowels",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.03,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/6",
+      "category": "列表",
+      "difficulty": "简单",
+      "entry_point": "remove_duplicates",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.027,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/7",
+      "category": "数学",
+      "difficulty": "中等",
+      "entry_point": "is_prime",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.029,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/8",
+      "category": "列表",
+      "difficulty": "中等",
+      "entry_point": "merge_sorted",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.032,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/9",
+      "category": "字符串",
+      "difficulty": "中等",
+      "entry_point": "longest_word",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.03,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    }
+  ]
+}

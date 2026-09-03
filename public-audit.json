@@ -1,0 +1,53 @@
+{
+  "audit": {
+    "passed": true,
+    "files": 975,
+    "bytes": 54439852,
+    "findings": [],
+    "external_service_hosts": {
+      "feishu.doubao.com": 10,
+      "mcnnox2fhjfq.feishu.cn": 11,
+      "aka.doubaocdn.com": 118,
+      "example.feishu.cn": 13,
+      "bytedance.larkoffice.com": 1233,
+      "www.doubao.com": 3314,
+      "dataloom-jcvszlgz.feishucdn.com": 9110,
+      "bytedance.feishuapp.com": 10,
+      "miaoda.feishu.cn": 4,
+      "bytedance.feishuapp.cn": 3,
+      "www.larkoffice.com": 4,
+      "mail.feishu.cn": 1
+    },
+    "note": "Pattern-based scan only; external link access and image/PDF content need separate review."
+  },
+  "changes": [
+    {
+      "path": "assets/answer-files/9275fb3c8377-add-github-verify-sandbox.zip::verify-sandbox/verify-env.sh",
+      "action": "public_copy_sanitized_or_labeled"
+    },
+    {
+      "path": "assets/answer-files/9275fb3c8377-add-github-verify-sandbox.zip::verify-sandbox/verify-import.mjs",
+      "action": "public_copy_sanitized_or_labeled"
+    },
+    {
+      "path": "assets/answer-files/9275fb3c8377-add-github-verify-sandbox.zip::verify-sandbox/.env.verify",
+      "action": "excluded_environment_file"
+    },
+    {
+      "path": "assets/answer-files/9275fb3c8377-add-github-verify-sandbox.zip::verify-sandbox/.env.example",
+      "action": "excluded_environment_file"
+    },
+    {
+      "path": "assets/answer-files/be87d35ba9c3-infra.sh",
+      "action": "public_copy_sanitized_or_labeled"
+    },
+    {
+      "path": "catalog-data.js",
+      "action": "public_copy_sanitized_or_labeled"
+    },
+    {
+      "path": "index.html",
+      "action": "public_copy_sanitized_or_labeled"
+    }
+  ]
+}

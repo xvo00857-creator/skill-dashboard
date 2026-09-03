@@ -1,0 +1,22 @@
+# InstallPlan for OpenKruise in KubeSphere
+# 依据 kubesphere-openkruise/SKILL.md 生成：
+#   - metadata.name 必须等于 spec.extension.name
+#   - InstallPlan 为集群作用域，不写 namespace
+#   - upgradeStrategy 默认 Manual
+#   - 本环境 KubeSphere 扩展版本 1.0.3 对应 OpenKruise 运行时 1.4.0
+#   - 未提供自定义 config，按规则省略可选字段，不猜测取值
+# 注意：clusterScheduling.placement.clusters 中的集群名需在 apply 前与真实集群核对。
+apiVersion: kubesphere.io/v1alpha1
+kind: InstallPlan
+metadata:
+  name: openkruise
+spec:
+  enabled: true
+  extension:
+    name: openkruise
+    version: 1.0.3
+  upgradeStrategy: Manual
+  clusterScheduling:
+    placement:
+      clusters:
+      - host

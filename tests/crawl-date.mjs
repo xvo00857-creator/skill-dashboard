@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+const root=new URL('../site/',import.meta.url);
+const html=readFileSync(new URL('index.html',root),'utf8');
+const elements=new Map();
+function element(id){if(!elements.has(id))elements.set(id,{value:'',innerHTML:'',textContent:'',hidden:false});return elements.get(id)}
+const dates=['','thisWeek','lastWeek'].map(crawl=>({dataset:{crawl},setAttribute(k,v){this[k]=v}}));
+const comparisons=['','doubao','workbuddy','tie','uncompared'].map(comparison=>({dataset:{comparison},setAttribute(k,v){this[k]=v}}));
+const ctx=vm.createContext({window:{},document:{querySelector:element,querySelectorAll(s){
+  if(s==='.crawl-filters button')return dates;
+  if(s==='.comparison-filters button')return comparisons;
+  if(s==='.filters input,.filters select')return ['search','focusDirection','priority','scoreBand','category','source'].map(x=>element('#'+x));
+  return [];
+}}});
+const run=s=>vm.runInContext(s,ctx);
+for(const f of ['catalog-data.js','workbuddy-card-data.js','provider-evaluation-data.js'])run(readFileSync(new URL(f,root),'utf8'));
+for(const m of html.matchAll(/<script>([\s\S]*?)<\/script>/g))run(m[1]);
+assert.equal(run("beijingDay(new Date('2026-08-23T15:59:59Z'))"),'2026-08-23');
+assert.equal(run("beijingDay(new Date('2026-08-23T16:00:00Z'))"),'2026-08-24');
+assert.equal(run("mondayOf('2026-01-01')"),'2025-12-29');
+assert.equal(run("priorMonday('2026-03-02')"),'2026-02-23');
+run("beijingDay=()=> '2026-08-28'");
+const total=run('ITEMS.length');
+function count(n,shown=72){assert.equal(element('#countline').textContent,`共 ${n} 个结果 · 当前显示 ${Math.min(n,shown)} 个`)}
+dates[0].onclick();count(total);
+dates[2].onclick();count(total);
+assert.equal(dates[2]['aria-pressed'],'true');
+assert.equal(dates.filter(b=>b['aria-pressed']==='true').length,1);
+element('#loadMore').onclick();count(total,144);
+dates[1].onclick();count(0);assert.equal(element('#loadMore').hidden,true);
+element('#crawlBatch').value='2026-08-17';element('#crawlBatch').onchange();count(total);
+assert.equal(dates.filter(b=>b['aria-pressed']==='true').length,0);
+assert.match(element('#allgrid').innerHTML,/抓取批次：2026-08-17/);
+comparisons[1].onclick();const compared=run("ITEMS.filter(x=>comparisonMatches(x,'doubao')).length");count(compared);
+dates[1].onclick();count(0);dates[0].onclick();count(compared);
+assert.equal(run('selectedComparison'),'doubao');
+element('#crawlBatch').value='unknown';element('#crawlBatch').onchange();count(0);
+assert.equal(run("crawlMatches({row:999999},'unknown')"),true);
+assert.equal(run("crawlMatches({row:999999},'2026-08-17')"),false);
+assert.equal(run("crawlMatches({row:999999},'thisWeek')"),false);
+assert.equal(run("crawlMatches({row:999999},'')"),true);
+console.log(JSON.stringify({passed:true,total,checks:['Beijing week boundary','year/month boundary','date buttons','specific date','unknown dates','pagination reset','comparison intersection','card date']}));

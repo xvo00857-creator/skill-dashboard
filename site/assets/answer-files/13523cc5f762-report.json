@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-08-12T16:30:16",
+  "version": "0.1.0-dryrun",
+  "mode": "DRY-RUN（只读预演，未提交任何内容）",
+  "summary": {
+    "total": 6,
+    "block": 3,
+    "review": 1,
+    "ok": 2
+  },
+  "items": [
+    {
+      "id": "R001",
+      "line": "2",
+      "action": "update_notice",
+      "target": "公告栏-测试分区",
+      "risk": "OK",
+      "reasons": [],
+      "pii_types": [],
+      "unverified": false,
+      "irreversible": false,
+      "payload_preview": "这是一条普通公告内容：系统将于本周日例行维护2小时。"
+    },
+    {
+      "id": "R002",
+      "line": "3",
+      "action": "grant_permission",
+      "target": "项目组-示例项目",
+      "risk": "REVIEW",
+      "reasons": [
+        "verified 非真：事实未核实，不得自动提交"
+      ],
+      "pii_types": [],
+      "unverified": true,
+      "irreversible": false,
+      "payload_preview": "将成员示例用户A加入只读权限组（数据来源待核实，需二次确认）。"
+    },
+    {
+      "id": "R003",
+      "line": "4",
+      "action": "send_email",
+      "target": "用户邮箱",
+      "risk": "BLOCK",
+      "reasons": [
+        "命中个人敏感信息: ['phone_cn']（默认脱敏并拦截）"
+      ],
+      "pii_types": [
+        "phone_cn"
+      ],
+      "unverified": false,
+      "irreversible": false,
+      "payload_preview": "向 zhang****@example.com 发送营销邮件，手机号 [REDACTED:phone_cn]。"
+    },
+    {
+      "id": "R004",
+      "line": "5",
+      "action": "delete_record",
+      "target": "订单表-测试分区",
+      "risk": "BLOCK",
+      "reasons": [
+        "命中不可逆操作关键词：默认拦截，需逐行书面授权与回滚方案"
+      ],
+      "pii_types": [],
+      "unverified": false,
+      "irreversible": true,
+      "payload_preview": "永久删除 2024 年之前的全部历史订单记录，不可恢复。"
+    },
+    {
+      "id": "R005",
+      "line": "6",
+      "action": "bulk_payout",
+      "target": "财务-测试账户",
+      "risk": "BLOCK",
+      "reasons": [
+        "verified 非真：事实未核实，不得自动提交",
+        "命中个人敏感信息: ['id_cn', 'bank_card']（默认脱敏并拦截）",
+        "命中不可逆操作关键词：默认拦截，需逐行书面授权与回滚方案"
+      ],
+      "pii_types": [
+        "id_cn",
+        "bank_card"
+      ],
+      "unverified": true,
+      "irreversible": true,
+      "payload_preview": "向身份证 [REDACTED:id_cn] 对应账户批量打款，金额待确认。"
+    },
+    {
+      "id": "R006",
+      "line": "7",
+      "action": "update_config",
+      "target": "功能开关-测试",
+      "risk": "OK",
+      "reasons": [],
+      "pii_types": [],
+      "unverified": false,
+      "irreversible": false,
+      "payload_preview": "开启灰度开关 feature_x 比例 5%。"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "command": "search",
+  "model": "ViT-B/32",
+  "device": "cpu",
+  "query": "a photo of an animal with fur",
+  "top_k": 4,
+  "results": [
+    {
+      "image": "demo_images/dog.jpg",
+      "similarity": 0.24698849022388458
+    },
+    {
+      "image": "demo_images/cat.jpg",
+      "similarity": 0.24404191970825195
+    },
+    {
+      "image": "demo_images/sunset.jpg",
+      "similarity": 0.1701066792011261
+    },
+    {
+      "image": "demo_images/car.jpg",
+      "similarity": 0.15640750527381897
+    }
+  ],
+  "bad_images": []
+}

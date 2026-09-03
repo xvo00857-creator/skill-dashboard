@@ -1,0 +1,22 @@
+{
+  "pipeline": "addresszen-weekly-resolve",
+  "run_time": "2026-08-12T03:54:26.418774",
+  "week": "2026-W33",
+  "mode": "dry-run",
+  "session_id": "sess-d27b2aac4f18",
+  "total": 4,
+  "resolved_count": 3,
+  "failed_count": 1,
+  "success_rate": "75.0%",
+  "states_breakdown": {
+    "VT": 1,
+    "CO": 2
+  },
+  "failures": [
+    {
+      "source_id": "cust-1004",
+      "address_id": "usps_INVALID|00||0000",
+      "error": "dry-run: 地址建议 ID 'usps_INVALID|00||0000' 无法解析（模拟 404）"
+    }
+  ]
+}

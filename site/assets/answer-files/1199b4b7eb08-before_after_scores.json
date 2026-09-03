@@ -1,0 +1,697 @@
+{
+  "stage": "series_b",
+  "before": {
+    "stage": "series_b",
+    "overall_score": 6.1,
+    "overall_traffic_light": "yellow",
+    "dimensions": {
+      "financial": {
+        "name": "Financial Health",
+        "owner": "CFO",
+        "score": 6.1,
+        "traffic_light": "yellow",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "Runway (months)",
+            "value": 14,
+            "unit": "months",
+            "score": 8.666666666666666,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Burn multiple",
+            "value": 1.8,
+            "unit": "x",
+            "score": 5.4,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Gross margin (%)",
+            "value": 68,
+            "unit": "%",
+            "score": 5.733333333333333,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "MoM growth (%)",
+            "value": 7.0,
+            "unit": "%",
+            "score": 5.0,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Revenue concentration (%)",
+            "value": 18,
+            "unit": "%",
+            "score": 5.6,
+            "traffic_light": "yellow"
+          }
+        ]
+      },
+      "revenue": {
+        "name": "Revenue Health",
+        "owner": "CRO",
+        "score": 5.6,
+        "traffic_light": "yellow",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "NRR (%)",
+            "value": 112,
+            "unit": "%",
+            "score": 5.4,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Logo churn (%/yr)",
+            "value": 7,
+            "unit": "%/yr",
+            "score": 5.6,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Pipeline coverage",
+            "value": 2.8,
+            "unit": "x",
+            "score": 5.733333333333333,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "CAC payback (months)",
+            "value": 14,
+            "unit": "months",
+            "score": 5.666666666666667,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Win rate (%)",
+            "value": 24,
+            "unit": "%",
+            "score": 5.8,
+            "traffic_light": "yellow"
+          }
+        ]
+      },
+      "product": {
+        "name": "Product Health",
+        "owner": "CPO",
+        "score": 6.9,
+        "traffic_light": "yellow",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "NPS",
+            "value": 44,
+            "unit": "score",
+            "score": 8.0,
+            "traffic_light": "green"
+          },
+          {
+            "name": "DAU/MAU (%)",
+            "value": 38,
+            "unit": "%",
+            "score": 7.857142857142857,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Core feature adoption (%)",
+            "value": 58,
+            "unit": "%",
+            "score": 5.866666666666667,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "CSAT",
+            "value": 4.2,
+            "unit": "/5",
+            "score": 7.0,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Time-to-value (days)",
+            "value": 4,
+            "unit": "days",
+            "score": 5.818181818181818,
+            "traffic_light": "yellow"
+          }
+        ]
+      },
+      "engineering": {
+        "name": "Engineering Health",
+        "owner": "CTO",
+        "score": 5.0,
+        "traffic_light": "yellow",
+        "trend": "declining",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "Deploy frequency (1-5)",
+            "value": 3,
+            "unit": "scale",
+            "score": 5.0,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Change failure rate (%)",
+            "value": 12,
+            "unit": "%",
+            "score": 4.6,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "MTTR (hours)",
+            "value": 2.5,
+            "unit": "hours",
+            "score": 5.0,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Tech debt ratio (%)",
+            "value": 28,
+            "unit": "%",
+            "score": 4.7,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "P0/P1 incidents/month",
+            "value": 2,
+            "unit": "count",
+            "score": 5.5,
+            "traffic_light": "yellow"
+          }
+        ]
+      },
+      "people": {
+        "name": "People Health",
+        "owner": "CHRO",
+        "score": 7.1,
+        "traffic_light": "green",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "Regrettable attrition (%/yr)",
+            "value": 9,
+            "unit": "%/yr",
+            "score": 8.0,
+            "traffic_light": "green"
+          },
+          {
+            "name": "eNPS",
+            "value": 42,
+            "unit": "score",
+            "score": 10.0,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Time-to-fill (days)",
+            "value": 75,
+            "unit": "days",
+            "score": 4.666666666666667,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Internal promotion rate (%)",
+            "value": 22,
+            "unit": "%",
+            "score": 5.6,
+            "traffic_light": "yellow"
+          }
+        ]
+      },
+      "operations": {
+        "name": "Operational Health",
+        "owner": "COO",
+        "score": 4.7,
+        "traffic_light": "yellow",
+        "trend": "declining",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "OKR completion rate (%)",
+            "value": 58,
+            "unit": "%",
+            "score": 4.8,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Decision cycle time (hours)",
+            "value": 120,
+            "unit": "hours",
+            "score": 4.8,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Process maturity (1-5)",
+            "value": 2.0,
+            "unit": "level",
+            "score": 4.666666666666667,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Cross-functional delivery (%)",
+            "value": 55,
+            "unit": "%",
+            "score": 4.5,
+            "traffic_light": "yellow"
+          }
+        ]
+      },
+      "security": {
+        "name": "Security Health",
+        "owner": "CISO",
+        "score": 6.4,
+        "traffic_light": "yellow",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "Security incidents (90 days)",
+            "value": 0,
+            "unit": "count",
+            "score": 7.0,
+            "traffic_light": "green"
+          },
+          {
+            "name": "MFA coverage (%)",
+            "value": 92,
+            "unit": "%",
+            "score": 5.6,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Security training completion (%)",
+            "value": 88,
+            "unit": "%",
+            "score": 5.066666666666666,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Critical CVE patch rate (%)",
+            "value": 96,
+            "unit": "%",
+            "score": 5.466666666666667,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Pen test recency (months)",
+            "value": 10,
+            "unit": "months",
+            "score": 8.666666666666666,
+            "traffic_light": "green"
+          }
+        ]
+      },
+      "market": {
+        "name": "Market Health",
+        "owner": "CMO",
+        "score": 6.7,
+        "traffic_light": "yellow",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "Organic pipeline % ",
+            "value": 42,
+            "unit": "%",
+            "score": 7.5,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Competitive win rate (%)",
+            "value": 48,
+            "unit": "%",
+            "score": 7.666666666666667,
+            "traffic_light": "green"
+          },
+          {
+            "name": "CAC trend (1=worsening, 5=improving)",
+            "value": 3,
+            "unit": "scale",
+            "score": 5.0,
+            "traffic_light": "yellow"
+          }
+        ]
+      }
+    }
+  },
+  "after": {
+    "stage": "series_b",
+    "overall_score": 6.3,
+    "overall_traffic_light": "yellow",
+    "dimensions": {
+      "financial": {
+        "name": "Financial Health",
+        "owner": "CFO",
+        "score": 6.1,
+        "traffic_light": "yellow",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "Runway (months)",
+            "value": 14,
+            "unit": "months",
+            "score": 8.666666666666666,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Burn multiple",
+            "value": 1.8,
+            "unit": "x",
+            "score": 5.4,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Gross margin (%)",
+            "value": 68,
+            "unit": "%",
+            "score": 5.733333333333333,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "MoM growth (%)",
+            "value": 7.0,
+            "unit": "%",
+            "score": 5.0,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Revenue concentration (%)",
+            "value": 18,
+            "unit": "%",
+            "score": 5.6,
+            "traffic_light": "yellow"
+          }
+        ]
+      },
+      "revenue": {
+        "name": "Revenue Health",
+        "owner": "CRO",
+        "score": 5.6,
+        "traffic_light": "yellow",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "NRR (%)",
+            "value": 112,
+            "unit": "%",
+            "score": 5.4,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Logo churn (%/yr)",
+            "value": 7,
+            "unit": "%/yr",
+            "score": 5.6,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Pipeline coverage",
+            "value": 2.8,
+            "unit": "x",
+            "score": 5.733333333333333,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "CAC payback (months)",
+            "value": 14,
+            "unit": "months",
+            "score": 5.666666666666667,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Win rate (%)",
+            "value": 24,
+            "unit": "%",
+            "score": 5.8,
+            "traffic_light": "yellow"
+          }
+        ]
+      },
+      "product": {
+        "name": "Product Health",
+        "owner": "CPO",
+        "score": 6.9,
+        "traffic_light": "yellow",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "NPS",
+            "value": 44,
+            "unit": "score",
+            "score": 8.0,
+            "traffic_light": "green"
+          },
+          {
+            "name": "DAU/MAU (%)",
+            "value": 38,
+            "unit": "%",
+            "score": 7.857142857142857,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Core feature adoption (%)",
+            "value": 58,
+            "unit": "%",
+            "score": 5.866666666666667,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "CSAT",
+            "value": 4.2,
+            "unit": "/5",
+            "score": 7.0,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Time-to-value (days)",
+            "value": 4,
+            "unit": "days",
+            "score": 5.818181818181818,
+            "traffic_light": "yellow"
+          }
+        ]
+      },
+      "engineering": {
+        "name": "Engineering Health",
+        "owner": "CTO",
+        "score": 5.3,
+        "traffic_light": "yellow",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "Deploy frequency (1-5)",
+            "value": 2,
+            "unit": "scale",
+            "score": 3.0,
+            "traffic_light": "red"
+          },
+          {
+            "name": "Change failure rate (%)",
+            "value": 8,
+            "unit": "%",
+            "score": 5.4,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "MTTR (hours)",
+            "value": 1.5,
+            "unit": "hours",
+            "score": 5.666666666666667,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Tech debt ratio (%)",
+            "value": 22,
+            "unit": "%",
+            "score": 5.3,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "P0/P1 incidents/month",
+            "value": 1,
+            "unit": "count",
+            "score": 7.0,
+            "traffic_light": "green"
+          }
+        ]
+      },
+      "people": {
+        "name": "People Health",
+        "owner": "CHRO",
+        "score": 6.7,
+        "traffic_light": "yellow",
+        "trend": "declining",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "Regrettable attrition (%/yr)",
+            "value": 14,
+            "unit": "%/yr",
+            "score": 4.4,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "eNPS",
+            "value": 18,
+            "unit": "score",
+            "score": 5.2,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Time-to-fill (days)",
+            "value": 40,
+            "unit": "days",
+            "score": 8.11111111111111,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Internal promotion rate (%)",
+            "value": 30,
+            "unit": "%",
+            "score": 9.0,
+            "traffic_light": "green"
+          }
+        ]
+      },
+      "operations": {
+        "name": "Operational Health",
+        "owner": "COO",
+        "score": 7.8,
+        "traffic_light": "green",
+        "trend": "improving",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "OKR completion rate (%)",
+            "value": 72,
+            "unit": "%",
+            "score": 7.285714285714286,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Decision cycle time (hours)",
+            "value": 36,
+            "unit": "hours",
+            "score": 9.5,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Process maturity (1-5)",
+            "value": 3.0,
+            "unit": "level",
+            "score": 7.0,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Cross-functional delivery (%)",
+            "value": 74,
+            "unit": "%",
+            "score": 7.571428571428571,
+            "traffic_light": "green"
+          }
+        ]
+      },
+      "security": {
+        "name": "Security Health",
+        "owner": "CISO",
+        "score": 6.5,
+        "traffic_light": "yellow",
+        "trend": "improving",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "Security incidents (90 days)",
+            "value": 0,
+            "unit": "count",
+            "score": 7.0,
+            "traffic_light": "green"
+          },
+          {
+            "name": "MFA coverage (%)",
+            "value": 94,
+            "unit": "%",
+            "score": 5.866666666666667,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Security training completion (%)",
+            "value": 92,
+            "unit": "%",
+            "score": 5.6,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Critical CVE patch rate (%)",
+            "value": 97,
+            "unit": "%",
+            "score": 5.6,
+            "traffic_light": "yellow"
+          },
+          {
+            "name": "Pen test recency (months)",
+            "value": 10,
+            "unit": "months",
+            "score": 8.666666666666666,
+            "traffic_light": "green"
+          }
+        ]
+      },
+      "market": {
+        "name": "Market Health",
+        "owner": "CMO",
+        "score": 6.7,
+        "traffic_light": "yellow",
+        "trend": "stable",
+        "coverage_pct": 100,
+        "missing_metrics": [],
+        "metrics": [
+          {
+            "name": "Organic pipeline % ",
+            "value": 42,
+            "unit": "%",
+            "score": 7.5,
+            "traffic_light": "green"
+          },
+          {
+            "name": "Competitive win rate (%)",
+            "value": 48,
+            "unit": "%",
+            "score": 7.666666666666667,
+            "traffic_light": "green"
+          },
+          {
+            "name": "CAC trend (1=worsening, 5=improving)",
+            "value": 3,
+            "unit": "scale",
+            "score": 5.0,
+            "traffic_light": "yellow"
+          }
+        ]
+      }
+    }
+  }
+}

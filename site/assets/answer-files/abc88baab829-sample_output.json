@@ -1,0 +1,206 @@
+{
+  "product": "智能随行杯",
+  "analyzed_at": "2026-08-13T22:35:51+08:00",
+  "total_feedback": 12,
+  "themes": [
+    {
+      "theme_key": "safety_material",
+      "theme_label": "材质与安全",
+      "priority": "P0",
+      "count": 1,
+      "feedback_ids": [
+        "fb-005"
+      ],
+      "representative_feedback": [
+        "杯子有股塑料味，用了一周还有，担心材质不安全"
+      ],
+      "next_actions": [
+        "立即暂停相关批次发货，联系反馈用户获取详情；送检食品接触材料（待补：食品接触材料报告），确认后再恢复发货"
+      ],
+      "related_gaps": [
+        "食品接触材料报告尚未提供"
+      ]
+    },
+    {
+      "theme_key": "leak_seal",
+      "theme_label": "漏水与密封",
+      "priority": "P1",
+      "count": 2,
+      "feedback_ids": [
+        "fb-001",
+        "fb-004"
+      ],
+      "representative_feedback": [
+        "杯子装了热水放包里，漏水漏了一书包，电脑都湿了",
+        "盖子拧不紧会渗水，放包里担心漏"
+      ],
+      "next_actions": [
+        "安排密封件复测，检查杯盖密封圈批次一致性，汇总漏水场景"
+      ],
+      "related_gaps": [
+        "防水等级尚未提供"
+      ]
+    },
+    {
+      "theme_key": "insulation",
+      "theme_label": "保温性能",
+      "priority": "P1",
+      "count": 2,
+      "feedback_ids": [
+        "fb-002",
+        "fb-011"
+      ],
+      "representative_feedback": [
+        "保温效果不行，早上装的开水中午就温了，根本达不到12小时",
+        "保温杯不保温，中午就凉了"
+      ],
+      "next_actions": [
+        "安排12小时保温性能复测，确认是否为个例或批次问题；核对宣传口径与实测差异"
+      ],
+      "related_gaps": []
+    },
+    {
+      "theme_key": "lid_cleaning",
+      "theme_label": "杯盖与清洗",
+      "priority": "P1",
+      "count": 2,
+      "feedback_ids": [
+        "fb-003",
+        "fb-004"
+      ],
+      "representative_feedback": [
+        "杯盖拆不开，里面缝隙发霉了洗不到",
+        "盖子拧不紧会渗水，放包里担心漏"
+      ],
+      "next_actions": [
+        "评估杯盖拆洗结构优化方案，检查清洗死角是否易滋生霉菌"
+      ],
+      "related_gaps": []
+    },
+    {
+      "theme_key": "weight_portability",
+      "theme_label": "重量与便携",
+      "priority": "P2",
+      "count": 1,
+      "feedback_ids": [
+        "fb-006"
+      ],
+      "representative_feedback": [
+        "280g很轻，通勤带着没负担，喜欢"
+      ],
+      "next_actions": [
+        "记录重量/便携反馈，纳入下一代产品评估；确认280g实测与宣传一致"
+      ],
+      "related_gaps": []
+    },
+    {
+      "theme_key": "packaging_logistics",
+      "theme_label": "包装与物流",
+      "priority": "P2",
+      "count": 1,
+      "feedback_ids": [
+        "fb-009"
+      ],
+      "representative_feedback": [
+        "收到的时候盒子压扁了，杯身有划痕"
+      ],
+      "next_actions": [
+        "联系物流方核查破损件，评估包装缓冲材料是否需要加强"
+      ],
+      "related_gaps": []
+    },
+    {
+      "theme_key": "smart_feature",
+      "theme_label": "智能功能",
+      "priority": "P2",
+      "count": 1,
+      "feedback_ids": [
+        "fb-010"
+      ],
+      "representative_feedback": [
+        "蓝牙连不上APP，温度显示时有时无"
+      ],
+      "next_actions": [
+        "排查智能功能连接/电量问题，区分硬件与App问题并分别跟进"
+      ],
+      "related_gaps": [
+        "防水等级尚未提供"
+      ]
+    },
+    {
+      "theme_key": "capacity",
+      "theme_label": "容量",
+      "priority": "P2",
+      "count": 1,
+      "feedback_ids": [
+        "fb-012"
+      ],
+      "representative_feedback": [
+        "容量有点小，不够喝一上午"
+      ],
+      "next_actions": [
+        "汇总容量需求分布，评估是否需要新增容量规格"
+      ],
+      "related_gaps": []
+    },
+    {
+      "theme_key": "praise",
+      "theme_label": "正面评价",
+      "priority": "P3",
+      "count": 2,
+      "feedback_ids": [
+        "fb-006",
+        "fb-007"
+      ],
+      "representative_feedback": [
+        "280g很轻，通勤带着没负担，喜欢",
+        "颜色很好看，那个青色颜值高"
+      ],
+      "next_actions": [
+        "记录正面反馈，可用于后续营销素材（需用户授权，禁止编造用户评价）"
+      ],
+      "related_gaps": []
+    },
+    {
+      "theme_key": "appearance",
+      "theme_label": "外观与颜色",
+      "priority": "P3",
+      "count": 2,
+      "feedback_ids": [
+        "fb-007",
+        "fb-009"
+      ],
+      "representative_feedback": [
+        "颜色很好看，那个青色颜值高",
+        "收到的时候盒子压扁了，杯身有划痕"
+      ],
+      "next_actions": [
+        "记录外观/颜色偏好，供后续配色与工艺参考"
+      ],
+      "related_gaps": []
+    },
+    {
+      "theme_key": "price_value",
+      "theme_label": "价格与性价比",
+      "priority": "P3",
+      "count": 1,
+      "feedback_ids": [
+        "fb-008"
+      ],
+      "representative_feedback": [
+        "199块有点贵，不知道值不值"
+      ],
+      "next_actions": [
+        "汇总价格敏感度反馈，供定价策略参考（禁止编造竞品价格）"
+      ],
+      "related_gaps": []
+    }
+  ],
+  "deduplicated_theme_count": 11,
+  "backend_used": "rule",
+  "notes": [
+    "结论基于规则引擎关键词匹配，可能存在误判，建议人工复核 P0/P1 主题",
+    "禁止编造：第三方检测结论、销量、用户评价、竞品价格",
+    "产品不完整信息（待补）：首发日期尚未确定；防水等级尚未提供；食品接触材料报告尚未提供"
+  ]
+}

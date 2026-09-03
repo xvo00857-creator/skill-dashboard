@@ -1,0 +1,119 @@
+{
+  "character_id": "xiaoke",
+  "character_name": "小克",
+  "rig_type": "svg_rig",
+  "version": "1.0",
+  "viewBox": [0, 0, 400, 500],
+  "description": "蓝色圆头小角色，单视图正面绑定，包含待机与行走两套循环动画。",
+
+  "parts": [
+    { "id": "leg_right",  "kind": "limb",   "layer": 5,  "parent": "body" },
+    { "id": "arm_right",  "kind": "limb",   "layer": 8,  "parent": "body" },
+    { "id": "body",       "kind": "torso",  "layer": 10 },
+    { "id": "leg_left",   "kind": "limb",   "layer": 12, "parent": "body" },
+    { "id": "arm_left",   "kind": "limb",   "layer": 15, "parent": "body" },
+    { "id": "ear_left",   "kind": "ear",    "layer": 25, "parent": "head" },
+    { "id": "ear_right",  "kind": "ear",    "layer": 25, "parent": "head" },
+    { "id": "head",       "kind": "head",   "layer": 30, "parent": "body" },
+    { "id": "cheek_left", "kind": "detail", "layer": 34, "parent": "head" },
+    { "id": "cheek_right","kind": "detail", "layer": 34, "parent": "head" },
+    { "id": "eye_left",   "kind": "eye",    "layer": 35, "parent": "head", "center": [182, 175] },
+    { "id": "eye_right",  "kind": "eye",    "layer": 35, "parent": "head", "center": [218, 175] },
+    { "id": "mouth",      "kind": "mouth",  "layer": 37, "parent": "head" }
+  ],
+
+  "joints": {
+    "body":      { "pivot": [200, 300] },
+    "head":      { "pivot": [200, 232], "rotation": [-15, 15] },
+    "arm_left":  { "pivot": [150, 252], "rotation": [-45, 45] },
+    "arm_right": { "pivot": [250, 252], "rotation": [-45, 45] },
+    "leg_left":  { "pivot": [180, 365], "rotation": [-30, 30] },
+    "leg_right": { "pivot": [220, 365], "rotation": [-30, 30] },
+    "eye_left":  { "pivot": [182, 175] },
+    "eye_right": { "pivot": [218, 175] }
+  },
+
+  "animations": {
+    "idle": {
+      "name_cn": "待机",
+      "fps": 30,
+      "duration_frames": 120,
+      "loop": true,
+      "tracks": {
+        "body": [
+          { "property": "translateY", "type": "sine", "amplitude": 3, "period_frames": 120, "phase_frames": 0 }
+        ],
+        "head": [
+          { "property": "rotation", "type": "sine", "amplitude": 3, "period_frames": 180, "phase_frames": 0, "secondary": true }
+        ],
+        "arm_left": [
+          { "property": "rotation", "type": "sine", "amplitude": 4, "period_frames": 150, "phase_frames": 0, "secondary": true }
+        ],
+        "arm_right": [
+          { "property": "rotation", "type": "sine", "amplitude": 4, "period_frames": 150, "phase_frames": 75, "secondary": true }
+        ],
+        "eye_left": [
+          { "property": "scaleY", "type": "keyframe", "secondary": true, "keyframes": [
+            {"frame": 0,   "value": 1},
+            {"frame": 32,  "value": 1},
+            {"frame": 35,  "value": 0.1},
+            {"frame": 38,  "value": 1},
+            {"frame": 92,  "value": 1},
+            {"frame": 95,  "value": 0.1},
+            {"frame": 98,  "value": 1},
+            {"frame": 120, "value": 1}
+          ]}
+        ],
+        "eye_right": [
+          { "property": "scaleY", "type": "keyframe", "secondary": true, "keyframes": [
+            {"frame": 0,   "value": 1},
+            {"frame": 32,  "value": 1},
+            {"frame": 35,  "value": 0.1},
+            {"frame": 38,  "value": 1},
+            {"frame": 92,  "value": 1},
+            {"frame": 95,  "value": 0.1},
+            {"frame": 98,  "value": 1},
+            {"frame": 120, "value": 1}
+          ]}
+        ]
+      }
+    },
+
+    "walk": {
+      "name_cn": "行走",
+      "fps": 30,
+      "duration_frames": 60,
+      "loop": true,
+      "tracks": {
+        "body": [
+          { "property": "translateY", "type": "sine", "amplitude": 4, "period_frames": 30, "phase_frames": 0, "offset": -4 }
+        ],
+        "head": [
+          { "property": "rotation", "type": "sine", "amplitude": 3, "period_frames": 60, "phase_frames": 45, "secondary": true }
+        ],
+        "arm_left": [
+          { "property": "rotation", "type": "sine", "amplitude": 22, "period_frames": 60, "phase_frames": 30 }
+        ],
+        "arm_right": [
+          { "property": "rotation", "type": "sine", "amplitude": 22, "period_frames": 60, "phase_frames": 0 }
+        ],
+        "leg_left": [
+          { "property": "rotation", "type": "sine", "amplitude": 25, "period_frames": 60, "phase_frames": 0 }
+        ],
+        "leg_right": [
+          { "property": "rotation", "type": "sine", "amplitude": 25, "period_frames": 60, "phase_frames": 30 }
+        ],
+        "eye_left": [
+          { "property": "scaleY", "type": "keyframe", "secondary": true, "keyframes": [
+            {"frame": 0, "value": 1}, {"frame": 60, "value": 1}
+          ]}
+        ],
+        "eye_right": [
+          { "property": "scaleY", "type": "keyframe", "secondary": true, "keyframes": [
+            {"frame": 0, "value": 1}, {"frame": 60, "value": 1}
+          ]}
+        ]
+      }
+    }
+  }
+}

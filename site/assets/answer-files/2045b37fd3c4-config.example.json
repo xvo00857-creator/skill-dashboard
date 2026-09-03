@@ -1,0 +1,13 @@
+{
+  "mock_data_file": "mock_data/tasks.json",
+  "mcp": {
+    "server_command": ["npx", "-y", "feishu-tools-mcp"],
+    "timeout": 30
+  },
+  "feishu": {
+    "app_token": "替换为飞书多维表格 app_token",
+    "table_id": "替换为 table_id",
+    "doc_folder_token": "替换为目标文件夹 token",
+    "chat_id": "替换为通知群 chat_id"
+  }
+}

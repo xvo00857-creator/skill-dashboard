@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>响应式测试 - 多断点预览</title>
+<style>
+  body { margin: 0; padding: 20px; background: #1e293b; font-family: sans-serif; }
+  h2 { color: #fff; margin: 0 0 8px; font-size: 14px; }
+  .frame-row { margin-bottom: 30px; }
+  .frame-wrap {
+    border: 2px solid #475569;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+  }
+  iframe { border: 0; display: block; }
+</style>
+</head>
+<body>
+<div class="frame-row">
+  <h2>375px — 手机（表格视图：窄屏自动转为卡片列表）</h2>
+  <div class="frame-wrap" style="width:375px">
+    <iframe id="f1" src="http://localhost:8765/#/products" width="375" height="750"></iframe>
+  </div>
+</div>
+<div class="frame-row">
+  <h2>320px — 小屏手机（网格视图，单列）</h2>
+  <div class="frame-wrap" style="width:320px">
+    <iframe id="f2" src="http://localhost:8765/#/products" width="320" height="700"></iframe>
+  </div>
+</div>
+<div class="frame-row">
+  <h2>768px — 平板（横向导航 + 详情双列）</h2>
+  <div class="frame-wrap" style="width:768px">
+    <iframe src="http://localhost:8765/#/products/p001" width="768" height="600"></iframe>
+  </div>
+</div>
+<div class="frame-row">
+  <h2>1024px — 笔记本（网格视图，多列）</h2>
+  <div class="frame-wrap" style="width:1024px">
+    <iframe src="http://localhost:8765/#/products" width="1024" height="600"></iframe>
+  </div>
+</div>
+<script>
+  // 在第一个 iframe 加载后点击表格视图按钮
+  document.getElementById('f1').addEventListener('load', function() {
+    setTimeout(function() {
+      try {
+        var doc = document.getElementById('f1').contentDocument;
+        var btns = doc.querySelectorAll('.view-toggle__btn');
+        if (btns[1]) btns[1].click();
+      } catch(e) { console.log(e); }
+    }, 1500);
+  });
+</script>
+</body>
+</html>

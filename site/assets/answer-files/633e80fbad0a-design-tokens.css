@@ -1,0 +1,229 @@
+/**
+ * 协作产品轻量界面设计系统 - 设计令牌
+ * Design Tokens for Enterprise Collaboration Product
+ * Version: 1.0.0
+ * Style: modern
+ * Base unit: 4px (8pt grid)
+ * Accessibility target: WCAG 2.1 AA
+ */
+
+:root {
+  /* ============ 颜色令牌 ============ */
+
+  /* 主色 - 品牌蓝 */
+  --color-primary-50:  #ECF2FF;
+  --color-primary-100: #D5E2FF;
+  --color-primary-200: #B4CBFF;
+  --color-primary-300: #8FB1FF;
+  --color-primary-400: #5C8EFF;
+  --color-primary-500: #165DFF;
+  --color-primary-600: #124CD1;
+  --color-primary-700: #0E3A9E;
+  --color-primary-800: #09276B;
+  --color-primary-900: #05163D;
+
+  /* 中性色 - 冷灰 */
+  --color-neutral-50:  #F7F8FA;
+  --color-neutral-100: #F2F3F5;
+  --color-neutral-200: #E5E6EB;
+  --color-neutral-300: #C9CDD4;
+  --color-neutral-400: #86909C;
+  --color-neutral-500: #6B7280;
+  --color-neutral-600: #4E5969;
+  --color-neutral-700: #373D47;
+  --color-neutral-800: #272E3B;
+  --color-neutral-900: #1D2129;
+
+  /* 语义色 - 成功 */
+  --color-success-50:  #EBF9EE;
+  --color-success-100: #D1F2D9;
+  --color-success-200: #ADE7BB;
+  --color-success-300: #85DB99;
+  --color-success-400: #4CCA6A;
+  --color-success-500: #00B42A;
+  --color-success-600: #009422;
+  --color-success-700: #00701A;
+  --color-success-800: #004C12;
+  --color-success-900: #002B0A;
+
+  /* 语义色 - 警告 */
+  --color-warning-50:  #FFF5EB;
+  --color-warning-100: #FFE8D1;
+  --color-warning-200: #FFD5AD;
+  --color-warning-300: #FFC185;
+  --color-warning-400: #FFA44C;
+  --color-warning-500: #FF7D00;
+  --color-warning-600: #D16600;
+  --color-warning-700: #9E4E00;
+  --color-warning-800: #6B3400;
+  --color-warning-900: #3D1E00;
+
+  /* 语义色 - 错误/危险 */
+  --color-error-50:  #FEF0F0;
+  --color-error-100: #FDDCDC;
+  --color-error-200: #FCC2C2;
+  --color-error-300: #FAA3A3;
+  --color-error-400: #F87979;
+  --color-error-500: #F53F3F;
+  --color-error-600: #C93434;
+  --color-error-700: #982727;
+  --color-error-800: #671A1A;
+  --color-error-900: #3B0F0F;
+
+  /* 语义色 - 信息（复用主色） */
+  --color-info-50:  #ECF2FF;
+  --color-info-100: #D5E2FF;
+  --color-info-500: #165DFF;
+  --color-info-600: #124CD1;
+  --color-info-700: #0E3A9E;
+
+  /* 表面色 - 背景与前景 */
+  --color-white:        #FFFFFF;
+  --color-black:        #000000;
+  --color-bg-page:      #F7F8FA;   /* 页面背景 neutral-50 */
+  --color-bg-surface:   #FFFFFF;   /* 卡片/面板背景 */
+  --color-bg-subtle:    #F2F3F5;   /* 次级背景 neutral-100 */
+  --color-bg-muted:     #E5E6EB;   /* 禁用/置灰背景 neutral-200 */
+  --color-bg-overlay:   rgba(29, 33, 41, 0.6); /* 遮罩 */
+
+  /* 文本色 */
+  --color-text-primary:   #1D2129; /* neutral-900，对比度 16.13:1 */
+  --color-text-secondary: #373D47; /* neutral-700，对比度 10.93:1 */
+  --color-text-tertiary:  #6B7280; /* neutral-500，对比度 4.83:1 */
+  --color-text-disabled:  #86909C; /* neutral-400，仅用于大字/装饰 */
+  --color-text-inverse:   #FFFFFF; /* 深色背景上的文字 */
+  --color-text-link:      #124CD1; /* primary-600，对比度 7.05:1 */
+  --color-text-link-hover:#0E3A9E; /* primary-700 */
+
+  /* 边框色 */
+  --color-border-default:  #C9CDD4; /* neutral-300，装饰性分隔 */
+  --color-border-strong:   #86909C; /* neutral-400，需 3:1 的可交互边框 */
+  --color-border-focus:    #165DFF; /* primary-500 */
+  --color-border-error:    #F53F3F; /* error-500 */
+
+  /* ============ 字体令牌 ============ */
+
+  /* 字体族 */
+  --font-family-sans: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --font-family-mono: "JetBrains Mono", "Fira Code", "SF Mono",
+    "PingFang SC", "Microsoft YaHei", Consolas, monospace;
+
+  /* 字号 - 1.25 倍模数比，中文正文不小于 14px */
+  --font-size-xs:   12px;  /* 辅助标签/数字（中文慎用） */
+  --font-size-sm:   14px;  /* 次要正文/表格 */
+  --font-size-base: 16px;  /* 正文基准 */
+  --font-size-lg:   20px;  /* 小标题 */
+  --font-size-xl:   25px;  /* H4 */
+  --font-size-2xl:  31px;  /* H3 */
+  --font-size-3xl:  39px;  /* H2 */
+  --font-size-4xl:  49px;  /* H1 */
+
+  /* 字重 */
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+  /* 行高 */
+  --line-height-none:    1;
+  --line-height-tight:   1.25;
+  --line-height-snug:    1.375;
+  --line-height-normal:  1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose:   2;
+
+  /* ============ 间距令牌（4px 基准，8pt 网格） ============ */
+
+  --spacing-0:  0;
+  --spacing-1:  4px;   /* 半格，微调 */
+  --spacing-2:  8px;   /* 紧凑内边距 */
+  --spacing-3:  12px;  /* 表单项间距 */
+  --spacing-4:  16px;  /* 默认间距 */
+  --spacing-5:  20px;  /* 卡片内边距 */
+  --spacing-6:  24px;  /* 分组间距 */
+  --spacing-8:  32px;  /* 区块间距 */
+  --spacing-10: 40px;  /* 页面分区 */
+  --spacing-12: 48px;  /* 大区块 */
+  --spacing-16: 64px;  /* 页面级 */
+
+  /* ============ 圆角令牌（modern 风格，默认 8px） ============ */
+
+  --radius-none: 0;
+  --radius-sm:   4px;   /* 小型元素：标签、徽章 */
+  --radius-md:   8px;   /* 默认：按钮、输入框、卡片 */
+  --radius-lg:   12px;  /* 大型卡片、面板 */
+  --radius-xl:   16px;  /* 模态框 */
+  --radius-full: 9999px; /* 圆形：头像、开关 */
+
+  /* ============ 边框宽度 ============ */
+
+  --border-width-thin:   1px;
+  --border-width-normal: 2px;
+  --border-width-thick:  4px;
+
+  /* ============ 阴影令牌（modern：分层、柔和） ============ */
+
+  --shadow-none: none;
+  --shadow-xs: 0 1px 2px rgba(29, 33, 41, 0.06);
+  --shadow-sm: 0 1px 3px rgba(29, 33, 41, 0.08),
+               0 1px 2px rgba(29, 33, 41, 0.04);
+  --shadow-md: 0 4px 6px rgba(29, 33, 41, 0.07),
+               0 2px 4px rgba(29, 33, 41, 0.04);
+  --shadow-lg: 0 10px 15px rgba(29, 33, 41, 0.08),
+               0 4px 6px rgba(29, 33, 41, 0.04);
+  --shadow-xl: 0 20px 25px rgba(29, 33, 41, 0.10),
+               0 8px 10px rgba(29, 33, 41, 0.04);
+  --shadow-focus: 0 0 0 2px var(--color-primary-200);
+  --shadow-focus-error: 0 0 0 2px var(--color-error-200);
+
+  /* ============ 动效令牌 ============ */
+
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-in:  cubic-bezier(0.4, 0, 1, 1);
+  --easing-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* ============ 层级令牌 ============ */
+
+  --z-base:       0;
+  --z-dropdown:   1000;
+  --z-sticky:     1100;
+  --z-fixed:      1200;
+  --z-modal-bg:   1300;
+  --z-modal:      1400;
+  --z-popover:    1500;
+  --z-tooltip:    1600;
+  --z-notification: 1700;
+
+  /* ============ 组件尺寸令牌 ============ */
+
+  /* 按钮 */
+  --btn-sm-height:    32px;
+  --btn-sm-padding-x: 12px;
+  --btn-sm-font-size: 14px;
+  --btn-md-height:    40px;
+  --btn-md-padding-x: 16px;
+  --btn-md-font-size: 16px;
+  --btn-lg-height:    48px;
+  --btn-lg-padding-x: 20px;
+  --btn-lg-font-size: 18px;
+
+  /* 输入框 */
+  --input-sm-height:    32px;
+  --input-sm-padding-x: 12px;
+  --input-md-height:    40px;
+  --input-md-padding-x: 12px;
+  --input-lg-height:    48px;
+  --input-lg-padding-x: 16px;
+
+  /* 图标 */
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --icon-lg: 24px;
+
+  /* 触摸目标最小尺寸 */
+  --touch-target-min: 44px;
+}

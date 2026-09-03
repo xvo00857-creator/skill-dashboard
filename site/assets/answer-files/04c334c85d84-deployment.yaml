@@ -1,0 +1,63 @@
+# 示例服务部署清单
+# 流水线 Deploy 阶段执行: kubectl apply -f deploy/
+# 镜像地址由流水线通过 sed 替换 IMAGE_PLACEHOLDER 注入
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-go-http
+  namespace: demo
+  labels:
+    app: demo-go-http
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: demo-go-http
+  template:
+    metadata:
+      labels:
+        app: demo-go-http
+    spec:
+      containers:
+        - name: demo-go-http
+          image: IMAGE_PLACEHOLDER
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-go-http
+  namespace: demo
+spec:
+  selector:
+    app: demo-go-http
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: ClusterIP

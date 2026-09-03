@@ -1,0 +1,82 @@
+[
+  {
+    "item_id": "adobe:file:1a2b3c",
+    "item_name": "weekly_creative_brief.pdf",
+    "item_type": "pdf",
+    "size_bytes": 245760,
+    "owner_email": "alice@example.com",
+    "created_at": "2026-08-06T10:12:33+08:00",
+    "modified_at": "2026-08-10T15:40:01+08:00",
+    "status": "active"
+  },
+  {
+    "item_id": "adobe:file:2b3c4d",
+    "item_name": "banner_draft_v3.png",
+    "item_type": "image",
+    "size_bytes": 1843200,
+    "owner_email": "bob@example.com",
+    "created_at": "2026-08-11T09:00:00+08:00",
+    "modified_at": "2026-08-11T09:00:00+08:00",
+    "status": "active"
+  },
+  {
+    "item_id": "adobe:file:3c4d5e",
+    "item_name": "brand_guidelines_2026.pdf",
+    "item_type": "pdf",
+    "size_bytes": 5242880,
+    "owner_email": "alice@example.com",
+    "created_at": "2026-07-20T14:22:10+08:00",
+    "modified_at": "2026-08-08T11:05:44+08:00",
+    "status": "active"
+  },
+  {
+    "item_id": "adobe:file:4d5e6f",
+    "item_name": "social_media_kit.zip",
+    "item_type": "archive",
+    "size_bytes": 12582912,
+    "owner_email": "carol@example.com",
+    "created_at": "2026-08-10T16:30:00+08:00",
+    "modified_at": "2026-08-10T16:30:00+08:00",
+    "status": "active"
+  },
+  {
+    "item_id": "adobe:file:5e6f7g",
+    "item_name": "hero_image.jpg",
+    "item_type": "image",
+    "size_bytes": 3145728,
+    "owner_email": "bob@example.com",
+    "created_at": "2026-08-05T08:15:00+08:00",
+    "modified_at": "2026-08-11T10:00:00+08:00",
+    "status": "active"
+  },
+  {
+    "item_id": "adobe:file:6f7g8h",
+    "item_name": "meeting_notes_aug08.pdf",
+    "item_type": "pdf",
+    "size_bytes": 98304,
+    "owner_email": "alice@example.com",
+    "created_at": "2026-08-11T17:45:22+08:00",
+    "modified_at": "2026-08-11T17:45:22+08:00",
+    "status": "active"
+  },
+  {
+    "item_id": "adobe:file:7g8h9i",
+    "item_name": "logo_v2.svg",
+    "item_type": "image",
+    "size_bytes": 15360,
+    "owner_email": "carol@example.com",
+    "created_at": "2026-08-10T13:20:00+08:00",
+    "modified_at": "2026-08-10T13:20:00+08:00",
+    "status": "active"
+  },
+  {
+    "item_id": "adobe:file:8h9i0j",
+    "item_name": "old_promo_2025.pdf",
+    "item_type": "pdf",
+    "size_bytes": 1048576,
+    "owner_email": "bob@example.com",
+    "created_at": "2025-11-02T10:00:00+08:00",
+    "modified_at": "2025-11-02T10:00:00+08:00",
+    "status": "archived"
+  }
+]

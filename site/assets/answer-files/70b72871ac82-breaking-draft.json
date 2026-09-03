@@ -1,0 +1,153 @@
+{
+  "summary": {
+    "total_changes": 7,
+    "breaking_changes": 2,
+    "potentially_breaking_changes": 0,
+    "non_breaking_changes": 2,
+    "enhancements": 3,
+    "critical_severity": 2,
+    "high_severity": 0,
+    "medium_severity": 0,
+    "low_severity": 0,
+    "info_severity": 5
+  },
+  "hasBreakingChanges": true,
+  "changes": [
+    {
+      "changeType": "non_breaking",
+      "severity": "info",
+      "category": "versioning",
+      "path": "/info/version",
+      "message": "API version changed from '1.0.0' to '1.1.0'",
+      "oldValue": "1.0.0",
+      "newValue": "1.1.0",
+      "migrationGuide": "",
+      "impactDescription": "Version change indicates API evolution"
+    },
+    {
+      "changeType": "enhancement",
+      "severity": "info",
+      "category": "endpoints",
+      "path": "/paths/orders/batch_create",
+      "message": "New endpoint added: POST /orders/batch_create",
+      "oldValue": null,
+      "newValue": "POST /orders/batch_create",
+      "migrationGuide": "",
+      "impactDescription": "New functionality available to clients"
+    },
+    {
+      "changeType": "enhancement",
+      "severity": "info",
+      "category": "components",
+      "path": "/components/schemas/BatchOrderItem",
+      "message": "New schema 'BatchOrderItem' added to components",
+      "oldValue": null,
+      "newValue": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string"
+          },
+          "product_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sku_id": {
+                  "type": "string"
+                },
+                "qty": {
+                  "type": "integer"
+                },
+                "price": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "total_price": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "webhook_secret": {
+            "type": "string",
+            "description": "\u56de\u8c03\u7b7e\u540d\u5bc6\u94a5\uff0c\u521b\u5efa\u540e\u539f\u6837\u8fd4\u56de"
+          },
+          "card_last_four": {
+            "type": "string"
+          },
+          "internal_note": {
+            "type": "string"
+          }
+        }
+      },
+      "migrationGuide": "",
+      "impactDescription": "New reusable schema available"
+    },
+    {
+      "changeType": "enhancement",
+      "severity": "info",
+      "category": "components",
+      "path": "/components/schemas/BatchCreateRequest",
+      "message": "New schema 'BatchCreateRequest' added to components",
+      "oldValue": null,
+      "newValue": {
+        "type": "object",
+        "properties": {
+          "order_list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchOrderItem"
+            }
+          },
+          "idempotency_key": {
+            "type": "string",
+            "description": "\u5e42\u7b49\u952e\u653e\u5728\u8bf7\u6c42\u4f53\u91cc"
+          }
+        }
+      },
+      "migrationGuide": "",
+      "impactDescription": "New reusable schema available"
+    },
+    {
+      "changeType": "breaking",
+      "severity": "critical",
+      "category": "schema",
+      "path": "/components/schemas/Order/properties",
+      "message": "Property 'totalAmount' removed from schema 'Order'",
+      "oldValue": {
+        "type": "number",
+        "format": "double",
+        "description": "\u8ba2\u5355\u603b\u91d1\u989d",
+        "example": 199.9
+      },
+      "newValue": null,
+      "migrationGuide": "Remove references to 'totalAmount' property in client code",
+      "impactDescription": "Clients expecting this property will receive incomplete data"
+    },
+    {
+      "changeType": "breaking",
+      "severity": "critical",
+      "category": "schema",
+      "path": "/components/schemas/Order/properties",
+      "message": "Property 'total_amount' is now required in schema 'Order'",
+      "oldValue": false,
+      "newValue": true,
+      "migrationGuide": "Ensure 'total_amount' is always provided when sending schema 'Order'",
+      "impactDescription": "Clients not providing this property will receive validation errors"
+    },
+    {
+      "changeType": "non_breaking",
+      "severity": "info",
+      "category": "schema",
+      "path": "/components/schemas/Order/properties",
+      "message": "Property 'totalAmount' is no longer required in schema 'Order'",
+      "oldValue": true,
+      "newValue": false,
+      "migrationGuide": "",
+      "impactDescription": "Property is now optional, providing more flexibility"
+    }
+  ]
+}

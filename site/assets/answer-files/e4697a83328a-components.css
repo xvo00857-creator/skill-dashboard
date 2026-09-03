@@ -1,0 +1,245 @@
+/*
+ * 组件样式：交互状态 + 响应式
+ * 采用原生 CSS（零运行时、零新依赖），等价于 SKILL.md 中 CSS Modules 的样式能力，
+ * 但以普通 .css 文件提供，可在任何打包器中直接 import，无需额外配置或依赖。
+ * 颜色对比度：#1d4ed8 / #1f2937 on #fff 均满足 WCAG AA（正文 4.5:1）。
+ */
+
+:root {
+  --wcd-color-primary: #2563eb;
+  --wcd-color-primary-hover: #1d4ed8;
+  --wcd-color-primary-active: #1e40af;
+  --wcd-color-text: #1f2937;
+  --wcd-color-text-muted: #6b7280;
+  --wcd-color-border: #e5e7eb;
+  --wcd-color-bg: #ffffff;
+  --wcd-color-bg-muted: #f9fafb;
+  --wcd-radius: 0.5rem;
+  --wcd-ring: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+/* ============ Button ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--wcd-radius);
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.05s ease;
+  /* 移动端默认整宽 */
+  width: 100%;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--wcd-ring);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled,
+.btn--loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--sm {
+  height: 2rem;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+}
+.btn--md {
+  height: 2.5rem;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+}
+.btn--lg {
+  height: 3rem;
+  padding: 0 1.5rem;
+  font-size: 1rem;
+}
+
+.btn--primary {
+  background-color: var(--wcd-color-primary);
+  color: #fff;
+}
+.btn--primary:hover:not(:disabled) {
+  background-color: var(--wcd-color-primary-hover);
+}
+.btn--primary:active:not(:disabled) {
+  background-color: var(--wcd-color-primary-active);
+}
+
+.btn--secondary {
+  background-color: #f3f4f6;
+  color: var(--wcd-color-text);
+  border-color: var(--wcd-color-border);
+}
+.btn--secondary:hover:not(:disabled) {
+  background-color: #e5e7eb;
+}
+.btn--secondary:active:not(:disabled) {
+  background-color: #d1d5db;
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--wcd-color-text);
+}
+.btn--ghost:hover:not(:disabled) {
+  background-color: #f3f4f6;
+}
+.btn--ghost:active:not(:disabled) {
+  background-color: #e5e7eb;
+}
+
+.btn__spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: wcd-btn-spin 0.6s linear infinite;
+}
+@keyframes wcd-btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* 按钮组：移动端纵向堆叠 */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* 桌面端：按钮自适应宽度、横向排列 */
+@media (min-width: 768px) {
+  .btn {
+    width: auto;
+  }
+  .btn-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* ============ Tabs ============ */
+.tabs__list {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 2px solid var(--wcd-color-border);
+  /* 移动端标签可横向滚动，不挤压 */
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.tabs__list::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs__tab {
+  flex: 0 0 auto;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--wcd-color-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.tabs__tab:hover:not(:disabled) {
+  color: var(--wcd-color-text);
+}
+
+.tabs__tab:focus-visible {
+  outline: none;
+  box-shadow: var(--wcd-ring);
+  border-radius: 0.25rem;
+}
+
+.tabs__tab:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tabs__tab--active {
+  color: var(--wcd-color-primary);
+  border-bottom-color: var(--wcd-color-primary);
+}
+
+.tabs__panel {
+  padding: 1rem 0.25rem;
+  outline: none;
+}
+.tabs__panel:focus-visible {
+  box-shadow: var(--wcd-ring);
+  border-radius: var(--wcd-radius);
+}
+
+/* 桌面端：标签更宽、面板内边距更大 */
+@media (min-width: 768px) {
+  .tabs__list {
+    gap: 0.5rem;
+  }
+  .tabs__tab {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+  .tabs__panel {
+    padding: 1.25rem 0.5rem;
+  }
+}
+
+/* ============ 演示用容器（组件本身不依赖这些类） ============ */
+.wcd-demo {
+  max-width: 960px;
+  margin: 0 auto;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  color: var(--wcd-color-text);
+}
+.wcd-demo-section {
+  background: var(--wcd-color-bg);
+  border: 1px solid var(--wcd-color-border);
+  border-radius: var(--wcd-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.wcd-demo-section h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+.wcd-demo-note {
+  font-size: 0.8125rem;
+  color: var(--wcd-color-text-muted);
+  margin-top: 0.5rem;
+}

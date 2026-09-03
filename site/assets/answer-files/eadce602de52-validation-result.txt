@@ -1,0 +1,125 @@
+========================================================================
+Kubernetes 清单合规校验（对照 kubernetes-specialist SKILL.md）
+========================================================================
+清单目录: /Users/bytedance/Doubao/chats/2026-08-12/new-chat-640/k8s-delivery/manifests
+
+已加载 15 个 YAML 文档
+
+[✓] PASS | Namespace 逻辑隔离
+      Namespace/webapp-prod
+      → 使用专用命名空间 webapp-prod
+[✓] PASS | 资源 requests
+      04-deployment.yaml Deployment/webapp container/webapp
+      → cpu=100m, memory=128Mi
+[✓] PASS | 资源 limits
+      04-deployment.yaml Deployment/webapp container/webapp
+      → cpu=500m, memory=256Mi
+[✓] PASS | livenessProbe
+      04-deployment.yaml Deployment/webapp container/webapp
+      → 已配置
+[✓] PASS | readinessProbe
+      04-deployment.yaml Deployment/webapp container/webapp
+      → 已配置
+[✓] PASS | Secret 使用
+      Secret
+      → 已定义 Secret
+[✓] PASS | env 引用 Secret
+      04-deployment.yaml Deployment/webapp env/DB_PASSWORD
+      → 通过 secretKeyRef 引用
+[✓] PASS | env 引用 Secret
+      04-deployment.yaml Deployment/webapp env/REDIS_PASSWORD
+      → 通过 secretKeyRef 引用
+[✓] PASS | env 引用 Secret
+      04-deployment.yaml Deployment/webapp env/SESSION_SECRET
+      → 通过 secretKeyRef 引用
+[✓] PASS | env 引用 Secret
+      04-deployment.yaml Deployment/webapp env/JWT_SIGNING_KEY
+      → 通过 secretKeyRef 引用
+[✓] PASS | 专用 ServiceAccount
+      01-rbac.yaml ServiceAccount/webapp-sa
+      → 已定义
+[✓] PASS | 专用 SA 绑定
+      04-deployment.yaml Deployment/webapp
+      → serviceAccountName=webapp-sa
+[✓] PASS | 最小权限 RBAC
+      01-rbac.yaml Role/webapp-reader
+      → 权限规则无通配符
+[✓] PASS | 默认拒绝策略
+      06-networkpolicy.yaml NetworkPolicy/default-deny-all
+      → 默认拒绝所有入站/出站
+[✓] PASS | 显式放行策略
+      06-networkpolicy.yaml NetworkPolicy/webapp-allow-ingress
+      → policyTypes=['Ingress']
+[✓] PASS | 显式放行策略
+      06-networkpolicy.yaml NetworkPolicy/webapp-allow-egress
+      → policyTypes=['Egress']
+[✓] PASS | 非 root 运行
+      04-deployment.yaml Deployment/webapp
+      → runAsNonRoot=true, runAsUser=1000
+[✓] PASS | 禁止提权
+      04-deployment.yaml Deployment/webapp container/webapp
+      → allowPrivilegeEscalation=false
+[✓] PASS | 丢弃 capabilities
+      04-deployment.yaml Deployment/webapp container/webapp
+      → drop ALL
+[✓] PASS | 只读根文件系统
+      04-deployment.yaml Deployment/webapp container/webapp
+      → readOnlyRootFilesystem=true
+[✓] PASS | 镜像标签
+      04-deployment.yaml Deployment/webapp container/webapp
+      → 固定版本 registry.example.com/webapp:1.4.2
+[✓] PASS | 标准标签
+      00-namespace.yaml Namespace/webapp-prod
+      → app.kubernetes.io/name=webapp
+[✓] PASS | 标准标签
+      02-configmap.yaml ConfigMap/webapp-config
+      → app.kubernetes.io/name=webapp
+[✓] PASS | 标准标签
+      03-secret.yaml Secret/webapp-secret
+      → app.kubernetes.io/name=webapp
+[✓] PASS | 标准标签
+      04-deployment.yaml Deployment/webapp
+      → app.kubernetes.io/name=webapp
+[✓] PASS | 标准标签
+      05-service.yaml Service/webapp
+      → app.kubernetes.io/name=webapp
+[✓] PASS | 标准标签
+      06-networkpolicy.yaml NetworkPolicy/default-deny-all
+      → app.kubernetes.io/name=webapp
+[✓] PASS | 标准标签
+      06-networkpolicy.yaml NetworkPolicy/webapp-allow-ingress
+      → app.kubernetes.io/name=webapp
+[✓] PASS | 标准标签
+      06-networkpolicy.yaml NetworkPolicy/webapp-allow-egress
+      → app.kubernetes.io/name=webapp
+[✓] PASS | 标准标签
+      07-hpa.yaml HorizontalPodAutoscaler/webapp-hpa
+      → app.kubernetes.io/name=webapp
+[✓] PASS | 标准标签
+      08-pdb.yaml PodDisruptionBudget/webapp-pdb
+      → app.kubernetes.io/name=webapp
+[✓] PASS | 配置决策记录
+      04-deployment.yaml Deployment/webapp
+      → 记录 4 项决策 annotation
+[✓] PASS | 服务暴露面
+      05-service.yaml Service/webapp
+      → Service 类型为 ClusterIP（最小暴露）
+[✓] PASS | 禁止 privileged
+      04-deployment.yaml Deployment/webapp container/webapp
+      → 非 privileged
+[✓] PASS | Secret 占位符
+      03-secret.yaml Secret/webapp-secret key/DB_PASSWORD
+      → 占位符值，需人工/External Secrets 替换
+[✓] PASS | Secret 占位符
+      03-secret.yaml Secret/webapp-secret key/REDIS_PASSWORD
+      → 占位符值，需人工/External Secrets 替换
+[✓] PASS | Secret 占位符
+      03-secret.yaml Secret/webapp-secret key/SESSION_SECRET
+      → 占位符值，需人工/External Secrets 替换
+[✓] PASS | Secret 占位符
+      03-secret.yaml Secret/webapp-secret key/JWT_SIGNING_KEY
+      → 占位符值，需人工/External Secrets 替换
+
+========================================================================
+汇总: 38 通过, 0 失败, 0 警告, 共 38 项
+========================================================================

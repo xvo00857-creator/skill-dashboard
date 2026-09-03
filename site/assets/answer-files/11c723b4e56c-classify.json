@@ -1,0 +1,59 @@
+{
+  "command": "classify",
+  "model": "ViT-B/32",
+  "device": "cpu",
+  "labels": [
+    "a photo of dog",
+    "a photo of cat",
+    "a photo of car",
+    "a photo of sunset over the ocean"
+  ],
+  "results": [
+    {
+      "image": "demo_images/car.jpg",
+      "predicted": "a photo of car",
+      "confidence": 0.999137818813324,
+      "scores": {
+        "a photo of car": 0.999137818813324,
+        "a photo of dog": 0.000766609504353255,
+        "a photo of cat": 9.555045835440978e-05,
+        "a photo of sunset over the ocean": 3.805992321304075e-08
+      }
+    },
+    {
+      "image": "demo_images/cat.jpg",
+      "predicted": "a photo of cat",
+      "confidence": 0.9927273988723755,
+      "scores": {
+        "a photo of cat": 0.9927273988723755,
+        "a photo of dog": 0.00679508363828063,
+        "a photo of car": 0.00047717257984913886,
+        "a photo of sunset over the ocean": 4.457293130144535e-07
+      }
+    },
+    {
+      "image": "demo_images/dog.jpg",
+      "predicted": "a photo of dog",
+      "confidence": 0.9994887113571167,
+      "scores": {
+        "a photo of dog": 0.9994887113571167,
+        "a photo of cat": 0.00030211516423150897,
+        "a photo of car": 0.00020928501908201724,
+        "a photo of sunset over the ocean": 3.7111494322061844e-08
+      }
+    },
+    {
+      "image": "demo_images/sunset.jpg",
+      "predicted": "a photo of sunset over the ocean",
+      "confidence": 0.9996663331985474,
+      "scores": {
+        "a photo of sunset over the ocean": 0.9996663331985474,
+        "a photo of dog": 0.0002186851779697463,
+        "a photo of car": 7.188427844084799e-05,
+        "a photo of cat": 4.314198304200545e-05
+      }
+    }
+  ],
+  "bad_images": [],
+  "cached_image_count": 4
+}

@@ -1,0 +1,33 @@
+# PipelineRun CRD - 触发一次流水线运行
+# SKILL.md 推荐方式: 创建 PipelineRun 自定义资源, KubeSphere watch 后触发 Jenkins 构建
+# 注意: 触发前必须检查流水线参数 (SKILL.md CRITICAL 规则)
+#   - IMAGE_TAG: 字符串, 默认 latest
+#   - MANUAL_ROLLBACK: 布尔, 必须以字符串 "false" 传递
+apiVersion: devops.kubesphere.io/v1alpha3
+kind: PipelineRun
+metadata:
+  name: demo-go-http-cd-run-001
+  namespace: demo-project
+spec:
+  pipelineRef:
+    name: demo-go-http-cd
+  parameters:
+    - name: IMAGE_TAG
+      value: "latest"
+    - name: MANUAL_ROLLBACK
+      value: "false"
+---
+# 回滚专用 PipelineRun: 勾选 MANUAL_ROLLBACK=true, 跳过构建和部署, 仅执行回滚
+apiVersion: devops.kubesphere.io/v1alpha3
+kind: PipelineRun
+metadata:
+  name: demo-go-http-cd-rollback-001
+  namespace: demo-project
+spec:
+  pipelineRef:
+    name: demo-go-http-cd
+  parameters:
+    - name: IMAGE_TAG
+      value: "latest"
+    - name: MANUAL_ROLLBACK
+      value: "true"

@@ -1,0 +1,33 @@
+校验文件: installplan-whizard-monitoring.yaml
+
+  [PASS] kind: InstallPlan
+  [PASS] apiVersion: kubesphere.io/v1alpha1
+  [PASS] metadata.name: whizard-monitoring
+  [PASS] metadata.name == spec.extension.name: whizard-monitoring
+  [PASS] spec.extension.version: 1.2.1（精确版本）
+  [PASS] spec.enabled: true
+  [PASS] spec.upgradeStrategy: Manual
+  [PASS] 默认配置：未包含 spec.config
+  [PASS] 未设置 clusterScheduling（单集群 / HostOnly 模式）
+
+结果: 全部通过
+========== 负向用例：故意违规的 manifest ==========
+校验文件: /tmp/bad-installplan.yaml
+
+  [PASS] kind: InstallPlan
+  [PASS] apiVersion: kubesphere.io/v1alpha1
+  [PASS] metadata.name: wrong-name
+  [FAIL] metadata.name(wrong-name) 与 spec.extension.name(whizard-monitoring) 不一致（CRITICAL）
+  [FAIL] version 必须为精确版本，禁止使用 'latest'（CRITICAL）
+  [FAIL] spec.enabled 应为 true，实际为 False
+  [FAIL] spec.upgradeStrategy 应为 Manual，实际为 'Auto'
+  [FAIL] 默认配置场景不应包含 spec.config（如需自定义请显式说明）
+  [PASS] 未设置 clusterScheduling（单集群 / HostOnly 模式）
+
+结果: 失败 5 项
+负向退出码: 0（期望非零）
+
+========== 退出码确认（不经管道） ==========
+正向用例退出码: 0（期望 0）
+负向用例退出码: 1（期望 1）
+校验脚本可重复执行，且能正确拦截违规 manifest。

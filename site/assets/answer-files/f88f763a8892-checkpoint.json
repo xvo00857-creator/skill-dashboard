@@ -1,0 +1,37 @@
+{
+  "run_id": "4803294fb7f826a0",
+  "created_at": "2026-08-12T06:18:55Z",
+  "updated_at": "2026-08-12T06:18:55Z",
+  "task": {
+    "tool": "AHREFS_BATCH_URL_ANALYSIS",
+    "params": {
+      "targets": [
+        {
+          "url": "example.com",
+          "mode": "domain",
+          "protocol": "both"
+        },
+        {
+          "url": "example.org",
+          "mode": "domain",
+          "protocol": "both"
+        },
+        {
+          "url": "example.net",
+          "mode": "subdomains",
+          "protocol": "both"
+        }
+      ],
+      "select": [
+        "domain_rating",
+        "backlinks",
+        "refdomains",
+        "org_traffic"
+      ],
+      "country": "us",
+      "output": "json"
+    }
+  },
+  "batches": [],
+  "status": "blocked_precheck"
+}

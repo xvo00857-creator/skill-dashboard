@@ -1,0 +1,125 @@
+{
+  "_meta": {
+    "note": "Illustrative early-stage SaaS pipeline. 50 paying customers total; ~2 months of CRM/cohort data missing (2026-05 through 2026-06 instrumentation gap). Replace opportunity amounts/stages/close_dates with actual CRM export before presenting.",
+    "customer_count": 50,
+    "data_gap_months": ["2026-05", "2026-06"],
+    "data_gap_note": "Event tracking + CRM stage-history ETL broke for ~2 months; stage transitions during May-Jun 2026 are partially reconstructed from rep logs and billing events. Conversion rates for those quarters carry wide uncertainty.",
+    "as_of": "2026-08-10"
+  },
+  "target_period": {
+    "start_date": "2026-10-01",
+    "end_date": "2026-12-31"
+  },
+  "industry_profile": "saas",
+  "projection_horizon_quarters": 4,
+
+  "opportunities": [
+    {"opp_id": "OPP-001", "stage": "commit",            "amount": 38000, "close_date": "2026-10-15", "age_days": 32,  "last_activity_days": 2},
+    {"opp_id": "OPP-002", "stage": "commit",            "amount": 22000, "close_date": "2026-11-02", "age_days": 48,  "last_activity_days": 5},
+    {"opp_id": "OPP-003", "stage": "verbal",            "amount": 45000, "close_date": "2026-10-28", "age_days": 55,  "last_activity_days": 8},
+    {"opp_id": "OPP-004", "stage": "verbal",            "amount": 18000, "close_date": "2026-11-20", "age_days": 72,  "last_activity_days": 14},
+    {"opp_id": "OPP-005", "stage": "verbal",            "amount": 62000, "close_date": "2026-12-10", "age_days": 190, "last_activity_days": 52},
+    {"opp_id": "OPP-006", "stage": "contract_out",      "amount": 28000, "close_date": "2026-10-22", "age_days": 40,  "last_activity_days": 3},
+    {"opp_id": "OPP-007", "stage": "contract_out",      "amount": 35000, "close_date": "2026-11-15", "age_days": 65,  "last_activity_days": 10},
+    {"opp_id": "OPP-008", "stage": "negotiation",       "amount": 42000, "close_date": "2026-11-05", "age_days": 88,  "last_activity_days": 12},
+    {"opp_id": "OPP-009", "stage": "negotiation",       "amount": 24000, "close_date": "2026-12-01", "age_days": 105, "last_activity_days": 21},
+    {"opp_id": "OPP-010", "stage": "negotiation",       "amount": 55000, "close_date": "2026-12-20", "age_days": 78,  "last_activity_days": 9},
+    {"opp_id": "OPP-011", "stage": "proposal",          "amount": 19000, "close_date": "2026-11-10", "age_days": 35,  "last_activity_days": 6},
+    {"opp_id": "OPP-012", "stage": "proposal",          "amount": 31000, "close_date": "2026-11-28", "age_days": 50,  "last_activity_days": 11},
+    {"opp_id": "OPP-013", "stage": "proposal",          "amount": 27000, "close_date": "2026-12-15", "age_days": 42,  "last_activity_days": 7},
+    {"opp_id": "OPP-014", "stage": "proposal",          "amount": 16000, "close_date": "2027-01-10", "age_days": 28,  "last_activity_days": 4},
+    {"opp_id": "OPP-015", "stage": "demo_completed",    "amount": 21000, "close_date": "2026-12-05", "age_days": 30,  "last_activity_days": 5},
+    {"opp_id": "OPP-016", "stage": "demo_completed",    "amount": 33000, "close_date": "2027-01-20", "age_days": 22,  "last_activity_days": 3},
+    {"opp_id": "OPP-017", "stage": "demo_completed",    "amount": 14000, "close_date": "2026-12-28", "age_days": 18,  "last_activity_days": 2},
+    {"opp_id": "OPP-018", "stage": "demo_completed",    "amount": 26000, "close_date": "2027-02-01", "age_days": 15,  "last_activity_days": 1},
+    {"opp_id": "OPP-019", "stage": "discovery",         "amount": 17000, "close_date": "2027-01-15", "age_days": 12,  "last_activity_days": 2},
+    {"opp_id": "OPP-020", "stage": "discovery",         "amount": 23000, "close_date": "2027-02-10", "age_days": 9,   "last_activity_days": 1},
+    {"opp_id": "OPP-021", "stage": "discovery",         "amount": 12000, "close_date": "2027-01-30", "age_days": 14,  "last_activity_days": 3},
+    {"opp_id": "OPP-022", "stage": "discovery",         "amount": 29000, "close_date": "2027-03-01", "age_days": 7,   "last_activity_days": 1},
+    {"opp_id": "OPP-023", "stage": "discovery",         "amount": 15000, "close_date": "2027-02-20", "age_days": 11,  "last_activity_days": 2},
+    {"opp_id": "OPP-024", "stage": "verbal",            "amount": 38000, "close_date": "2026-10-08", "age_days": 210, "last_activity_days": 70},
+    {"opp_id": "OPP-025", "stage": "negotiation",       "amount": 20000, "close_date": "2026-11-25", "age_days": 160, "last_activity_days": 48}
+  ],
+
+  "historical_conversion": {
+    "_data_quality_note": "last_4q covers 2025-Q3..2026-Q2. 2026-Q2 (Apr-Jun) contains the 2-month instrumentation gap (May-Jun); rates for that quarter are reconstructed from rep logs + billing and carry ±10-15pp uncertainty. last_12q only has 6 quarters of actual history (2025-Q1..2026-Q2); earlier quarters do not exist (company <2 years old). Rates below are observed, not industry-benchmark.",
+    "stage_X_to_Y_pct_last_4q": {
+      "discovery": 0.22,
+      "demo_completed": 0.40,
+      "proposal": 0.48,
+      "negotiation": 0.58,
+      "verbal": 0.70,
+      "commit": 0.82,
+      "contract_out": 0.82
+    },
+    "stage_X_to_Y_pct_last_12q": {
+      "discovery": 0.28,
+      "demo_completed": 0.46,
+      "proposal": 0.55,
+      "negotiation": 0.65,
+      "verbal": 0.76,
+      "commit": 0.86,
+      "contract_out": 0.86
+    },
+    "_inferred_rates_note": "contract_out conversion set equal to commit stage because we have <5 lifetime contract_out deals — insufficient n to measure independently. Inferred, not observed. Treat as MEDIUM confidence at best."
+  },
+
+  "cohorts": [
+    {
+      "cohort_id": "2025-Q1", "acquisition_quarter": "2025-Q1", "starting_arr": 120000,
+      "gross_retention_pct_q1": 91, "gross_retention_pct_q2": 88, "gross_retention_pct_q3": 86, "gross_retention_pct_q4": 84,
+      "expansion_arr_pct_q1": 3,  "expansion_arr_pct_q2": 5,  "expansion_arr_pct_q3": 6,  "expansion_arr_pct_q4": 7
+    },
+    {
+      "cohort_id": "2025-Q2", "acquisition_quarter": "2025-Q2", "starting_arr": 160000,
+      "gross_retention_pct_q1": 90, "gross_retention_pct_q2": 87, "gross_retention_pct_q3": 85, "gross_retention_pct_q4": 83,
+      "expansion_arr_pct_q1": 4,  "expansion_arr_pct_q2": 6,  "expansion_arr_pct_q3": 7,  "expansion_arr_pct_q4": 8
+    },
+    {
+      "cohort_id": "2025-Q3", "acquisition_quarter": "2025-Q3", "starting_arr": 195000,
+      "gross_retention_pct_q1": 89, "gross_retention_pct_q2": 86, "gross_retention_pct_q3": 84, "gross_retention_pct_q4": null,
+      "expansion_arr_pct_q1": 3,  "expansion_arr_pct_q2": 5,  "expansion_arr_pct_q3": 6,  "expansion_arr_pct_q4": null
+    },
+    {
+      "cohort_id": "2025-Q4", "acquisition_quarter": "2025-Q4", "starting_arr": 180000,
+      "gross_retention_pct_q1": 88, "gross_retention_pct_q2": 85, "gross_retention_pct_q3": null, "gross_retention_pct_q4": null,
+      "expansion_arr_pct_q1": 2,  "expansion_arr_pct_q2": 4,  "expansion_arr_pct_q3": null, "expansion_arr_pct_q4": null
+    },
+    {
+      "cohort_id": "2026-Q1", "acquisition_quarter": "2026-Q1", "starting_arr": 105000,
+      "gross_retention_pct_q1": 86, "gross_retention_pct_q2": null, "gross_retention_pct_q3": null, "gross_retention_pct_q4": null,
+      "expansion_arr_pct_q1": 2,  "expansion_arr_pct_q2": null, "expansion_arr_pct_q3": null, "expansion_arr_pct_q4": null
+    },
+    {
+      "cohort_id": "2026-Q2", "acquisition_quarter": "2026-Q2", "starting_arr": 75000,
+      "_note": "Acquired during the 2-month data gap. Starting ARR from billing system; retention/expansion not yet observable — will use conservative defaults.",
+      "gross_retention_pct_q1": null, "gross_retention_pct_q2": null, "gross_retention_pct_q3": null, "gross_retention_pct_q4": null,
+      "expansion_arr_pct_q1": null, "expansion_arr_pct_q2": null, "expansion_arr_pct_q3": null, "expansion_arr_pct_q4": null
+    }
+  ],
+
+  "funnel_stages": [
+    {
+      "stage_name": "discovery_to_demo",
+      "_note": "6 quarters of history (2025-Q1..2026-Q2). 2026-Q2 partially reconstructed due to data gap. n=6 < 12; CoV estimate is unstable.",
+      "conversion_pct_history": [30, 28, 33, 25, 22, 18]
+    },
+    {
+      "stage_name": "demo_to_proposal",
+      "conversion_pct_history": [50, 48, 52, 45, 42, 38]
+    },
+    {
+      "stage_name": "proposal_to_negotiation",
+      "conversion_pct_history": [60, 55, 65, 50, 48, 45]
+    },
+    {
+      "stage_name": "negotiation_to_verbal",
+      "conversion_pct_history": [70, 68, 72, 65, 60, 55]
+    },
+    {
+      "stage_name": "verbal_to_commit",
+      "_note": "High variance in early stage; small per-quarter n (3-8 deals/quarter).",
+      "conversion_pct_history": [80, 70, 85, 60, 75, 55]
+    }
+  ]
+}

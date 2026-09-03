@@ -1,0 +1,104 @@
+{
+  "summary": {
+    "total_endpoints": 4,
+    "endpoints_with_issues": 1,
+    "total_issues": 13,
+    "errors": 0,
+    "warnings": 12,
+    "info": 1,
+    "score": 90.75
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "category": "naming",
+      "message": "Resource segment 'batch_create' should use kebab-case",
+      "path": "/paths//orders/batch_create",
+      "suggestion": "Use kebab-case for 'batch_create' (e.g., 'user-profiles', 'order-items')"
+    },
+    {
+      "severity": "warning",
+      "category": "documentation",
+      "message": "Missing summary for POST /orders/batch_create",
+      "path": "/paths//orders/batch_create/post/summary",
+      "suggestion": "Add a brief summary describing what this operation does"
+    },
+    {
+      "severity": "info",
+      "category": "documentation",
+      "message": "Missing description for POST /orders/batch_create",
+      "path": "/paths//orders/batch_create/post/description",
+      "suggestion": "Add a detailed description for better API documentation"
+    },
+    {
+      "severity": "warning",
+      "category": "responses",
+      "message": "Missing error responses for POST /orders/batch_create",
+      "path": "/paths//orders/batch_create/post/responses",
+      "suggestion": "Define common error responses (400, 404, 500, etc.)"
+    },
+    {
+      "severity": "warning",
+      "category": "naming",
+      "message": "Property 'total_amount' in schema 'Order' should use camelCase",
+      "path": "/components/schemas/Order/properties/total_amount",
+      "suggestion": "Use camelCase for property names (e.g., 'firstName', 'createdAt')"
+    },
+    {
+      "severity": "warning",
+      "category": "naming",
+      "message": "Property 'customer_id' in schema 'BatchOrderItem' should use camelCase",
+      "path": "/components/schemas/BatchOrderItem/properties/customer_id",
+      "suggestion": "Use camelCase for property names (e.g., 'firstName', 'createdAt')"
+    },
+    {
+      "severity": "warning",
+      "category": "naming",
+      "message": "Property 'product_list' in schema 'BatchOrderItem' should use camelCase",
+      "path": "/components/schemas/BatchOrderItem/properties/product_list",
+      "suggestion": "Use camelCase for property names (e.g., 'firstName', 'createdAt')"
+    },
+    {
+      "severity": "warning",
+      "category": "naming",
+      "message": "Property 'total_price' in schema 'BatchOrderItem' should use camelCase",
+      "path": "/components/schemas/BatchOrderItem/properties/total_price",
+      "suggestion": "Use camelCase for property names (e.g., 'firstName', 'createdAt')"
+    },
+    {
+      "severity": "warning",
+      "category": "naming",
+      "message": "Property 'webhook_secret' in schema 'BatchOrderItem' should use camelCase",
+      "path": "/components/schemas/BatchOrderItem/properties/webhook_secret",
+      "suggestion": "Use camelCase for property names (e.g., 'firstName', 'createdAt')"
+    },
+    {
+      "severity": "warning",
+      "category": "naming",
+      "message": "Property 'card_last_four' in schema 'BatchOrderItem' should use camelCase",
+      "path": "/components/schemas/BatchOrderItem/properties/card_last_four",
+      "suggestion": "Use camelCase for property names (e.g., 'firstName', 'createdAt')"
+    },
+    {
+      "severity": "warning",
+      "category": "naming",
+      "message": "Property 'internal_note' in schema 'BatchOrderItem' should use camelCase",
+      "path": "/components/schemas/BatchOrderItem/properties/internal_note",
+      "suggestion": "Use camelCase for property names (e.g., 'firstName', 'createdAt')"
+    },
+    {
+      "severity": "warning",
+      "category": "naming",
+      "message": "Property 'order_list' in schema 'BatchCreateRequest' should use camelCase",
+      "path": "/components/schemas/BatchCreateRequest/properties/order_list",
+      "suggestion": "Use camelCase for property names (e.g., 'firstName', 'createdAt')"
+    },
+    {
+      "severity": "warning",
+      "category": "naming",
+      "message": "Property 'idempotency_key' in schema 'BatchCreateRequest' should use camelCase",
+      "path": "/components/schemas/BatchCreateRequest/properties/idempotency_key",
+      "suggestion": "Use camelCase for property names (e.g., 'firstName', 'createdAt')"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "_note": "【模拟数据】此文件为演示用途创建，非真实团队数据。5人产品团队本周待办。",
+  "team": "Spring产品-豆包和Dola-Dola（模拟）",
+  "week": "2026-W32 (2026-08-03 ~ 2026-08-09)",
+  "generated_at": "2026-08-10",
+  "members": [
+    {"id": 1, "name": "张三（模拟）", "role": "产品经理"},
+    {"id": 2, "name": "李四（模拟）", "role": "产品经理"},
+    {"id": 3, "name": "王五（模拟）", "role": "设计师"},
+    {"id": 4, "name": "赵六（模拟）", "role": "前端开发"},
+    {"id": 5, "name": "钱七（模拟）", "role": "后端开发"}
+  ],
+  "todos": [
+    {"id": "T-001", "assignee": 1, "title": "完成Q3产品路线图评审", "due": "2026-08-07", "status": "done", "priority": "high"},
+    {"id": "T-002", "assignee": 1, "title": "撰写用户调研报告", "due": "2026-08-09", "status": "in_progress", "priority": "high"},
+    {"id": "T-003", "assignee": 2, "title": "竞品分析文档", "due": "2026-08-05", "status": "in_progress", "priority": "medium"},
+    {"id": "T-004", "assignee": 2, "title": "需求优先级排序会议", "due": "2026-08-08", "status": "done", "priority": "medium"},
+    {"id": "T-005", "assignee": 3, "title": "首页改版高保真设计稿", "due": "2026-08-06", "status": "in_progress", "priority": "high"},
+    {"id": "T-006", "assignee": 3, "title": "设计规范文档更新", "due": "2026-08-10", "status": "todo", "priority": "low"},
+    {"id": "T-007", "assignee": 4, "title": "用户中心页面开发", "due": "2026-08-09", "status": "done", "priority": "high"},
+    {"id": "T-008", "assignee": 4, "title": "性能优化-首屏加载", "due": "2026-08-04", "status": "in_progress", "priority": "high"},
+    {"id": "T-009", "assignee": 5, "title": "API接口文档编写", "due": "2026-08-08", "status": "done", "priority": "medium"},
+    {"id": "T-010", "assignee": 5, "title": "数据库迁移脚本", "due": "2026-08-06", "status": "in_progress", "priority": "high"},
+    {"id": "T-011", "assignee": 5, "title": "单元测试覆盖率提升", "due": "2026-08-12", "status": "todo", "priority": "low"}
+  ]
+}

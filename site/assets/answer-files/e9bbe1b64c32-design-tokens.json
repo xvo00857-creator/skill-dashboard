@@ -1,0 +1,212 @@
+{
+  "meta": {
+    "name": "collab-design-tokens",
+    "version": "1.0.0",
+    "style": "modern",
+    "generated": "2026-08-11",
+    "accessibility": "WCAG 2.1 AA",
+    "baseUnit": "4px",
+    "grid": "8pt",
+    "description": "中文企业协作产品轻量界面设计系统令牌"
+  },
+  "colors": {
+    "primary": {
+      "50": "#ECF2FF",
+      "100": "#D5E2FF",
+      "200": "#B4CBFF",
+      "300": "#8FB1FF",
+      "400": "#5C8EFF",
+      "500": "#165DFF",
+      "600": "#124CD1",
+      "700": "#0E3A9E",
+      "800": "#09276B",
+      "900": "#05163D"
+    },
+    "neutral": {
+      "50": "#F7F8FA",
+      "100": "#F2F3F5",
+      "200": "#E5E6EB",
+      "300": "#C9CDD4",
+      "400": "#86909C",
+      "500": "#6B7280",
+      "600": "#4E5969",
+      "700": "#373D47",
+      "800": "#272E3B",
+      "900": "#1D2129"
+    },
+    "success": {
+      "50": "#EBF9EE",
+      "100": "#D1F2D9",
+      "200": "#ADE7BB",
+      "300": "#85DB99",
+      "400": "#4CCA6A",
+      "500": "#00B42A",
+      "600": "#009422",
+      "700": "#00701A",
+      "800": "#004C12",
+      "900": "#002B0A"
+    },
+    "warning": {
+      "50": "#FFF5EB",
+      "100": "#FFE8D1",
+      "200": "#FFD5AD",
+      "300": "#FFC185",
+      "400": "#FFA44C",
+      "500": "#FF7D00",
+      "600": "#D16600",
+      "700": "#9E4E00",
+      "800": "#6B3400",
+      "900": "#3D1E00"
+    },
+    "error": {
+      "50": "#FEF0F0",
+      "100": "#FDDCDC",
+      "200": "#FCC2C2",
+      "300": "#FAA3A3",
+      "400": "#F87979",
+      "500": "#F53F3F",
+      "600": "#C93434",
+      "700": "#982727",
+      "800": "#671A1A",
+      "900": "#3B0F0F"
+    },
+    "info": {
+      "50": "#ECF2FF",
+      "100": "#D5E2FF",
+      "500": "#165DFF",
+      "600": "#124CD1",
+      "700": "#0E3A9E"
+    },
+    "surface": {
+      "page": "#F7F8FA",
+      "surface": "#FFFFFF",
+      "subtle": "#F2F3F5",
+      "muted": "#E5E6EB",
+      "overlay": "rgba(29,33,41,0.6)"
+    },
+    "text": {
+      "primary": "#1D2129",
+      "secondary": "#373D47",
+      "tertiary": "#6B7280",
+      "disabled": "#86909C",
+      "inverse": "#FFFFFF",
+      "link": "#124CD1",
+      "linkHover": "#0E3A9E"
+    },
+    "border": {
+      "default": "#C9CDD4",
+      "strong": "#86909C",
+      "focus": "#165DFF",
+      "error": "#F53F3F"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "sans": "Inter, -apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, Noto Sans SC, Helvetica Neue, Arial, sans-serif",
+      "mono": "JetBrains Mono, Fira Code, SF Mono, PingFang SC, Microsoft YaHei, Consolas, monospace"
+    },
+    "fontSize": {
+      "xs": "12px",
+      "sm": "14px",
+      "base": "16px",
+      "lg": "20px",
+      "xl": "25px",
+      "2xl": "31px",
+      "3xl": "39px",
+      "4xl": "49px"
+    },
+    "fontWeight": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    },
+    "lineHeight": {
+      "none": 1,
+      "tight": 1.25,
+      "snug": 1.375,
+      "normal": 1.5,
+      "relaxed": 1.625,
+      "loose": 2
+    }
+  },
+  "spacing": {
+    "0": "0px",
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "20px",
+    "6": "24px",
+    "8": "32px",
+    "10": "40px",
+    "12": "48px",
+    "16": "64px"
+  },
+  "borders": {
+    "width": {
+      "thin": "1px",
+      "normal": "2px",
+      "thick": "4px"
+    },
+    "radius": {
+      "none": "0px",
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "full": "9999px"
+    }
+  },
+  "shadows": {
+    "none": "none",
+    "xs": "0 1px 2px rgba(29,33,41,0.06)",
+    "sm": "0 1px 3px rgba(29,33,41,0.08), 0 1px 2px rgba(29,33,41,0.04)",
+    "md": "0 4px 6px rgba(29,33,41,0.07), 0 2px 4px rgba(29,33,41,0.04)",
+    "lg": "0 10px 15px rgba(29,33,41,0.08), 0 4px 6px rgba(29,33,41,0.04)",
+    "xl": "0 20px 25px rgba(29,33,41,0.10), 0 8px 10px rgba(29,33,41,0.04)",
+    "focus": "0 0 0 2px #B4CBFF",
+    "focusError": "0 0 0 2px #FCC2C2"
+  },
+  "animation": {
+    "duration": {
+      "fast": "150ms",
+      "base": "250ms",
+      "slow": "400ms"
+    },
+    "easing": {
+      "standard": "cubic-bezier(0.4,0,0.2,1)",
+      "in": "cubic-bezier(0.4,0,1,1)",
+      "out": "cubic-bezier(0,0,0.2,1)"
+    }
+  },
+  "zIndex": {
+    "base": 0,
+    "dropdown": 1000,
+    "sticky": 1100,
+    "fixed": 1200,
+    "modalBackdrop": 1300,
+    "modal": 1400,
+    "popover": 1500,
+    "tooltip": 1600,
+    "notification": 1700
+  },
+  "sizing": {
+    "button": {
+      "sm": { "height": "32px", "paddingX": "12px", "fontSize": "14px", "iconSize": "16px" },
+      "md": { "height": "40px", "paddingX": "16px", "fontSize": "16px", "iconSize": "20px" },
+      "lg": { "height": "48px", "paddingX": "20px", "fontSize": "18px", "iconSize": "24px" }
+    },
+    "input": {
+      "sm": { "height": "32px", "paddingX": "12px" },
+      "md": { "height": "40px", "paddingX": "12px" },
+      "lg": { "height": "48px", "paddingX": "16px" }
+    },
+    "icon": {
+      "sm": "16px",
+      "md": "20px",
+      "lg": "24px"
+    },
+    "touchTargetMin": "44px"
+  }
+}

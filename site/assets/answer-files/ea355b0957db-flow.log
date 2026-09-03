@@ -1,0 +1,38 @@
+2026-08-12 09:56:21 [INFO] === agencyzoom_flow 启动 run_id=20260812T015621Z ===
+2026-08-12 09:56:21 [INFO] 任务文件: tasks.example.json
+2026-08-12 09:56:21 [INFO] MCP 端点: https://rube.app/mcp
+2026-08-12 09:56:21 [INFO] 阶段 -> PRECHECK
+2026-08-12 09:56:21 [INFO] MCP 端点连通性: 不可达 (DNS 解析失败: [Errno 8] nodename nor servname provided, or not known)
+2026-08-12 09:56:21 [ERROR] PRECHECK 未通过: MCP 端点不可达: DNS 解析失败: [Errno 8] nodename nor servname provided, or not known
+2026-08-12 09:56:21 [ERROR] 预检未通过，安全退出。未执行任何 Agencyzoom 操作。
+2026-08-12 09:56:21 [INFO] 阶段 -> REPORT
+2026-08-12 09:56:21 [INFO] ===== 执行报告 =====
+2026-08-12 09:56:21 [INFO] run_id: 20260812T015621Z
+2026-08-12 09:56:21 [INFO] 阶段: REPORT
+2026-08-12 09:56:21 [INFO]   SUCCEEDED: 0
+2026-08-12 09:56:21 [INFO]   FAILED: 0
+2026-08-12 09:56:21 [INFO]   BLOCKED: 0
+2026-08-12 09:56:21 [INFO]   PENDING: 0
+2026-08-12 09:56:21 [INFO]   RETRYING: 0
+2026-08-12 09:56:21 [INFO] 阻塞原因: MCP 端点不可达: DNS 解析失败: [Errno 8] nodename nor servname provided, or not known
+2026-08-12 09:56:21 [INFO] 状态文件: ./.azflow/state.json
+2026-08-12 09:56:21 [INFO] 日志文件: ./.azflow/flow.log
+2026-08-12 09:56:32 [INFO] === agencyzoom_flow 启动 run_id=20260812T015621Z ===
+2026-08-12 09:56:32 [INFO] 任务文件: tasks.example.json
+2026-08-12 09:56:32 [INFO] MCP 端点: https://rube.app/mcp
+2026-08-12 09:56:32 [INFO] 阶段 -> PRECHECK
+2026-08-12 09:56:32 [INFO] MCP 端点连通性: 不可达 (DNS 解析失败: [Errno 8] nodename nor servname provided, or not known)
+2026-08-12 09:56:32 [ERROR] PRECHECK 未通过: MCP 端点不可达: DNS 解析失败: [Errno 8] nodename nor servname provided, or not known
+2026-08-12 09:56:32 [ERROR] 预检未通过，安全退出。未执行任何 Agencyzoom 操作。
+2026-08-12 09:56:32 [INFO] 阶段 -> REPORT
+2026-08-12 09:56:32 [INFO] ===== 执行报告 =====
+2026-08-12 09:56:32 [INFO] run_id: 20260812T015621Z
+2026-08-12 09:56:32 [INFO] 阶段: REPORT
+2026-08-12 09:56:32 [INFO]   SUCCEEDED: 0
+2026-08-12 09:56:32 [INFO]   FAILED: 0
+2026-08-12 09:56:32 [INFO]   BLOCKED: 0
+2026-08-12 09:56:32 [INFO]   PENDING: 0
+2026-08-12 09:56:32 [INFO]   RETRYING: 0
+2026-08-12 09:56:32 [INFO] 阻塞原因: MCP 端点不可达: DNS 解析失败: [Errno 8] nodename nor servname provided, or not known
+2026-08-12 09:56:32 [INFO] 状态文件: ./.azflow/state.json
+2026-08-12 09:56:32 [INFO] 日志文件: ./.azflow/flow.log

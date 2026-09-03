@@ -1,0 +1,184 @@
+{
+  "summary": {
+    "eval_time": "2026-08-12 04:30:12",
+    "agent": "mock_agent.py",
+    "mode": "agent",
+    "n_problems": 10,
+    "n_samples_per_problem": 1,
+    "timeout_seconds": 5,
+    "passed": 4,
+    "pass_rate_at1": 0.4,
+    "pass_at_k": {
+      "pass@1": 0.4
+    },
+    "failure_breakdown": {
+      "wrong_answer": 1,
+      "syntax_error": 1,
+      "runtime_error": 1,
+      "empty_generation": 1,
+      "missing_function": 1,
+      "timeout": 1
+    },
+    "by_category": {
+      "列表": {
+        "total": 3,
+        "passed": 2,
+        "pass_rate": 0.6667
+      },
+      "字符串": {
+        "total": 4,
+        "passed": 1,
+        "pass_rate": 0.25
+      },
+      "数学": {
+        "total": 2,
+        "passed": 1,
+        "pass_rate": 0.5
+      },
+      "算术": {
+        "total": 1,
+        "passed": 0,
+        "pass_rate": 0.0
+      }
+    },
+    "by_difficulty": {
+      "中等": {
+        "total": 3,
+        "passed": 3,
+        "pass_rate": 1.0
+      },
+      "入门": {
+        "total": 3,
+        "passed": 0,
+        "pass_rate": 0.0
+      },
+      "简单": {
+        "total": 4,
+        "passed": 1,
+        "pass_rate": 0.25
+      }
+    }
+  },
+  "results": [
+    {
+      "task_id": "MiniEval/0",
+      "category": "算术",
+      "difficulty": "入门",
+      "entry_point": "add",
+      "status": "wrong_answer",
+      "detail": "",
+      "duration": 0.037,
+      "n_samples": 1,
+      "n_correct": 0,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/1",
+      "category": "字符串",
+      "difficulty": "入门",
+      "entry_point": "reverse_string",
+      "status": "syntax_error",
+      "detail": "SyntaxError: unexpected EOF while parsing (<generated>, line 3)",
+      "duration": 0.0,
+      "n_samples": 1,
+      "n_correct": 0,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/2",
+      "category": "列表",
+      "difficulty": "入门",
+      "entry_point": "find_max",
+      "status": "runtime_error",
+      "detail": "ZeroDivisionError: division by zero",
+      "duration": 0.035,
+      "n_samples": 1,
+      "n_correct": 0,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/3",
+      "category": "数学",
+      "difficulty": "简单",
+      "entry_point": "factorial",
+      "status": "empty_generation",
+      "detail": "生成结果为空",
+      "duration": 0.0,
+      "n_samples": 1,
+      "n_correct": 0,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/4",
+      "category": "字符串",
+      "difficulty": "简单",
+      "entry_point": "is_palindrome",
+      "status": "missing_function",
+      "detail": "生成代码定义了函数但未找到入口函数 is_palindrome",
+      "duration": 0.0,
+      "n_samples": 1,
+      "n_correct": 0,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/5",
+      "category": "字符串",
+      "difficulty": "简单",
+      "entry_point": "count_vowels",
+      "status": "timeout",
+      "detail": "执行超过 5 秒",
+      "duration": 5.008,
+      "n_samples": 1,
+      "n_correct": 0,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/6",
+      "category": "列表",
+      "difficulty": "简单",
+      "entry_point": "remove_duplicates",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.061,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/7",
+      "category": "数学",
+      "difficulty": "中等",
+      "entry_point": "is_prime",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.038,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/8",
+      "category": "列表",
+      "difficulty": "中等",
+      "entry_point": "merge_sorted",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.039,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    },
+    {
+      "task_id": "MiniEval/9",
+      "category": "字符串",
+      "difficulty": "中等",
+      "entry_point": "longest_word",
+      "status": "passed",
+      "detail": "",
+      "duration": 0.036,
+      "n_samples": 1,
+      "n_correct": 1,
+      "samples": null
+    }
+  ]
+}

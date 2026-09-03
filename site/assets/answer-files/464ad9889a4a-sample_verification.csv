@@ -1,0 +1,11 @@
+﻿order_id,raw_store,amount_raw,is_duplicate,canonical_id,canonical_name,match_type,distance,resolved,amount_used_in_sum
+O001,星巴克咖啡(国贸店),35.0,False,S001,星巴克咖啡（国贸店）,exact,,True,35.0
+O002, 星巴克咖啡（国贸店） ,42.5,False,S001,星巴克咖啡（国贸店）,exact,,True,42.5
+O003,Starbucks 国贸店,38.0,False,,,unresolved,0.9133,False,38.0
+O005,luckin coffee 望京店,22.0,False,,,unresolved,0.8161,False,22.0
+O001,星巴克咖啡(国贸店),35.0,True,S001,星巴克咖啡（国贸店）,exact,,True,35.0
+O007,麦当劳(中关村店),55.0,False,S003,麦当劳（中关村店）,exact,,True,55.0
+O008,,29.9,False,,,unresolved,,False,29.9
+O009,喜茶（三里屯店）,33.0,False,,,unresolved,0.8735,False,33.0
+O011,瑞幸咖啡(望京店),-5.0,False,S002,瑞幸咖啡（望京店）,exact,,True,-5.0
+,星巴克咖啡(国贸店),40.0,False,S001,星巴克咖啡（国贸店）,exact,,True,40.0

@@ -1,0 +1,10 @@
+apiVersion: kubesphere.io/v1alpha1
+kind: InstallPlan
+metadata:
+  name: whizard-monitoring
+spec:
+  enabled: true
+  extension:
+    name: whizard-monitoring
+    version: 1.2.1
+  upgradeStrategy: Manual

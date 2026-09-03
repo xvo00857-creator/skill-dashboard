@@ -1,0 +1,68 @@
+{
+  "overall": {
+    "score": 82.42,
+    "grade": "B",
+    "totalEndpoints": 4
+  },
+  "api_info": {
+    "title": "Orders API",
+    "version": "1.1.0",
+    "description": "\u8ba2\u5355\u670d\u52a1 REST API\uff0c\u63d0\u4f9b\u8ba2\u5355\u7684\u67e5\u8be2\u3001\u5355\u4e2a\u521b\u5efa\u4e0e\u6279\u91cf\u521b\u5efa\u80fd\u529b\u3002\u6240\u6709\u63a5\u53e3\u5747\u9700 Bearer Token \u8ba4\u8bc1\uff0c\u8fd4\u56de JSON\uff1b\u6279\u91cf\u63a5\u53e3\u652f\u6301 Idempotency-Key \u5e42\u7b49\u3002",
+    "total_paths": 3,
+    "openapi_version": "3.0.3"
+  },
+  "categories": {
+    "consistency": {
+      "score": 90.24,
+      "grade": "A",
+      "weight": 30.0,
+      "weightedScore": 27.07,
+      "issues": [],
+      "recommendations": []
+    },
+    "documentation": {
+      "score": 90.0,
+      "grade": "A",
+      "weight": 20.0,
+      "weightedScore": 18.0,
+      "issues": [],
+      "recommendations": []
+    },
+    "security": {
+      "score": 84.0,
+      "grade": "B",
+      "weight": 20.0,
+      "weightedScore": 16.8,
+      "issues": [],
+      "recommendations": []
+    },
+    "usability": {
+      "score": 63.01,
+      "grade": "D",
+      "weight": 15.0,
+      "weightedScore": 9.45,
+      "issues": [],
+      "recommendations": [
+        "Consider adding HATEOAS links for better discoverability",
+        "Enhance developer experience with better examples"
+      ]
+    },
+    "performance": {
+      "score": 74.0,
+      "grade": "C",
+      "weight": 15.0,
+      "weightedScore": 11.1,
+      "issues": [],
+      "recommendations": [
+        "Review caching strategies for better performance",
+        "Consider field selection parameters for large responses"
+      ]
+    }
+  },
+  "topRecommendations": [
+    "Usability: Consider adding HATEOAS links for better discoverability",
+    "Usability: Enhance developer experience with better examples",
+    "Performance: Review caching strategies for better performance",
+    "Performance: Consider field selection parameters for large responses"
+  ]
+}

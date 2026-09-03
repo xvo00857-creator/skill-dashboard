@@ -1,0 +1,127 @@
+--- internal.md	2026-08-10 20:07:42
++++ external.md	2026-08-10 20:08:16
+@@ -1,41 +1,102 @@
+-# Sample Specification
++# Stripe Connect 集成规范
+ 
+-## Table of Contents
++> [!IMPORTANT]
++> 本文档为外部发布版本，面向正在与我方进行 Stripe Connect 集成的外部工程团队。文中已移除内部排期、人员、内部系统名称与实现细节；涉及商务与交付安排的内容以双方签署的 SOW 为准。
+ 
+-- Goals
+-- Architecture
+-- Risks
++## 文档信息
+ 
+-## Goals
++| 项目 | 内容 |
++|------|------|
++| 文档状态 | 对外发布 |
++| 适用读者 | 外部集成工程团队 |
++| 技术领域 | 支付集成 / Stripe Connect |
++| 反馈渠道 | 通过双方约定的对接窗口反馈 |
+ 
+-We will integrate **Stripe Connect** with the existing checkout flow.
++## 目录
+ 
+-| Phase | Timeline | Owner |
+-|-------|----------|-------|
+-| Design | Week 1 | jane |
+-| Build | Week 2-3 | dev team |
+-| Ship | Week 4 | jane |
++- 目标与范围
++- 前提条件
++- 架构概览
++- 集成阶段
++- 风险与注意事项
++- 术语表
++- 反馈与支持
++- 变更记录
++- 免责声明
+ 
+-## Architecture
++## 目标与范围
+ 
+-The integration uses webhooks for async events.
++本规范描述与 **Stripe Connect** 在结账流程中的集成方式，覆盖集成目标、整体架构、阶段划分与已知风险。
+ 
++本文档不包含具体的 API 密钥、账户 ID、Webhook 签名密钥等敏感凭据；此类信息通过安全渠道单独提供。
++
++## 前提条件
++
++在开始集成前，外部团队应具备以下条件：
++
++1. 已拥有可用于开发与测试的 Stripe 账户，并具备 Connect 相关权限
++2. 已阅读 Stripe 官方 Connect 文档，理解 Platform、Connected Account、Webhook 等基本概念
++3. 具备处理异步事件与幂等消费的工程能力
++4. 已与我方确认集成范围、测试环境与上线窗口
++
++## 架构概览
++
++集成通过 Webhook 接收 Stripe 的异步事件，并据此更新订单状态。事件处理采用幂等设计，以应对 Stripe 的至少一次投递语义。
++
+ ```python
+ def handle_webhook(event):
+     if event.type == "payment.succeeded":
+-        mark_paid(event.data.object.id)
++        # 在此处更新订单的支付状态
++        # 实现需保证幂等：同一事件重复投递不应产生副作用
++        pass
+ ```
+ 
+ > [!NOTE]
+-> All webhook handlers must be idempotent.
++> 所有 Webhook 处理程序必须具备幂等性。Stripe 可能对同一事件进行多次投递，消费端需以事件 ID 做去重。
+ 
+ > [!WARNING]
+-> Tax calculation has edge cases for digital goods in the EU.
++> 数字商品在欧盟（EU）地区的税务计算存在边界情况，涉及 VAT 判定与税率适用。集成方应结合自身业务与税务顾问意见处理。
+ 
+-## Risks
++## 集成阶段
+ 
+-1. Webhook delivery delays
+-2. Tax calculation edge cases for VAT
+-3. Refund cascading across multi-party transfers
++集成工作按阶段推进，各阶段的职责划分如下：
+ 
+-See [Stripe Connect docs](https://stripe.com/docs/connect) for details.
++| 阶段 | 主要工作 | 负责角色 |
++|------|----------|----------|
++| 设计 | 集成方案设计与接口对齐 | 集成负责人 |
++| 构建 | 接口开发与联调测试 | 工程团队 |
++| 发布 | 上线验证与生产切换 | 集成负责人 |
++
++具体的时间安排以双方项目计划为准，本文档不承诺具体日期。
++
++## 风险与注意事项
++
++1. Webhook 投递延迟：异步事件可能存在秒级到分钟级延迟，业务流程不应假设事件即时到达
++2. VAT 税务计算边界：数字商品在欧盟地区的税率判定存在特殊情况
++3. 多方转账退款级联：涉及多方分账的退款可能触发级联资金流转，需关注失败与重试路径
++
++更多信息请参阅 [Stripe Connect 官方文档](https://stripe.com/docs/connect)。
++
++## 术语表
++
++| 术语 | 含义 |
++|------|------|
++| Platform | 运营 Connect 平台的一方，即我方 |
++| Connected Account | 通过 Platform 接入的第三方账户，即外部集成方 |
++| Webhook | Stripe 向接收方推送事件的 HTTP 回调机制 |
++| 幂等 | 同一操作执行一次与执行多次产生相同效果的特性 |
++| VAT | 增值税（Value-Added Tax） |
++
++## 反馈与支持
++
++如对本文档内容有疑问或改进建议，请通过双方约定的对接窗口反馈。我们会根据反馈持续更新本文档。
++
++## 变更记录
++
++| 版本 | 日期 | 说明 |
++|------|------|------|
++| 1.0-external | 对外发布 | 首次外部发布版本；基于内部规范脱敏生成 |
++
++## 免责声明
++
++本文档仅作为集成参考，不构成任何法律、税务或财务建议。文中涉及的第三方服务（包括但不限于 Stripe）的功能与接口以其官方文档与服务条款为准。我方不对因依赖本文档而产生的任何直接或间接损失承担责任。

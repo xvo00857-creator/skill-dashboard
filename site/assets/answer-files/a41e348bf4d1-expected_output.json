@@ -1,0 +1,194 @@
+{
+  "product": "智能随行杯",
+  "generated_at": "2026-08-13T22:42:55",
+  "summary": {
+    "total_feedback": 12,
+    "unique_feedback": 10,
+    "duplicate_feedback": 2,
+    "theme_count": 9,
+    "P0": 1,
+    "P1": 2,
+    "P2": 4,
+    "P3": 2
+  },
+  "themes": [
+    {
+      "theme_id": "safety-material",
+      "theme": "材质与食品安全",
+      "count": 1,
+      "priority": "P0",
+      "severity": "high",
+      "is_safety_related": true,
+      "is_core_selling_point": false,
+      "feedback_ids": [
+        "fb-005"
+      ],
+      "representative_feedback": "新杯子打开有一股塑料味，装热水味道更大，会不会有毒？食品接触材料合格吗？",
+      "next_actions": [
+        "待食品接触材料报告提供后核实；报告齐备前，对外口径不得宣称任何认证或检测结论。"
+      ],
+      "pending_items": [
+        "食品接触材料报告"
+      ]
+    },
+    {
+      "theme_id": "appearance-build",
+      "theme": "外观与做工",
+      "count": 2,
+      "priority": "P1",
+      "severity": "high",
+      "is_safety_related": false,
+      "is_core_selling_point": false,
+      "feedback_ids": [
+        "fb-010",
+        "fb-011"
+      ],
+      "representative_feedback": "用了三天杯口掉漆，做工一般。",
+      "next_actions": [
+        "排查产线外观质检标准，确认是否批次问题；必要时留样并联系供应商。"
+      ],
+      "pending_items": []
+    },
+    {
+      "theme_id": "insulation",
+      "theme": "保温性能",
+      "count": 1,
+      "priority": "P1",
+      "severity": "high",
+      "is_safety_related": false,
+      "is_core_selling_point": true,
+      "feedback_ids": [
+        "fb-001"
+      ],
+      "representative_feedback": "杯子装了开水6小时就温了，根本达不到12小时保温，通勤到公司就凉了。",
+      "next_actions": [
+        "安排内部12小时保温复测，记录实测温度曲线；如需对外引用检测结论，须先取得第三方报告（待补项）。"
+      ],
+      "pending_items": []
+    },
+    {
+      "theme_id": "lid-cleaning",
+      "theme": "杯盖与可拆洗",
+      "count": 1,
+      "priority": "P2",
+      "severity": "medium",
+      "is_safety_related": false,
+      "is_core_selling_point": true,
+      "feedback_ids": [
+        "fb-002"
+      ],
+      "representative_feedback": "杯盖拆不开，缝隙里全是茶垢，洗不干净，可拆洗就是个噱头。",
+      "next_actions": [
+        "核查杯盖可拆洗结构与密封圈卫生死角，更新清洗指引并验证拆装体验。"
+      ],
+      "pending_items": []
+    },
+    {
+      "theme_id": "sealing-leak",
+      "theme": "密封与漏水",
+      "count": 1,
+      "priority": "P2",
+      "severity": "high",
+      "is_safety_related": false,
+      "is_core_selling_point": false,
+      "feedback_ids": [
+        "fb-004"
+      ],
+      "representative_feedback": "倒过来放包里漏水，文件都被泡了，密封圈是不是有问题？",
+      "next_actions": [
+        "做倒置与通勤颠簸密封测试，定位漏点（密封圈/杯口/杯盖），输出改进方案。"
+      ],
+      "pending_items": []
+    },
+    {
+      "theme_id": "weight-portability",
+      "theme": "重量与便携",
+      "count": 1,
+      "priority": "P2",
+      "severity": "medium",
+      "is_safety_related": false,
+      "is_core_selling_point": true,
+      "feedback_ids": [
+        "fb-006"
+      ],
+      "representative_feedback": "比想象中重，装满水通勤背着有点沉，280g是不是不含水的重量？",
+      "next_actions": [
+        "抽样复称实物重量，核对与标称280g一致性；若偏差超出公差，评估产线或标注问题。"
+      ],
+      "pending_items": []
+    },
+    {
+      "theme_id": "price-value",
+      "theme": "价格与性价比",
+      "count": 1,
+      "priority": "P2",
+      "severity": "medium",
+      "is_safety_related": false,
+      "is_core_selling_point": false,
+      "feedback_ids": [
+        "fb-007"
+      ],
+      "representative_feedback": "199有点贵，等降价再买。",
+      "next_actions": [
+        "汇总价格相关反馈进入需求池；竞品价格属于禁止编造项，如需对比须另行采购真实数据。"
+      ],
+      "pending_items": [
+        "竞品价格（如需对比，须另行获取真实数据）"
+      ]
+    },
+    {
+      "theme_id": "other",
+      "theme": "其他与建议",
+      "count": 1,
+      "priority": "P3",
+      "severity": "low",
+      "is_safety_related": false,
+      "is_core_selling_point": false,
+      "feedback_ids": [
+        "fb-008"
+      ],
+      "representative_feedback": "建议出个更小容量的版本，适合女生小包。",
+      "next_actions": [
+        "进入需求池，月度评审；若涉及首发日期等未确定信息，统一回复以官方发布为准。"
+      ],
+      "pending_items": [
+        "首发日期"
+      ]
+    },
+    {
+      "theme_id": "electronic-waterproof",
+      "theme": "电子功能与防水",
+      "count": 1,
+      "priority": "P3",
+      "severity": "none",
+      "is_safety_related": true,
+      "is_core_selling_point": false,
+      "feedback_ids": [
+        "fb-012"
+      ],
+      "representative_feedback": "这个杯子能防水吗？想带去洗澡的时候放音乐。",
+      "next_actions": [
+        "防水等级尚未提供，列为待补项；等级确认前不得宣传防水能力。同步排查电子件安全。"
+      ],
+      "pending_items": [
+        "防水等级"
+      ]
+    }
+  ],
+  "pending_items": [
+    "首发日期",
+    "防水等级",
+    "食品接触材料报告"
+  ],
+  "assumptions": [
+    "主题归类与严重度判定基于关键词词表，未使用语义模型或外部 API。",
+    "文本级去重按归一化（去标点/空白/大小写）后完全相同判定；近义复述不会被合并。",
+    "优先级为规则计算结果，最终处理顺序需产品负责人确认。",
+    "核心卖点依据 product_brief.md：12小时保温、280g、可拆洗杯盖。"
+  ],
+  "constraints": [
+    "未编造以下信息：第三方检测结论、销量、用户评价、竞品价格。",
+    "需要外部数据的事项均列入 pending_items，未作为结论输出。"
+  ],
+  "skipped": []
+}

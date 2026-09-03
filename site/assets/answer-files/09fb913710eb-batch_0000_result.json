@@ -1,0 +1,39 @@
+{
+  "batch_index": 0,
+  "tool": "AHREFS_BATCH_URL_ANALYSIS",
+  "status": "success",
+  "attempts": 1,
+  "completed_at": "2026-08-12T06:18:22Z",
+  "data": {
+    "tool": "AHREFS_BATCH_URL_ANALYSIS",
+    "params": {
+      "targets": [
+        {
+          "url": "example.com",
+          "mode": "domain",
+          "protocol": "both"
+        },
+        {
+          "url": "example.org",
+          "mode": "domain",
+          "protocol": "both"
+        },
+        {
+          "url": "example.net",
+          "mode": "subdomains",
+          "protocol": "both"
+        }
+      ],
+      "select": [
+        "domain_rating",
+        "backlinks",
+        "refdomains",
+        "org_traffic"
+      ],
+      "country": "us",
+      "output": "json"
+    },
+    "planned_at": "2026-08-12T06:18:22Z",
+    "note": "dry-run：未调用真实 Ahrefs API，无任何外部数据返回。"
+  }
+}

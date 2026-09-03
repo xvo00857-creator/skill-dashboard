@@ -1,0 +1,157 @@
+============================================================
+ 0. 环境
+============================================================
+Python 3.9.6
+git: git version 2.50.1 (Apple Git-155)
+gh:  未安装（预期：本环境无 gh，验证走 mock 与预检）
+
+============================================================
+ 1. 单元测试（分类 / permalink / 零写守卫 / 代码搜索 / 异常）
+============================================================
+test_bug_by_label (test_triage.TestClassification) ... ok
+test_bug_by_prefix (test_triage.TestClassification) ... ok
+test_bug_by_stacktrace (test_triage.TestClassification) ... ok
+test_bug_takes_priority_over_question (test_triage.TestClassification) ... ok
+test_feature (test_triage.TestClassification) ... ok
+test_other (test_triage.TestClassification) ... ok
+test_pr_bugfix_by_branch (test_triage.TestClassification) ... ok
+test_pr_bugfix_by_title (test_triage.TestClassification) ... ok
+test_pr_other (test_triage.TestClassification) ... ok
+test_question_by_prefix (test_triage.TestClassification) ... ok
+test_question_by_question_mark (test_triage.TestClassification) ... ok
+test_no_match_returns_empty (test_triage.TestCodeSearch) ... ok
+test_real_sha_used (test_triage.TestCodeSearch) ... ok
+test_bad_fixture_json (test_triage.TestErrorHandling) ... ok
+test_end_to_end (test_triage.TestMockPipeline) ... ok
+test_missing_fixture_raises (test_triage.TestMockPipeline) ... ok
+test_commit_link (test_triage.TestPermalink) ... ok
+test_permalink_uses_sha_not_branch (test_triage.TestPermalink) ... ok
+test_range (test_triage.TestPermalink) ... ok
+test_single_line (test_triage.TestPermalink) ... ok
+test_allow_api_get (test_triage.TestZeroActionGuard) ... ok
+test_allow_git_revparse (test_triage.TestZeroActionGuard) ... ok
+test_forbid_api_patch (test_triage.TestZeroActionGuard) ... ok
+test_forbid_api_post (test_triage.TestZeroActionGuard) ... ok
+test_forbid_git_checkout (test_triage.TestZeroActionGuard) ... ok
+test_forbid_git_push (test_triage.TestZeroActionGuard) ... ok
+test_forbid_git_switch (test_triage.TestZeroActionGuard) ... ok
+test_forbid_issue_close (test_triage.TestZeroActionGuard) ... ok
+test_forbid_issue_comment (test_triage.TestZeroActionGuard) ... ok
+test_forbid_pr_merge (test_triage.TestZeroActionGuard) ... ok
+test_forbid_pr_review (test_triage.TestZeroActionGuard) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.274s
+
+OK
+[PASS] 单元测试全部通过
+
+============================================================
+ 2. mock 全流程（无需账号）
+============================================================
+报告目录: /tmp/triage-verify-3817
+汇总文件: /tmp/triage-verify-3817/SUMMARY.md
+处理 issues: 5，PRs: 2
+[PASS] mock 全流程退出码 0
+--- 生成文件 ---
+issue-101.md
+issue-102.md
+issue-103.md
+issue-104.md
+issue-105.md
+pr-201.md
+pr-202.md
+SUMMARY.md
+[PASS] 存在 SUMMARY.md
+[PASS] 存在 issue-101.md
+[PASS] 存在 issue-102.md
+[PASS] 存在 issue-103.md
+[PASS] 存在 issue-104.md
+[PASS] 存在 issue-105.md
+[PASS] 存在 pr-201.md
+[PASS] 存在 pr-202.md
+
+--- 关键证据检查 ---
+[PASS] 报告含 MOCK 标记
+[PASS] permalink 使用 commit SHA（非分支）
+[PASS] issue-102 判定 CONFIRMED_BUG
+[PASS] issue-103 判定 ALREADY_FIXED
+[PASS] issue-103 含修复提交 permalink
+[PASS] PR 报告含 Merge Readiness 表
+[PASS] PR 报告声明只读
+[PASS] SUMMARY 计数为 7
+
+--- SUMMARY.md 摘要 ---
+# GitHub Triage Report - octocat/Hello-World
+
+**Date:** 2026-08-12 05:15:22 | **Commit:** `7fd1a60b01f91b314f59955a4e4d4e80d8edf11d`
+**Items Processed:** 7
+**Report Directory:** /tmp/triage-verify-3817
+> **注意：本次为 MOCK 模式**，数据来自 fixtures，permalink 为演示用途。
+
+## Issues (5)
+| Category | Count |
+|----------|-------|
+| Bug Confirmed | 1 |
+| Bug Already Fixed | 1 |
+| Needs Investigation | 0 |
+| Question Analyzed | 2 |
+| Feature Assessed | 1 |
+| Other | 0 |
+
+## PRs (2)
+| Category | Count |
+|----------|-------|
+| Bugfix Reviewed | 1 |
+| Other PR Reviewed | 1 |
+
+## Items Requiring Attention
+- #102 Bug: panic on startup when config file is missing — CONFIRMED_BUG — mock 固件分析
+- #104 [Feature] Add support for JSON output format — ISSUE_FEATURE — mock 固件分析
+- #105 Clarify contribution process in README — ISSUE_QUESTION — mock 固件分析
+
+## Report Files
+- /tmp/triage-verify-3817/issue-101.md
+- /tmp/triage-verify-3817/issue-102.md
+- /tmp/triage-verify-3817/issue-103.md
+- /tmp/triage-verify-3817/issue-104.md
+- /tmp/triage-verify-3817/issue-105.md
+- /tmp/triage-verify-3817/pr-201.md
+- /tmp/triage-verify-3817/pr-202.md
+
+============================================================
+ 3. 确认前预检（--check，只读；本环境应报告 gh 缺失）
+============================================================
+== github-triage 预检（只读） ==
+[FAIL] 未找到 gh 命令（需安装 GitHub CLI）
+[WARN] 当前目录不是 git 仓库；代码库搜索与 permalink 将不可用（仍可抓 GitHub 数据）
+== 预检未通过（请先解决上述 FAIL 项，或使用 --mock 验证流程） ==
+[PASS] --check 正确返回 2（未就绪）并指出 gh 缺失
+
+============================================================
+ 4. 零写策略直接验证（尝试构造写命令，必须被拒绝）
+============================================================
+[PASS] 已拦截: issue comment
+[PASS] 已拦截: issue close
+[PASS] 已拦截: pr merge
+[PASS] 已拦截: pr review
+[PASS] 已拦截: api POST
+[PASS] 已拦截: api DELETE
+[PASS] 已拦截 git checkout main
+[PASS] 已拦截 git push
+[PASS] 已拦截 git switch dev
+[PASS] 放行只读 gh issue list
+[PASS] 放行只读 gh pr view 1
+[PASS] 放行只读 gh api repos/o/r/pulls/1/files
+[PASS] 零写守卫全部符合预期
+
+============================================================
+ 5. 异常处理：缺 gh 时真实模式应明确报错而非崩溃
+============================================================
+[PASS] 真实模式在缺 gh 时给出明确错误（退出码 1）
+错误输出: 错误: 未找到 gh 命令。请先安装 GitHub CLI 并登录，或使用 --mock 模式。
+
+============================================================
+ 结果: PASS=21 FAIL=0
+ 示例报告目录: /tmp/triage-verify-3817
+============================================================

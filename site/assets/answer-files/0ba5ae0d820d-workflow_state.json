@@ -1,0 +1,12 @@
+{
+  "session_id": null,
+  "steps": {
+    "preflight": "failed",
+    "discover_tools": "pending",
+    "check_connection": "pending",
+    "execute": "pending"
+  },
+  "discovered_tools": [],
+  "connection_status": null,
+  "execution_results": []
+}

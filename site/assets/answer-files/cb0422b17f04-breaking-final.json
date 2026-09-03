@@ -1,0 +1,133 @@
+{
+  "summary": {
+    "total_changes": 4,
+    "breaking_changes": 0,
+    "potentially_breaking_changes": 0,
+    "non_breaking_changes": 1,
+    "enhancements": 3,
+    "critical_severity": 0,
+    "high_severity": 0,
+    "medium_severity": 0,
+    "low_severity": 0,
+    "info_severity": 4
+  },
+  "hasBreakingChanges": false,
+  "changes": [
+    {
+      "changeType": "non_breaking",
+      "severity": "info",
+      "category": "versioning",
+      "path": "/info/version",
+      "message": "API version changed from '1.0.0' to '1.1.0'",
+      "oldValue": "1.0.0",
+      "newValue": "1.1.0",
+      "migrationGuide": "",
+      "impactDescription": "Version change indicates API evolution"
+    },
+    {
+      "changeType": "enhancement",
+      "severity": "info",
+      "category": "endpoints",
+      "path": "/paths/orders/batch",
+      "message": "New endpoint added: POST /orders/batch",
+      "oldValue": null,
+      "newValue": "POST /orders/batch",
+      "migrationGuide": "",
+      "impactDescription": "New functionality available to clients"
+    },
+    {
+      "changeType": "enhancement",
+      "severity": "info",
+      "category": "components",
+      "path": "/components/schemas/BatchOrderResultItem",
+      "message": "New schema 'BatchOrderResultItem' added to components",
+      "oldValue": null,
+      "newValue": {
+        "type": "object",
+        "description": "\u6279\u91cf\u521b\u5efa\u4e2d\u5355\u6761\u8ba2\u5355\u7684\u5904\u7406\u7ed3\u679c",
+        "required": [
+          "index",
+          "status"
+        ],
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "\u8be5\u8ba2\u5355\u5728\u8bf7\u6c42\u6570\u7ec4\u4e2d\u7684\u4e0b\u6807\uff0c\u4ece 0 \u5f00\u59cb",
+            "example": 0
+          },
+          "orderId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true,
+            "description": "\u521b\u5efa\u6210\u529f\u65f6\u7684\u8ba2\u5355 ID\uff1b\u5931\u8d25\u65f6\u4e3a null",
+            "example": 1001
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "created",
+              "failed",
+              "conflict"
+            ],
+            "description": "\u672c\u6761\u5904\u7406\u7ed3\u679c\uff1acreated \u6210\u529f\u3001failed \u5931\u8d25\u3001conflict \u5e42\u7b49\u51b2\u7a81",
+            "example": "created"
+          },
+          "error": {
+            "type": "object",
+            "nullable": true,
+            "description": "\u5931\u8d25\u65f6\u7684\u9519\u8bef\u4fe1\u606f\uff1b\u6210\u529f\u65f6\u4e3a null",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "\u673a\u5668\u53ef\u8bfb\u9519\u8bef\u7801",
+                "example": "VALIDATION_ERROR"
+              },
+              "message": {
+                "type": "string",
+                "description": "\u4eba\u7c7b\u53ef\u8bfb\u9519\u8bef\u63cf\u8ff0",
+                "example": "items \u4e0d\u80fd\u4e3a\u7a7a"
+              }
+            }
+          },
+          "links": {
+            "type": "object",
+            "description": "HATEOAS \u5bfc\u822a\u94fe\u63a5",
+            "properties": {
+              "self": {
+                "type": "object",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "example": "/orders/1001"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "migrationGuide": "",
+      "impactDescription": "New reusable schema available"
+    },
+    {
+      "changeType": "enhancement",
+      "severity": "info",
+      "category": "components",
+      "path": "/components/schemas/BatchOrderCreateRequest",
+      "message": "New schema 'BatchOrderCreateRequest' added to components",
+      "oldValue": null,
+      "newValue": {
+        "type": "array",
+        "description": "\u6279\u91cf\u521b\u5efa\u8ba2\u5355\u7684\u8bf7\u6c42\u4f53\uff1a\u8ba2\u5355\u521b\u5efa\u5bf9\u8c61\u6570\u7ec4\uff0c\u6700\u5c11 1 \u6761\uff0c\u6700\u591a 100 \u6761\u3002\u8d85\u8fc7 100 \u6761\u8bf7\u6539\u7528\u5f02\u6b65\u6279\u91cf\u5bfc\u5165\u3002",
+        "minItems": 1,
+        "maxItems": 100,
+        "items": {
+          "$ref": "#/components/schemas/OrderCreateRequest"
+        }
+      },
+      "migrationGuide": "",
+      "impactDescription": "New reusable schema available"
+    }
+  ]
+}

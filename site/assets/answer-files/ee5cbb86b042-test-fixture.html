@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test Fixture — Amazon Search Results DOM (local verification)</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+  .s-desktop-toolbar { padding: 10px; background: #fff; margin-bottom: 10px; border: 1px solid #ddd; }
+  [data-component-type="s-search-result"] { background: #fff; border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; display: flex; gap: 15px; }
+  .s-image { width: 150px; height: 150px; object-fit: contain; }
+  h2 { font-size: 16px; margin: 0 0 8px; }
+  h2 a { color: #007185; text-decoration: none; }
+  .a-price { color: #B12704; font-size: 18px; }
+  .a-price .a-offscreen { position: absolute; left: -9999px; }
+  .a-text-price { color: #565959; text-decoration: line-through; font-size: 14px; margin-left: 8px; }
+  .a-icon-star-small { color: #FFA41C; }
+  .a-badge-label { display: inline-block; background: #232F3E; color: #fff; padding: 2px 8px; border-radius: 3px; font-size: 12px; margin-right: 5px; }
+  .a-badge-label-inner { font-weight: bold; }
+  .puis-sponsored-label-text { color: #565959; font-size: 12px; }
+  [data-cy="delivery-recipe"] { color: #565959; font-size: 13px; margin-top: 5px; }
+  .s-pagination-container { margin-top: 20px; text-align: center; }
+  .s-pagination-selected { font-weight: bold; display: inline-block; padding: 5px 10px; }
+  .s-pagination-next { display: inline-block; padding: 5px 10px; }
+  #result-box { margin-top: 30px; background: #fff; border: 2px solid #232F3E; padding: 15px; }
+  #result-box h3 { margin-top: 0; }
+  #result-json { white-space: pre-wrap; word-break: break-all; font-family: monospace; font-size: 12px; background: #fafafa; padding: 10px; max-height: 500px; overflow: auto; }
+  .test-banner { background: #FFF3CD; border: 1px solid #FFC107; padding: 10px; margin-bottom: 15px; }
+</style>
+</head>
+<body>
+
+<div class="test-banner">
+  <strong>本地测试夹具（Test Fixture）</strong> — 本页不是 Amazon 真实页面，而是按照 amazon-search-listing Skill 提取脚本所依赖的 DOM 选择器手工构建的模拟结构，用于在无 browser-act 的环境中验证提取 JS 的逻辑正确性。所有 ASIN、商品名均为测试数据。
+</div>
+
+<div class="s-desktop-toolbar">
+  <span>1-16 of over 10,000 results for</span> <span>laptop</span>
+</div>
+
+<!-- Card 1: normal card with Overall Pick badge, price, rating, delivery, boughtInPast -->
+<div data-component-type="s-search-result" data-asin="TESTASIN01" data-uuid="uuid-0001-aaaa" data-index="3">
+  <div>
+    <a href="/dp/TESTASIN01/"><img class="s-image" src="https://m.media-amazon.com/images/I/test1.jpg" alt="Test Laptop Pro 14 inch"></a>
+  </div>
+  <div>
+    <h2><a href="/dp/TESTASIN01/"><span>Test Laptop Pro 14 inch 16GB RAM 512GB SSD</span></a></h2>
+    <span class="a-badge-label"><span class="a-badge-label-inner">Overall Pick</span></span>
+    <div>
+      <span class="a-icon-star-small"><span class="a-icon-alt">4.5 out of 5 stars</span></span>
+      <a aria-label="1,234 ratings" href="#">1,234</a>
+    </div>
+    <div>
+      <span class="a-price"><span class="a-offscreen">$899.99</span></span>
+      <span class="a-price a-text-price"><span class="a-offscreen">$1,099.99</span></span>
+    </div>
+    <div data-cy="delivery-recipe">FREE delivery Fri, Aug 15</div>
+    <div>5K+ bought in past month</div>
+  </div>
+</div>
+
+<!-- Card 2: sponsored card with Best Seller badge, list price, stars -->
+<div data-component-type="s-search-result" data-asin="TESTASIN02" data-uuid="uuid-0002-bbbb" data-index="7">
+  <div>
+    <a href="/dp/TESTASIN02/"><img class="s-image" src="https://m.media-amazon.com/images/I/test2.jpg" alt="Test Gaming Laptop 16 inch"></a>
+  </div>
+  <div>
+    <span class="puis-sponsored-label-text">Sponsored</span>
+    <h2><a href="/dp/TESTASIN02/"><span>Test Gaming Laptop 16 inch RTX 32GB RAM</span></a></h2>
+    <span class="a-badge-label"><span class="a-badge-label-inner">Best Seller</span><span class="a-badge-supplementary-text">in Gaming Laptops</span></span>
+    <div>
+      <span class="a-icon-star-small"><span class="a-icon-alt">4.7 out of 5 stars</span></span>
+      <a aria-label="8,901 ratings" href="#">8,901</a>
+    </div>
+    <div>
+      <span class="a-price"><span class="a-offscreen">$1,499.00</span></span>
+      <span class="a-price a-text-price"><span class="a-offscreen">$1,799.00</span></span>
+    </div>
+    <div data-cy="delivery-recipe">Delivery Wed, Aug 13</div>
+  </div>
+</div>
+
+<!-- Card 3: card with no rating and no price (edge case) -->
+<div data-component-type="s-search-result" data-asin="TESTASIN03" data-uuid="uuid-0003-cccc" data-index="12">
+  <div>
+    <a href="/dp/TESTASIN03/"><img class="s-image" src="https://m.media-amazon.com/images/I/test3.jpg" alt="Test Budget Chromebook 11 inch"></a>
+  </div>
+  <div>
+    <h2><a href="/dp/TESTASIN03/"><span>Test Budget Chromebook 11 inch 4GB RAM</span></a></h2>
+    <div>No reviews yet</div>
+    <div>Currently unavailable</div>
+  </div>
+</div>
+
+<!-- Card 4: card with Amazon's Choice badge, delivery, boughtInPast, GBP price -->
+<div data-component-type="s-search-result" data-asin="TESTASIN04" data-uuid="uuid-0004-dddd" data-index="18">
+  <div>
+    <a href="/dp/TESTASIN04/"><img class="s-image" src="https://m.media-amazon.com/images/I/test4.jpg" alt="Test Ultrabook 13 inch lightweight"></a>
+  </div>
+  <div>
+    <h2><a href="/dp/TESTASIN04/"><span>Test Ultrabook 13 inch lightweight 8GB 256GB</span></a></h2>
+    <span class="a-badge-label"><span class="a-badge-label-inner">Amazon's Choice</span></span>
+    <div>
+      <span class="a-icon-star-small"><span class="a-icon-alt">4.2 out of 5 stars</span></span>
+      <a aria-label="567 ratings" href="#">567</a>
+    </div>
+    <div>
+      <span class="a-price"><span class="a-offscreen">£549.99</span></span>
+    </div>
+    <div data-cy="delivery-recipe">FREE delivery Mon, Aug 18</div>
+    <div>1K+ bought in past month</div>
+  </div>
+</div>
+
+<!-- Pagination -->
+<div class="s-pagination-container">
+  <span class="s-pagination-selected">1</span>
+  <a href="/s?k=laptop&page=2" class="s-pagination-next">Next</a>
+</div>
+
+<!-- Result display -->
+<div id="result-box">
+  <h3>提取脚本运行结果（由 Skill 自带 extract-search-results.py 输出的 JS 执行）：</h3>
+  <pre id="result-json">等待执行...</pre>
+</div>
+
+<script>
+// === 以下 JS 直接来自 amazon-search-listing Skill 的 scripts/extract-search-results.py ===
+(function() {
+  try {
+    const origin = location.origin;
+    const cards = Array.from(document.querySelectorAll('[data-component-type="s-search-result"]'));
+    if (cards.length === 0) {
+      return JSON.stringify({ error: true, message: 'no search result cards found on page' });
+    }
+    const parseNumber = (t) => {
+      if (!t) return null;
+      const m = String(t).replace(/[,\s]/g, '').match(/[\d.]+/);
+      return m ? parseFloat(m[0]) : null;
+    };
+    const parsePrice = (t) => {
+      if (!t) return null;
+      const m = String(t).match(/([\$\u00A3\u20ac\u00a5]|CDN\$|AU\$|R\$|Rp|kr|zl|Ft|\u20b9|\u20a9|USD|EUR|GBP|JPY|CAD|AUD|INR|CNY|BRL)?\s*([\d.,]+)/);
+      if (!m) return null;
+      const numStr = m[2].replace(/,(?=\d{3}\b)/g, '');
+      const value = parseFloat(numStr.replace(/,/g, ''));
+      return isNaN(value) ? null : { value, currencyRaw: (m[1] || '').trim(), raw: t.trim() };
+    };
+    const items = cards.map(card => {
+      const asin = card.getAttribute('data-asin');
+      const h2 = card.querySelector('h2');
+      const titleAnchor = h2 ? h2.closest('a') : null;
+      const titleText = h2 ? (h2.querySelector('span')?.textContent?.trim() || h2.textContent.trim()) : null;
+      let rawHref = titleAnchor?.getAttribute('href') || card.querySelector('a[href*="/dp/"]')?.getAttribute('href') || null;
+      let url = null;
+      if (rawHref) {
+        url = rawHref.startsWith('http') ? rawHref : origin + rawHref;
+      }
+      const img = card.querySelector('img.s-image');
+      const priceOff = card.querySelector('.a-price:not(.a-text-price) .a-offscreen')?.textContent
+        || card.querySelector('.a-price .a-offscreen')?.textContent;
+      const listPriceOff = card.querySelector('.a-price.a-text-price .a-offscreen')?.textContent;
+      const ratingText = card.querySelector('.a-icon-star-small .a-icon-alt')?.textContent
+        || card.querySelector('[aria-label*="out of 5 stars"]')?.getAttribute('aria-label');
+      const stars = parseNumber(ratingText);
+      const reviewAria = card.querySelector('a[aria-label*="ratings"]')?.getAttribute('aria-label')
+        || card.querySelector('a[aria-label*="rating"]')?.getAttribute('aria-label');
+      const reviewCount = parseNumber(reviewAria || card.querySelector('.s-underline-text')?.textContent);
+      const badges = Array.from(card.querySelectorAll('.a-badge-label')).map(b => ({
+        label: b.querySelector('.a-badge-label-inner')?.textContent?.trim() || null,
+        supp: b.querySelector('.a-badge-supplementary-text')?.textContent?.trim() || null
+      }));
+      const badgeTexts = badges.map(b => b.label).filter(Boolean).join(' | ');
+      const isAmazonChoice = /Amazon\u2019?s Choice|Amazon's Choice|Overall Pick/i.test(badgeTexts + ' ' + card.textContent.slice(0, 400));
+      const isBestSeller = /Best Seller/i.test(badgeTexts);
+      const sponsored = !!card.querySelector('.puis-sponsored-label-text')
+        || !!card.querySelector('[aria-label="View Sponsored information or leave ad feedback"]');
+      const deliveryEl = card.querySelector('[data-cy="delivery-recipe"]');
+      let delivery = null;
+      if (deliveryEl) {
+        const clone = deliveryEl.cloneNode(true);
+        clone.querySelectorAll('script, style').forEach(n => n.remove());
+        delivery = clone.textContent.trim().replace(/\s+/g, ' ');
+        const m = delivery.match(/(FREE delivery[^A-Z]*(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-zA-Z0-9,\s]+)/i)
+          || delivery.match(/(Delivery\s+(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-zA-Z0-9,\s]+)/i);
+        delivery = m ? m[1].trim().slice(0, 200) : delivery.slice(0, 200);
+      }
+      const boughtInPast = (() => {
+        const m = card.textContent.match(/([\d.,]+K?\+?\s+bought in past month)/);
+        return m ? m[1] : null;
+      })();
+      return {
+        asin,
+        uuid: card.getAttribute('data-uuid') || null,
+        positionIndex: parseInt(card.getAttribute('data-index') || '0', 10) || null,
+        title: titleText,
+        url,
+        image: img?.getAttribute('src') || null,
+        imageAlt: img?.getAttribute('alt') || null,
+        price: parsePrice(priceOff),
+        listPrice: parsePrice(listPriceOff),
+        stars,
+        reviewCount,
+        ratingRaw: ratingText || null,
+        badges,
+        isAmazonChoice,
+        isBestSeller,
+        isSponsored: sponsored,
+        delivery,
+        boughtInPast
+      };
+    });
+    const currentPage = parseInt(document.querySelector('.s-pagination-selected')?.textContent || '1', 10) || 1;
+    const nextEl = document.querySelector('a.s-pagination-next');
+    const nextDisabled = !!document.querySelector('.s-pagination-next.s-pagination-disabled');
+    const nextHref = nextEl?.getAttribute('href') || null;
+    const nextPageUrl = nextHref && !nextDisabled ? (nextHref.startsWith('http') ? nextHref : origin + nextHref) : null;
+    const totalMatch = (document.querySelector('.s-desktop-toolbar')?.textContent || document.body.textContent).match(/of\s+(over\s+)?([\d,]+)\s+results/i);
+    const totalResultsApprox = totalMatch ? parseInt(totalMatch[2].replace(/,/g, ''), 10) : null;
+    return JSON.stringify({
+      currentPage,
+      hasNextPage: !!nextPageUrl,
+      nextPageUrl,
+      totalResultsApprox,
+      itemCount: items.length,
+      items
+    }, null, 2);
+  } catch (e) {
+    return JSON.stringify({ error: true, message: e.message });
+  }
+})()
+// === 以上为 Skill 原始 JS，未做任何修改 ===
+
+// 将结果写入页面
+document.getElementById('result-json').textContent = (function() {
+  try {
+    const origin = location.origin;
+    const cards = Array.from(document.querySelectorAll('[data-component-type="s-search-result"]'));
+    if (cards.length === 0) {
+      return JSON.stringify({ error: true, message: 'no search result cards found on page' }, null, 2);
+    }
+    const parseNumber = (t) => {
+      if (!t) return null;
+      const m = String(t).replace(/[,\s]/g, '').match(/[\d.]+/);
+      return m ? parseFloat(m[0]) : null;
+    };
+    const parsePrice = (t) => {
+      if (!t) return null;
+      const m = String(t).match(/([\$\u00A3\u20ac\u00a5]|CDN\$|AU\$|R\$|Rp|kr|zl|Ft|\u20b9|\u20a9|USD|EUR|GBP|JPY|CAD|AUD|INR|CNY|BRL)?\s*([\d.,]+)/);
+      if (!m) return null;
+      const numStr = m[2].replace(/,(?=\d{3}\b)/g, '');
+      const value = parseFloat(numStr.replace(/,/g, ''));
+      return isNaN(value) ? null : { value, currencyRaw: (m[1] || '').trim(), raw: t.trim() };
+    };
+    const items = cards.map(card => {
+      const asin = card.getAttribute('data-asin');
+      const h2 = card.querySelector('h2');
+      const titleAnchor = h2 ? h2.closest('a') : null;
+      const titleText = h2 ? (h2.querySelector('span')?.textContent?.trim() || h2.textContent.trim()) : null;
+      let rawHref = titleAnchor?.getAttribute('href') || card.querySelector('a[href*="/dp/"]')?.getAttribute('href') || null;
+      let url = null;
+      if (rawHref) {
+        url = rawHref.startsWith('http') ? rawHref : origin + rawHref;
+      }
+      const img = card.querySelector('img.s-image');
+      const priceOff = card.querySelector('.a-price:not(.a-text-price) .a-offscreen')?.textContent
+        || card.querySelector('.a-price .a-offscreen')?.textContent;
+      const listPriceOff = card.querySelector('.a-price.a-text-price .a-offscreen')?.textContent;
+      const ratingText = card.querySelector('.a-icon-star-small .a-icon-alt')?.textContent
+        || card.querySelector('[aria-label*="out of 5 stars"]')?.getAttribute('aria-label');
+      const stars = parseNumber(ratingText);
+      const reviewAria = card.querySelector('a[aria-label*="ratings"]')?.getAttribute('aria-label')
+        || card.querySelector('a[aria-label*="rating"]')?.getAttribute('aria-label');
+      const reviewCount = parseNumber(reviewAria || card.querySelector('.s-underline-text')?.textContent);
+      const badges = Array.from(card.querySelectorAll('.a-badge-label')).map(b => ({
+        label: b.querySelector('.a-badge-label-inner')?.textContent?.trim() || null,
+        supp: b.querySelector('.a-badge-supplementary-text')?.textContent?.trim() || null
+      }));
+      const badgeTexts = badges.map(b => b.label).filter(Boolean).join(' | ');
+      const isAmazonChoice = /Amazon\u2019?s Choice|Amazon's Choice|Overall Pick/i.test(badgeTexts + ' ' + card.textContent.slice(0, 400));
+      const isBestSeller = /Best Seller/i.test(badgeTexts);
+      const sponsored = !!card.querySelector('.puis-sponsored-label-text')
+        || !!card.querySelector('[aria-label="View Sponsored information or leave ad feedback"]');
+      const deliveryEl = card.querySelector('[data-cy="delivery-recipe"]');
+      let delivery = null;
+      if (deliveryEl) {
+        const clone = deliveryEl.cloneNode(true);
+        clone.querySelectorAll('script, style').forEach(n => n.remove());
+        delivery = clone.textContent.trim().replace(/\s+/g, ' ');
+        const m = delivery.match(/(FREE delivery[^A-Z]*(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-zA-Z0-9,\s]+)/i)
+          || delivery.match(/(Delivery\s+(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-zA-Z0-9,\s]+)/i);
+        delivery = m ? m[1].trim().slice(0, 200) : delivery.slice(0, 200);
+      }
+      const boughtInPast = (() => {
+        const m = card.textContent.match(/([\d.,]+K?\+?\s+bought in past month)/);
+        return m ? m[1] : null;
+      })();
+      return {
+        asin, uuid: card.getAttribute('data-uuid') || null,
+        positionIndex: parseInt(card.getAttribute('data-index') || '0', 10) || null,
+        title: titleText, url, image: img?.getAttribute('src') || null,
+        imageAlt: img?.getAttribute('alt') || null,
+        price: parsePrice(priceOff), listPrice: parsePrice(listPriceOff),
+        stars, reviewCount, ratingRaw: ratingText || null, badges,
+        isAmazonChoice, isBestSeller, isSponsored: sponsored, delivery, boughtInPast
+      };
+    });
+    const currentPage = parseInt(document.querySelector('.s-pagination-selected')?.textContent || '1', 10) || 1;
+    const nextEl = document.querySelector('a.s-pagination-next');
+    const nextDisabled = !!document.querySelector('.s-pagination-next.s-pagination-disabled');
+    const nextHref = nextEl?.getAttribute('href') || null;
+    const nextPageUrl = nextHref && !nextDisabled ? (nextHref.startsWith('http') ? nextHref : origin + nextHref) : null;
+    const totalMatch = (document.querySelector('.s-desktop-toolbar')?.textContent || document.body.textContent).match(/of\s+(over\s+)?([\d,]+)\s+results/i);
+    const totalResultsApprox = totalMatch ? parseInt(totalMatch[2].replace(/,/g, ''), 10) : null;
+    return JSON.stringify({ currentPage, hasNextPage: !!nextPageUrl, nextPageUrl, totalResultsApprox, itemCount: items.length, items }, null, 2);
+  } catch (e) {
+    return JSON.stringify({ error: true, message: e.message }, null, 2);
+  }
+})();
+</script>
+
+</body>
+</html>

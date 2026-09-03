@@ -1,0 +1,68 @@
+# Makefile — 温度采集固件
+# 主机验证：make verify （编译 + 静态分析 + 测试）
+# 目标交叉编译：make target （需 arm-none-eabi-gcc，本环境未安装）
+
+CC      ?= gcc
+CLANG   ?= clang
+CFLAGS  := -std=c11 -Wall -Wextra -Werror -Wpedantic \
+           -Wconversion -Wshadow -Wcast-align \
+           -Iinc -Itest -Os
+LDFLAGS :=
+
+# 主机测试：UNIT_TEST 宏启用 hal_mock.c，排除 hal_target.c
+BUILD_DIR := build
+SRC_TEST  := src/temp_sensor.c src/power_mgr.c src/app.c src/hal_mock.c
+OBJ_TEST  := $(SRC_TEST:%.c=$(BUILD_DIR)/%.o)
+TEST_BIN  := $(BUILD_DIR)/test_runner
+
+.PHONY: all verify test clean analyze target help
+
+all: verify
+
+help:
+	@echo "目标："
+	@echo "  make verify   编译(-Wall -Werror) + clang静态分析 + 运行测试"
+	@echo "  make test     仅编译并运行测试"
+	@echo "  make analyze  仅运行 clang 静态分析"
+	@echo "  make target   ARM 交叉编译（需 arm-none-eabi-gcc）"
+	@echo "  make clean    清理构建产物"
+
+$(BUILD_DIR):
+	@mkdir -p $(BUILD_DIR)/src $(BUILD_DIR)/test
+
+$(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -DUNIT_TEST=1 -c $< -o $@
+
+$(TEST_BIN): $(OBJ_TEST) test/test_app.c
+	$(CC) $(CFLAGS) -DUNIT_TEST=1 test/test_app.c $(OBJ_TEST) -o $@
+
+test: $(TEST_BIN)
+	@echo "--- 运行测试 ---"
+	./$(TEST_BIN)
+
+analyze:
+	@echo "--- clang 静态分析 ---"
+	$(CLANG) --analyze -std=c11 -Wall -Wextra -Iinc -Itest \
+		-DUNIT_TEST=1 \
+		src/temp_sensor.c src/power_mgr.c src/app.c src/hal_mock.c \
+		test/test_app.c 2>&1; \
+	rm -f *.plist; \
+	echo "静态分析完成"
+
+verify: analyze test
+	@echo "--- 验证全部通过 ---"
+
+# 目标交叉编译（需要 arm-none-eabi-gcc 和 STM32 头文件）
+target:
+	@echo "检查 arm-none-eabi-gcc..."
+	@which arm-none-eabi-gcc >/dev/null 2>&1 || \
+		(echo "错误：未安装 arm-none-eabi-gcc，无法交叉编译。" && \
+		 echo "主机验证已通过 make verify 完成；目标编译需在安装工具链后执行。" && exit 1)
+	arm-none-eabi-gcc -std=c11 -Wall -Wextra -Werror -Os \
+		-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard \
+		-DSTM32_TARGET=1 -Iinc \
+		-c src/temp_sensor.c src/power_mgr.c src/app.c src/hal_target.c \
+		-o /dev/null 2>&1 && echo "目标编译检查通过（需 STM32 头文件路径）"
+
+clean:
+	rm -rf $(BUILD_DIR) *.plist

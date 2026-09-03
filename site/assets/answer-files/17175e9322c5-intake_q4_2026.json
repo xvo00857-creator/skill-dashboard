@@ -1,0 +1,87 @@
+{
+  "_note": "ILLUSTRATIVE TEMPLATE — encodes the user-stated fact pattern (new-logo count down over last 3 months, ACV up). Dollar amounts, opp counts, and conversion figures are placeholders the RevOps/CRO must replace with real CRM exports before presenting. The methodology (70/30 blend, 3-tier, CoV bands, 5pp leak rule) is real and comes from the Skill.",
+  "target_period": {
+    "start_date": "2026-10-01",
+    "end_date": "2026-12-31"
+  },
+  "opportunities": [
+    {"opp_id": "OPP-301", "stage": "commit",            "amount": 280000, "close_date": "2026-10-20", "age_days": 55,  "last_activity_days": 4},
+    {"opp_id": "OPP-302", "stage": "commit",            "amount": 195000, "close_date": "2026-11-05", "age_days": 70,  "last_activity_days": 6},
+    {"opp_id": "OPP-303", "stage": "contract_out",      "amount": 340000, "close_date": "2026-10-30", "age_days": 85,  "last_activity_days": 9},
+    {"opp_id": "OPP-304", "stage": "verbal",            "amount": 165000, "close_date": "2026-11-18", "age_days": 95,  "last_activity_days": 12},
+    {"opp_id": "OPP-305", "stage": "verbal",            "amount": 420000, "close_date": "2026-12-10", "age_days": 110, "last_activity_days": 15},
+    {"opp_id": "OPP-306", "stage": "verbal",            "amount": 135000, "close_date": "2027-02-20", "age_days": 200, "last_activity_days": 58},
+    {"opp_id": "OPP-307", "stage": "negotiation",       "amount": 250000, "close_date": "2026-11-25", "age_days": 80,  "last_activity_days": 8},
+    {"opp_id": "OPP-308", "stage": "negotiation",       "amount": 180000, "close_date": "2026-12-15", "age_days": 65,  "last_activity_days": 11},
+    {"opp_id": "OPP-309", "stage": "proposal",          "amount": 220000, "close_date": "2026-12-05", "age_days": 50,  "last_activity_days": 7},
+    {"opp_id": "OPP-310", "stage": "proposal",          "amount": 155000, "close_date": "2027-01-20", "age_days": 45,  "last_activity_days": 14},
+    {"opp_id": "OPP-311", "stage": "demo_completed",    "amount": 130000, "close_date": "2026-12-20", "age_days": 35,  "last_activity_days": 5},
+    {"opp_id": "OPP-312", "stage": "demo_completed",    "amount": 95000,  "close_date": "2027-01-30", "age_days": 28,  "last_activity_days": 10},
+    {"opp_id": "OPP-313", "stage": "discovery",         "amount": 110000, "close_date": "2027-02-15", "age_days": 20,  "last_activity_days": 6},
+    {"opp_id": "OPP-314", "stage": "discovery",         "amount": 75000,  "close_date": "2027-03-01", "age_days": 12,  "last_activity_days": 3},
+    {"opp_id": "OPP-315", "stage": "discovery",         "amount": 88000,  "close_date": "2027-03-15", "age_days": 9,   "last_activity_days": 2}
+  ],
+  "historical_conversion": {
+    "stage_X_to_Y_pct_last_4q": {
+      "discovery":        0.22,
+      "demo_completed":   0.44,
+      "proposal":         0.55,
+      "negotiation":      0.70,
+      "verbal":           0.82,
+      "commit":           0.90
+    },
+    "stage_X_to_Y_pct_last_12q": {
+      "discovery":        0.36,
+      "demo_completed":   0.56,
+      "proposal":         0.66,
+      "negotiation":      0.76,
+      "verbal":           0.86,
+      "commit":           0.93
+    }
+  },
+  "cohorts": [
+    {
+      "cohort_id": "2024-Q4", "acquisition_quarter": "2024-Q4", "starting_arr": 800000,
+      "gross_retention_pct_q1": 94, "gross_retention_pct_q2": 93, "gross_retention_pct_q3": 92, "gross_retention_pct_q4": 91,
+      "expansion_arr_pct_q1": 6,  "expansion_arr_pct_q2": 9,  "expansion_arr_pct_q3": 11, "expansion_arr_pct_q4": 13
+    },
+    {
+      "cohort_id": "2025-Q1", "acquisition_quarter": "2025-Q1", "starting_arr": 900000,
+      "gross_retention_pct_q1": 93, "gross_retention_pct_q2": 92, "gross_retention_pct_q3": 91, "gross_retention_pct_q4": 90,
+      "expansion_arr_pct_q1": 5,  "expansion_arr_pct_q2": 8,  "expansion_arr_pct_q3": 10, "expansion_arr_pct_q4": 12
+    },
+    {
+      "cohort_id": "2025-Q2", "acquisition_quarter": "2025-Q2", "starting_arr": 1000000,
+      "gross_retention_pct_q1": 94, "gross_retention_pct_q2": 92, "gross_retention_pct_q3": 91, "gross_retention_pct_q4": 90,
+      "expansion_arr_pct_q1": 6,  "expansion_arr_pct_q2": 9,  "expansion_arr_pct_q3": 11, "expansion_arr_pct_q4": 13
+    },
+    {
+      "cohort_id": "2025-Q3", "acquisition_quarter": "2025-Q3", "starting_arr": 1100000,
+      "gross_retention_pct_q1": 93, "gross_retention_pct_q2": 91, "gross_retention_pct_q3": 90, "gross_retention_pct_q4": 89,
+      "expansion_arr_pct_q1": 5,  "expansion_arr_pct_q2": 8,  "expansion_arr_pct_q3": 10, "expansion_arr_pct_q4": 12
+    },
+    {
+      "cohort_id": "2025-Q4", "acquisition_quarter": "2025-Q4", "starting_arr": 1200000,
+      "gross_retention_pct_q1": 92, "gross_retention_pct_q2": 90, "gross_retention_pct_q3": 89, "gross_retention_pct_q4": 88,
+      "expansion_arr_pct_q1": 5,  "expansion_arr_pct_q2": 7,  "expansion_arr_pct_q3": 9,  "expansion_arr_pct_q4": 11
+    },
+    {
+      "cohort_id": "2026-Q1", "acquisition_quarter": "2026-Q1", "starting_arr": 1040000,
+      "gross_retention_pct_q1": 90, "gross_retention_pct_q2": 88, "gross_retention_pct_q3": 87, "gross_retention_pct_q4": 86,
+      "expansion_arr_pct_q1": 4,  "expansion_arr_pct_q2": 6,  "expansion_arr_pct_q3": 7,  "expansion_arr_pct_q4": 9
+    },
+    {
+      "cohort_id": "2026-Q2", "acquisition_quarter": "2026-Q2", "starting_arr": 910000,
+      "gross_retention_pct_q1": 84, "gross_retention_pct_q2": 81, "gross_retention_pct_q3": 79, "gross_retention_pct_q4": 77,
+      "expansion_arr_pct_q1": 2,  "expansion_arr_pct_q2": 3,  "expansion_arr_pct_q3": 4,  "expansion_arr_pct_q4": 5
+    }
+  ],
+  "projection_horizon_quarters": 4,
+  "funnel_stages": [
+    {"stage_name": "discovery_to_demo",     "conversion_pct_history": [36,38,35,37,39,36,35,37,34,30,26,22]},
+    {"stage_name": "demo_to_proposal",      "conversion_pct_history": [56,54,58,55,57,53,56,55,52,48,45,44]},
+    {"stage_name": "proposal_to_negotiation","conversion_pct_history": [65,60,70,55,72,58,68,62,66,58,55,55]},
+    {"stage_name": "negotiation_to_verbal", "conversion_pct_history": [75,74,77,73,76,75,74,76,75,74,73,74]},
+    {"stage_name": "verbal_to_commit",      "conversion_pct_history": [86,84,88,83,87,85,86,84,85,83,82,84]}
+  ]
+}

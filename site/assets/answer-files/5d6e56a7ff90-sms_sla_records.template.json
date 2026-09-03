@@ -1,0 +1,29 @@
+[
+  {
+    "vendor": "<必须与 vendor_catalog 中 name 完全一致>",
+    "sla_metric": "sms_delivery_rate_pct",
+    "target": null,
+    "actual_last_month": null,
+    "actual_last_quarter": null,
+    "breach_count_12m": null,
+    "_notes": "短信到达率（成功率），越高越好；行业验证码类常见承诺 99%~99.9%。首次签约无历史数据时 actual 字段留 null，待合同签订并运行一个月后开始填报。"
+  },
+  {
+    "vendor": "<同上>",
+    "sla_metric": "sms_p90_delivery_seconds",
+    "target": null,
+    "actual_last_month": null,
+    "actual_last_quarter": null,
+    "breach_count_12m": null,
+    "_notes": "P90 下发时延（秒），越低越好；脚本通过 metric 名含 seconds/time 等关键词自动识别 lower-is-better。验证码类常见目标 <10s（P90）。"
+  },
+  {
+    "vendor": "<同上>",
+    "sla_metric": "support_p90_response_hours",
+    "target": null,
+    "actual_last_month": null,
+    "actual_last_quarter": null,
+    "breach_count_12m": null,
+    "_notes": "工单 P90 首次响应时长（小时），越低越好；tier-1 建议合同写 ≤1h（7x24），tier-2 ≤4h。"
+  }
+]

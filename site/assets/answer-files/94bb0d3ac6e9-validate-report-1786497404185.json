@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-08-12T01:16:44.185Z",
+  "schema_url": "https://api.expo.dev/v2/workflows/schema",
+  "skill_dir": "/Users/bytedance/Doubao/chats/2026-08-12/new-chat-506/expo-cicd-workflows/expo-cicd-workflows",
+  "summary": {
+    "total": 2,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 1
+  },
+  "results": [
+    {
+      "file": ".eas/workflows/ci-demo.yml",
+      "status": "skipped",
+      "reason": "previously-valid"
+    },
+    {
+      "file": ".eas/workflows/broken-demo.yml",
+      "status": "valid"
+    }
+  ]
+}

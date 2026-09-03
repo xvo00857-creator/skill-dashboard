@@ -1,0 +1,53 @@
+============================================================
+NotebookLM 上传诊断日志
+时间: 2026-08-13 22:25-22:30 (Asia/Shanghai)
+目标: 将 source_report_12_pages.pdf 上传到 NotebookLM
+============================================================
+
+[1] notebooklm CLI 状态
+- 路径: /Users/bytedance/.local/bin/notebooklm
+- 安装方式: uv tool install notebooklm-py
+- 版本: CLI 可用，支持 create/source add/generate/artifact/download 等命令
+- 认证文件: ~/.notebooklm/profiles/default/storage_state.json (初始不存在)
+
+[2] 认证尝试: notebooklm login --browser-cookies chrome::Default
+- 结果: cookies 已提取并保存，但验证失败
+- 错误信息:
+  "NotebookLM redirected this request to its region / anti-abuse access gate:
+   https://notebooklm.google (location=unsupported). This is not a library bug
+   or an expired login. Likely a VPN/proxy or datacenter IP, or an IP/timezone/
+   language mismatch."
+
+[3] notebooklm list 验证
+- 结果: 失败 (RC=2)
+- 错误: 同样的 region / anti-abuse access gate 重定向
+
+[4] 网络连通性测试
+- curl https://notebooklm.google.com
+  → HTTP 302 → https://notebooklm.google/?location=unsupported
+- 浏览器直接访问 https://notebooklm.google.com
+  → 同样重定向到 ?location=unsupported，显示 Gemini Notebook 着陆页，
+    点击"试用 Gemini Notebook"无法进入应用
+- curl https://www.google.com → HTTP 302 (可达)
+
+[5] 出口 IP 信息 (ipinfo.io)
+- IP: 139.177.225.249
+- 位置: Singapore
+- ASN: AS396986 Bytedance Inc.
+- 类型: 数据中心 IP (被 NotebookLM 反滥用系统识别并拦截)
+
+[6] 代理检查
+- macOS 系统代理 (Wi-Fi): 未启用
+- 环境变量 HTTP_PROXY/HTTPS_PROXY/ALL_PROXY: 未设置
+- 本地常见代理端口: 7890/1087/1080/7897/33210 均关闭
+- 8080 端口: Python 进程，非 HTTP 代理 (CONNECT aborted)
+- DOUBAO_OFFICE_FORWARD_PROXY: CONNECT tunnel failed, response 400
+- VPN/代理客户端进程: 未发现 Clash/V2Ray/Shadowsocks/Trojan/Surge 等
+- utun4: 企业 VPN (10.4.24.3)，出口仍为 ByteDance 数据中心 IP
+
+[7] 结论
+- 停止位置: SKILL.md 工作流 Step 3"上传到 NotebookLM"的前置认证步骤
+- 阻断原因: 当前网络出口为 ByteDance 新加坡数据中心 IP，
+  NotebookLM 反滥用系统将数据中心 IP 重定向到 ?location=unsupported，
+  CLI 和浏览器均无法访问 NotebookLM 应用
+- 未执行: PDF 转换(markitdown)、创建笔记本、上传来源、生成摘要/思维导图

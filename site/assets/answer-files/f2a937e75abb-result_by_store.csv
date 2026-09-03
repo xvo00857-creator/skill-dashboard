@@ -1,0 +1,6 @@
+﻿canonical_id,canonical_name,order_count_dedup,valid_amount_orders,total_amount,missing_amount_orders,unresolved_store_rows
+S004,海底捞火锅（西单店）,1,1,288.0,0,0
+UNRESOLVED,UNRESOLVED（待人工复核）,4,4,122.9,0,4
+S001,星巴克咖啡（国贸店）,3,3,117.5,0,0
+S003,麦当劳（中关村店）,2,1,55.0,1,0
+S002,瑞幸咖啡（望京店）,2,2,13.9,0,0

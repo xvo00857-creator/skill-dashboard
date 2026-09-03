@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>从"我来做"到"我们赢"</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@200;300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+.tpl{--f:'Inter','Noto Sans SC',sans-serif;--m:'JetBrains Mono',monospace;background:#000;color:#fff;font-family:var(--f)}
+.slide{padding:80px 104px;position:relative;width:100vw;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.t-indigo{background:linear-gradient(135deg,#0f172a,#1e1b4b);color:#fff}
+.t-cream{background:#F5F0E8;color:#1a1a1a}
+.t-crimson{background:linear-gradient(135deg,#7f1d1d,#991b1b);color:#fff}
+.t-emerald{background:linear-gradient(135deg,#052e16,#064e3b);color:#ecfdf5}
+.t-slate{background:linear-gradient(135deg,#0f1923,#1a2942);color:#e6edf3}
+.t-violet{background:linear-gradient(135deg,#1e0a2e,#2e1065);color:#f5f3ff}
+.t-white{background:#fff;color:#111}
+.t-charcoal{background:linear-gradient(135deg,#111827,#1f2937);color:#f3f4f6}
+.snum{position:absolute;top:30px;right:48px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;font-family:var(--m);opacity:.4}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;opacity:.55;margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:'';flex:0 0 120px;height:1px;background:currentColor;opacity:.3}
+.h0{font-size:160px;font-weight:900;line-height:.9;letter-spacing:-5px;margin:0 0 20px}
+.h1{font-size:100px;font-weight:900;line-height:.98;letter-spacing:-3px;margin:0 0 18px}
+.h2{font-size:72px;font-weight:800;line-height:1.05;letter-spacing:-2px;margin:0 0 16px}
+.lede{font-size:26px;line-height:1.45;opacity:.72;max-width:900px;font-weight:300}
+.lede strong{font-weight:700;opacity:1}
+.big{font-family:var(--m);font-size:240px;font-weight:800;line-height:.9;letter-spacing:-10px}
+.line{display:block;width:90px;height:4px;margin:30px 0;opacity:.85}
+.t-indigo .acc{color:#a5b4fc}
+.t-cream .acc{color:#B5392A}
+.t-crimson .acc{color:#fecaca}
+.t-emerald .acc{color:#6ee7b7}
+.t-slate .acc{color:#7dd3fc}
+.t-violet .acc{color:#c4b5fd}
+.t-white .acc{color:#6366f1}
+.t-charcoal .acc{color:#fbbf24}
+.list{list-style:none;padding:0;margin:28px 0 0;font-family:var(--m);font-size:22px;line-height:2}
+.list li{padding-left:30px;position:relative;font-weight:400;opacity:.85}
+.list li::before{content:"→";position:absolute;left:0;opacity:.5}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:36px}
+.g2 h3{font-size:28px;font-weight:700;margin:0 0 10px}
+.g2 p{font-size:19px;line-height:1.55;opacity:.72;font-weight:300;margin:0}
+.code{font-family:var(--m);font-size:16px;line-height:1.9;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:24px 28px;margin:24px 0;white-space:pre}
+.t-cream .code,.t-white .code{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.1)}
+.kbd{position:absolute;bottom:34px;left:104px;font-family:var(--m);font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:.45}
+.kbd kbd{display:inline-block;padding:2px 10px;margin:0 3px;border:1px solid currentColor;border-radius:4px;font-size:12px}
+.page{position:absolute;bottom:34px;right:48px;font-family:var(--m);font-size:12px;letter-spacing:2px;opacity:.45}
+.notes{display:none!important}
+</style>
+</head>
+<body class="tpl">
+<!-- 01 COVER indigo -->
+<section class="slide t-indigo">
+<div class="snum">01 / 08</div>
+<div style="margin:auto 0">
+<div class="eyebrow">新经理转型 · 8 分钟内部分享</div>
+<h1 class="h0">从<br><span class="acc">"我来做"</span><br>到"我们赢"</h1>
+<span class="line"></span>
+<p class="lede">首次带团队的主管，如何完成从<strong>亲自执行</strong>到<strong>团队赋能</strong>的关键跃迁。<strong>按 → 开始。</strong></p>
+</div>
+<div class="kbd">nav · <kbd>←</kbd> <kbd>→</kbd> · <kbd>space</kbd></div>
+<div class="page">cover</div>
+<div class="notes">【第1页·封面·约40秒】大家好。今天用8分钟聊一个几乎所有新经理都会踩的坑——你因为做得好被提拔，但提拔之后，"做得好"反而成了你最大的障碍。我自己第一次带团队时，前三个月每天加班到半夜，因为总觉得"这个我来做更快"。结果呢？我累得半死，团队成员闲得发慌，还觉得我不信任他们。今天分享的核心就一句话：你的价值不再是你自己做了什么，而是你的团队能做到什么。</div>
+</section>
+<!-- 02 SECTION cream -->
+<section class="slide t-cream">
+<div class="snum">02 / 08</div>
+<div style="margin:auto 0">
+<div class="eyebrow">Chapter 01</div>
+<h1 class="h0">The <span class="acc">Shift</span>.</h1>
+<span class="line"></span>
+<p class="lede">你被提拔，不是因为你能做更多的事，<br>而是因为你能<strong>通过别人</strong>做成更多的事。</p>
+</div>
+<div class="kbd">chapter · 01 / 03</div>
+<div class="page">section</div>
+<div class="notes">【第2页·核心转变·约50秒】这是整个分享最核心的一页。IC（个人贡献者）的成功公式是：我自己产出多少。经理的成功公式是：我的团队整体产出多少。这两个公式是完全不同的游戏。很多新经理的惯性是继续玩老游戏——我要证明我还是最强的那个。但你越证明自己强，团队越弱。因为你把所有有挑战的活都揽了，他们没有成长空间。记住：从你当经理那天起，你的"手"就变成了团队的十几双手。你的工作不是让这双手更强，而是让那十几双手变强。</div>
+</section>
+<!-- 03 WARNING crimson -->
+<section class="slide t-crimson">
+<div class="snum">03 / 08</div>
+<div style="margin:auto 0">
+<div class="eyebrow">Warning Signs</div>
+<h2 class="h1">四个信号<br>说明你还在<br><span class="acc">亲自执行</span>。</h2>
+<ul class="list">
+<li>团队的关键决策都要你来拍板</li>
+<li>你是团队里加班最多、最忙的人</li>
+<li>成员遇到问题第一反应是"问你"</li>
+<li>你总觉得"教他做还不如我自己做"</li>
+</ul>
+</div>
+<div class="kbd">content · list</div>
+<div class="page">03</div>
+<div class="notes">【第3页·四个信号·约1分钟】来对照一下，这四个信号你中了几个？第一，所有关键决策都要你拍板——你成了唯一的大脑和瓶颈。第二，你是最忙的人——这不是敬业，是角色错位。第三，成员遇事就问你——这不是信任，是依赖。第四，"教他不如我自己做"——短期你做更快，但每次自己做就是放弃一次让他成长的机会，三个月后他还是不会，你还是得自己做，这是死循环。中两个以上的，今天的分享对你特别有用。</div>
+</section>
+<!-- 04 MINDSET emerald -->
+<section class="slide t-emerald">
+<div class="snum">04 / 08</div>
+<div style="margin:auto 0">
+<div class="eyebrow">Mindset Reset</div>
+<h2 class="h1">赋能不是<br><span class="acc">甩锅</span>。</h2>
+<p class="lede" style="margin-top:10px">不是把活扔给下属然后等结果。<br>而是：<strong>定义清楚问题 → 给对资源 → 陪他走完 → 复盘沉淀</strong>。</p>
+<div class="g2">
+<div><h3>&#215; 假赋能 · 放羊</h3><p>"这个你来负责" → 消失 → 最后一刻发现方向全错 → 自己救火。</p></div>
+<div><h3>&#10003; 真赋能 · 教练</h3><p>共同定义目标和边界 → 确认他有资源和能力 → 定期check-in → 结束后一起复盘。</p></div>
+</div>
+</div>
+<div class="kbd">content · compare</div>
+<div class="page">04</div>
+<div class="notes">【第4页·真赋能vs假赋能·约1分钟】很多人以为赋能就是把活分出去然后不管了，那不叫赋能，叫甩锅。你说"这个你负责"然后消失两周，回来发现方向全错，最后还是你救火——这不是他的问题，是你的问题。真正的赋能是教练过程：一起定义目标和边界；确认他有资源和能力，缺什么你去搞；定期check-in看有没有卡住；做完一起复盘沉淀。假赋能是"你做，做不好我骂你"；真赋能是"我陪你做，成了是你的功，砸了我一起扛"。</div>
+</section>
+<!-- 05 FRAMEWORK slate -->
+<section class="slide t-slate">
+<div class="snum">05 / 08</div>
+<div style="margin:auto 0">
+<div class="eyebrow">Framework</div>
+<h2 class="h2"><span class="acc">3 个</span> 动作<br>开始转型。</h2>
+<pre class="code">1. ASK · 别急着给答案，先问："你觉得该怎么做？"
+2. DELEGATE · 按能力分级授权，从"你决定我知情"开始
+3. REVIEW · 结果导向 + 过程复盘，对事不对人</pre>
+<p class="lede" style="margin-top:16px;font-size:20px">不是等你"准备好了"才授权，<br>而是<strong>在授权中让他准备好</strong>。</p>
+</div>
+<div class="kbd">content · framework</div>
+<div class="page">05</div>
+<div class="notes">【第5页·三个动作·约1.5分钟】具体怎么做？三个动作今天回去就能用。第一，ASK：下次有人问你怎么办，忍住别说答案，反问"你觉得该怎么做？"等他十秒钟。慢慢他会带方案来找你而不是带问题。第二，DELEGATE分级授权：分四级——你决定他执行、讨论后你决定、他决定你知情、他完全自主。从第三级"他决定你知情"开始，既给空间又不失控。第三，REVIEW复盘：定期看结果和过程，对事不对人，不是"你怎么搞砸了"而是"我们看看哪能改进"。关键：不要等他准备好了才授权，没人是准备好了才上场的。</div>
+</section>
+<!-- 06 LEVERAGE violet -->
+<section class="slide t-violet">
+<div class="snum">06 / 08</div>
+<div style="margin:auto 0">
+<div class="eyebrow">What changes</div>
+<div class="big acc">3×</div>
+<p class="lede" style="margin-top:14px;font-size:26px">团队有效产出的杠杆。<br>你从 <strong>1 个人干活</strong> 变成 <strong>N 个人 + 你一起干活</strong>。</p>
+<svg viewBox="0 0 900 120" style="width:100%;max-width:900px;margin-top:30px">
+<text x="0" y="20" font-family="JetBrains Mono" font-size="13" fill="rgba(255,255,255,.5)" font-weight="500">BEFORE · 你=瓶颈</text>
+<rect x="0" y="32" width="180" height="22" rx="11" fill="rgba(255,255,255,.15)"/>
+<rect x="0" y="32" width="180" height="22" rx="11" fill="rgba(255,255,255,.4)"/>
+<text x="190" y="49" font-family="JetBrains Mono" font-size="14" fill="rgba(255,255,255,.6)" font-weight="500">1× 你自己</text>
+<text x="0" y="85" font-family="JetBrains Mono" font-size="13" fill="#c4b5fd" font-weight="700">AFTER · 你=放大器</text>
+<rect x="0" y="97" width="720" height="22" rx="11" fill="rgba(255,255,255,.12)"/>
+<rect x="0" y="97" width="720" height="22" rx="11" fill="#c4b5fd"/>
+<text x="730" y="114" font-family="JetBrains Mono" font-size="14" fill="#c4b5fd" font-weight="700">N× 团队</text>
+</svg>
+</div>
+<div class="kbd">chart · leverage</div>
+<div class="page">06</div>
+<div class="notes">【第6页·杠杆效应·约50秒】为什么这个转变重要？因为它是杠杆。转型前你是瓶颈，产出上限是你一个人的时间精力，1倍。转型后你是放大器，每个人都能独立产出，整体是N倍，而且N会随每个人成长越来越大。我自己的经历：转型前我扛了团队40%关键任务，每天12小时；转型后我扛不到10%，团队产出翻了不止一倍，我反而能准时下班。这不是偷懒，是你的角色本来就该做的事。</div>
+</section>
+<!-- 07 ACTION white -->
+<section class="slide t-white">
+<div class="snum">07 / 08</div>
+<div style="margin:auto 0">
+<div class="eyebrow">This Week</div>
+<h2 class="h1">本周<br>做这 <span class="acc">3 件事</span>。</h2>
+<span class="line"></span>
+<ul class="list" style="font-size:20px">
+<li>列一张表：哪些事你现在还在亲自做？圈出 2 件可以交出去的</li>
+<li>下次有人问你问题，先反问"你觉得呢？" 忍住至少 10 秒不给答案</li>
+<li>和一个团队成员约 30 分钟，聊他想成长的方向，一起定一个小挑战</li>
+</ul>
+</div>
+<div class="kbd">cta · actions</div>
+<div class="page">07</div>
+<div class="notes">【第7页·本周行动·约1分钟】不要听完就完了，本周做三件事。第一，花15分钟列你现在亲自做的事，圈出2件能交出去的，下周就交。第二，下次有人问你问题，先反问"你觉得呢？"忍住10秒，这10秒很煎熬但在给他思考空间。第三，找一个成员约30分钟，不聊任务聊他想成长的方向，一起定一个比他现在能力稍高一点的小挑战，你支持他完成。不需要惊天动地，从小处开始，坚持一个月你会感到明显不同。</div>
+</section>
+<!-- 08 END charcoal -->
+<section class="slide t-charcoal">
+<div class="snum">08 / 08</div>
+<div style="margin:auto 0">
+<div class="eyebrow">End · Q&amp;A</div>
+<h1 class="h0"><span class="acc">你的成功</span><br>是团队的成功。</h1>
+<span class="line"></span>
+<p class="lede">最好的经理，不是团队里最厉害的那个人，<br>而是<strong>让团队里每个人都变得厉害</strong>的那个人。</p>
+</div>
+<div class="kbd">press <kbd>←</kbd> to rewind · <kbd>F</kbd> for fullscreen</div>
+<div class="page">fin</div>
+<div class="notes">【第8页·结束·约30秒】最后一句话：最好的经理，不是团队里最厉害的那个人，而是让团队里每个人都变得厉害的那个人。你不需要是技术最强、方案最好的，你需要的是看清方向、给对支持、让每个人发挥最大潜力。从"我来做"到"我们赢"不是一夜之间的转变，但每一次你忍住不给答案、每一次你把任务交出去、每一次你陪下属复盘，你都在成为更好的经理。谢谢大家，有问题现在可以聊。</div>
+</section>
+</body>
+</html>

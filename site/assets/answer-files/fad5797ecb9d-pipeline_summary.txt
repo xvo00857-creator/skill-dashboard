@@ -1,0 +1,19 @@
+门店订单 ETL 运行摘要
+========================================
+输入文件: /Users/bytedance/Doubao/chats/2026-08-12/new-chat-472/solution/smoke_data/orders.csv
+门店主数据: /Users/bytedance/Doubao/chats/2026-08-12/new-chat-472/solution/smoke_data/store_master.csv
+chroma 主数据索引条数: 4
+分块大小: 500
+语义匹配距离阈值: 0.75
+总行数: 13
+重复订单行数(不参与聚合): 1
+涉及重复的 order_id 数: 1
+未解析门店行数: 4
+负金额行数: 1
+缺失值按列统计:
+  order_id: 1
+  store_name: 1
+  amount: 1
+  order_time: 0
+结果表: /Users/bytedance/Doubao/chats/2026-08-12/new-chat-472/solution/output/result_by_store.csv
+抽样核对: /Users/bytedance/Doubao/chats/2026-08-12/new-chat-472/solution/output/sample_verification.csv

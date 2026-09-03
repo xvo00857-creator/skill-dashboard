@@ -1,0 +1,20 @@
+widget {
+  title: "VM Disk Read Bytes Rate"
+  xy_chart {
+    chart_options {
+      mode: COLOR
+    }
+    data_sets {
+      time_series_query {
+        prometheus_query: "rate(compute_googleapis_com:instance_disk_read_bytes_count[5m])"
+        unit_override: "By/s"
+      }
+      plot_type: LINE
+      target_axis: Y1
+    }
+    y_axis {
+      label: "Bytes Rate"
+      scale: LINEAR
+    }
+  }
+}

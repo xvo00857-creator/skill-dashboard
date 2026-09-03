@@ -1,0 +1,98 @@
+{
+  "bearing_608zz": {
+    "name": "608ZZ ball bearing",
+    "sha256": "62d262cc91fb6e213ae85f182811201787e583d527d9a7718ea30a08e1f19fc9",
+    "pageUrl": "https://www.step.parts/parts/bearing_608zz",
+    "apiUrl": "https://api.step.parts/v1/parts/bearing_608zz",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/bearing_608zz.step",
+    "byteSize": 39700
+  },
+  "iso4762_socket_head_cap_screw_m3x12": {
+    "name": "ISO 4762 socket head cap screw, M3 x 12",
+    "sha256": "7720179ea94ed5c4e2b32f6e4c2583a77423240599c602690c5b2b2f5471cc47",
+    "pageUrl": "https://www.step.parts/parts/iso4762_socket_head_cap_screw_m3x12",
+    "apiUrl": "https://api.step.parts/v1/parts/iso4762_socket_head_cap_screw_m3x12",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/iso4762_socket_head_cap_screw_m3x12.step",
+    "byteSize": 58826
+  },
+  "iso4032_hex_nut_m3": {
+    "name": "ISO 4032 hex nut, M3",
+    "sha256": "7de90cc2ca5eb2c38a27e3aee66939f30bdfde4ac47cd6f19f0324fcf93496bd",
+    "pageUrl": "https://www.step.parts/parts/iso4032_hex_nut_m3",
+    "apiUrl": "https://api.step.parts/v1/parts/iso4032_hex_nut_m3",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/iso4032_hex_nut_m3.step",
+    "byteSize": 117675
+  },
+  "din125_flat_washer_m3": {
+    "name": "DIN 125 flat washer, M3",
+    "sha256": "df57fbc49f55dd15c2780249a178c36e005ac299762d6def9f2c5b11fc8f7aff",
+    "pageUrl": "https://www.step.parts/parts/din125_flat_washer_m3",
+    "apiUrl": "https://api.step.parts/v1/parts/din125_flat_washer_m3",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/din125_flat_washer_m3.step",
+    "byteSize": 12337
+  },
+  "din913_set_screw_m3x4": {
+    "name": "DIN 913 set screw, M3 x 4",
+    "sha256": "b3a42752246bb0c0c196ec442b39aeb8e45565b8fad17ea5eaaf87edcfaf812b",
+    "pageUrl": "https://www.step.parts/parts/din913_set_screw_m3x4",
+    "apiUrl": "https://api.step.parts/v1/parts/din913_set_screw_m3x4",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/din913_set_screw_m3x4.step",
+    "byteSize": 31444
+  },
+  "hex_standoff_m3_12mm_male_female": {
+    "name": "Hex standoff, M3, 12 mm, male-female",
+    "sha256": "82e077afe723f42b20434c935cfdf4a643c7786feaadb2399de8c74f54dbf1d6",
+    "pageUrl": "https://www.step.parts/parts/hex_standoff_m3_12mm_male_female",
+    "apiUrl": "https://api.step.parts/v1/parts/hex_standoff_m3_12mm_male_female",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/hex_standoff_m3_12mm_male_female.step",
+    "byteSize": 38130
+  },
+  "gt2_pulley_16t_bore5_w6": {
+    "name": "gt2 pulley 16t bore5 w6",
+    "sha256": "a99666665869146e48b7b3f5686aa58c55c763d1e3a886301162281f49d9cccc",
+    "pageUrl": "https://www.step.parts/parts/gt2_pulley_16t_bore5_w6",
+    "apiUrl": "https://api.step.parts/v1/parts/gt2_pulley_16t_bore5_w6",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/gt2_pulley_16t_bore5_w6.step",
+    "byteSize": 24421
+  },
+  "gt2_pulley_20t_bore8_w6": {
+    "name": "gt2 pulley 20t bore8 w6",
+    "sha256": "b3d704b075adec5d6f731f0073b88fd676a29f26ae8b46227f49b73fb8db7550",
+    "pageUrl": "https://www.step.parts/parts/gt2_pulley_20t_bore8_w6",
+    "apiUrl": "https://api.step.parts/v1/parts/gt2_pulley_20t_bore8_w6",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/gt2_pulley_20t_bore8_w6.step",
+    "byteSize": 24398
+  },
+  "stepper_motor_nema17_l0040_single_shaft": {
+    "name": "NEMA stepper motors, body length 40 mm",
+    "sha256": "5fc9dcbec6f48f343eb8795e306f88321c0917d5ca1d597aa639125d6abd5e47",
+    "pageUrl": "https://www.step.parts/parts/stepper_motor_nema17_l0040_single_shaft",
+    "apiUrl": "https://api.step.parts/v1/parts/stepper_motor_nema17_l0040_single_shaft",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/stepper_motor_nema17_l0040_single_shaft.step",
+    "byteSize": 43758
+  },
+  "nema17_l_bracket": {
+    "name": "nema17 l bracket",
+    "sha256": "947fed626c6946a71d3dd844aab00d3169c780151b79dbc1a0c38901ef4e76d7",
+    "pageUrl": "https://www.step.parts/parts/nema17_l_bracket",
+    "apiUrl": "https://api.step.parts/v1/parts/nema17_l_bracket",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/nema17_l_bracket.step",
+    "byteSize": 15901
+  },
+  "z_axis_coupling_5x8mm": {
+    "name": "Flexible Z-axis shaft coupling, 5 mm to 8 mm",
+    "sha256": "0d47bfbfb8b698c76c6b0eea6d14d861731347d35af85b08e3c2b625822d0327",
+    "pageUrl": "https://www.step.parts/parts/z_axis_coupling_5x8mm",
+    "apiUrl": "https://api.step.parts/v1/parts/z_axis_coupling_5x8mm",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/z_axis_coupling_5x8mm.step",
+    "byteSize": 428223
+  },
+  "sk8_sc8uu_8mm_linear_rail_shaft_support": {
+    "name": "SK8 / SC8UU 8 mm linear rail shaft support",
+    "sha256": "978d9450787d37eba0ba5c32d8b8a09f103699f30109bb5fb0af41d507e07749",
+    "pageUrl": "https://www.step.parts/parts/sk8_sc8uu_8mm_linear_rail_shaft_support",
+    "apiUrl": "https://api.step.parts/v1/parts/sk8_sc8uu_8mm_linear_rail_shaft_support",
+    "stepUrl": "https://media.githubusercontent.com/media/earthtojake/step.parts/c6113328a5695b976a010a203a90fe86191769bf/catalog/step/sk8_sc8uu_8mm_linear_rail_shaft_support.step",
+    "byteSize": 144878
+  }
+}

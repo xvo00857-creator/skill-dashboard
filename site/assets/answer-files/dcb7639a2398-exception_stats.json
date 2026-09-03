@@ -1,0 +1,27 @@
+{
+  "input_path": "test_data_synthetic.csv",
+  "generated_at": "2026-08-12T09:15:22",
+  "total_rows_read": 25,
+  "total_rows_after_dedup": 23,
+  "duplicate_rows_removed": 2,
+  "duplicate_conflict_rows": 1,
+  "missing_counts_by_column": {
+    "amount": 2,
+    "qty": 3,
+    "store_name": 1,
+    "order_id": 1
+  },
+  "invalid_counts_by_column": {
+    "amount": 1
+  },
+  "store_name_status": {
+    "OK": 19,
+    "NEEDS_REVIEW": 5,
+    "UNKNOWN_NULL": 1
+  },
+  "amount_sum_excluding_missing": 7317.8,
+  "amount_non_missing_count": 20,
+  "qty_sum_excluding_missing": 35,
+  "qty_non_missing_count": 20,
+  "note": "缺失值未补0；金额/数量合计仅基于非缺失合法值。"
+}

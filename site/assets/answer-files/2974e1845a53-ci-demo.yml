@@ -1,0 +1,38 @@
+name: CI Demo
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  lint:
+    type: custom
+    runs_on: linux-medium
+    steps:
+      - name: Checkout repository
+        uses: expo/expo-github-action
+      - name: Install dependencies
+        run: npm ci
+      - name: Run linter
+        run: npm run lint
+
+  build:
+    type: build
+    needs: [lint]
+    params:
+      platform: ios
+      profile: production
+      message: "Automated build from ${{ github.sha }}"
+
+  approve:
+    type: require-approval
+    needs: [build]
+
+  submit:
+    type: submit
+    needs: [approve]
+    params:
+      profile: production
+      build_id: "${{ needs.build.outputs.build_id }}"

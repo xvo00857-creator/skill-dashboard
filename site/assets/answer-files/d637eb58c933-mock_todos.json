@@ -1,0 +1,30 @@
+{
+  "_comment": "本文件为合成模拟数据，仅用于只读预演。所有姓名、任务、渠道标识均为虚构，不对应任何真实人员。",
+  "team": {
+    "name": "示例产品组（模拟）",
+    "members": [
+      {"id": "m1", "name": "成员甲", "role": "产品负责人"},
+      {"id": "m2", "name": "成员乙", "role": "产品经理"},
+      {"id": "m3", "name": "成员丙", "role": "设计师"},
+      {"id": "m4", "name": "成员丁", "role": "前端研发"},
+      {"id": "m5", "name": "成员戊", "role": "后端研发"}
+    ],
+    "notify_recipients": ["simulate-group@example.invalid"],
+    "_recipients_note": "虚构地址，预演桩函数不会真实发送"
+  },
+  "todos": [
+    {"id": "t01", "title": "完成 v2.3 需求评审材料", "owner_id": "m1", "due_date": "2026-08-07", "status": "open", "priority": "high"},
+    {"id": "t02", "title": "用户调研报告定稿", "owner_id": "m2", "due_date": "2026-08-10", "status": "open", "priority": "high"},
+    {"id": "t03", "title": "首页改版高保真稿", "owner_id": "m3", "due_date": "2026-08-11", "status": "open", "priority": "medium"},
+    {"id": "t04", "title": "登录模块接口联调", "owner_id": "m5", "due_date": "2026-08-11", "status": "done", "priority": "high"},
+    {"id": "t05", "title": "支付流程埋点方案确认", "owner_id": "m2", "due_date": "2026-08-12", "status": "open", "priority": "high"},
+    {"id": "t06", "title": "组件库升级评审", "owner_id": "m4", "due_date": "2026-08-12", "status": "open", "priority": "medium"},
+    {"id": "t07", "title": "v2.3 测试用例评审", "owner_id": "m1", "due_date": "2026-08-13", "status": "open", "priority": "medium"},
+    {"id": "t08", "title": "数据看板原型走查", "owner_id": "m3", "due_date": "2026-08-14", "status": "open", "priority": "medium"},
+    {"id": "t09", "title": "灰度发布方案输出", "owner_id": "m5", "due_date": "2026-08-14", "status": "open", "priority": "high"},
+    {"id": "t10", "title": "周会纪要整理", "owner_id": "m1", "due_date": "2026-08-10", "status": "done", "priority": "low"},
+    {"id": "t11", "title": "竞品功能对比表更新", "owner_id": "m2", "due_date": "2026-08-16", "status": "open", "priority": "low"},
+    {"id": "t12", "title": "性能优化专项排期", "owner_id": "m4", "due_date": null, "status": "open", "priority": "medium"},
+    {"id": "t13", "title": "客服反馈问题分类", "owner_id": "m3", "due_date": null, "status": "open", "priority": "low"}
+  ]
+}

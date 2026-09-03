@@ -1,0 +1,6 @@
+
+> wechat-skill-eval-sample@1.0.0 test
+> node test.js
+
+{ id: 42, amount: 19.9 }
+EXIT: 0

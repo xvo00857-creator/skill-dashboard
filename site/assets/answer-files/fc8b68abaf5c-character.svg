@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 二维角色“小克”绑定原画：viewBox 0 0 400 500，所有枢轴坐标均在此坐标系内定义（见 rig_plan.json）。 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500" font-family="sans-serif">
+  <defs>
+    <radialGradient id="bellyGrad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#F2FAFD"/>
+      <stop offset="100%" stop-color="#D6EEF8"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 地面阴影（不参与绑定，纯装饰） -->
+  <ellipse cx="200" cy="448" rx="78" ry="12" fill="#000000" opacity="0.10"/>
+
+  <!-- layer 5：右腿（身后） pivot=[220,365] -->
+  <g id="leg_right">
+    <ellipse cx="220" cy="400" rx="21" ry="28" fill="#5A9EBC"/>
+    <ellipse cx="220" cy="420" rx="24" ry="10" fill="#4E8CA8"/>
+  </g>
+
+  <!-- layer 8：右臂（身后） pivot=[250,252] -->
+  <g id="arm_right">
+    <ellipse cx="258" cy="285" rx="15" ry="30" fill="#6FB8D5" stroke="#5A9EBC" stroke-width="3"/>
+  </g>
+
+  <!-- layer 10：身体 -->
+  <g id="body">
+    <ellipse cx="200" cy="300" rx="62" ry="72" fill="#7EC8E3" stroke="#5A9EBC" stroke-width="3"/>
+    <ellipse cx="200" cy="318" rx="38" ry="50" fill="url(#bellyGrad)"/>
+  </g>
+
+  <!-- layer 12：左腿（身前） pivot=[180,365] -->
+  <g id="leg_left">
+    <ellipse cx="180" cy="400" rx="21" ry="28" fill="#7EC8E3" stroke="#5A9EBC" stroke-width="3"/>
+    <ellipse cx="180" cy="420" rx="24" ry="10" fill="#5A9EBC"/>
+  </g>
+
+  <!-- layer 15：左臂（身前） pivot=[150,252] -->
+  <g id="arm_left">
+    <ellipse cx="142" cy="285" rx="15" ry="30" fill="#7EC8E3" stroke="#5A9EBC" stroke-width="3"/>
+  </g>
+
+  <!-- layer 25：耳朵（随头部） -->
+  <g id="ear_left">
+    <circle cx="168" cy="132" r="18" fill="#7EC8E3" stroke="#5A9EBC" stroke-width="3"/>
+    <circle cx="168" cy="132" r="9" fill="#FFC0CB"/>
+  </g>
+  <g id="ear_right">
+    <circle cx="232" cy="132" r="18" fill="#7EC8E3" stroke="#5A9EBC" stroke-width="3"/>
+    <circle cx="232" cy="132" r="9" fill="#FFC0CB"/>
+  </g>
+
+  <!-- layer 30：头部 pivot=[200,232] -->
+  <g id="head">
+    <circle cx="200" cy="180" r="55" fill="#7EC8E3" stroke="#5A9EBC" stroke-width="3"/>
+
+    <!-- layer 34：腮红 -->
+    <g id="cheek_left">
+      <circle cx="163" cy="196" r="8" fill="#FFB6C1" opacity="0.55"/>
+    </g>
+    <g id="cheek_right">
+      <circle cx="237" cy="196" r="8" fill="#FFB6C1" opacity="0.55"/>
+    </g>
+
+    <!-- layer 35：左眼（含瞳孔，可整体缩放做眨眼） center=[182,175] -->
+    <g id="eye_left">
+      <circle cx="182" cy="175" r="11" fill="#FFFFFF" stroke="#5A9EBC" stroke-width="1.5"/>
+      <circle cx="183" cy="176" r="5.5" fill="#2C3E50"/>
+      <circle cx="185" cy="173" r="2" fill="#FFFFFF"/>
+    </g>
+
+    <!-- layer 35：右眼 center=[218,175] -->
+    <g id="eye_right">
+      <circle cx="218" cy="175" r="11" fill="#FFFFFF" stroke="#5A9EBC" stroke-width="1.5"/>
+      <circle cx="219" cy="176" r="5.5" fill="#2C3E50"/>
+      <circle cx="221" cy="173" r="2" fill="#FFFFFF"/>
+    </g>
+
+    <!-- layer 37：嘴巴 -->
+    <g id="mouth">
+      <path d="M 190 202 Q 200 212 210 202" stroke="#E07A5F" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

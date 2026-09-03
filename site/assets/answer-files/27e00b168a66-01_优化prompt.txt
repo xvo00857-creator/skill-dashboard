@@ -1,0 +1,63 @@
+FORMAT: 30-second vertical (9:16) portable coffee maker product film for mobile social media. Lifestyle product reveal. Warm, premium, aspirational. Fast hook, clear value, strong close.
+
+TONE: 温暖、自信、向往。像一个懂生活的朋友分享好物。不浮夸，有质感。中文配音，中文字幕。
+
+AVATAR: 二十八岁左右的东亚女性，米白色高领针织衫，头发自然束起，坐在阳光明媚的山间露营地木桌旁。桌上放着一台哑光黑色便携咖啡机、一只不锈钢咖啡杯、一条亚麻餐巾和一个帆布旅行包。背景是虚化的绿色山林与清晨金色阳光。暖色自然光从左上方洒入，在桌面上形成柔和阴影。桌上还有一副墨镜和一本折角的旅行书。整体氛围：自在、精致、与自然共处。60-100 words. 3+ content-specific props.
+
+STYLE — GEOMETRIC BOLD (Tanaka): 每帧最多3个平涂色，无渐变。深咖啡棕 #2C1810、奶油白 #FAF6F0、咖啡金 #C8956C。中文粗体无衬线字体为主要视觉元素。不对称构图，至少60%留白。单一视觉焦点。所有切换为干净硬切，贴合节拍，无特效转场。动效克制有力：文字 SLAMS in、COUNTS UP、fades in，不使用花哨粒子。
+
+CRITICAL ON-SCREEN TEXT (display literally, in Chinese):
+- "随咖 SUIKA"
+- "90秒 现磨萃取"
+- "仅重 380g"
+- "一杯好咖啡 随手可得"
+- "立即体验"
+
+MUSIC: 轻快原声吉他拨弦搭配轻柔电子节拍，温暖而有活力。参考风格：日系生活方式广告配乐。开头吉他轻拨引入，中段加入轻拍节拍，结尾收束干净。能量弧线：好奇 → 惊喜 → 向往 → 行动。
+
+NARRATION STYLE: 中文女声，温暖自然，语速适中偏慢（约每分钟200字），像朋友推荐好物。关键数字前略作停顿，结尾有号召力但不喊叫。全程中文。
+
+---
+
+SCENE 1 — A-ROLL (5s)
+[人物居中，清晨阳光中举起便携咖啡机对着镜头微笑，另一只手端着不锈钢杯]
+VOICEOVER: "想在山顶，喝一杯现磨咖啡？"
+下三分之一字幕条 SLIDES in："随咖 SUIKA"，咖啡金 #C8956C 底色，奶油白文字。
+硬切。
+
+SCENE 2 — FULL SCREEN B-ROLL (10s)
+[无人物 — 纯动态图形]
+VOICEOVER: "随咖便携咖啡机，九十秒现磨萃取，仅重三百八十克，比一瓶矿泉水还轻。"
+LAYER 1: 奶油白 #FAF6F0 纯色背景，干净无纹理。
+LAYER 2: "90秒" 从左侧 SLAMS in，深咖啡棕 #2C1810 粗体，占画面约35%。下方"现磨萃取"以咖啡金 #C8956C 中号字 types on。
+LAYER 3: "380g" 从右侧 CASCADE 入，同样深棕粗体，旁边一个极简矿泉水瓶轮廓线图标以咖啡金描边 fades in。
+LAYER 4: 底部细信息条 SLIDES in："USB-C充电 · 一键操作"，深棕小字。
+LAYER 5: 极简咖啡杯图标在"90秒"下方 COUNTS UP 式填充咖啡液动画，从空到满，咖啡金色。
+硬切。
+
+SCENE 3 — A-ROLL + OVERLAY (5s)
+[分屏 — 人物在左侧40%，右侧60%为内容区。人物在户外木桌前单手按下咖啡机顶部按钮，微笑看向右侧]
+VOICEOVER: "一键操作，在哪都是你的咖啡馆。"
+右侧内容区：
+LAYER 1: 奶油白背景。
+LAYER 2: "一键萃取" 咖啡金粗体字 fades in。
+LAYER 3: 三个极简步骤图标垂直排列 CASCADE："加水" → "放胶囊" → "按一下"，深棕线条图标+中文标注。
+硬切。
+
+SCENE 4 — FULL SCREEN B-ROLL (10s)
+[无人物 — 纯动态图形品牌收尾]
+VOICEOVER: "随咖，让好咖啡，随你出发。立即体验。"
+LAYER 1: 深咖啡棕 #2C1810 纯色背景。
+LAYER 2: "随咖" 两个大字在画面中央 fades in，奶油白 #FAF6F0 粗体，占画面约30%。"SUIKA" 在其下方以咖啡金 #C8956C 小字宽字距出现。
+LAYER 3: "一杯好咖啡 随手可得" 在品牌名下方 types on，奶油白中号字。
+LAYER 4: 底部"立即体验"按钮以咖啡金底色 fades in，奶油白文字，圆角矩形。
+LAYER 5: 一条极细咖啡金水平线从左 DRAWS 到右，位于品牌名上方，作为装饰分隔。
+品牌名定格，音乐收束。
+
+---
+
+ACCESSIBILITY NOTES (for the video agent):
+- All on-screen Chinese text must be large (minimum 5% of frame height) with high contrast: dark text on cream or cream text on dark brown.
+- Burned-in Chinese subtitles for every voiceover line, centered near bottom but above the lower-third area.
+- No text smaller than 32pt equivalent. No flashing or strobing effects.
+- Voiceover is clear Mandarin Chinese at moderate pace.

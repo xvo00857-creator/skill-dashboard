@@ -1,0 +1,14 @@
+--- a/package.json
++++ b/package.json
+@@ -1 +1 @@
+-{"name":"wechat-skill-eval-sample","version":"1.0.0","private":true,"scripts":{"test":"node test.js"}}
++{"name":"wechat-skill-eval-sample","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node test.js"}}
+--- /dev/null
++++ b/src/app.js
+@@ -0,0 +1,6 @@
++export function normalizeOrder(order) {
++  return {
++    id: Number(order.id),
++    amount: Number(order.amount),
++  };
++}

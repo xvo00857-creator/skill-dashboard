@@ -1,0 +1,33 @@
+{
+  "report_week": "2026-W33",
+  "generated_at": "2026-08-12T09:00:00+08:00",
+  "week_start": "2026-08-10T00:00:00+08:00",
+  "week_end": "2026-08-17T00:00:00+08:00",
+  "total_items": 8,
+  "items_by_type": {
+    "pdf": 4,
+    "image": 3,
+    "archive": 1
+  },
+  "new_items_this_week": 4,
+  "modified_items_this_week": 2,
+  "total_size_bytes": 24222720,
+  "top_owners": [
+    {
+      "owner_email": "alice@example.com",
+      "count": 3
+    },
+    {
+      "owner_email": "bob@example.com",
+      "count": 3
+    },
+    {
+      "owner_email": "carol@example.com",
+      "count": 2
+    }
+  ],
+  "anomalies": [
+    "其中 1 项为 archived 状态，已计入总数。"
+  ],
+  "_note": "MOCK 摘要，由模拟器基于本地样例数据生成，非真实 Adobe 数据。"
+}

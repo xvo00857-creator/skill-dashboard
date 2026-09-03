@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web-component-design 组件演示</title>
+    <style>
+      :root {
+        --wcd-color-primary: #2563eb;
+        --wcd-color-primary-hover: #1d4ed8;
+        --wcd-color-primary-active: #1e40af;
+        --wcd-color-text: #1f2937;
+        --wcd-color-text-muted: #6b7280;
+        --wcd-color-border: #e5e7eb;
+        --wcd-color-bg: #ffffff;
+        --wcd-color-bg-muted: #f9fafb;
+        --wcd-radius: 0.5rem;
+        --wcd-ring: 0 0 0 3px rgba(37, 99, 235, 0.35);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 1rem;
+        background: var(--wcd-color-bg-muted);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        color: var(--wcd-color-text);
+      }
+
+      /* Button */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        gap: 0.5rem; border: 1px solid transparent; border-radius: var(--wcd-radius);
+        font-weight: 500; line-height: 1; cursor: pointer; text-decoration: none;
+        user-select: none;
+        transition: background-color .15s, border-color .15s, color .15s,
+          box-shadow .15s, transform .05s;
+        width: 100%;
+      }
+      .btn:focus-visible { outline: none; box-shadow: var(--wcd-ring); }
+      .btn:active:not(:disabled) { transform: translateY(1px); }
+      .btn:disabled, .btn--loading { opacity: .6; cursor: not-allowed; }
+      .btn--sm { height: 2rem; padding: 0 .75rem; font-size: .875rem; }
+      .btn--md { height: 2.5rem; padding: 0 1rem; font-size: .875rem; }
+      .btn--lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+      .btn--primary { background: var(--wcd-color-primary); color: #fff; }
+      .btn--primary:hover:not(:disabled) { background: var(--wcd-color-primary-hover); }
+      .btn--primary:active:not(:disabled) { background: var(--wcd-color-primary-active); }
+      .btn--secondary { background: #f3f4f6; color: var(--wcd-color-text); border-color: var(--wcd-color-border); }
+      .btn--secondary:hover:not(:disabled) { background: #e5e7eb; }
+      .btn--secondary:active:not(:disabled) { background: #d1d5db; }
+      .btn--ghost { background: transparent; color: var(--wcd-color-text); }
+      .btn--ghost:hover:not(:disabled) { background: #f3f4f6; }
+      .btn--ghost:active:not(:disabled) { background: #e5e7eb; }
+      .btn__spinner {
+        width: 1em; height: 1em; border: 2px solid currentColor;
+        border-right-color: transparent; border-radius: 50%;
+        animation: wcd-spin .6s linear infinite;
+      }
+      @keyframes wcd-spin { to { transform: rotate(360deg); } }
+      .btn-group { display: flex; flex-direction: column; gap: .5rem; }
+      @media (min-width: 768px) {
+        .btn { width: auto; }
+        .btn-group { flex-direction: row; flex-wrap: wrap; }
+      }
+
+      /* Tabs */
+      .tabs__list {
+        display: flex; gap: .25rem; border-bottom: 2px solid var(--wcd-color-border);
+        overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      }
+      .tabs__list::-webkit-scrollbar { display: none; }
+      .tabs__tab {
+        flex: 0 0 auto; appearance: none; background: none; border: none;
+        padding: .625rem .875rem; font-size: .875rem; font-weight: 500;
+        color: var(--wcd-color-text-muted); cursor: pointer; white-space: nowrap;
+        border-bottom: 2px solid transparent; margin-bottom: -2px;
+        transition: color .15s, border-color .15s;
+      }
+      .tabs__tab:hover:not(:disabled) { color: var(--wcd-color-text); }
+      .tabs__tab:focus-visible { outline: none; box-shadow: var(--wcd-ring); border-radius: .25rem; }
+      .tabs__tab:disabled { opacity: .5; cursor: not-allowed; }
+      .tabs__tab--active { color: var(--wcd-color-primary); border-bottom-color: var(--wcd-color-primary); }
+      .tabs__panel { padding: 1rem .25rem; outline: none; }
+      .tabs__panel:focus-visible { box-shadow: var(--wcd-ring); border-radius: var(--wcd-radius); }
+      @media (min-width: 768px) {
+        .tabs__list { gap: .5rem; }
+        .tabs__tab { padding: .75rem 1.25rem; font-size: .9375rem; }
+        .tabs__panel { padding: 1.25rem .5rem; }
+      }
+
+      /* demo layout */
+      .wcd-demo { max-width: 960px; margin: 0 auto; }
+      .wcd-demo-section {
+        background: var(--wcd-color-bg); border: 1px solid var(--wcd-color-border);
+        border-radius: var(--wcd-radius); padding: 1rem; margin-bottom: 1rem;
+      }
+      .wcd-demo-section h2 { margin: 0 0 .75rem; font-size: 1rem; }
+      .wcd-demo-note { font-size: .8125rem; color: var(--wcd-color-text-muted); margin-top: .5rem; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js"></script>
+
+    <script>
+      const {
+        createContext, useCallback, useContext, useId, useState,
+      } = React;
+      const { createRoot } = ReactDOM;
+      const html = htm.bind(React.createElement);
+
+      function cn(...classes) {
+        return classes.filter(Boolean).join(" ");
+      }
+
+      /* ---------- Button ---------- */
+      const Button = React.forwardRef(function Button(
+        { className, variant = "primary", size = "md", isLoading = false,
+          leftIcon, rightIcon, children, disabled, ...props },
+        ref
+      ) {
+        return html`
+          <button
+            ref=${ref}
+            className=${cn(
+              "btn", `btn--${variant}`, `btn--${size}`,
+              isLoading && "btn--loading", className
+            )}
+            disabled=${isLoading || disabled}
+            aria-busy=${isLoading || undefined}
+            ...${props}
+          >
+            ${isLoading && html`<span className="btn__spinner" aria-hidden="true" />`}
+            ${!isLoading && leftIcon
+              ? html`<span className="btn__icon btn__icon--left">${leftIcon}</span>`
+              : null}
+            <span className="btn__label">${children}</span>
+            ${!isLoading && rightIcon
+              ? html`<span className="btn__icon btn__icon--right">${rightIcon}</span>`
+              : null}
+          </button>
+        `;
+      });
+
+      /* ---------- Tabs (compound) ---------- */
+      const TabsContext = createContext(null);
+      function useTabs(name) {
+        const ctx = useContext(TabsContext);
+        if (!ctx) throw new Error(`<${name}> 必须在 <Tabs> 内使用`);
+        return ctx;
+      }
+
+      function Tabs({ defaultValue, value, onValueChange, children, className, ...props }) {
+        const [internal, setInternal] = useState(defaultValue ?? "");
+        const isControlled = value !== undefined;
+        const activeTab = isControlled ? value : internal;
+        const idBase = useId();
+        const setActiveTab = useCallback(
+          (next) => {
+            if (!isControlled) setInternal(next);
+            onValueChange?.(next);
+          },
+          [isControlled, onValueChange]
+        );
+        return html`
+          <${TabsContext.Provider} value=${{ activeTab, setActiveTab, idBase }}>
+            <div className=${cn("tabs", className)} ...${props}>${children}</div>
+          </${TabsContext.Provider}>
+        `;
+      }
+
+      Tabs.List = function TabList({ className, children, ...props }) {
+        return html`
+          <div role="tablist" className=${cn("tabs__list", className)} ...${props}>
+            ${children}
+          </div>
+        `;
+      };
+
+      Tabs.Tab = function Tab({ tabValue, disabled, className, children, ...props }) {
+        const { activeTab, setActiveTab, idBase } = useTabs("Tabs.Tab");
+        const isActive = activeTab === tabValue;
+        const tabId = `${idBase}-tab-${tabValue}`;
+        const panelId = `${idBase}-panel-${tabValue}`;
+
+        const handleKeyDown = (e) => {
+          const list = e.currentTarget.parentElement;
+          if (!list) return;
+          const tabs = Array.from(
+            list.querySelectorAll('[role="tab"]:not([disabled])')
+          );
+          const i = tabs.indexOf(e.currentTarget);
+          if (i === -1) return;
+          let next = null;
+          switch (e.key) {
+            case "ArrowRight":
+            case "ArrowDown":
+              e.preventDefault(); next = (i + 1) % tabs.length; break;
+            case "ArrowLeft":
+            case "ArrowUp":
+              e.preventDefault(); next = (i - 1 + tabs.length) % tabs.length; break;
+            case "Home":
+              e.preventDefault(); next = 0; break;
+            case "End":
+              e.preventDefault(); next = tabs.length - 1; break;
+          }
+          if (next !== null) {
+            tabs[next].focus();
+            tabs[next].click();
+          }
+        };
+
+        return html`
+          <button
+            type="button" role="tab" id=${tabId}
+            aria-selected=${isActive} aria-controls=${panelId}
+            tabIndex=${isActive ? 0 : -1} disabled=${disabled}
+            onClick=${() => { if (!disabled) setActiveTab(tabValue); }}
+            onKeyDown=${handleKeyDown}
+            className=${cn("tabs__tab", isActive && "tabs__tab--active", className)}
+            ...${props}
+          >
+            ${children}
+          </button>
+        `;
+      };
+
+      Tabs.Panel = function Panel({ tabValue, className, children, ...props }) {
+        const { activeTab, idBase } = useTabs("Tabs.Panel");
+        if (activeTab !== tabValue) return null;
+        const tabId = `${idBase}-tab-${tabValue}`;
+        const panelId = `${idBase}-panel-${tabValue}`;
+        return html`
+          <div
+            role="tabpanel" id=${panelId} aria-labelledby=${tabId} tabIndex=${0}
+            className=${cn("tabs__panel", className)} ...${props}
+          >
+            ${children}
+          </div>
+        `;
+      };
+
+      /* ---------- App ---------- */
+      function App() {
+        const [tab, setTab] = useState("overview");
+        return html`
+          <div className="wcd-demo">
+            <h1>web-component-design 组件演示</h1>
+
+            <section className="wcd-demo-section">
+              <h2>按钮交互状态</h2>
+              <div className="btn-group">
+                <${Button} variant="primary" size="md">主要按钮<//>
+                <${Button} variant="secondary" size="md">次要按钮<//>
+                <${Button} variant="ghost" size="md">幽灵按钮<//>
+                <${Button} size="sm">小尺寸<//>
+                <${Button} size="lg">大尺寸<//>
+                <${Button} isLoading=${true}>加载中<//>
+                <${Button} disabled=${true}>已禁用<//>
+              </div>
+              <p className="wcd-demo-note">
+                移动端按钮纵向整宽；≥768px 横向自适应宽度。
+              </p>
+            </section>
+
+            <section className="wcd-demo-section">
+              <h2>标签页（受控）</h2>
+              <${Tabs} value=${tab} onValueChange=${setTab}>
+                <${Tabs.List}>
+                  <${Tabs.Tab} tabValue="overview">概览<//>
+                  <${Tabs.Tab} tabValue="features">特性<//>
+                  <${Tabs.Tab} tabValue="pricing" disabled=${true}>定价（禁用）<//>
+                  <${Tabs.Tab} tabValue="faq">常见问题<//>
+                <//>
+                <${Tabs.Panel} tabValue="overview">当前选中：${tab}。概览内容…<//>
+                <${Tabs.Panel} tabValue="features">特性内容…<//>
+                <${Tabs.Panel} tabValue="pricing">定价内容…<//>
+                <${Tabs.Panel} tabValue="faq">常见问题内容…<//>
+              <//>
+              <p className="wcd-demo-note">
+                支持 ← → ↑ ↓、Home、End 键切换；Tab 键仅在当前标签与面板间停留。
+              </p>
+            </section>
+
+            <section className="wcd-demo-section">
+              <h2>标签页（非受控）</h2>
+              <${Tabs} defaultValue="a">
+                <${Tabs.List}>
+                  <${Tabs.Tab} tabValue="a">标签 A<//>
+                  <${Tabs.Tab} tabValue="b">标签 B<//>
+                <//>
+                <${Tabs.Panel} tabValue="a">非受控面板 A<//>
+                <${Tabs.Panel} tabValue="b">非受控面板 B<//>
+              <//>
+            </section>
+          </div>
+        `;
+      }
+
+      const root = createRoot(document.getElementById("root"));
+      root.render(html`<${App} />`);
+    </script>
+  </body>
+</html>

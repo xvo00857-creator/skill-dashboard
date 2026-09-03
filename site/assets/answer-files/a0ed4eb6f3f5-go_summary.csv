@@ -1,0 +1,4 @@
+aspect,annotation_count,unique_go_terms,proteins_covered
+P (生物过程),482,260,14
+F (分子功能),1896,96,14
+C (细胞组分),1462,79,14

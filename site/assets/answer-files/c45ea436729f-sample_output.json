@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "total_feedback": 12,
+    "total_themes": 8,
+    "dedup_jaccard_threshold": 0.5,
+    "dedup_overlap_threshold": 0.65,
+    "pipeline_version": "0.1.0",
+    "note": "本地处理层结果；2chat真实反馈拉取需Rube MCP，当前环境未连接"
+  },
+  "themes": [
+    {
+      "theme_key": "leak_seal",
+      "theme_label": "漏水与密封",
+      "is_core_selling_point": false,
+      "raw_feedback_count": 2,
+      "deduped_group_count": 2,
+      "priority": "P0",
+      "priority_score": 12,
+      "priority_reasons": [
+        "去重后 2 组反馈",
+        "命中严重度关键词：漏水、退货"
+      ],
+      "severity_hits": [
+        "漏水",
+        "退货"
+      ],
+      "next_actions": [
+        "排查密封圈装配与杯盖旋合结构；漏水属安全相关，优先安排复测",
+        "安全相关：48小时内安排密封复测并同步客服话术"
+      ],
+      "deduped_groups": [
+        {
+          "representative_id": "fb-007",
+          "representative_content": "杯子漏水！放包里洒了一书包，文件都湿了，要求退货",
+          "member_ids": [
+            "fb-007"
+          ],
+          "member_contents_preview": [
+            "杯子漏水！放包里洒了一书包，文件都湿了，要求退货"
+          ]
+        },
+        {
+          "representative_id": "fb-008",
+          "representative_content": "装了水倒过来会渗水，密封圈好像不太管用",
+          "member_ids": [
+            "fb-008"
+          ],
+          "member_contents_preview": [
+            "装了水倒过来会渗水，密封圈好像不太管用"
+          ]
+        }
+      ],
+      "source_feedback_ids": [
+        "fb-007",
+        "fb-008"
+      ]
+    },
+    {
+      "theme_key": "lid_cleaning",
+      "theme_label": "杯盖与拆洗",
+      "is_core_selling_point": true,
+      "raw_feedback_count": 3,
+      "deduped_group_count": 3,
+      "priority": "P0",
+      "priority_score": 10,
+      "priority_reasons": [
+        "去重后仍有 3 组独立反馈，频次较高",
+        "涉及核心卖点「杯盖与拆洗」且 2 条含负面表述"
+      ],
+      "severity_hits": [],
+      "next_actions": [
+        "检查可拆洗结构是否存在清洁死角；必要时补充清洗指引图文"
+      ],
+      "deduped_groups": [
+        {
+          "representative_id": "fb-005",
+          "representative_content": "杯盖可以拆开洗，密封圈也能取下来，没有清洁死角，这个设计不错",
+          "member_ids": [
+            "fb-005"
+          ],
+          "member_contents_preview": [
+            "杯盖可以拆开洗，密封圈也能取下来，没有清洁死角，这个设计不错"
+          ]
+        },
+        {
+          "representative_id": "fb-006",
+          "representative_content": "杯盖拆了之后装回去有点费劲，密封圈容易掉，希望改进",
+          "member_ids": [
+            "fb-006"
+          ],
+          "member_contents_preview": [
+            "杯盖拆了之后装回去有点费劲，密封圈容易掉，希望改进"
+          ]
+        },
+        {
+          "representative_id": "fb-008",
+          "representative_content": "装了水倒过来会渗水，密封圈好像不太管用",
+          "member_ids": [
+            "fb-008"
+          ],
+          "member_contents_preview": [
+            "装了水倒过来会渗水，密封圈好像不太管用"
+          ]
+        }
+      ],
+      "source_feedback_ids": [
+        "fb-005",
+        "fb-006",
+        "fb-008"
+      ]
+    },
+    {
+      "theme_key": "material_safety",
+      "theme_label": "材质与安全",
+      "is_core_selling_point": false,
+      "raw_feedback_count": 1,
+      "deduped_group_count": 1,
+      "priority": "P0",
+      "priority_score": 10,
+      "priority_reasons": [
+        "去重后 1 组反馈",
+        "命中严重度关键词：不敢用"
+      ],
+      "severity_hits": [
+        "不敢用"
+      ],
+      "next_actions": [
+        "食品接触材料报告尚未提供（见简报不完整信息），列为待补项；异味问题转品控",
+        "待补项：食品接触材料报告（product_brief.md 明确尚未提供）"
+      ],
+      "deduped_groups": [
+        {
+          "representative_id": "fb-009",
+          "representative_content": "新买的杯子打开有一股塑料味，不敢用，有没有食品接触材料的报告？",
+          "member_ids": [
+            "fb-009"
+          ],
+          "member_contents_preview": [
+            "新买的杯子打开有一股塑料味，不敢用，有没有食品接触材料的报告？"
+          ]
+        }
+      ],
+      "source_feedback_ids": [
+        "fb-009"
+      ]
+    },
+    {
+      "theme_key": "insulation",
+      "theme_label": "保温性能",
+      "is_core_selling_point": true,
+      "raw_feedback_count": 3,
+      "deduped_group_count": 2,
+      "priority": "P1",
+      "priority_score": 8,
+      "priority_reasons": [
+        "去重后 2 组反馈",
+        "涉及核心卖点「保温性能」且 1 条含负面表述"
+      ],
+      "severity_hits": [],
+      "next_actions": [
+        "核实保温时长实测数据；若与12小时宣传不符，转研发复测并更新FAQ"
+      ],
+      "deduped_groups": [
+        {
+          "representative_id": "fb-001",
+          "representative_content": "杯子保温效果很好，早上装的开水到下午还是温的，12小时保温名不虚传",
+          "member_ids": [
+            "fb-001"
+          ],
+          "member_contents_preview": [
+            "杯子保温效果很好，早上装的开水到下午还是温的，12小时保温名不虚传"
+          ]
+        },
+        {
+          "representative_id": "fb-002",
+          "representative_content": "保温不行啊，中午装的热水下午就凉了，跟宣传的12小时差太远",
+          "member_ids": [
+            "fb-002",
+            "fb-003"
+          ],
+          "member_contents_preview": [
+            "保温不行啊，中午装的热水下午就凉了，跟宣传的12小时差太远",
+            "中午装的热水下午就凉了，12小时保温根本达不到"
+          ]
+        }
+      ],
+      "source_feedback_ids": [
+        "fb-001",
+        "fb-002",
+        "fb-003"
+      ]
+    },
+    {
+      "theme_key": "weight",
+      "theme_label": "重量与便携",
+      "is_core_selling_point": true,
+      "raw_feedback_count": 2,
+      "deduped_group_count": 2,
+      "priority": "P1",
+      "priority_score": 8,
+      "priority_reasons": [
+        "去重后 2 组反馈",
+        "涉及核心卖点「重量与便携」且 1 条含负面表述"
+      ],
+      "severity_hits": [],
+      "next_actions": [
+        "确认称重规格与标注一致；收集通勤场景便携性反馈用于详情页优化"
+      ],
+      "deduped_groups": [
+        {
+          "representative_id": "fb-004",
+          "representative_content": "杯子很轻，280g放通勤包里几乎没感觉，便携性满意",
+          "member_ids": [
+            "fb-004"
+          ],
+          "member_contents_preview": [
+            "杯子很轻，280g放通勤包里几乎没感觉，便携性满意"
+          ]
+        },
+        {
+          "representative_id": "fb-012",
+          "representative_content": "容量有点小，通勤一上午不够喝，希望出大容量版",
+          "member_ids": [
+            "fb-012"
+          ],
+          "member_contents_preview": [
+            "容量有点小，通勤一上午不够喝，希望出大容量版"
+          ]
+        }
+      ],
+      "source_feedback_ids": [
+        "fb-004",
+        "fb-012"
+      ]
+    },
+    {
+      "theme_key": "price_value",
+      "theme_label": "价格与性价比",
+      "is_core_selling_point": false,
+      "raw_feedback_count": 1,
+      "deduped_group_count": 1,
+      "priority": "P2",
+      "priority_score": 2,
+      "priority_reasons": [
+        "去重后 1 组反馈"
+      ],
+      "severity_hits": [],
+      "next_actions": [
+        "汇总价格敏感度反馈；禁止编造竞品价格，如需对比须走外部数据采集流程",
+        "待补项：如需竞品价格对比，须走外部数据采集，禁止编造"
+      ],
+      "deduped_groups": [
+        {
+          "representative_id": "fb-010",
+          "representative_content": "199块有点贵，不知道值不值这个价",
+          "member_ids": [
+            "fb-010"
+          ],
+          "member_contents_preview": [
+            "199块有点贵，不知道值不值这个价"
+          ]
+        }
+      ],
+      "source_feedback_ids": [
+        "fb-010"
+      ]
+    },
+    {
+      "theme_key": "appearance",
+      "theme_label": "外观与颜色",
+      "is_core_selling_point": false,
+      "raw_feedback_count": 1,
+      "deduped_group_count": 1,
+      "priority": "P2",
+      "priority_score": 2,
+      "priority_reasons": [
+        "去重后 1 组反馈"
+      ],
+      "severity_hits": [],
+      "next_actions": [
+        "汇总外观偏好反馈；品牌主色 #176B87 相关建议转设计评估"
+      ],
+      "deduped_groups": [
+        {
+          "representative_id": "fb-011",
+          "representative_content": "颜色挺好看的，这个蓝绿色很高级，颜值在线",
+          "member_ids": [
+            "fb-011"
+          ],
+          "member_contents_preview": [
+            "颜色挺好看的，这个蓝绿色很高级，颜值在线"
+          ]
+        }
+      ],
+      "source_feedback_ids": [
+        "fb-011"
+      ]
+    },
+    {
+      "theme_key": "capacity",
+      "theme_label": "容量",
+      "is_core_selling_point": false,
+      "raw_feedback_count": 1,
+      "deduped_group_count": 1,
+      "priority": "P2",
+      "priority_score": 2,
+      "priority_reasons": [
+        "去重后 1 组反馈"
+      ],
+      "severity_hits": [],
+      "next_actions": [
+        "记录容量需求分布，作为后续SKU规划参考"
+      ],
+      "deduped_groups": [
+        {
+          "representative_id": "fb-012",
+          "representative_content": "容量有点小，通勤一上午不够喝，希望出大容量版",
+          "member_ids": [
+            "fb-012"
+          ],
+          "member_contents_preview": [
+            "容量有点小，通勤一上午不够喝，希望出大容量版"
+          ]
+        }
+      ],
+      "source_feedback_ids": [
+        "fb-012"
+      ]
+    }
+  ]
+}

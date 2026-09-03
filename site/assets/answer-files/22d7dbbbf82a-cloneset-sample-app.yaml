@@ -1,0 +1,29 @@
+# CloneSet 示例（高级无状态工作负载，支持原地升级）
+# 依据 SKILL.md：集群 API 版本未知且仅作示例时，使用 apps.kruise.io/v1alpha1
+# updateStrategy.type=InPlaceIfPossible 以支持原地升级；maxUnavailable=1
+# 该清单来自 Skill 自带 examples/cloneset.yaml，字段未做臆测扩展。
+apiVersion: apps.kruise.io/v1alpha1
+kind: CloneSet
+metadata:
+  name: sample-app
+  namespace: demo-project
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+      - name: app
+        image: nginx:1.25
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+  updateStrategy:
+    type: InPlaceIfPossible
+    partition: 0%
+    maxUnavailable: 1

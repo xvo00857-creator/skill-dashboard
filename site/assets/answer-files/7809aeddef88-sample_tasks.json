@@ -1,0 +1,19 @@
+{
+  "_comment": "模拟数据，仅用于 dry-run 预演。成员以代号标识，不含真实个人信息。",
+  "week_range": {
+    "start": "2026-08-10",
+    "end": "2026-08-16"
+  },
+  "tasks": [
+    {"id": "T-001", "owner": "成员A", "title": "完成需求评审文档", "due_date": "2026-08-11", "status": "done"},
+    {"id": "T-002", "owner": "成员A", "title": "提交竞品分析报告", "due_date": "2026-08-10", "status": "in_progress"},
+    {"id": "T-003", "owner": "成员B", "title": "修复登录页样式问题", "due_date": "2026-08-09", "status": "todo"},
+    {"id": "T-004", "owner": "成员B", "title": "接口联调-订单模块", "due_date": "2026-08-13", "status": "in_progress"},
+    {"id": "T-005", "owner": "成员C", "title": "用户访谈纪要整理", "due_date": "2026-08-12", "status": "done"},
+    {"id": "T-006", "owner": "成员C", "title": "数据埋点方案确认", "due_date": "2026-08-08", "status": "todo"},
+    {"id": "T-007", "owner": "成员D", "title": "版本发布检查清单", "due_date": "2026-08-14", "status": "in_progress"},
+    {"id": "T-008", "owner": "成员D", "title": "客服反馈周报", "due_date": "2026-08-07", "status": "todo"},
+    {"id": "T-009", "owner": "成员E", "title": "原型图更新-设置页", "due_date": "2026-08-15", "status": "in_progress"},
+    {"id": "T-010", "owner": "成员E", "title": "测试用例补充", "due_date": "2026-08-12", "status": "done"}
+  ]
+}

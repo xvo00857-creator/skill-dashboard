@@ -1,0 +1,112 @@
+{
+  "name": "Career Pivot",
+  "description": "转岗准备期的可检索记忆：目标岗位信号、能力差距与学习、可迁移成就素材、人脉线索、沟通复盘、决策权衡",
+  "version": "1.0.0",
+  "observation_types": [
+    {
+      "id": "role-signal",
+      "label": "岗位信号",
+      "description": "来自 JD、面试官、在职者或公开信息的岗位要求、团队方向、评价标准、技术栈或业务重点",
+      "emoji": "🎯",
+      "work_emoji": "🔍"
+    },
+    {
+      "id": "gap-learning",
+      "label": "差距与学习",
+      "description": "识别出的能力短板、学习计划、练习资源与进展，以及补齐能力的具体证据",
+      "emoji": "📚",
+      "work_emoji": "📝"
+    },
+    {
+      "id": "proof-asset",
+      "label": "证明素材",
+      "description": "可迁移到目标岗位的过往项目、成就、数据或故事素材，用于简历与面试",
+      "emoji": "🏆",
+      "work_emoji": "✍️"
+    },
+    {
+      "id": "relationship",
+      "label": "人脉线索",
+      "description": "内推人、导师、信息面谈对象等关键联系人，及其态度、建议和下一步动作",
+      "emoji": "🤝",
+      "work_emoji": "💬"
+    },
+    {
+      "id": "interaction-review",
+      "label": "沟通复盘",
+      "description": "面试或正式沟通中被问到的问题、给出的回答、收到的反馈与表现复盘",
+      "emoji": "🎤",
+      "work_emoji": "🔁"
+    },
+    {
+      "id": "decision",
+      "label": "决策权衡",
+      "description": "岗位或 offer 的比较、优先级排序、承诺、放弃及其理由",
+      "emoji": "⚖️",
+      "work_emoji": "🧭"
+    }
+  ],
+  "observation_concepts": [
+    {
+      "id": "priority",
+      "label": "高优先级",
+      "description": "对转岗成败关键、需优先处理的事项"
+    },
+    {
+      "id": "deadline",
+      "label": "有时间节点",
+      "description": "关联投递截止、面试时间、回复期限等具体日期"
+    },
+    {
+      "id": "follow-up",
+      "label": "待跟进",
+      "description": "需要后续行动、回复或确认的事项"
+    },
+    {
+      "id": "red-flag",
+      "label": "风险顾虑",
+      "description": "团队、岗位、流程或待遇中暴露的风险或负面信号"
+    },
+    {
+      "id": "evidence",
+      "label": "有证据",
+      "description": "有具体数据、事实或来源支撑，而非主观印象"
+    },
+    {
+      "id": "uncertain",
+      "label": "待确认",
+      "description": "尚未核实的传闻、二手信息或不确定结论"
+    }
+  ],
+  "prompts": {
+    "system_identity": "You are Claude-Mem, a specialized observer creating searchable memory for future sessions. Record what was learned, decided, prepared, or changed about the career pivot and job-transfer preparation—not the observer's own actions. All evidence arrives inside observed session messages; do not investigate independently.",
+    "spatial_awareness": "Use tool working directories and file paths to distinguish applications, resume versions, company research, interview notes, contact records, and offer documents.",
+    "observer_role": "Observe a career-pivot workflow happening now and preserve durable job-search and role-transfer knowledge for future sessions. Do not perform the work; record the substance and rationale of the preparation being observed.",
+    "recording_focus": "WHAT TO RECORD\n--------------\nRecord durable role signals, skill gaps and learning progress, transferable achievements and evidence, contacts and their advice, interview or communication feedback, and decisions with rationale. Prefer specific facts, sources, dates, the person or team involved, the target role, and why it matters later.\n\nGOOD: The hiring manager said the team's Q4 priority is cross-border payment compliance and wants candidates familiar with local regulatory frameworks; source: 8/12 final round, Director Li.\nBAD: Looked at the job description and took some notes.",
+    "skip_guidance": "WHEN TO SKIP\n------------\nSkip routine application clicks, repeated browsing of already-recorded postings, formatting-only resume tweaks, venting with no conclusion, and unverified salary gossip. Return no observation when nothing durable was learned or changed.",
+    "type_guidance": "type must be exactly one of: role-signal, gap-learning, proof-asset, relationship, interaction-review, decision.",
+    "concept_guidance": "concepts must use only: priority, deadline, follow-up, red-flag, evidence, uncertain. Concepts are tags and must not repeat the observation type.",
+    "field_guidance": "Facts must be concise and self-contained. Include source (JD, interview, contact, research), date, person or team, target role, and status when known. List every source file or document examined.",
+    "format_examples": "",
+    "xml_title_placeholder": "[Short title naming the role signal, gap, proof asset, contact, interaction review, or decision]",
+    "xml_subtitle_placeholder": "[One sentence with the consequence for the pivot, maximum 24 words]",
+    "xml_fact_placeholder": "[One self-contained fact with source and date]",
+    "xml_narrative_placeholder": "[Context, rationale, affected applications or interviews, and why this matters later]",
+    "xml_concept_placeholder": "[one approved concept ID]",
+    "xml_file_placeholder": "[path/to/resume/note/research/offer-document]",
+    "xml_summary_request_placeholder": "[Career-pivot task and substantive preparation discussed or completed]",
+    "xml_summary_investigated_placeholder": "[Job postings, companies, contacts, interview questions, or requirements examined]",
+    "xml_summary_learned_placeholder": "[Role signals, gaps, proof assets, contact advice, feedback, and decision factors learned]",
+    "xml_summary_completed_placeholder": "[Applications, revisions, interviews, follow-ups, or decisions completed]",
+    "xml_summary_next_steps_placeholder": "[Current application, preparation, networking, or decision trajectory]",
+    "xml_summary_notes_placeholder": "[Risks, open questions, deadlines, or reminders]",
+    "header_memory_start": "CAREER PIVOT MEMORY START\n========================",
+    "header_memory_continued": "CAREER PIVOT MEMORY CONTINUED\n==============================",
+    "header_summary_checkpoint": "CAREER PIVOT SUMMARY CHECKPOINT\n===============================",
+    "continuation_greeting": "You are continuing to observe the career-pivot preparation in the primary session.",
+    "summary_instruction": "Summarize what job-transfer preparation was examined, learned, decided, or completed and the current next steps. Preserve role requirements, gaps, evidence, contact advice, feedback, decisions, deadlines, and unresolved risks.",
+    "summary_context_label": "Primary session response:",
+    "summary_format_instruction": "Respond using the required XML summary format:",
+    "summary_footer": "Generate only the progress summary for the observed career-pivot session. Do not perform new work or describe the observer's actions."
+  }
+}

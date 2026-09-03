@@ -1,0 +1,83 @@
+验证工作流: /Users/bytedance/Doubao/chats/2026-08-12/new-chat-425/deliverable/.github/workflows/issue-triage-summary.md
+
+--- 通过项 ---
+  [PASS] YAML frontmatter 解析成功
+  [PASS] 触发器包含 issues 事件
+  [PASS] issues 触发器监听 opened 类型
+  [PASS] 包含 workflow_dispatch 手动触发
+  [PASS] 配置了 skip-bots 跳过机器人 Issue
+  [PASS] Agent 任务权限全部为只读（无 write 权限）
+  [PASS] issues 权限为 read
+  [PASS] contents 权限为 read
+  [PASS] GitHub 读取模式为 gh-proxy
+  [PASS] toolsets 仅包含 default（最小工具集）
+  [PASS] bash 允许列表为窄列表: ['mkdir', 'gh', 'jq', 'cat']
+  [PASS] 声明了 add-labels 安全输出
+  [PASS] 声明了 add-comment 安全输出
+  [PASS] add-labels.allowed 限制了可选标签（8 个）
+  [PASS] add-labels.max 限制为 3
+  [PASS] add-comment.max 限制为 1
+  [PASS] mentions: false 防止意外 @通知
+  [PASS] max-bot-mentions: 0 防止意外关闭 Issue
+  [PASS] 网络允许列表: ['defaults']
+  [PASS] 网络仅允许 defaults（无第三方依赖）
+  [PASS] 配置了 steps 预取数据
+  [PASS] 预取数据写入 /tmp/gh-aw/data/
+  [PASS] 预取步骤使用 gh + jq
+  [PASS] Issue 编号通过环境变量传递（防注入）
+  [PASS] Prompt 包含 noop 指导
+  [PASS] Prompt 引用预取文件路径
+  [PASS] Prompt 指示使用 add-labels
+  [PASS] Prompt 指示使用 add-comment
+  [PASS] 省略了 engine: copilot 默认值
+  [PASS] 未引入第三方 MCP 服务器
+  [PASS] 未启用 playwright
+  [PASS] 未启用 cli-proxy
+  [PASS] 文件位于 .github/workflows/ 目录
+  [PASS] 未发现硬编码密钥
+
+结果: 34/34 通过, 0 错误, 0 警告
+
+============================================================
+模拟演练（无 GitHub 账号，使用本地假数据）
+============================================================
+[预取] 已写入模拟数据到 /tmp/gh-aw/data/
+  - issue.json: 453 bytes
+  - labels.json: 682 bytes
+  - similar.json: 140 bytes
+
+[jq 校验] 验证预取 JSON 可被 jq 解析:
+  PASS jq . issue.json
+  PASS jq . labels.json
+  PASS jq . similar.json
+
+[模拟 Agent 分类决策]
+  -> add_labels: ['bug']
+  -> add_comment: (摘要 302 字)
+
+### 问题概述
+Safari 浏览器下登录表单提交无响应，控制台报 `TypeError`，Chrome 下正常，疑似浏览器兼容性问题。
+
+### 分类与优先级
+- 标签: `bug`
+- 建议优先级: **高**
+- 分类理由: 包含明确错误信息和复现步骤，属于前端兼容性缺陷
+
+> [!NOTE]
+> 疑似重复: #38 Safari 下表单提交按钮失效
+
+### 建议后续行动
+1. 检查 `form.validate` 在 Safari 下的兼容性，可能缺少 polyfill
+2. 在 Safari 17.5 上复现并确认影响范围
+3. 若与 #38 为同一问题，可标记为 duplicate
+
+[安全检查] 标签均在 allowed 列表内: PASS
+[安全检查] 标签数量 <= 3: PASS
+[安全检查] 摘要不含 @mention: PASS
+[安全检查] 摘要不含关闭关键字: PASS
+
+[noop 路径测试] 已有标签的 Issue:
+  -> noop: Issue 已有标签，跳过自动分拣
+
+[noop 路径测试] 空内容 Issue:
+  -> noop: Issue 内容为空或过短，无法分类

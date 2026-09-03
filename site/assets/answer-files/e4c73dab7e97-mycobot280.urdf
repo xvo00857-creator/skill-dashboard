@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<!-- cadpy:sourcePath=mycobot280_gen.py -->
+<!-- cadpy:sourceHash=8bef5a9c16bc71962723c569cf18c7d12e8e871e56db5bf74ba94745111b3c10 -->
+<robot name="mycobot280">
+  <link name="base_link">
+    <visual>
+      <origin xyz="0.000000 0.000000 0.067500" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <cylinder radius="0.055000" length="0.135000" />
+      </geometry>
+      <material name="base_grey">
+        <color rgba="0.4 0.4 0.4 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 0.067500" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <cylinder radius="0.055000" length="0.135000" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.067500" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.350000" />
+      <inertia ixx="0.000796250" ixy="0.000000000" ixz="0.000000000" iyy="0.000796250" iyz="0.000000000" izz="0.000529375" />
+    </inertial>
+  </link>
+  <link name="shoulder_link">
+    <visual>
+      <origin xyz="0.000000 0.000000 -0.030000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.040000 0.040000 0.070000" />
+      </geometry>
+      <material name="arm_white">
+        <color rgba="0.9 0.9 0.9 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 -0.030000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.040000 0.040000 0.070000" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.030000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.100000" />
+      <inertia ixx="0.000054167" ixy="0.000000000" ixz="0.000000000" iyy="0.000054167" iyz="0.000000000" izz="0.000026667" />
+    </inertial>
+  </link>
+  <link name="upper_arm_link">
+    <visual>
+      <origin xyz="-0.055000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.110000 0.035000 0.035000" />
+      </geometry>
+      <material name="arm_white">
+        <color rgba="0.9 0.9 0.9 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.055000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.110000 0.035000 0.035000" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.055000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.120000" />
+      <inertia ixx="0.000024500" ixy="0.000000000" ixz="0.000000000" iyy="0.000133250" iyz="0.000000000" izz="0.000133250" />
+    </inertial>
+  </link>
+  <link name="forearm_link">
+    <visual>
+      <origin xyz="-0.048000 0.000000 0.032000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.096000 0.035000 0.035000" />
+      </geometry>
+      <material name="arm_white">
+        <color rgba="0.9 0.9 0.9 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.048000 0.000000 0.032000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.096000 0.035000 0.035000" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.048000 0.000000 0.032000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.100000" />
+      <inertia ixx="0.000020417" ixy="0.000000000" ixz="0.000000000" iyy="0.000087008" iyz="0.000000000" izz="0.000087008" />
+    </inertial>
+  </link>
+  <link name="wrist_pitch_link">
+    <visual>
+      <origin xyz="0.000000 0.000000 -0.025000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.064000 0.040000 0.050000" />
+      </geometry>
+      <material name="arm_white">
+        <color rgba="0.9 0.9 0.9 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 -0.025000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <box size="0.064000 0.040000 0.050000" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.025000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.080000" />
+      <inertia ixx="0.000027333" ixy="0.000000000" ixz="0.000000000" iyy="0.000043973" iyz="0.000000000" izz="0.000037973" />
+    </inertial>
+  </link>
+  <link name="wrist_roll_link">
+    <visual>
+      <origin xyz="0.000000 -0.036600 0.000000" rpy="1.570796 0.000000 0.000000" />
+      <geometry>
+        <cylinder radius="0.025000" length="0.073000" />
+      </geometry>
+      <material name="arm_white">
+        <color rgba="0.9 0.9 0.9 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 -0.036600 0.000000" rpy="1.570796 0.000000 0.000000" />
+      <geometry>
+        <cylinder radius="0.025000" length="0.073000" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.000000 -0.036600 0.000000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.070000" />
+      <inertia ixx="0.000042023" ixy="0.000000000" ixz="0.000000000" iyy="0.000021875" iyz="0.000000000" izz="0.000042023" />
+    </inertial>
+  </link>
+  <link name="flange_link">
+    <visual>
+      <origin xyz="0.000000 0.000000 -0.006000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <cylinder radius="0.030000" length="0.012000" />
+      </geometry>
+      <material name="flange_orange">
+        <color rgba="1.0 0.5 0.1 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.000000 0.000000 -0.006000" rpy="0.000000 0.000000 0.000000" />
+      <geometry>
+        <cylinder radius="0.030000" length="0.012000" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.006000" rpy="0.000000 0.000000 0.000000" />
+      <mass value="0.040000" />
+      <inertia ixx="0.000009480" ixy="0.000000000" ixz="0.000000000" iyy="0.000009480" iyz="0.000000000" izz="0.000018000" />
+    </inertial>
+  </link>
+  <link name="tool0" />
+  <joint name="joint1" type="revolute">
+    <origin xyz="0.000000 0.000000 0.139560" rpy="0.000000 0.000000 0.000000" />
+    <parent link="base_link" />
+    <child link="shoulder_link" />
+    <axis xyz="0.000000 0.000000 1.000000" />
+    <limit lower="-2.932153" upper="2.932153" effort="1.0" velocity="1.0" />
+  </joint>
+  <joint name="joint2" type="revolute">
+    <origin xyz="0.000000 0.000000 -0.001000" rpy="0.000000 1.570796 -1.570796" />
+    <parent link="shoulder_link" />
+    <child link="upper_arm_link" />
+    <axis xyz="0.000000 0.000000 1.000000" />
+    <limit lower="-2.356194" upper="2.356194" effort="1.0" velocity="1.0" />
+  </joint>
+  <joint name="joint3" type="revolute">
+    <origin xyz="-0.110400 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+    <parent link="upper_arm_link" />
+    <child link="forearm_link" />
+    <axis xyz="0.000000 0.000000 1.000000" />
+    <limit lower="-2.617994" upper="2.617994" effort="1.0" velocity="1.0" />
+  </joint>
+  <joint name="joint4" type="revolute">
+    <origin xyz="-0.096000 0.000000 0.064620" rpy="0.000000 0.000000 -1.570796" />
+    <parent link="forearm_link" />
+    <child link="wrist_pitch_link" />
+    <axis xyz="0.000000 0.000000 1.000000" />
+    <limit lower="-2.530727" upper="2.530727" effort="1.0" velocity="1.0" />
+  </joint>
+  <joint name="joint5" type="revolute">
+    <origin xyz="0.000000 -0.073180 0.000000" rpy="1.570796 -1.570796 0.000000" />
+    <parent link="wrist_pitch_link" />
+    <child link="wrist_roll_link" />
+    <axis xyz="0.000000 0.000000 1.000000" />
+    <limit lower="-2.879793" upper="2.879793" effort="1.0" velocity="1.0" />
+  </joint>
+  <joint name="joint6" type="revolute">
+    <origin xyz="0.000000 0.045600 0.000000" rpy="-1.570796 0.000000 0.000000" />
+    <parent link="wrist_roll_link" />
+    <child link="flange_link" />
+    <axis xyz="0.000000 0.000000 1.000000" />
+    <limit lower="-3.141593" upper="3.141593" effort="1.0" velocity="1.0" />
+  </joint>
+  <joint name="tool_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 0.000000 0.000000" />
+    <parent link="flange_link" />
+    <child link="tool0" />
+  </joint>
+</robot>

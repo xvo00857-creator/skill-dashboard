@@ -1,0 +1,27 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{CANONICAL_SITE_URL}}/#organization",
+      "name": "{{ORGANIZATION_NAME}}",
+      "url": "{{CANONICAL_SITE_URL}}"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{CANONICAL_SITE_URL}}/#website",
+      "name": "{{PRODUCT_NAME}}",
+      "url": "{{CANONICAL_SITE_URL}}",
+      "publisher": { "@id": "{{CANONICAL_SITE_URL}}/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "{{CANONICAL_PAGE_URL}}/#software",
+      "name": "{{PRODUCT_NAME}}",
+      "applicationCategory": "BusinessApplication",
+      "url": "{{CANONICAL_PAGE_URL}}",
+      "description": "{{PRODUCT_NAME}} 提供以下功能：1) {{FEATURE_1}}；2) {{FEATURE_2}}；3) {{FEATURE_3}}。",
+      "publisher": { "@id": "{{CANONICAL_SITE_URL}}/#organization" }
+    }
+  ]
+}

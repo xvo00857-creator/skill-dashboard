@@ -1,0 +1,24 @@
+[
+  {
+    "task_id": "example-read-001",
+    "use_case": "列出 Agencyzoom 中的客户记录（占位示例，非真实数据）",
+    "operation_type": "read",
+    "params": {
+      "limit": 10
+    }
+  },
+  {
+    "task_id": "example-read-002",
+    "use_case": "查询 Agencyzoom 中的保单列表（占位示例，非真实数据）",
+    "operation_type": "read",
+    "params": {
+      "limit": 10
+    }
+  },
+  {
+    "task_id": "example-write-001",
+    "use_case": "占位示例：写操作需在 Rube MCP 就绪后替换为真实业务意图",
+    "operation_type": "write",
+    "params": {}
+  }
+]

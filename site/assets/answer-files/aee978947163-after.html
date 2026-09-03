@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>动画性能演示 - 修复后（合成样例）</title>
+<style>
+  /* ===== 修复 V1：width 动画改为 transform: scaleX，走合成层 ===== */
+  .panel {
+    width: 600px;                        /* 布局保持最终宽度 */
+    height: 300px;
+    background: #4a90e2;
+    transform: scaleX(0.333);            /* 200/600，视觉收起 */
+    transform-origin: left center;
+    transition: transform 0.3s ease;     /* 仅动画合成属性 */
+    /* 修复 V2：移除静态 will-change，改由 JS 在动画前临时添加 */
+  }
+  .panel.open { transform: scaleX(1); }
+
+  /* ===== 修复 V3/V9：移除 --tx 变量与 CSS transition；transform 由 JS rAF 独占，避免两套系统混用 ===== */
+  .card {
+    transform: translateX(0);
+  }
+
+  /* ===== 修复 V4：移除大面积连续 blur 动画，改用 opacity 呼吸（合成属性） ===== */
+  .hero {
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    animation: breathe 2s infinite ease-in-out; /* opacity 走合成 */
+  }
+  @keyframes breathe {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.85; }
+  }
+  /* 滚动驱动淡入：优先 Scroll Timeline（R4） */
+  @supports (animation-timeline: scroll()) {
+    .hero { animation: heroFade linear; animation-timeline: scroll(root); }
+    @keyframes heroFade {
+      from { opacity: 1; }
+      to   { opacity: 0.2; }
+    }
+  }
+
+  /* ===== 修复 V5：移除列表项静态 will-change ===== */
+  .list-item {
+    height: 80px;
+    margin: 8px;
+    background: #eee;
+  }
+
+  .reveal { opacity: 0; }
+</style>
+</head>
+<body>
+  <div class="hero" id="hero"></div>
+  <div class="panel" id="panel"></div>
+  <div class="card" id="card">卡片</div>
+  <div id="list">
+    <div class="list-item">1</div>
+    <div class="list-item">2</div>
+    <div class="list-item">3</div>
+  </div>
+
+  <script>
+    const panel = document.getElementById('panel');
+    const card  = document.getElementById('card');
+    const hero  = document.getElementById('hero');
+    const items = document.querySelectorAll('.list-item');
+
+    // 修复 V2：will-change 临时、外科手术式使用
+    panel.addEventListener('transitionstart', () => {
+      panel.style.willChange = 'transform';
+    }, { once: false });
+    panel.addEventListener('transitionend', () => {
+      panel.style.willChange = 'auto';
+    });
+
+    // 修复 V6：支持 Scroll Timeline 时纯 CSS 处理；否则用 IntersectionObserver + rAF 降级
+    if (!CSS.supports('animation-timeline', 'scroll()')) {
+      let ticking = false;
+      const update = () => {
+        hero.style.opacity = Math.max(0.2, 1 - (window.scrollY / 500));
+        ticking = false;
+      };
+      const onScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(update);   // rAF 批量写入，避免每帧多次
+          ticking = true;
+        }
+      };
+      // 仅在 hero 附近可见时监听，离屏暂停（R4）
+      const io = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          window.addEventListener('scroll', onScroll, { passive: true });
+        } else {
+          window.removeEventListener('scroll', onScroll);
+        }
+      });
+      io.observe(hero);
+    }
+
+    // 修复 V7：rAF 循环加停止条件，IntersectionObserver 离屏暂停
+    let rafId = null;
+    let running = false;
+    function loop() {
+      card.style.transform = 'translateX(' + (Math.sin(Date.now() / 500) * 50) + 'px)';
+      if (running) rafId = requestAnimationFrame(loop);  // 有停止条件
+    }
+    const cardIO = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !running) {
+        running = true;
+        rafId = requestAnimationFrame(loop);
+      } else if (!entries[0].isIntersecting && running) {
+        running = false;
+        cancelAnimationFrame(rafId);                      // 离屏停止
+      }
+    });
+    cardIO.observe(card);
+
+    // 修复 V8：先批量读，再批量写；位移用 transform（R3）
+    const rects = Array.from(items).map((el) => el.getBoundingClientRect());
+    items.forEach((el, i) => {
+      const dx = 10;
+      const dy = 0;
+      el.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+
+    // 修复 V9：统一为 JS rAF 独占 transform；CSS 中已移除 --tx 变量与 transition，
+    // 同一属性只由一套动画系统驱动，避免互相覆盖。
+  </script>
+</body>
+</html>

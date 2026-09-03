@@ -1,0 +1,25 @@
+========================================================
+ Agent Mail Automation 预检（agent-mail-automation skill）
+ 时间: 2026-08-12 10:38:01 CST
+========================================================
+
+--- P0-1: Rube MCP 端点可达性 ---
+[未通过] https://rube.app/mcp 不可达
+       curl退出码: 6
+       curl输出: curl: (6) Could not resolve host: rube.app
+000
+
+--- P0-1b: Rube 工具可用性 ---
+[未通过] 未检测到 rube 命令行；当前 Agent 工具集中亦未发现 RUBE_* 工具（需在客户端配置 MCP server https://rube.app/mcp）
+
+--- P0-2: 本地 MCP 配置检查 ---
+[未通过] 未在常见位置（~/.cursor/、~/.config/claude*/）发现 MCP 配置文件
+
+--- P0-3: Rube/Composio 环境变量 ---
+[未通过] 未发现 RUBE/COMPOSIO 相关环境变量
+
+========================================================
+ 预检结果: 通过 0 项, 未通过 4 项
+ 结论: 前置条件不满足，按 SKILL.md 不得执行任何 Agent Mail 操作。
+ 后续: 需在客户端添加 MCP server https://rube.app/mcp 并完成 agent_mail 授权(ACTIVE)。
+========================================================

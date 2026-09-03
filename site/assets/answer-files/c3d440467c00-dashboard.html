@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据看板 · 2024 年度概览</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+  /* ===== 品牌色规范（仅三色） ===== */
+  :root {
+    --navy:  #14375E;  /* 深蓝：主色、正文、主图形 */
+    --cream: #F7F2E7;  /* 米白：页面背景 */
+    --orange:#FF6A00;  /* 亮橙：强调、高亮、交互态 */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--navy);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+                 "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+    width: 100%;
+  }
+
+  /* ===== 页头 ===== */
+  header {
+    border-bottom: 3px solid var(--navy);
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+  }
+  header .eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.5px;
+  }
+  header p.subtitle {
+    font-size: 15px;
+    color: var(--navy);
+    opacity: 0.78;
+    margin-top: 6px;
+  }
+
+  /* ===== 指标卡 ===== */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .kpi {
+    background: var(--navy);
+    color: var(--cream);
+    border-radius: 12px;
+    padding: 20px 22px;
+    min-width: 0;
+  }
+  .kpi .label {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .kpi .value {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .kpi .value .unit { font-size: 14px; font-weight: 400; opacity: 0.75; margin-left: 4px; }
+  .kpi.accent {
+    border-left: 5px solid var(--orange);
+  }
+
+  /* ===== 图表网格 ===== */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: var(--cream);
+    border: 2px solid var(--navy);
+    border-radius: 12px;
+    padding: 22px 24px 18px;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .card h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .card .card-note {
+    font-size: 12.5px;
+    color: var(--navy);
+    opacity: 0.65;
+    margin-bottom: 14px;
+  }
+  .chart-box { width: 100%; min-width: 0; overflow: hidden; }
+  .chart-box svg { display: block; width: 100%; height: auto; max-width: 100%; }
+
+  /* ===== Tooltip ===== */
+  .tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--navy);
+    color: var(--cream);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(20,55,94,0.25);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    white-space: nowrap;
+    z-index: 10;
+  }
+  .tooltip strong { color: var(--orange); }
+
+  /* ===== 页脚 ===== */
+  footer {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--navy);
+    font-size: 12px;
+    color: var(--navy);
+    opacity: 0.6;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ===== 坐标轴样式（D3 生成元素的统一样式） ===== */
+  .axis text { fill: var(--navy); font-size: 12px; }
+  .axis path, .axis line { stroke: var(--navy); stroke-opacity: 0.35; }
+  .grid line { stroke: var(--navy); stroke-opacity: 0.12; stroke-dasharray: 3,3; }
+  .grid path { stroke: none; }
+
+  /* ===== 手机竖屏适配 ===== */
+  @media (max-width: 720px) {
+    .page { padding: 20px 14px 36px; }
+    header h1 { font-size: 22px; }
+    header p.subtitle { font-size: 13.5px; }
+    .kpi-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .kpi {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .kpi .label { margin-bottom: 0; font-size: 13px; flex-shrink: 0; }
+    .kpi .value { font-size: 22px; text-align: right; }
+    .chart-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .card { padding: 16px 14px 12px; }
+    .card h2 { font-size: 15.5px; }
+    .axis text { font-size: 10.5px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="eyebrow">年度数据看板</div>
+    <h1>2024 年度业务概览</h1>
+    <p class="subtitle">基于 D3.js 构建的响应式数据可视化 · 数据来源：随附示例数据集</p>
+  </header>
+
+  <!-- KPI 指标卡 -->
+  <section class="kpi-row" aria-label="关键指标">
+    <div class="kpi">
+      <div class="label">年末月度值</div>
+      <div class="value" id="kpi-end">—<span class="unit"></span></div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">全年峰值</div>
+      <div class="value" id="kpi-peak">—<span class="unit"></span></div>
+    </div>
+    <div class="kpi">
+      <div class="label">产品销售总额</div>
+      <div class="value" id="kpi-total">—<span class="unit"></span></div>
+    </div>
+  </section>
+
+  <!-- 图表区 -->
+  <section class="chart-grid">
+    <div class="card">
+      <h2>月度趋势</h2>
+      <p class="card-note">2024 年 1–12 月数值变化，悬停查看明细</p>
+      <div class="chart-box" id="chart-trend"></div>
+    </div>
+    <div class="card">
+      <h2>产品销售额</h2>
+      <p class="card-note">六款产品销售额对比，亮橙为最高值</p>
+      <div class="chart-box" id="chart-bars"></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>可视化引擎：D3.js v7（CDN 引入）</span>
+    <span>品牌色：深蓝 #14375E · 米白 #F7F2E7 · 亮橙 #FF6A00</span>
+  </footer>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+/* ============================================================
+ * 数据：直接取自 Skill 随附 assets/sample-data.json
+ * 未编造、未修改任何数值
+ * ============================================================ */
+const timeSeries = [
+  { date: "2024-01-01", value: 120, category: "A" },
+  { date: "2024-02-01", value: 135, category: "A" },
+  { date: "2024-03-01", value: 128, category: "A" },
+  { date: "2024-04-01", value: 145, category: "A" },
+  { date: "2024-05-01", value: 152, category: "A" },
+  { date: "2024-06-01", value: 168, category: "A" },
+  { date: "2024-07-01", value: 175, category: "A" },
+  { date: "2024-08-01", value: 182, category: "A" },
+  { date: "2024-09-01", value: 190, category: "A" },
+  { date: "2024-10-01", value: 185, category: "A" },
+  { date: "2024-11-01", value: 195, category: "A" },
+  { date: "2024-12-01", value: 210, category: "A" }
+];
+
+const categorical = [
+  { label: "Product A", value: 450, category: "Electronics" },
+  { label: "Product B", value: 320, category: "Electronics" },
+  { label: "Product C", value: 580, category: "Clothing" },
+  { label: "Product D", value: 290, category: "Clothing" },
+  { label: "Product E", value: 410, category: "Food" },
+  { label: "Product F", value: 370, category: "Food" }
+];
+
+/* ===== 品牌色（与 CSS 变量一致） ===== */
+const COLORS = { navy: "#14375E", cream: "#F7F2E7", orange: "#FF6A00" };
+
+/* ===== 数据校验（SKILL.md 最佳实践：Data preparation） ===== */
+const parsedSeries = timeSeries
+  .filter(d => d.value != null && !isNaN(d.value) && d.date)
+  .map(d => ({ ...d, date: d3.timeParse("%Y-%m-%d")(d.date) }));
+const cleanCats = categorical
+  .filter(d => d.value != null && !isNaN(d.value) && d.label)
+  .sort((a, b) => b.value - a.value);
+
+/* ===== KPI 填充 ===== */
+const endVal = parsedSeries[parsedSeries.length - 1].value;
+const peakVal = d3.max(parsedSeries, d => d.value);
+const totalVal = d3.sum(cleanCats, d => d.value);
+d3.select("#kpi-end").html(endVal + '<span class="unit">12 月</span>');
+d3.select("#kpi-peak").html(peakVal + '<span class="unit">峰值</span>');
+d3.select("#kpi-total").html(d3.format(",")(totalVal) + '<span class="unit">合计</span>');
+
+/* ===== Tooltip 引用（SKILL.md：Tooltip 模式） ===== */
+const tooltip = d3.select("#tooltip");
+
+/* ============================================================
+ * 图 1：月度趋势面积图
+ * 采用 SKILL.md Pattern A（直接 DOM 操作）+ ResizeObserver 响应式
+ * 首屏直接绘制最终态，不依赖入场动画
+ * ============================================================ */
+function drawTrend(containerId, data) {
+  if (!data || data.length === 0) return;
+
+  const container = document.getElementById(containerId);
+  const svg = d3.select(container).append("svg")
+    .attr("role", "img")
+    .attr("aria-label", "2024 年月度趋势面积图，数值从 1 月 120 增长至 12 月 210");
+
+  svg.append("title").text("2024 年月度趋势");
+  svg.append("desc").text("面积图展示 2024 年 1 至 12 月数值变化，整体呈上升趋势，12 月达到峰值 210。");
+
+  function render() {
+    svg.selectAll("*").filter(":not(title):not(desc):not(defs)").remove();
+    svg.select("defs").remove();
+
+    const isMobile = window.innerWidth <= 720;
+    const rawWidth = container.getBoundingClientRect().width || container.clientWidth || (isMobile ? 320 : 600);
+    const width = Math.max(100, Math.min(rawWidth, window.innerWidth - (isMobile ? 56 : 48)));
+    const height = isMobile ? 260 : 340;
+    const margin = isMobile
+      ? { top: 16, right: 16, bottom: 36, left: 44 }
+      : { top: 20, right: 24, bottom: 40, left: 52 };
+    const innerW = Math.max(10, width - margin.left - margin.right);
+    const innerH = Math.max(10, height - margin.top - margin.bottom);
+
+    svg.attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
+
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // 渐变定义（亮橙低透明填充）
+    const defs = svg.append("defs");
+    const grad = defs.append("linearGradient")
+      .attr("id", "areaGrad")
+      .attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+    grad.append("stop").attr("offset", "0%")
+      .attr("stop-color", COLORS.orange).attr("stop-opacity", 0.45);
+    grad.append("stop").attr("offset", "100%")
+      .attr("stop-color", COLORS.orange).attr("stop-opacity", 0.05);
+
+    // 比例尺（SKILL.md：scaleTime + scaleLinear）
+    const xScale = d3.scaleTime()
+      .domain(d3.extent(data, d => d.date))
+      .range([0, innerW]);
+
+    const yMax = d3.max(data, d => d.value);
+    const yScale = d3.scaleLinear()
+      .domain([0, Math.ceil(yMax / 50) * 50])
+      .range([innerH, 0])
+      .nice();
+
+    // 网格线
+    g.append("g")
+      .attr("class", "grid")
+      .call(d3.axisLeft(yScale).tickSize(-innerW).tickFormat("").ticks(isMobile ? 4 : 5));
+
+    // 面积（直接最终态）
+    const area = d3.area()
+      .x(d => xScale(d.date))
+      .y0(innerH)
+      .y1(d => yScale(d.value))
+      .curve(d3.curveMonotoneX);
+
+    g.append("path")
+      .datum(data)
+      .attr("fill", "url(#areaGrad)")
+      .attr("d", area);
+
+    // 折线（深蓝，直接最终态）
+    const line = d3.line()
+      .x(d => xScale(d.date))
+      .y(d => yScale(d.value))
+      .curve(d3.curveMonotoneX);
+
+    g.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", COLORS.navy)
+      .attr("stroke-width", 2.5)
+      .attr("stroke-linejoin", "round")
+      .attr("d", line);
+
+    // 数据点（直接最终态）
+    g.selectAll("circle.dot")
+      .data(data)
+      .join("circle")
+      .attr("class", "dot")
+      .attr("cx", d => xScale(d.date))
+      .attr("cy", d => yScale(d.value))
+      .attr("r", 4)
+      .attr("fill", COLORS.cream)
+      .attr("stroke", COLORS.navy)
+      .attr("stroke-width", 2)
+      .style("cursor", "pointer");
+
+    // 峰值点高亮（亮橙）
+    const peakDatum = data.find(d => d.value === yMax);
+    g.append("circle")
+      .attr("cx", xScale(peakDatum.date))
+      .attr("cy", yScale(peakDatum.value))
+      .attr("r", 6)
+      .attr("fill", COLORS.orange)
+      .attr("stroke", COLORS.cream)
+      .attr("stroke-width", 2);
+
+    // 峰值标注
+    g.append("text")
+      .attr("x", xScale(peakDatum.date) - 8)
+      .attr("y", yScale(peakDatum.value) - 14)
+      .attr("text-anchor", "end")
+      .attr("fill", COLORS.navy)
+      .attr("font-size", isMobile ? 11 : 13)
+      .attr("font-weight", 700)
+      .text(peakVal);
+
+    // 交互：悬停 tooltip + 辅助线
+    const hoverLine = g.append("line")
+      .attr("stroke", COLORS.navy).attr("stroke-opacity", 0.3)
+      .attr("stroke-dasharray", "3,3")
+      .style("display", "none");
+
+    const hoverDot = g.append("circle")
+      .attr("r", 6).attr("fill", COLORS.orange)
+      .attr("stroke", COLORS.cream).attr("stroke-width", 2)
+      .style("display", "none");
+
+    const overlay = g.append("rect")
+      .attr("width", innerW).attr("height", innerH)
+      .attr("fill", "none").attr("pointer-events", "all");
+
+    const bisect = d3.bisector(d => d.date).left;
+
+    overlay.on("mousemove", function(event) {
+      const [mx] = d3.pointer(event);
+      const x0 = xScale.invert(mx);
+      const i = bisect(data, x0, 1);
+      const d0 = data[i - 1], d1 = data[i];
+      if (!d0) return;
+      const d = (d1 && x0 - d0.date > d1.date - x0) ? d1 : d0;
+
+      hoverLine.style("display", null)
+        .attr("x1", xScale(d.date)).attr("x2", xScale(d.date))
+        .attr("y1", 0).attr("y2", innerH);
+      hoverDot.style("display", null)
+        .attr("cx", xScale(d.date)).attr("cy", yScale(d.value));
+
+      const rect = container.getBoundingClientRect();
+      tooltip.style("opacity", 1)
+        .html(`<strong>${d3.timeFormat("%Y 年 %-m 月")(d.date)}</strong><br>数值：${d.value}`)
+        .style("left", (rect.left + xScale(d.date) + margin.left + 12) + "px")
+        .style("top", (rect.top + yScale(d.value) + margin.top - 10) + "px");
+    }).on("mouseleave", function() {
+      hoverLine.style("display", "none");
+      hoverDot.style("display", "none");
+      tooltip.style("opacity", 0);
+    });
+
+    // 坐标轴
+    g.append("g")
+      .attr("class", "axis")
+      .attr("transform", `translate(0,${innerH})`)
+      .call(d3.axisBottom(xScale)
+        .ticks(isMobile ? 4 : 6)
+        .tickFormat(d3.timeFormat("%-m月")));
+
+    g.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(yScale).ticks(isMobile ? 4 : 5));
+  }
+
+  // SKILL.md 第 4 节：ResizeObserver 响应式
+  const observer = new ResizeObserver(() => render());
+  observer.observe(container);
+  // 首屏：延迟确保布局就绪（无头环境兼容）
+  setTimeout(render, 50);
+}
+
+/* ============================================================
+ * 图 2：水平条形图（移动端更友好）
+ * ============================================================ */
+function drawBars(containerId, data) {
+  if (!data || data.length === 0) return;
+
+  const container = document.getElementById(containerId);
+  const svg = d3.select(container).append("svg")
+    .attr("role", "img")
+    .attr("aria-label", "六款产品销售额条形图，Product C 以 580 居首");
+
+  svg.append("title").text("产品销售额对比");
+  svg.append("desc").text("水平条形图展示六款产品销售额，Product C 最高为 580，Product D 最低为 290。");
+
+  function render() {
+    svg.selectAll("*").filter(":not(title):not(desc)").remove();
+
+    const isMobile = window.innerWidth <= 720;
+    const rawWidth = container.getBoundingClientRect().width || container.clientWidth || (isMobile ? 320 : 400);
+    const width = Math.max(100, Math.min(rawWidth, window.innerWidth - (isMobile ? 56 : 48)));
+    const rowH = isMobile ? 38 : 44;
+    const margin = isMobile
+      ? { top: 8, right: 48, bottom: 10, left: 72 }
+      : { top: 8, right: 56, bottom: 10, left: 84 };
+    const innerW = Math.max(10, width - margin.left - margin.right);
+    const innerH = data.length * rowH;
+    const height = innerH + margin.top + margin.bottom;
+
+    svg.attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
+
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const maxVal = d3.max(data, d => d.value);
+    const xScale = d3.scaleLinear()
+      .domain([0, Math.ceil(maxVal / 100) * 100])
+      .range([0, innerW])
+      .nice();
+
+    const yScale = d3.scaleBand()
+      .domain(data.map(d => d.label))
+      .range([0, innerH])
+      .padding(0.28);
+
+    // 网格线
+    g.append("g")
+      .attr("class", "grid")
+      .attr("transform", `translate(0,${innerH})`)
+      .call(d3.axisBottom(xScale).tickSize(-innerH).tickFormat("").ticks(isMobile ? 3 : 4));
+
+    // 条形（直接最终态）
+    g.selectAll("rect.bar")
+      .data(data)
+      .join("rect")
+      .attr("class", "bar")
+      .attr("x", 0)
+      .attr("y", d => yScale(d.label))
+      .attr("height", yScale.bandwidth())
+      .attr("rx", 4)
+      .attr("width", d => xScale(d.value))
+      .attr("fill", d => d.value === maxVal ? COLORS.orange : COLORS.navy)
+      .style("cursor", "pointer")
+      .on("mouseover", function(event, d) {
+        d3.select(this).attr("fill", COLORS.orange);
+        tooltip.style("opacity", 1)
+          .html(`<strong>${d.label}</strong><br>销售额：${d.value}<br>类别：${d.category}`)
+          .style("left", (event.pageX + 12) + "px")
+          .style("top", (event.pageY - 10) + "px");
+      })
+      .on("mousemove", function(event) {
+        tooltip.style("left", (event.pageX + 12) + "px")
+          .style("top", (event.pageY - 10) + "px");
+      })
+      .on("mouseout", function(event, d) {
+        d3.select(this).attr("fill", d.value === maxVal ? COLORS.orange : COLORS.navy);
+        tooltip.style("opacity", 0);
+      });
+
+    // 数值标签（直接最终态）
+    g.selectAll("text.val")
+      .data(data)
+      .join("text")
+      .attr("class", "val")
+      .attr("x", d => xScale(d.value) + 8)
+      .attr("y", d => yScale(d.label) + yScale.bandwidth() / 2)
+      .attr("dy", "0.35em")
+      .attr("fill", COLORS.navy)
+      .attr("font-size", isMobile ? 11 : 12.5)
+      .attr("font-weight", 600)
+      .text(d => d.value);
+
+    // 类别标签
+    g.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(yScale).tickSize(0))
+      .select(".domain").remove();
+  }
+
+  // SKILL.md 第 4 节：ResizeObserver 响应式
+  const observer = new ResizeObserver(() => render());
+  observer.observe(container);
+  setTimeout(render, 50);
+}
+
+/* ===== 启动 ===== */
+drawTrend("chart-trend", parsedSeries);
+drawBars("chart-bars", cleanCats);
+</script>
+</body>
+</html>

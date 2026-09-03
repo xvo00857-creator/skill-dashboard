@@ -1,0 +1,58 @@
+{
+  "task": "1688 公开商品条目市场调研采集",
+  "mode": "read_only_dry_run",
+  "dry_run_at": "2026-08-12T15:02:52+08:00",
+  "target_count": 12,
+  "collected_count": 0,
+  "deduped_count": 0,
+  "failed_count": 0,
+  "summary": "未采集任何真实条目。前置依赖缺失，未对 1688.com 发起任何网络请求。",
+  "preflight_checks": [
+    {
+      "check": "Skill 文件完整性",
+      "result": "pass",
+      "detail": "SKILL.md 与 4 个 scripts/*.py 均存在，Python 语法校验通过，脚本可正常生成 JS 文本。"
+    },
+    {
+      "check": "前置依赖 browser-act",
+      "result": "fail",
+      "detail": "SKILL.md 要求通过 browser-act 执行 navigate/wait stable/eval/network requests/network request 等命令；当前环境未安装 browser-act Skill，也无页面 JS eval 与网络抓包工具。仅有 GUI 浏览器工具（点击/输入/截图），无法执行 Skill 脚本输出的 JS，也无法读取 shopcard/DSR 接口响应。"
+    },
+    {
+      "check": "目标 offer_id 列表",
+      "result": "fail",
+      "detail": "用户未提供任何 1688 offer_id。该 Skill 为单商品详情提取能力，不包含搜索（SKILL.md 已知限制：s.1688.com 搜索需登录/中国大陆 IP，不在能力范围内）。无 offer_id 即无目标页面。"
+    },
+    {
+      "check": "网络与地域可达性",
+      "result": "not_tested",
+      "detail": "未发起任何请求。即使有 browser-act，1688 详情页在非中国大陆 IP 下可能返回风控/降级页面；shopcard 接口使用动态 sign，需真实页面会话。"
+    },
+    {
+      "check": "授权范围",
+      "result": "fail",
+      "detail": "用户未提供采集授权范围（品类/关键词/店铺/数量上限/频率/用途/数据保留期限），也未确认 1688 服务条款与 robots 合规性。"
+    },
+    {
+      "check": "经验记忆文件",
+      "result": "not_found",
+      "detail": "SKILL.md 指定的 browser-act-skill-forge-memories/1688-wholesale-scraper-1688-product-detail.memory.md 不存在，无历史经验可参考。"
+    }
+  ],
+  "entries": [],
+  "missing_or_failed_records": [
+    {
+      "index": 1,
+      "offer_id": null,
+      "status": "not_attempted",
+      "reason": "无 offer_id；无 browser-act；无授权范围。三项前置条件均未满足，按停止条件中止。"
+    }
+  ],
+  "next_steps_to_unblock": [
+    "1. 提供 12 个（或更多用于去重后保留 12 个）1688 商品 offer_id，或明确授权通过合规渠道获取 offer_id 列表。",
+    "2. 在执行环境中安装并配置 browser-act Skill（支持页面 JS eval 与 XHR/fetch 抓包）。",
+    "3. 确认采集环境具备中国大陆 IP 出口（详情页与 shopcard/DSR 接口所需）。",
+    "4. 签署/确认授权清单（见风险评估文档），明确用途、频率、数据保留与字段最小化。",
+    "5. 先用 1-2 个 offer_id 试跑（SKILL.md Execution Efficiency 要求），成功后再串行全量，间隔 2-3 秒。"
+  ]
+}

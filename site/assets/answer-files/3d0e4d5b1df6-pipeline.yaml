@@ -1,0 +1,159 @@
+# KubeSphere DevOps Pipeline CRD
+# 示例服务: demo-go-http (Go HTTP 服务, 公开仓库)
+# 参考: kubesphere-devops-pipeline SKILL.md
+apiVersion: devops.kubesphere.io/v1alpha3
+kind: Pipeline
+metadata:
+  name: demo-go-http-cd
+  namespace: demo-project
+  annotations:
+    # SKILL.md 要求: 租户创建的流水线必须设置 creator 注解
+    kubesphere.io/creator: "demo-tenant"
+spec:
+  type: pipeline
+  pipeline:
+    name: demo-go-http-cd
+    description: "示例 Go 服务的持续交付流水线: 测试 -> 构建 -> 镜像 -> 部署 -> 验证 -> 失败自动回滚"
+    jenkinsfile: |-
+      pipeline {
+        agent {
+          kubernetes {
+            yaml '''
+              apiVersion: v1
+              kind: Pod
+              spec:
+                serviceAccountName: demo-deployer
+                containers:
+                - name: golang
+                  image: golang:1.21
+                  command: ["sleep"]
+                  args: ["99d"]
+                - name: kaniko
+                  image: gcr.io/kaniko-project/executor:debug
+                  command: ["sleep"]
+                  args: ["99d"]
+                - name: kubectl
+                  image: bitnami/kubectl:1.28
+                  command: ["sleep"]
+                  args: ["99d"]
+            '''
+          }
+        }
+
+        parameters {
+          string(name: 'IMAGE_TAG', defaultValue: 'latest', description: '构建镜像标签, 建议使用 git commit sha')
+          booleanParam(name: 'MANUAL_ROLLBACK', defaultValue: false, description: '勾选后仅执行回滚, 跳过构建和部署')
+        }
+
+        environment {
+          IMAGE_REPO = 'registry.example.com/demo-go-http'
+          APP_NAME    = 'demo-go-http'
+          APP_NS      = 'demo'
+        }
+
+        stages {
+          stage('Checkout and Test') {
+            steps {
+              container('golang') {
+                sh '''
+                  set -euo pipefail
+                  git clone --depth 1 https://github.com/kubesphere-sigs/demo-go-http.git .
+                  go mod download
+                  go test ./... -v
+                  go build -o service main.go
+                '''
+              }
+              // SKILL.md 要点: archiveArtifacts 必须与构建在同一 stage (同一工作空间)
+              archiveArtifacts artifacts: 'service', followSymlinks: false
+            }
+          }
+
+          stage('Build and Push Image') {
+            when {
+              expression { return params.MANUAL_ROLLBACK != true }
+            }
+            steps {
+              container('kaniko') {
+                // 凭证通过 KubeSphere DevOps 凭证引用, 不硬编码
+                withCredentials([usernamePassword(credentialsId: 'registry-credential',
+                              usernameVariable: 'REG_USER',
+                              passwordVariable: 'REG_PASS')]) {
+                  sh '''
+                    set -euo pipefail
+                    mkdir -p /kaniko/.docker
+                    cat > /kaniko/.docker/config.json <<EOF
+                    {"auths":{"registry.example.com":{"username":"${REG_USER}","password":"${REG_PASS}"}}}
+                    EOF
+                    /kaniko/executor \
+                      --context=`pwd` \
+                      --dockerfile=Dockerfile \
+                      --destination=${IMAGE_REPO}:${IMAGE_TAG} \
+                      --cache=true
+                  '''
+                }
+              }
+            }
+          }
+
+          stage('Deploy') {
+            when {
+              expression { return params.MANUAL_ROLLBACK != true }
+            }
+            steps {
+              container('kubectl') {
+                sh '''
+                  set -euo pipefail
+                  # 镜像地址通过参数注入, 部署清单不在流水线中硬编码凭证
+                  sed -i "s|IMAGE_PLACEHOLDER|${IMAGE_REPO}:${IMAGE_TAG}|g" deploy/deployment.yaml
+                  kubectl apply -f deploy/
+                '''
+              }
+            }
+          }
+
+          stage('Verify Deployment') {
+            when {
+              expression { return params.MANUAL_ROLLBACK != true }
+            }
+            steps {
+              container('kubectl') {
+                sh '''
+                  set -euo pipefail
+                  kubectl rollout status deployment/${APP_NAME} -n ${APP_NS} --timeout=300s
+                  kubectl wait --for=condition=ready pod -l app=${APP_NAME} -n ${APP_NS} --timeout=120s
+                  echo "部署验证通过"
+                '''
+              }
+            }
+          }
+
+          stage('Manual Rollback') {
+            when {
+              expression { return params.MANUAL_ROLLBACK == true }
+            }
+            steps {
+              container('kubectl') {
+                sh '''
+                  set -euo pipefail
+                  echo "执行手动回滚..."
+                  kubectl rollout undo deployment/${APP_NAME} -n ${APP_NS}
+                  kubectl rollout status deployment/${APP_NAME} -n ${APP_NS} --timeout=300s
+                  echo "回滚完成"
+                '''
+              }
+            }
+          }
+        }
+
+        post {
+          failure {
+            container('kubectl') {
+              // 部署或验证失败时自动回滚到上一个版本
+              sh '''
+                echo "流水线失败, 尝试自动回滚..."
+                kubectl rollout undo deployment/${APP_NAME} -n ${APP_NS} || true
+              '''
+            }
+          }
+        }
+      }

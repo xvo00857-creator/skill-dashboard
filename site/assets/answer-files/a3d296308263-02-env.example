@@ -1,0 +1,16 @@
+# ─── 现有配置（不修改）────────────────────────────────
+MCP_URL=http://localhost:3000
+OPENWEATHER_API_KEY=your_openweather_key_here
+
+# ─── 新增：AI 天气摘要提供方配置 ────────────────────────
+# 外部 LLM 提供方的 Base URL（占位符，替换为实际地址）
+SUMMARY_API_BASE_URL=https://api.example-llm.com
+
+# API 密钥（此文件为模板，真实密钥写入 .env，.env 不入库）
+SUMMARY_API_KEY=your_api_key_here
+
+# 使用的模型名称
+SUMMARY_MODEL=default
+
+# 请求超时（毫秒）
+SUMMARY_TIMEOUT_MS=10000

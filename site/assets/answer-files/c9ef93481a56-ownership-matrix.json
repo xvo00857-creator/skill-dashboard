@@ -1,0 +1,61 @@
+{
+  "feature": "用户认证模块（登录 / 注册 / 共享鉴权基础设施）",
+  "pattern": "hybrid",
+  "patternReason": "登录与注册可独立端到端交付（垂直切片），JWT 中间件等被两者共用（水平层），符合 SKILL.md Hybrid 模式适用场景",
+  "generatedAt": "2026-08-12",
+  "note": "本文件为演示用归属计划，文件路径为计划产物，不代表仓库中已存在这些文件；实际执行前需经人工确认点 CP-1 核对",
+  "owners": {
+    "lead": [
+      "src/types/auth-contract.ts",
+      "src/api/auth/index.ts"
+    ],
+    "implementer-1": [
+      "src/components/auth/LoginForm.tsx",
+      "src/hooks/auth/useLogin.ts",
+      "src/api/auth/login.ts",
+      "tests/auth/login.test.ts"
+    ],
+    "implementer-2": [
+      "src/components/auth/RegisterForm.tsx",
+      "src/hooks/auth/useRegister.ts",
+      "src/api/auth/register.ts",
+      "tests/auth/register.test.ts"
+    ],
+    "implementer-3": [
+      "src/middleware/auth.ts",
+      "src/utils/jwt.ts"
+    ]
+  },
+  "contracts": [
+    "src/types/auth-contract.ts"
+  ],
+  "barrelFiles": [
+    "src/api/auth/index.ts"
+  ],
+  "crossClusterDependencies": [
+    {
+      "from": "implementer-1",
+      "to": "lead",
+      "via": "src/types/auth-contract.ts",
+      "rule": "只导入不修改；契约变更须 lead 广播"
+    },
+    {
+      "from": "implementer-2",
+      "to": "lead",
+      "via": "src/types/auth-contract.ts",
+      "rule": "只导入不修改；契约变更须 lead 广播"
+    },
+    {
+      "from": "implementer-1",
+      "to": "implementer-3",
+      "via": "src/types/auth-contract.ts",
+      "rule": "implementer-1 依赖契约中的 AuthService 接口；implementer-3 提供该接口的真实实现，下游未就绪时 implementer-1 使用契约中的 AUTH_SERVICE_STUB"
+    },
+    {
+      "from": "implementer-2",
+      "to": "implementer-3",
+      "via": "src/types/auth-contract.ts",
+      "rule": "implementer-2 依赖契约中的 AuthService 接口；implementer-3 提供该接口的真实实现，下游未就绪时 implementer-2 使用契约中的 AUTH_SERVICE_STUB"
+    }
+  ]
+}

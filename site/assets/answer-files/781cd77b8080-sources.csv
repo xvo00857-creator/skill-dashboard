@@ -1,0 +1,21 @@
+id,slug,type,credibility,recency,bias,date,url,supports
+S01,moe_2024_stats,primary,5,5,low,2025-06-11,http://www.moe.gov.cn/jyb_sjzl/sjzl_fztjgb/202506/t20250611_1193760.html,F1 F2
+S02,pmc_dass_vocational,academic,4,5,medium,2024-09-06,https://pmc.ncbi.nlm.nih.gov/articles/PMC11383266/,F4 F5
+S03,frontiers_art_freshmen_lpa,academic,4,5,medium,2026,https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1831906/full,F4 F6
+S04,preprints_peer_support,academic,3,5,medium,2024-04,https://www.preprints.org/manuscript/202404.0462,F5 F7
+S05,youth_51vocbach_survey,policy-survey,4,5,medium,2025-02-11,https://news.youth.cn/jsxw/202502/t20250211_15820913.htm,F2 F3 F8
+S06,cnaes_satisfaction_2024,policy-survey,4,5,low-medium,2025-04-30,https://www.cnaes.edu.cn/post/30499,F3 F5 F7 F8
+S07,xinhua_vocbach_attraction,media,3,5,medium,2025-08-19,http://www.news.cn/edu/20250819/4315108d9817445e8c82d9a148c66f0c/c.html,F2 F3
+S08,yrcti_major_identity,academic,3,5,medium,2025-04-01,https://xb.yrcti.edu.cn/article/doi/10.13681/j.cnki.cn41-1282/tv.2025.02.012,F5
+S09,cjsh_exercise_mental,academic,4,5,low,2024,http://www.cjsh.org.cn/cn/article/doi/10.16835/j.cnki.1000-9817.2024279,F7
+S10,fudan_24h_depression,academic,4,5,medium,2024-04,https://jms.fudan.edu.cn/CN/10.3969/j.issn.1672-8467.2024.02.003,F4
+S11,rmlt_public_perception,policy-survey,3,5,medium,2024-12-31,https://paper.people.com.cn/rmlt/pc/content/202412/31/content_30051023.html,F6
+S12,rmrb_bias,media,3,4,medium,2024-07-15,https://paper.people.com.cn/rmlt/html/2024-07/15/content_26080727.htm,F6
+S13,sage_stereotype_threat,academic,3,5,low-medium,2026-04-30,https://journals.sagepub.com/doi/10.1177/25902547261445977,F6
+S14,pmc_family_network,academic,4,5,medium,2024,https://pmc.ncbi.nlm.nih.gov/articles/PMC11682667/,F4 F7
+S15,hbjj_vocbach_admission,media-policy,3,5,medium,2026-01-08,http://epaper.hbjjrb.com/Pad/jjrb/202601/08/con186304.html,F3 F8
+S16,peopleapp_ben_sheng_zhuan,media,3,5,medium,2025-07-04,https://www.peopleapp.com/rmharticle/30049564128,F8
+S17,jyb_attraction_2026,media,3,5,medium,2026-08-05,http://paper.jyb.cn/zgjyb/h5/html5/2026-08/05/content_144741_19761503.htm,F8
+S18,frontiers_legal_rct,academic,4,5,medium,2026,https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1641844/full,F7
+S19,ahkjb_12430_2023,media,2,4,medium,2025-09-17,http://ahkjb.nkb.com.cn/ahkjb/20250917/html/content_20250917010002.htm,F4
+S20,guangzhou_freshmen_2024,academic,3,5,medium,2025,https://api.arttechpress.com/uploads/file/asp/202507071508072c2867016.pdf,F4 F7

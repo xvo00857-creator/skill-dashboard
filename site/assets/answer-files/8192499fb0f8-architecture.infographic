@@ -1,0 +1,37 @@
+infographic hierarchy-structure
+data
+  title 分布式业务系统架构
+  desc 用户请求经网关路由至服务层，服务同步写入数据库并通过消息队列异步解耦
+  items
+    - label 用户端
+      desc 终端接入，发起业务请求
+      icon mdi/monitor
+      children
+        - label Web 浏览器
+        - label 移动应用
+    - label 接入网关
+      desc 统一入口，负责路由与安全
+      icon mdi/shield-key
+      children
+        - label 路由转发
+        - label 认证鉴权
+        - label 限流熔断
+    - label 业务服务
+      desc 核心业务逻辑处理
+      icon mdi/server
+      children
+        - label 用户服务
+        - label 订单服务
+        - label 通知服务
+    - label 数据与消息
+      desc 持久化存储与异步通信
+      icon mdi/database
+      children
+        - label 关系数据库
+        - label 消息队列
+theme
+  palette
+    - #2563eb
+    - #7c3aed
+    - #059669
+    - #d97706

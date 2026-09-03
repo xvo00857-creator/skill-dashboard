@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>分布式业务系统架构</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
+    padding: 16px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  header { text-align: center; margin-bottom: 20px; }
+  header h1 { font-size: 1.25rem; color: #0f172a; }
+  header p  { font-size: 0.875rem; color: #475569; margin-top: 6px; }
+
+  .layer {
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 0;
+    border-left: 5px solid;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .layer h2 { font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+  .layer .desc { font-size: 0.8rem; color: #64748b; margin-top: 2px; }
+  .layer ul { list-style: none; margin-top: 10px; }
+  .layer li {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    margin-bottom: 6px;
+  }
+  .layer li strong { color: #0f172a; }
+  .layer li span { color: #64748b; font-size: 0.78rem; }
+
+  .l1 { border-color: #2563eb; }
+  .l2 { border-color: #7c3aed; }
+  .l3 { border-color: #059669; }
+  .l4 { border-color: #d97706; }
+
+  .arrow {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #94a3b8;
+    line-height: 1;
+    padding: 6px 0;
+    aria-hidden: true;
+  }
+
+  footer {
+    margin-top: 20px;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-align: center;
+  }
+
+  @media (prefers-contrast: more) {
+    body { background: #fff; }
+    .layer { border-width: 6px; box-shadow: none; }
+    .layer li { background: #fff; border: 1px solid #000; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>分布式业务系统架构</h1>
+  <p>用户请求经网关路由至服务层，服务同步写入数据库并通过消息队列异步解耦</p>
+</header>
+
+<main>
+  <section class="layer l1" aria-label="第一层：用户端">
+    <h2>① 用户端</h2>
+    <p class="desc">终端接入，发起业务请求</p>
+    <ul>
+      <li><strong>Web 浏览器</strong> — <span>桌面与移动网页</span></li>
+      <li><strong>移动应用</strong> — <span>iOS 与安卓客户端</span></li>
+    </ul>
+  </section>
+
+  <div class="arrow" aria-hidden="true">↓</div>
+
+  <section class="layer l2" aria-label="第二层：接入网关">
+    <h2>② 接入网关</h2>
+    <p class="desc">统一入口，负责路由与安全</p>
+    <ul>
+      <li><strong>路由转发</strong> — <span>请求分发至后端服务</span></li>
+      <li><strong>认证鉴权</strong> — <span>令牌校验与权限控制</span></li>
+      <li><strong>限流熔断</strong> — <span>保护后端服务稳定</span></li>
+    </ul>
+  </section>
+
+  <div class="arrow" aria-hidden="true">↓</div>
+
+  <section class="layer l3" aria-label="第三层：业务服务">
+    <h2>③ 业务服务</h2>
+    <p class="desc">核心业务逻辑处理</p>
+    <ul>
+      <li><strong>用户服务</strong> — <span>注册登录与资料管理</span></li>
+      <li><strong>订单服务</strong> — <span>下单与订单状态流转</span></li>
+      <li><strong>通知服务</strong> — <span>消息推送与短信邮件</span></li>
+    </ul>
+  </section>
+
+  <div class="arrow" aria-hidden="true">↓</div>
+
+  <section class="layer l4" aria-label="第四层：数据与消息">
+    <h2>④ 数据与消息</h2>
+    <p class="desc">持久化存储与异步通信</p>
+    <ul>
+      <li><strong>关系数据库</strong> — <span>业务数据持久化</span></li>
+      <li><strong>消息队列</strong> — <span>异步解耦与削峰填谷</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  组件：用户端 · 网关 · 服务 · 数据库 · 消息队列 ｜ 零 JavaScript · 离线可用
+</footer>
+
+</body>
+</html>

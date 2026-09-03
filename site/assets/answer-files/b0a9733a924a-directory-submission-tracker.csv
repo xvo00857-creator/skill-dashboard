@@ -1,0 +1,30 @@
+Directory,Tier,URL,Category,DR,Dofollow,Submission Date,Status,Live URL,Backlink Verified,Positioning Variant Used,Tags Used,Account Email,Notes
+"== 状态说明：当前全部为 Blocked。原因：Phase 0 readiness 未通过（详见方案文档）。产品类别、竞品、合规、用户评价等关键信息缺失，无法选择适用 tier 或填写 positioning。待信息补齐后逐项改为 Draft/Submitted/Live。 ==",,,,,,,,,,,,,
+Product Hunt,1,https://producthunt.com/posts/new,Launch,91,Yes,,Blocked,,,待确认,,,"需3周预热；需warm audience；禁止求upvote；需产品类别确认"
+BetaList,1,https://betalist.com/submit,Launch,64,Yes,,Blocked,,,待确认,,,需2-4周审核队列
+Fazier,1,https://fazier.com/submit,Launch,30,Yes,,Blocked,,,待确认,,,低竞争可冲#1
+DevHunt,1,https://devhunt.org/submit,Launch,35,Yes,,Blocked,,,待确认,,,仅开发者工具适用
+Uneed,1,https://uneed.best/submit-a-tool,Launch,40,Yes,,Blocked,,,待确认,,,
+AlternativeTo,2,https://alternativeto.net/software/_/add/,SaaS,79,No,,Blocked,,,待确认,,,"需竞品名称；nofollow但SEO价值大"
+SaaSHub,2,https://saashub.com/submit,SaaS,77,Yes,,Blocked,,,待确认,,,需竞品名称
+G2,2,https://my.g2.com/sellers/welcome,SaaS,92,Yes,,Blocked,,,待确认,,,"需10+评价才能上Grid；当前缺客户评价"
+Capterra,2,https://www.capterra.com/vendors,SaaS,93,Yes,,Blocked,,,待确认,,,"需评价驱动；当前缺客户评价"
+SourceForge,2,https://sourceforge.net/user/register,SaaS,92,Yes,,Blocked,,,待确认,,,
+F6S,2,https://www.f6s.com/company/create,SaaS,65,Yes,,Blocked,,,待确认,,,
+TrustRadius,2,https://www.trustradius.com/vendors,SaaS,72,Yes,,Blocked,,,待确认,,,需评价
+There's An AI For That (TAAFT),3,https://theresanaiforthat.com/submit,AI,76,Yes,,Blocked,,,待确认,,,"仅AI产品适用；需确认产品是否AI-native"
+Futurepedia,3,https://www.futurepedia.io/submit-tool,AI,70,Yes,,Blocked,,,待确认,,,仅AI产品适用
+Toolify.ai,3,https://www.toolify.ai/submit,AI,71,Yes,,Blocked,,,待确认,,,仅AI产品适用
+Future Tools,3,https://www.futuretools.io/submit-a-tool,AI,69,Yes,,Blocked,,,待确认,,,仅AI产品适用
+Glama.ai MCP,4,https://glama.ai/mcp/servers,MCP,,Yes,,Blocked,,,待确认,,,"仅MCP server适用；需确认产品是否暴露MCP能力"
+Linux Foundation MCP Registry,4,https://github.com/modelcontextprotocol/registry,MCP,,Yes,,Blocked,,,待确认,,,仅MCP server适用
+GitHub,8,https://github,Tech,98,Yes,,Blocked,,,待确认,,,Profile+README链接；需代码仓库存在
+Dev.to,8,https://dev.to,Tech,90,Yes,,Blocked,,,待确认,,,需技术文章内容
+"== 以下 Tier 需额外条件确认后启用 ==",,,,,,,,,,,,,
+"Tier 5 (No-Code): NoCodeFinder等",5,,No-Code,~30-55,Yes,,Blocked,,,待确认,,,仅no-code产品适用
+"Tier 6 (Best-of Listicles)",6,,Editorial,40-70,Yes,,Blocked,,,待确认,,,"涉及cold outreach；用户要求不能自动外联，需人工逐封确认"
+"Tier 7 (Integration Marketplaces)",7,,Integration,82-93,Yes,,Blocked,,,待确认,,,需实际集成已上线
+"Tier 9 (Local Business)",9,,Local,46-76,Yes,,Blocked,,,待确认,,,仅本地/实体业务适用
+"Tier 10 (Forums)",10,,Forum,55-90,Yes,,Blocked,,,待确认,,,需先参与社区(90/10规则)
+"Tier 11 (Press Release)",11,,PR,60-80,Yes,,Blocked,,,待确认,,,需有实质性发布事件
+"Tier 13 (Niche Vertical)",13,,Niche,40-85,Yes,,Blocked,,,待确认,,,需确认行业垂直匹配

@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="城市生活播客 8 秒片头声音标识——在线试听与说明" />
+    <title>城市生活播客 · 片头声音标识</title>
+    <style>
+      :root {
+        --bg: #f5efe5;
+        --panel: #ffffff;
+        --ink: #1c1b1a;
+        --muted: #8b8579;
+        --accent: #c96442;
+        --accent-dark: #a4502f;
+        --grid: #e6dfd1;
+        --focus: #2563eb;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; padding: 0;
+        background: var(--bg); color: var(--ink);
+        font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+        -webkit-text-size-adjust: 100%;
+      }
+      body { min-height: 100dvh; display: grid; place-items: start center; padding: 20px 16px 40px; }
+      .wrap { width: min(680px, 100%); }
+
+      .card {
+        background: var(--panel);
+        border-radius: 10px;
+        padding: 22px 22px 18px;
+        box-shadow: 0 16px 40px rgba(28,27,26,0.10), 0 1px 2px rgba(28,27,26,0.05);
+        border: 1px solid rgba(28,27,26,0.06);
+        margin-bottom: 16px;
+      }
+      .row1 { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+      .icon {
+        flex: 0 0 auto;
+        width: 42px; height: 42px; border-radius: 50%;
+        background: var(--accent); color: #fff;
+        display: grid; place-items: center;
+        box-shadow: 0 6px 18px rgba(201, 100, 66, 0.35);
+      }
+      .icon svg { width: 20px; height: 20px; }
+      .title { margin: 0; font-size: 18px; line-height: 1.3; font-weight: 600; }
+      .sub {
+        font-size: 12px; color: var(--muted);
+        margin-top: 3px; letter-spacing: 0.02em;
+      }
+      .sub code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; }
+
+      /* 波形动画 */
+      .wave {
+        display: flex; align-items: end; gap: 3px;
+        height: 72px; padding: 0 2px;
+        border-top: 1px dashed var(--grid);
+        border-bottom: 1px dashed var(--grid);
+        margin-bottom: 12px;
+      }
+      .wave span {
+        flex: 1; background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+        border-radius: 2px;
+        animation: bob 2s ease-in-out infinite;
+        animation-delay: var(--d, 0s);
+        height: var(--h, 30%);
+      }
+      .wave.paused span { animation-play-state: paused; }
+      @keyframes bob {
+        0%, 100% { height: var(--h, 30%); }
+        50% { height: calc(var(--h, 30%) * 1.6); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .wave span { animation: none; }
+      }
+
+      /* 原生 audio 播放器 */
+      audio { width: 100%; display: block; margin-bottom: 10px; }
+      audio:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+        font-size: 12px; color: var(--muted);
+      }
+      .badge {
+        font-size: 11px; color: var(--accent);
+        padding: 3px 8px; border-radius: 999px;
+        background: rgba(201, 100, 66, 0.1);
+        white-space: nowrap;
+      }
+      .badge.alt { color: #2563eb; background: rgba(37,99,235,0.08); }
+
+      .downloads { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+      .dl {
+        font-size: 12px; color: var(--ink);
+        text-decoration: none;
+        padding: 6px 12px; border-radius: 6px;
+        border: 1px solid var(--grid);
+        background: #fafaf7;
+      }
+      .dl:hover, .dl:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
+      .dl:focus-visible { box-shadow: 0 0 0 2px var(--focus); }
+
+      h2 { font-size: 15px; margin: 0 0 10px; font-weight: 600; }
+      h3 { font-size: 13px; margin: 14px 0 6px; font-weight: 600; color: var(--accent-dark); }
+      p, li { font-size: 13.5px; line-height: 1.7; }
+      ul { margin: 6px 0; padding-left: 20px; }
+      table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 8px; }
+      th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid); }
+      th { color: var(--muted); font-weight: 500; white-space: nowrap; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px;
+        padding: 0; margin: -1px; overflow: hidden;
+        clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+      }
+      .note {
+        font-size: 12px; color: var(--muted);
+        background: #faf7f0; border-left: 3px solid var(--accent);
+        padding: 8px 12px; border-radius: 0 6px 6px 0; margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+
+      <!-- 主版本卡片 -->
+      <section class="card" aria-labelledby="jingle-title">
+        <div class="row1">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <div>
+            <h1 class="title" id="jingle-title">城市生活播客 · 片头声音标识</h1>
+            <div class="sub">8 秒 · 都市轻爵士 · 约 105 BPM · C 大调 · 纯音乐</div>
+          </div>
+        </div>
+
+        <div class="wave" id="wave1" aria-hidden="true">
+          <span style="--h:24%;--d:0s"></span>
+          <span style="--h:38%;--d:.05s"></span>
+          <span style="--h:52%;--d:.1s"></span>
+          <span style="--h:64%;--d:.15s"></span>
+          <span style="--h:48%;--d:.2s"></span>
+          <span style="--h:70%;--d:.25s"></span>
+          <span style="--h:42%;--d:.3s"></span>
+          <span style="--h:58%;--d:.35s"></span>
+          <span style="--h:36%;--d:.4s"></span>
+          <span style="--h:62%;--d:.45s"></span>
+          <span style="--h:26%;--d:.5s"></span>
+          <span style="--h:50%;--d:.55s"></span>
+          <span style="--h:34%;--d:.6s"></span>
+          <span style="--h:46%;--d:.65s"></span>
+          <span style="--h:58%;--d:.7s"></span>
+          <span style="--h:30%;--d:.75s"></span>
+          <span style="--h:44%;--d:.8s"></span>
+          <span style="--h:54%;--d:.85s"></span>
+          <span style="--h:28%;--d:.9s"></span>
+          <span style="--h:48%;--d:.95s"></span>
+        </div>
+
+        <label for="audio-main" class="sr-only">播放 8 秒片头声音标识主版本</label>
+        <audio id="audio-main" controls preload="metadata" aria-describedby="jingle-desc">
+          <source src="audio/city-podcast-jingle-8s.m4a" type="audio/mp4" />
+          <source src="audio/city-podcast-jingle-8s.wav" type="audio/wav" />
+          您的浏览器不支持音频播放，请使用下方下载链接获取文件。
+        </audio>
+
+        <div class="meta">
+          <span class="badge">主版本 8 秒</span>
+          <span class="badge alt">立体声 AAC ~118 kbps</span>
+          <span>WAV 母带 40 kHz / 16 bit</span>
+        </div>
+
+        <div class="downloads">
+          <a class="dl" href="audio/city-podcast-jingle-8s.m4a" download>下载 手机版 m4a（120 KB）</a>
+          <a class="dl" href="audio/city-podcast-jingle-8s.wav" download>下载 编辑母带 wav（1.25 MB）</a>
+          <a class="dl" href="audio/city-podcast-jingle-8s-mono.m4a" download>下载 省流量单声道版（63 KB）</a>
+        </div>
+
+        <p class="note" id="jingle-desc">
+          听感描述（供听障读者或无法播放时参考）：乐曲以柔和的合成器长音轻柔渐入，随后温暖的电钢琴奏出五音明亮主题，
+          伴随手指响指与轻沙锤的都市律动，末尾以一声清脆的马林巴琴音收束，整体温暖、亲切、有清晨城市的活力感。
+        </p>
+      </section>
+
+      <!-- 可复用短版本 -->
+      <section class="card" aria-labelledby="sting-title">
+        <div class="row1">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <h2 class="title" id="sting-title" style="font-size:16px;">可复用短标识（转场/章节分隔）</h2>
+            <div class="sub">4 秒 · 同一主题动机 · 可循环叠加使用</div>
+          </div>
+        </div>
+
+        <label for="audio-sting" class="sr-only">播放 4 秒可复用短标识</label>
+        <audio id="audio-sting" controls preload="metadata">
+          <source src="audio/city-podcast-sting-4s.m4a" type="audio/mp4" />
+          <source src="audio/city-podcast-sting-4s.wav" type="audio/wav" />
+          您的浏览器不支持音频播放，请使用下方下载链接获取文件。
+        </audio>
+
+        <div class="meta">
+          <span class="badge">短版 4 秒</span>
+          <span class="badge alt">立体声 AAC ~105 kbps</span>
+        </div>
+
+        <div class="downloads">
+          <a class="dl" href="audio/city-podcast-sting-4s.m4a" download>下载 手机版 m4a（56 KB）</a>
+          <a class="dl" href="audio/city-podcast-sting-4s.wav" download>下载 编辑母带 wav（625 KB）</a>
+          <a class="dl" href="audio/city-podcast-sting-4s-mono.m4a" download>下载 省流量单声道版（32 KB）</a>
+        </div>
+      </section>
+
+      <!-- 节奏与音色说明 -->
+      <section class="card" aria-labelledby="spec-title">
+        <h2 id="spec-title">节奏与音色说明</h2>
+
+        <h3>整体参数</h3>
+        <table>
+          <tr><th>时长</th><td>主版本 8 秒；可复用短版 4 秒</td></tr>
+          <tr><th>速度</th><td>约 105 BPM</td></tr>
+          <tr><th>调性</th><td>C 大调</td></tr>
+          <tr><th>风格</th><td>温暖都市轻爵士 / 城市流行</td></tr>
+          <tr><th>人声</th><td>无（纯器乐）</td></tr>
+          <tr><th>结构</th><td>单段（8 秒不足 30 秒，按单段设计）</td></tr>
+        </table>
+
+        <h3>时间轴（主版本）</h3>
+        <table>
+          <tr><th>0:00–0:01</th><td>合成器 pad 轻柔渐入，营造城市清晨氛围</td></tr>
+          <tr><th>0:01–0:05</th><td>电钢琴五音主题进入，响指与沙盒建立律动，暖贝斯铺垫</td></tr>
+          <tr><th>0:05–0:07</th><td>旋律解决，马林巴琴音叠加为标识性亮点</td></tr>
+          <tr><th>0:07–0:08</th><td>干净混响余韵收尾，便于紧接播客语音</td></tr>
+        </table>
+
+        <h3>音色编制</h3>
+        <ul>
+          <li><strong>电钢琴（Rhodes 类）</strong>：主奏，温暖中频，演奏核心五音动机</li>
+          <li><strong>合成器 pad</strong>：铺底，柔和长音，提供空间感</li>
+          <li><strong>手指响指 + 沙锤</strong>：轻打击乐，建立都市律动感</li>
+          <li><strong>电贝斯</strong>：温暖低音，支撑和声</li>
+          <li><strong>马林巴/钟琴</strong>：末尾标识音，清脆明亮，形成记忆点</li>
+        </ul>
+      </section>
+
+      <!-- 版本与兼容性说明 -->
+      <section class="card" aria-labelledby="compat-title">
+        <h2 id="compat-title">版本与兼容性</h2>
+        <table>
+          <tr><th>文件</th><th>格式</th><th>声道</th><th>码率</th><th>用途</th></tr>
+          <tr><td>*-8s.wav</td><td>WAV 40kHz/16bit</td><td>立体声</td><td>1280 kbps</td><td>编辑母带，可导入剪辑软件二次编辑</td></tr>
+          <tr><td>*-8s.m4a</td><td>AAC</td><td>立体声</td><td>~118 kbps</td><td>手机端播放/分发，体积小音质好</td></tr>
+          <tr><td>*-8s-mono.m4a</td><td>AAC</td><td>单声道</td><td>~60 kbps</td><td>低性能设备/省流量/单声道扬声器兼容</td></tr>
+          <tr><td>*-4s.wav / .m4a / -mono.m4a</td><td>同上</td><td>—</td><td>—</td><td>可复用短标识，用于转场或章节分隔</td></tr>
+        </table>
+        <div class="note">
+          无障碍方案：本页提供文字听感描述供听障读者参考；所有交互控件可通过键盘 Tab 聚焦、回车/空格操作；
+          波形动画在系统开启"减弱动态效果"时自动停止；单声道版本确保单扬声器设备不漏音。
+        </div>
+      </section>
+
+    </main>
+
+    <script>
+      // 播放时波形动画，暂停时停止；尊重 reduced-motion
+      (function () {
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        document.querySelectorAll('audio').forEach(function (au) {
+          var wave = au.closest('.card') && au.closest('.card').querySelector('.wave');
+          if (!wave || reduceMotion) return;
+          au.addEventListener('play', function () { wave.classList.remove('paused'); });
+          au.addEventListener('pause', function () { wave.classList.add('paused'); });
+          au.addEventListener('ended', function () { wave.classList.add('paused'); });
+          wave.classList.add('paused');
+        });
+      })();
+    </script>
+  </body>
+</html>

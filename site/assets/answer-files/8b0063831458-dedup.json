@@ -1,0 +1,10 @@
+{
+  "command": "dedup",
+  "model": "ViT-B/32",
+  "device": "cpu",
+  "threshold": 0.95,
+  "pairs": [],
+  "deleted": [],
+  "bad_images": [],
+  "dry_run": true
+}

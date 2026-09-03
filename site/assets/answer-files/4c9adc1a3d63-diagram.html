@@ -1,0 +1,196 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>系统架构图</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc;
+    --fg: #172033;
+    --muted: #5b6475;
+    --line: #64748b;
+    --neutral: #e2e8f0;
+    --input: #bfdbfe;
+    --process: #c7d2fe;
+    --storage: #99f6e4;
+    --external: #fde68a;
+    --risk: #fecaca;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a;
+      --fg: #e5e7eb;
+      --muted: #a3adbd;
+      --line: #94a3b8;
+      --neutral: #334155;
+      --input: #1d4ed8;
+      --process: #4338ca;
+      --storage: #0f766e;
+      --external: #92400e;
+      --risk: #991b1b;
+    }
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font:
+      14px/1.4 ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+  }
+  main {
+    max-width: 1040px;
+    margin: 32px auto;
+    padding: 0 20px;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .title {
+    font-size: 20px;
+    font-weight: 650;
+    fill: var(--fg);
+  }
+  .label {
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--fg);
+  }
+  .small {
+    font-size: 12px;
+    fill: var(--muted);
+  }
+  .node {
+    stroke: var(--line);
+    stroke-width: 1;
+  }
+  .neutral {
+    fill: var(--neutral);
+  }
+  .input {
+    fill: var(--input);
+  }
+  .process {
+    fill: var(--process);
+  }
+  .storage {
+    fill: var(--storage);
+  }
+  .external {
+    fill: var(--external);
+  }
+  .risk {
+    fill: var(--risk);
+  }
+  .edge {
+    stroke: var(--line);
+    stroke-width: 1.5;
+    fill: none;
+  }
+  .zone {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 1;
+    stroke-dasharray: 6 5;
+    opacity: 0.8;
+  }
+</style>
+<main>
+<svg viewBox="0 0 980 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagramTitle diagramDesc">
+  <title id="diagramTitle">系统架构图</title>
+  <desc id="diagramDesc">用户端经 API 网关访问后端服务，服务读写关系型数据库并通过消息队列异步通知。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"></path>
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="40" y="38" class="title">系统架构图</text>
+  <text x="40" y="60" class="small">用户端 → API 网关 → 后端服务 → 数据库 / 消息队列（异步事件）</text>
+
+  <!-- 连接线（先于节点绘制，使箭头位于方框之下） -->
+  <!-- Web/移动客户端 → API 网关 -->
+  <path class="edge" fill="none" d="M159,188 L189,188 L189,280 L220,280" marker-end="url(#arrow)"></path>
+  <path class="edge" fill="none" d="M159,348 L189,348 L189,280 L220,280" marker-end="url(#arrow)"></path>
+  <!-- API 网关 → 各服务 -->
+  <path class="edge" fill="none" d="M340,262 L370,262 L370,168 L401,168" marker-end="url(#arrow)"></path>
+  <path class="edge" fill="none" d="M340,280 L401,280" marker-end="url(#arrow)"></path>
+  <path class="edge" fill="none" d="M340,298 L370,298 L370,392 L401,392" marker-end="url(#arrow)"></path>
+  <!-- 服务 → 数据库 -->
+  <path class="edge" fill="none" d="M561,168 L620,168 L620,176 L674,176" marker-end="url(#arrow)"></path>
+  <path class="edge" fill="none" d="M561,280 L630,280 L630,196 L674,196" marker-end="url(#arrow)"></path>
+  <!-- 订单服务 → 消息队列（发布事件） -->
+  <path class="edge" fill="none" d="M561,292 L635,292 L635,342 L674,342" marker-end="url(#arrow)"></path>
+  <!-- 消息队列 → 通知服务（消费事件，回流） -->
+  <path class="edge" fill="none" d="M674,360 L648,360 L648,404 L561,404" marker-end="url(#arrow)"></path>
+
+  <!-- 连线标签 -->
+  <text x="166" y="182" class="small">HTTPS</text>
+  <text x="166" y="342" class="small">HTTPS</text>
+  <text x="375" y="212" class="small">路由</text>
+  <text x="375" y="345" class="small">路由</text>
+  <text x="624" y="160" class="small">读写</text>
+  <text x="636" y="240" class="small">读写</text>
+  <text x="640" y="312" class="small">发布事件</text>
+  <text x="588" y="396" class="small">消费事件</text>
+
+  <!-- 信任域 / 分层区域 -->
+  <rect class="zone" x="24" y="80" width="150" height="400" rx="8"></rect>
+  <rect class="zone" x="210" y="80" width="140" height="400" rx="8"></rect>
+  <rect class="zone" x="386" y="80" width="190" height="400" rx="8"></rect>
+  <rect class="zone" x="612" y="80" width="344" height="400" rx="8"></rect>
+  <text x="36" y="102" class="small">客户端</text>
+  <text x="222" y="102" class="small">网关层</text>
+  <text x="398" y="102" class="small">服务层</text>
+  <text x="624" y="102" class="small">数据与消息层</text>
+
+  <!-- 节点 -->
+  <!-- 客户端 -->
+  <rect class="node input" x="39" y="160" width="120" height="56" rx="8"></rect>
+  <text x="99" y="193" text-anchor="middle" class="label">Web 客户端</text>
+
+  <rect class="node input" x="39" y="320" width="120" height="56" rx="8"></rect>
+  <text x="99" y="353" text-anchor="middle" class="label">移动客户端</text>
+
+  <!-- 网关 -->
+  <rect class="node process" x="220" y="244" width="120" height="72" rx="8"></rect>
+  <text x="280" y="274" text-anchor="middle" class="label">API 网关</text>
+  <text x="280" y="294" text-anchor="middle" class="small">鉴权 · 路由 · 限流</text>
+
+  <!-- 服务 -->
+  <rect class="node process" x="401" y="140" width="160" height="56" rx="8"></rect>
+  <text x="481" y="173" text-anchor="middle" class="label">用户服务</text>
+
+  <rect class="node process" x="401" y="252" width="160" height="56" rx="8"></rect>
+  <text x="481" y="285" text-anchor="middle" class="label">订单服务</text>
+
+  <rect class="node process" x="401" y="364" width="160" height="56" rx="8"></rect>
+  <text x="481" y="397" text-anchor="middle" class="label">通知服务</text>
+
+  <!-- 数据库（圆柱） -->
+  <path class="node storage" d="M674,162 a110,12 0 1 0 220,0 l0,40 a110,12 0 1 1 -220,0 z"></path>
+  <ellipse class="node storage" cx="784" cy="162" rx="110" ry="12"></ellipse>
+  <text x="784" y="182" text-anchor="middle" class="label">MySQL 数据库</text>
+  <text x="784" y="200" text-anchor="middle" class="small">关系型存储</text>
+
+  <!-- 消息队列 -->
+  <rect class="node storage" x="674" y="310" width="220" height="64" rx="8"></rect>
+  <text x="784" y="338" text-anchor="middle" class="label">Kafka 消息队列</text>
+  <text x="784" y="356" text-anchor="middle" class="small">订单事件 Topic</text>
+
+  <!-- 图例 -->
+  <rect class="node input" x="40" y="500" width="14" height="14" rx="3"></rect>
+  <text x="62" y="512" class="small">客户端 / 输入</text>
+  <rect class="node process" x="180" y="500" width="14" height="14" rx="3"></rect>
+  <text x="202" y="512" class="small">网关 / 服务（处理）</text>
+  <rect class="node storage" x="360" y="500" width="14" height="14" rx="3"></rect>
+  <text x="382" y="512" class="small">数据库 / 消息队列（数据）</text>
+</svg>
+</main>

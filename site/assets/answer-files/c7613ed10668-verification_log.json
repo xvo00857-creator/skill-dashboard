@@ -1,0 +1,125 @@
+{
+  "timestamp": "2026-08-11T04:18:58Z",
+  "updated": "2026-08-11T04:32:00Z",
+  "parameters": {
+    "outer_length": 180.0,
+    "outer_width": 120.0,
+    "outer_height": 35.0,
+    "wall_thickness": 2.4,
+    "bottom_thickness": 2.4,
+    "divider_thickness": 2.4,
+    "compartments_x": 2,
+    "compartments_y": 2,
+    "unit": "mm"
+  },
+  "checks": {
+    "unit_declared": {
+      "pass": true,
+      "detail": "所有尺寸以 mm 为单位，STL 头声明单位为 mm；OrcaSlicer --info 确认 size_x/y/z = 180/120/35"
+    },
+    "mesh_stats": {
+      "vertices": 42,
+      "faces": 80,
+      "bounds_mm": [[-90.0, -60.0, 0.0], [90.0, 60.0, 35.0]],
+      "volume_mm3": 120566.04716038475,
+      "is_watertight": true,
+      "is_winding_consistent": true,
+      "euler_number": 2,
+      "orcaslicer_info": {
+        "size_x": 180.0,
+        "size_y": 120.0,
+        "size_z": 35.0,
+        "number_of_facets": 80,
+        "manifold": "yes",
+        "number_of_parts": 1,
+        "volume": 120566.0625
+      }
+    },
+    "closed_contour": {
+      "pass": true,
+      "detail": "trimesh 判定水密（is_watertight=true），欧拉数=2（封闭流形）；OrcaSlicer --info 判定 manifold=yes"
+    },
+    "outer_dimensions": {
+      "pass": true,
+      "expected_mm": [180.0, 120.0, 35.0],
+      "actual_mm": [180.0, 120.0, 35.0],
+      "tolerance_mm": 0.01
+    },
+    "wall_thickness_nozzle": {
+      "pass": true,
+      "wall_mm": 2.4,
+      "nozzle_mm": 0.4,
+      "multiples": 6.0,
+      "detail": "壁厚 2.4 mm = 6.0 × 0.4 mm 喷嘴直径，可整数倍线宽填充"
+    },
+    "minimum_feature": {
+      "pass": true,
+      "min_feature_mm": 2.4,
+      "threshold_mm": 0.8,
+      "detail": "最小特征 2.4 mm ≥ 0.8 mm（2 倍喷嘴直径），可打印"
+    },
+    "face_normals": {
+      "pass": true,
+      "detail": "面法向一致（卷绕一致），切片器可正确识别内外"
+    }
+  },
+  "derived_dimensions": {
+    "inner_length_mm": 175.2,
+    "inner_width_mm": 115.2,
+    "inner_depth_mm": 32.6,
+    "compartment_inner_size_mm": [86.4, 56.4],
+    "wall_thickness_mm": 2.4,
+    "bottom_thickness_mm": 2.4,
+    "divider_thickness_mm": 2.4,
+    "estimated_material_volume_cm3": 120.57
+  },
+  "slicing": {
+    "slicer": "OrcaSlicer 2.4.2",
+    "slicer_path": "/Volumes/OrcaSlicer/OrcaSlicer.app/Contents/MacOS/OrcaSlicer",
+    "printer_profile": "Bambu Lab A1 mini 0.4 nozzle",
+    "filament_profile": "Bambu PLA Basic @BBL A1M",
+    "process_profile": "0.20mm Standard @BBL A1M",
+    "gcode_file": "desk_organizer_4comp.gcode",
+    "gcode_size_bytes": 4719483,
+    "gcode_md5": "761dd68ac025ffb0d932c4ae0d189aaf",
+    "gcode_lines": 208750,
+    "layer_height_mm": 0.2,
+    "total_layers": 175,
+    "max_z_height_mm": 35.0,
+    "wall_loops": 2,
+    "sparse_infill_density": "20%",
+    "support_enabled": false,
+    "nozzle_temperature_c": 200,
+    "filament_type": "PLA",
+    "filament_diameter_mm": 1.75,
+    "filament_used_mm": 40447.15,
+    "filament_used_cm3": 97.29,
+    "estimated_print_time": "14h16m04s",
+    "estimated_total_time": "14h23m48s",
+    "note": "切片时将模型平移至热床坐标 (90,90) 生成 desk_organizer_bed.stl；原始居中模型 desk_organizer_4comp.stl 几何不变"
+  },
+  "bambu_labs_dry_run": {
+    "script": "scripts/bambu_lan_print.py",
+    "command": "send --gcode desk_organizer_4comp.gcode --handoff plain --action plan",
+    "result": "success",
+    "dry_run": true,
+    "ftps_port": 990,
+    "mqtt_port": 8883,
+    "ftps_username": "bblp",
+    "mqtt_username": "bblp",
+    "remote_path": "cache/desk_organizer_4comp.gcode",
+    "note": "plan 模式不执行网络操作，仅输出上传与 MQTT 启动指令计划；真实打印需 --execute --confirm-start-print 及真实打印机 IP/访问码"
+  },
+  "manufacturing_notes": [
+    "开口朝上打印，无需支撑结构（所有内壁垂直于底板）；OrcaSlicer 切片确认 enable_support=0。",
+    "壁厚 2.4 mm 为 0.4 mm 喷嘴的 6 倍线宽；默认配置 wall_loops=2，壁厚余量由填充覆盖，如需更坚固可增至 4-6 道壁。",
+    "底板面积 180×120 mm，A1 Mini 成型尺寸 180×180×180 mm，X 方向恰好满幅，建议关闭自动排布（--arrange 0）以避免边距收缩导致排不下。",
+    "隔墙与侧壁等高（32.6 mm），十字交接处无悬空，无需支撑。",
+    "PLA 200°C 喷嘴、热床默认温度，20% 填充，预计耗材 40.4 m（97.3 cm³），打印时间约 14.3 小时。",
+    "打印时间偏长因模型底板 180×120 mm 每层面积大；可通过提高层高（0.24mm Draft）或降低填充率缩短。",
+    "所有内角为直角，FDM 打印内角会有圆角效应（由喷嘴半径决定），不影响功能。",
+    "无小特征、无细柱、无桥接，制造风险低。",
+    "真实打印前需在 bambu-labs 中配置打印机 IP 和访问码（config set），并确认序列号自动获取；本环境无真实打印机，仅完成 dry-run。"
+  ],
+  "overall_pass": true
+}

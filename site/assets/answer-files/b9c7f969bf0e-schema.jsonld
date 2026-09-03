@@ -1,0 +1,102 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://example.com/#organization",
+      "name": "【请替换为真实产品/机构名称】",
+      "url": "https://example.com/",
+      "description": "面向50岁以上首次使用智能手机用户的产品，提供线下社区与微信双渠道支持。",
+      "logo": "https://example.com/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+86-【请替换为真实客服电话】",
+        "contactType": "customer service",
+        "areaServed": "CN",
+        "availableLanguage": ["Chinese"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://example.com/#website",
+      "url": "https://example.com/",
+      "name": "【请替换为真实产品/网站名称】",
+      "publisher": {
+        "@id": "https://example.com/#organization"
+      },
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://example.com/#localbusiness",
+      "name": "【请替换为真实社区服务点名称】",
+      "image": "https://example.com/community.jpg",
+      "telephone": "+86-【请替换为真实服务点电话】",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "【请替换为真实街道地址】",
+        "addressLocality": "【城市】",
+        "addressRegion": "【省/市】",
+        "postalCode": "【邮编】",
+        "addressCountry": "CN"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ],
+      "parentOrganization": {
+        "@id": "https://example.com/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://example.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "这个应用收费吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "【请替换为真实答案：明确说明是否免费、有无内购、是否需要绑定银行卡。】"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "我不会用智能手机，有人教我吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "【请替换为真实答案：说明线下社区是否有工作人员手把手教学、是否有志愿者上门、微信客服响应时间。】"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "这个应用安全吗？会泄露我的个人信息吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "【请替换为真实答案：说明数据保护措施、是否需要实名认证、隐私政策链接。】"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "怎么下载和安装？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "【请替换为真实答案：说明应用商店名称、搜索关键词、是否支持微信扫码下载、线下是否可帮忙安装。】"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "子女不在身边，遇到问题找谁？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "【请替换为真实答案：提供客服电话、社区服务点地址和工作时间、微信客服入口。】"
+          }
+        }
+      ]
+    }
+  ]
+}

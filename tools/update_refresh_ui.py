@@ -22,6 +22,7 @@ s=s.replace('<option value="unknown">日期未登记</option>', '')
 s=s.replace("  if(filter==='unknown')return !day;\n", '')
 s=s.replace("  \n  if(!day)return false;", "  if(!day)return false;")
 s=s.replace("day||'日期未登记'", "day||'历史批次'")
+s=s.replace('<a class="github-update-link" href="https://github.com/xvo00857-creator/skill-dashboard" target="_blank" rel="noopener">查看源码仓库 ↗</a>', '')
 # Collection batches assigned by the owner, kept separate from the dashboard refresh date.
 # Rows 1436-1485 are the latest 50 Skills collected in the 2026-08-31 weekly batch.
 # Each Skill has three Cases, so this batch contains 150 Cases in total.
@@ -59,7 +60,7 @@ if 'refresh-responsive-header' not in s:
 if 'id="github-update-banner"' not in s:
     s=s.replace('</head>','<style id="github-update-banner">.github-update-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 18px;padding:18px 20px;border:1px solid #c7d2fe;border-radius:18px;background:linear-gradient(135deg,#eef2ff 0%,#f8fafc 72%);box-shadow:0 10px 28px rgba(79,70,229,.08)}.github-update-copy{display:flex;flex-direction:column;gap:5px;color:#334155}.github-update-copy strong{font-size:17px;color:#1e1b4b}.github-update-copy span{font-size:14px;line-height:1.65}.github-update-actions{display:flex;gap:10px;flex:0 0 auto}.github-update-link{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border:1px solid #a5b4fc;border-radius:11px;color:#3730a3;background:#fff;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap}.github-update-link.primary{border-color:#4f46e5;background:#4f46e5;color:#fff}.github-update-link:hover{transform:translateY(-1px)}@media(max-width:760px){.github-update-banner{align-items:flex-start;flex-direction:column}.github-update-actions{width:100%;flex-wrap:wrap}.github-update-link{flex:1}}</style></head>',1)
 if 'aria-label="后续更新入口"' not in s:
-    banner='<section class="github-update-banner" aria-label="后续更新入口"><div class="github-update-copy"><strong>后续更新入口</strong><span>之后新增 Skill、Case 结果和筛选能力将优先在 GitHub 版看板持续更新，建议收藏该页面；飞书看板继续作为内部同步入口。</span></div><div class="github-update-actions"><a class="github-update-link primary" href="https://xvo00857-creator.github.io/skill-dashboard/" target="_blank" rel="noopener">打开 GitHub 版看板 ↗</a><a class="github-update-link" href="https://github.com/xvo00857-creator/skill-dashboard" target="_blank" rel="noopener">查看源码仓库 ↗</a></div></section>'
+    banner='<section class="github-update-banner" aria-label="后续更新入口"><div class="github-update-copy"><strong>后续更新入口</strong><span>之后新增 Skill、Case 结果和筛选能力将优先在 GitHub 版看板持续更新，建议收藏该页面；飞书看板继续作为内部同步入口。</span></div><div class="github-update-actions"><a class="github-update-link primary" href="https://xvo00857-creator.github.io/skill-dashboard/" target="_blank" rel="noopener">打开 GitHub 版看板 ↗</a></div></section>'
     s=s.replace('</header><nav class="nav">','</header>'+banner+'<nav class="nav">',1)
 if "${x.historicalScore!=null?" not in s:
     s=s.replace('${esc(x.conclusion)}</span></div></div><div class="tabs">','${esc(x.conclusion)}${x.historicalScore!=null?`<br>历史表格分数：${esc(x.historicalScore)} / 10；${esc(x.scoreNote)}`:""}</span></div></div><div class="tabs">',1)

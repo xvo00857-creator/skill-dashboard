@@ -12,6 +12,10 @@ s=s.replace('收录至少有 1 个豆包 Case 链接的 Skill；点击条目查�
 s=s.replace('个已有 Case 的 Skill','个 Skill（含待跑条目）').replace('已有 Case 的 Skill 目录','全部 Skill 与执行记录')
 s=s.replace('至少有一个豆包 Case 对话链接；重点方向、优先级、用途与实测结果集中浏览','有结果与待跑条目一并展示；对话链接数不等于执行成功数')
 s=s.replace('公开迁移版：数据更新时间沿用原记录。','公开版：2026-09-03 同步表格及上次执行归档；未重跑、未重新评分。')
+s=s.replace(
+    '公开版：2026-09-06 同步表格、最新豆包结果及既有执行归档；本次未重新评分。',
+    '公开版：2026-09-06 同步表格、最新豆包结果及既有执行归档；本周新增批次已由 DeepSeek 重新评分，证据不足项保留为待复测。',
+)
 s=s.replace('豆包 ${x.tested}/3 Case','豆包链接 ${x.tested}/3')
 s=s.replace("${c.tested?' ✓':' · 待测'}","${c.tested?' · 有链接':' · 无链接'}")
 # Collection batches assigned by the owner, kept separate from the dashboard refresh date.

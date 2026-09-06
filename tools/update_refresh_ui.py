@@ -18,6 +18,10 @@ s=s.replace(
 )
 s=s.replace('豆包 ${x.tested}/3 Case','豆包链接 ${x.tested}/3')
 s=s.replace("${c.tested?' ✓':' · 待测'}","${c.tested?' · 有链接':' · 无链接'}")
+s=s.replace('<option value="unknown">日期未登记</option>', '')
+s=s.replace("  if(filter==='unknown')return !day;\n", '')
+s=s.replace("  \n  if(!day)return false;", "  if(!day)return false;")
+s=s.replace("day||'日期未登记'", "day||'历史批次'")
 # Collection batches assigned by the owner, kept separate from the dashboard refresh date.
 # Rows 1436-1485 are the latest 50 Skills collected in the 2026-08-31 weekly batch.
 # Each Skill has three Cases, so this batch contains 150 Cases in total.

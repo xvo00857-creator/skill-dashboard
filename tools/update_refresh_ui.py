@@ -14,8 +14,15 @@ s=s.replace('至少有一个豆包 Case 对话链接；重点方向、优先级�
 s=s.replace('公开迁移版：数据更新时间沿用原记录。','公开版：2026-09-03 同步表格及上次执行归档；未重跑、未重新评分。')
 s=s.replace('豆包 ${x.tested}/3 Case','豆包链接 ${x.tested}/3')
 s=s.replace("${c.tested?' ✓':' · 待测'}","${c.tested?' · 有链接':' · 无链接'}")
-# Historical collection batch assigned by the owner, not the current refresh date.
-s=re.sub(r'const CRAWL_DATES=\{[^;]+\};','const CRAWL_DATES='+json.dumps({str(n):'2026-08-17' for n in range(2,1436)},separators=(',',':'))+';',s,count=1)
+# Collection batches assigned by the owner, kept separate from the dashboard refresh date.
+# Rows 1336-1485 are the latest 150 Skills collected in the 2026-08-31 weekly batch.
+crawl_dates={str(n):'2026-08-17' for n in range(2,1336)}
+crawl_dates.update({str(n):'2026-08-31' for n in range(1336,1486)})
+s=re.sub(r'const CRAWL_DATES=\{[^;]+\};','const CRAWL_DATES='+json.dumps(crawl_dates,separators=(',',':'))+';',s,count=1)
+s=s.replace(
+    '按 Skill 抓取批次筛选（北京时间）；2026-08-17 为历史批次补录，不代表测试或看板更新时间。',
+    '按 Skill 抓取批次筛选（北京时间）；2026-08-31 为本周新增 150 条，2026-08-17 为历史批次补录。',
+)
 helper='''function caseEvidenceHtml(c){
 const attempt=c.lastAttempt;
 return `<div class="result"><b>记录状态：</b>${esc(c.evidenceNote)}<br><b>题目版本：</b>${esc(c.promptBasis)}${c.revisionNote?`<br>${esc(c.revisionNote)}`:''}</div>

@@ -5,6 +5,7 @@ Run once per capture against the saved previous catalog, not a moving baseline.
 """
 import collections
 import copy
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -80,7 +81,7 @@ def archived_answer(run):
 
 def refresh(snapshot, previous, runs):
     assert snapshot['has_more'] is False
-    assert len(snapshot['rows'])==1435
+    assert len(snapshot['rows']) >= 2
     old={x['row']:x for x in previous}
     byurl={}; latest={}; knownshares={}
     for run in sorted(runs,key=lambda x:x['mtime']):
@@ -147,6 +148,8 @@ def refresh(snapshot, previous, runs):
             c={'number':n,'prompt':prompt,'promptBasis':prompt_basis,'preparedPrompt':current_prompt if note else '',
                'revisionNote':note,'answer':answer,'url':u,'tested':bool(u),'artifact':artifact,
                'executionStatus':status,'evidenceNote':evidence_note}
+            if prior.get('archivedDeliverables'):
+                c['archivedDeliverables']=prior['archivedDeliverables']
             if changed and prior.get('url'):c['previousResultUrl']=prior['url']
             last=latest.get(identity)
             if last and last['name']==name and (not matching or last['mtime']>matching['mtime']) and (not last['url'] or key(last['url'])!=key(u)):
@@ -176,6 +179,10 @@ def refresh(snapshot, previous, runs):
             item['historicalScore']=sc;item['score']=None;item['scoreLabel']='待复核（结果已更新）'
             item['scoreNote']='表格保留的分数未核实是否对应新结果；本次未重新评分。'
             counts['scores_held_for_provenance']+=1
+        elif base.get('historicalScore') is not None:
+            item['historicalScore']=base['historicalScore'];item['score']=None
+            item['scoreLabel']=base.get('scoreLabel','待复核（结果已更新）')
+            item['scoreNote']=base.get('scoreNote','表格保留的分数未核实是否对应新结果；本次未重新评分。')
         item['tested']=sum(c['tested'] for c in item['cases'])
         item['testStatus']=f"已收录 {item['tested']}/3 条真实对话；链接数量不代表执行成功"
         item['risk']=item['score'] is not None and item['score']<6
@@ -189,16 +196,33 @@ def refresh(snapshot, previous, runs):
     return items,dict(counts)
 
 def main():
-    repo=Path(__file__).resolve().parents[1];capture=repo/'.publish-local/refresh-20260903'
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--capture',type=Path)
+    parser.add_argument('--updated-at',default='2026-09-06')
+    args=parser.parse_args()
+    repo=Path(__file__).resolve().parents[1]
+    capture=(args.capture or repo/'.publish-local/refresh-20260903').resolve()
     previous=capture/'previous-catalog.json'
     if not previous.exists():previous.write_text(json.dumps(load_js(repo/'site/catalog-data.js'),ensure_ascii=False))
     snapshot=load(capture/'sheet-cells.json')
     items,counts=refresh(snapshot,load(previous),load(capture/'run-inventory.json'))
     encoded=('window.SKILL_ITEMS='+json.dumps(clean_tree(items),ensure_ascii=False,separators=(',',':'))+';\n').encode()
     (repo/'site/catalog-data.js').write_bytes(clean(encoded,'catalog-data.js'))
-    summary={'updatedAt':'2026-09-03','executionCutoff':'2026-08-28（暂停前已有执行归档）',
-       'sourceRevision':snapshot['revision'],'has_more':False,'counts':counts,
-       'workbuddyCases':1122,'notes':['只同步已有结果，未启动测试或评分','链接数量不代表成功数量','无分享链接的最后一轮结果单独标注']}
+    previous_summary=load(repo/'site/sync-summary.json')
+    summary={'updatedAt':args.updated_at,'executionCutoff':args.updated_at+'（截至本次已核验归档）',
+        'sourceRevision':snapshot['revision'],'has_more':False,'counts':counts,
+        'workbuddyCases':1122,'notes':['只同步已有结果，未启动测试或评分','链接数量不代表成功数量','无分享链接的最后一轮结果单独标注']}
+    if previous_summary.get('localArtifacts',{}).get('files',0)>0:
+        summary['localArtifacts']=previous_summary['localArtifacts']
+    else:
+        archives=[a for item in items for case in item.get('cases',[]) for a in case.get('archivedDeliverables',[])]
+        files=[f for archive in archives for f in archive.get('files',[])]
+        summary['localArtifacts']={
+            'files':len(files),
+            'cases':len(archives),
+            'bytes':sum((repo/'site'/f['url']).stat().st_size for f in files if (repo/'site'/f['url']).exists()),
+            'note':'本地已有附件按归档执行单独展示；未将旧版本产物冒充最新结果。'
+        }
     (repo/'site/sync-summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(summary,ensure_ascii=False))
 

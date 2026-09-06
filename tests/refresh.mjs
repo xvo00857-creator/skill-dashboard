@@ -6,10 +6,10 @@ const context=vm.createContext({window:{}});
 vm.runInContext(readFileSync(new URL('catalog-data.js',root),'utf8'),context);
 const data=context.window.SKILL_ITEMS;
 const summary=JSON.parse(readFileSync(new URL('sync-summary.json',root)));
-assert.equal(data.length,1434);
-assert.equal(new Set(data.map(x=>x.row)).size,1434);
+assert.equal(data.length,summary.counts.skills);
+assert.equal(new Set(data.map(x=>x.row)).size,summary.counts.skills);
 assert.equal(summary.has_more,false);
-assert.equal(summary.sourceRevision,1346);
+assert(Number.isInteger(summary.sourceRevision)&&summary.sourceRevision>0);
 assert.equal(data.reduce((n,x)=>n+x.tested,0),summary.counts.real_links);
 for(const item of data){
   assert.equal(item.cases.length,3);

@@ -1,22 +1,21 @@
 {
-  "updatedAt": "2026-09-03",
-  "executionCutoff": "2026-08-28（暂停前已有执行归档）",
-  "sourceRevision": 1346,
+  "updatedAt": "2026-09-06",
+  "executionCutoff": "2026-09-06（截至本次已核验归档）",
+  "sourceRevision": 1390,
   "has_more": false,
   "counts": {
-    "changed_answer_cells": 2618,
     "prompt_version_notes": 2832,
     "later_attempts": 1099,
-    "new_or_replaced_case_links": 749,
-    "scores_held_for_provenance": 197,
-    "new_link_slots": 564,
+    "changed_answer_cells": 41,
     "archived_links_not_in_sheet": 2,
-    "new_skill_cards": 208,
     "last_batch_attempts": 16,
-    "skills": 1434,
-    "real_links": 3849,
-    "three_link_skills": 1240,
-    "zero_link_skills": 120
+    "new_or_replaced_case_links": 142,
+    "new_link_slots": 142,
+    "new_skill_cards": 50,
+    "skills": 1484,
+    "real_links": 3991,
+    "three_link_skills": 1285,
+    "zero_link_skills": 121
   },
   "workbuddyCases": 1122,
   "notes": [

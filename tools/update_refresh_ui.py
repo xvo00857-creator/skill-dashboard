@@ -7,7 +7,7 @@ repo=Path(__file__).resolve().parents[1]
 p=repo/'site/index.html'
 s=p.read_text()
 s=s.replace('看板更新 2026-08-28','看板更新 2026-09-03').replace('看板更新于 2026-08-28','看板更新于 2026-09-03')
-s=re.sub(r'(catalog-data\.js\?v=)\d+',r'\g<1>20260903',s)
+s=re.sub(r'(catalog-data\.js\?v=)\d+',r'\g<1>20260906',s)
 s=s.replace('收录至少有 1 个豆包 Case 链接的 Skill；点击条目查看 Prompt、豆包与 WorkBuddy 回答及产物','收录全部 1,434 个 Skill；同步至 8 月 28 日暂停前的现有记录，未启动新测试')
 s=s.replace('个已有 Case 的 Skill','个 Skill（含待跑条目）').replace('已有 Case 的 Skill 目录','全部 Skill 与执行记录')
 s=s.replace('至少有一个豆包 Case 对话链接；重点方向、优先级、用途与实测结果集中浏览','有结果与待跑条目一并展示；对话链接数不等于执行成功数')

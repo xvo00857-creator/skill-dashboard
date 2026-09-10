@@ -94,15 +94,23 @@ def refresh(snapshot, previous, runs):
     for rn,row in snapshot['rows'].items():
         if rn=='1':continue
         rn=int(rn); base=copy.deepcopy(old.get(rn,{})); name=cell(row,'B')
+        # The workbook is pre-sized with trailing blank rows. They are layout
+        # capacity, not Skill records, and must never become empty cards.
+        if not name.strip():
+            continue
         assert not base or base['name']==name, f'Skill identity changed at row {rn}'
         mark=cell(row,'AM').strip(); sc=score(cell(row,'O'))
+        batch_text=cell(row,'AL')
+        batch_match=re.search(r'(\d{4}-\d{2}-\d{2})',batch_text)
+        crawl_date=batch_match.group(1) if batch_match else ''
         item={**base,'row':rn,'name':name,'category':cell(row,'C') or '待分类',
           'description':cell(row,'D') or '暂无用途说明','focusDirection':cell(row,'AW') or '其他低优先级方向',
           'source':cell(row,'AX') or 'GitHub','mark':mark,'isP0':mark.upper()=='P0',
           'isP1':mark.upper()=='P1','isP2':mark.upper()=='P2',
           'sourceUrl':next(iter(urls(row,'A')),''),'xhsUrl':next(iter(urls(row,'AP')),''),
           'zipUrl':next(iter(urls(row,'E')),''),'score':sc,'scoreLabel':f'{sc:.1f}' if sc is not None else cell(row,'O') or '未评分',
-          'conclusion':cell(row,'AJ'),'sheetStatus':cell(row,'W'),'lastTestAt':cell(row,'AK'),'cases':[]}
+          'conclusion':cell(row,'AJ'),'sheetStatus':cell(row,'W'),'lastTestAt':cell(row,'AK'),
+          'crawlDate':crawl_date,'cases':[]}
         result_changed=False
         for n,(pc,lc,ac) in enumerate(zip(['I','K','M'],['X','Z','AB'],['Y','AA','AC']),1):
             prior=next((c for c in base.get('cases',[]) if c['number']==n),{})
@@ -198,7 +206,7 @@ def refresh(snapshot, previous, runs):
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--capture',type=Path)
-    parser.add_argument('--updated-at',default='2026-09-06')
+    parser.add_argument('--updated-at',default='2026-09-11')
     args=parser.parse_args()
     repo=Path(__file__).resolve().parents[1]
     capture=(args.capture or repo/'.publish-local/refresh-20260903').resolve()

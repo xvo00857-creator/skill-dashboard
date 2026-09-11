@@ -1,7 +1,7 @@
 {
   "updatedAt": "2026-09-11",
   "executionCutoff": "2026-09-11（截至本次已核验归档）",
-  "sourceRevision": 1440,
+  "sourceRevision": 1607,
   "has_more": false,
   "counts": {
     "prompt_version_notes": 2832,
@@ -10,12 +10,12 @@
     "archived_links_not_in_sheet": 2,
     "last_batch_attempts": 16,
     "new_skill_cards": 55,
-    "new_or_replaced_case_links": 8,
-    "new_link_slots": 8,
+    "new_or_replaced_case_links": 133,
+    "new_link_slots": 133,
     "skills": 1539,
-    "real_links": 3999,
-    "three_link_skills": 1287,
-    "zero_link_skills": 172
+    "real_links": 4124,
+    "three_link_skills": 1328,
+    "zero_link_skills": 130
   },
   "workbuddyCases": 1122,
   "notes": [
